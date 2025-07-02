@@ -12,9 +12,10 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{url('user')}}/media/favicon.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 
     <!-- All CSS files -->
-    <link rel="stylesheet" href="{{url('user')}}/css/vendor/font-awesome.css">
     <link rel="stylesheet" href="{{url('user')}}/css/vendor/slick-theme.css">
     <link rel="stylesheet" href="{{url('user')}}/css/vendor/slick-slider.css">
     <link rel="stylesheet" href="{{url('user')}}/css/vendor/bootstrap.min.css">
@@ -233,7 +234,7 @@
                                 <nav class="all-category-nav">
                                     <label class="open-menu-all" for="open-menu-all">
                                         <input class="input-menu-all" id="open-menu-all" type="checkbox" name="menu-open">
-                                        <span class="all-navigator"><i class="fas fa-bars" aria-hidden="true"></i> <span>Browse All Categories</span>
+                                        <span class="all-navigator"><i class="fa-solid fa-bars"></i><span>Browse All Categories</span>
                                         </span>
                                         <span class="all-category-list list-unstyled">
                                             <span class="all-category-list-item"><a href="shop-grid-1.html"
@@ -1118,10 +1119,10 @@
     <!-- Jquery Js -->
     <script src="{{url('user')}}/js/vendor/bootstrap.min.js"></script>
     <script src="{{url('user')}}/js/vendor/jquery-3.6.3.min.js"></script>
-    <script src="{{url('user')}}/js/vendor/slick.min.js"></script>
     <script src="{{url('user')}}/js/vendor/jquery-validator.js"></script>
     <script src="{{url('user')}}/js/vendor/jquery.countdown.min.js"></script>
     <script src="{{url('user')}}/js/vendor/countryCode.js"></script>
+    <script src="{{url('user')}}/js/vendor/slick.min.js"></script>
 
     <script src="{{url('user')}}/js/app.js"></script>
 
