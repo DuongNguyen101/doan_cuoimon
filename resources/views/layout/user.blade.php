@@ -61,7 +61,7 @@
                         <p class="fw-500 white">Welcome to Worldwide Electronic Store</p>
                     </div>
                     <div class="header-end">
-                        <a href="contact.html" class="top-bar-links d-sm-flex d-none align-items-center gap-2">
+                        <a href="" class="top-bar-links d-sm-flex d-none align-items-center gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <path
                                     d="M9.51246 19.7391C9.62113 19.9021 9.8041 20 10 20C10.1959 20 10.3789 19.9021 10.4875 19.7391C11.8742 17.6591 13.9167 15.0903 15.34 12.4778C16.478 10.3889 17.0312 8.60727 17.0312 7.03125C17.0312 3.15422 13.877 0 10 0C6.12297 0 2.96875 3.15422 2.96875 7.03125C2.96875 8.60727 3.52199 10.3889 4.66004 12.4778C6.08227 15.0883 8.12863 17.6634 9.51246 19.7391ZM10 1.17188C13.2309 1.17188 15.8594 3.80039 15.8594 7.03125C15.8594 8.40641 15.3529 10.0046 14.3109 11.9171C13.0841 14.1691 11.3334 16.4534 10 18.3738C8.66684 16.4537 6.91602 14.1692 5.6891 11.9171C4.64715 10.0046 4.14062 8.40641 4.14062 7.03125C4.14062 3.80039 6.76914 1.17188 10 1.17188Z"
@@ -143,7 +143,7 @@
                 </div>
                 <div class="container-fluid">
                     <div class="header-center">
-                        <a href="index.html" class="header-logo">
+                        <a href="{{asset('template/user/home/index')}}" class="header-logo">
                             <img src="{{url('user')}}/media/logo.png" alt="">
                         </a>
                         <div class="mixin-container d-xl-flex d-none">
@@ -458,9 +458,7 @@
                                         <li>
                                             <a href="index.html" class="active">Home Page</a>
                                         </li>
-                                        <li>
-                                            <a href="about.html">About Us</a>
-                                        </li>
+                                        
                                         <!--  -->
                                         <li class="dropdown">
                                             <a href="javascript:void(0);">Shop</a>
@@ -520,6 +518,9 @@
                                                 <li><a href="404.html">404</a></li>
                                                 <li><a href="coming-soon.html">Coming Soon</a></li>
                                             </ul>
+                                        </li>
+                                        <li>
+                                            <a href="about.html">About Us</a>
                                         </li>
                                         <li>
                                             <a href="contact.html">Contact Us</a>
