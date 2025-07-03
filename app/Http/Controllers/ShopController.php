@@ -20,4 +20,8 @@ class ShopController extends Controller
     public function cart(){
         return view('template/user/shop/cart');
     }
+
+    public function checkout(){
+        return view('template/user/shop/checkout');
+    }
 }

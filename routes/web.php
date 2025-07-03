@@ -23,6 +23,7 @@ Route::group(['prefix' => 'template/user'], function () {
     Route::get('/shop/shop-detail', [ShopController::class, 'shopdetail']);
     Route::get('/shop/wishlist', [ShopController::class, 'wishlist']);
     Route::get('/shop/cart', [ShopController::class, 'cart']);
+    Route::get('/shop/checkout', [ShopController::class, 'checkout']);
 });
 
 Route::group(['prefix' => 'template/user'], function () {
