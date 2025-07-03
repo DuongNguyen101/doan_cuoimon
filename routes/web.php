@@ -62,4 +62,6 @@ Route::group(['prefix' => 'template/admin'], function () {
     Route::get('/upgrade', [TemplateAdminController::class, 'upgrade']);
 });
 
-
+Route::group(['prefix' => 'register'], function () {
+    Route::post('/save', [PagesController::class, 'save'])->name('register.save');
+});
