@@ -61,7 +61,7 @@
                             </div>
 
                             <div class="text-center">
-                                <p>Already have an account? <a href="{{ url('/') }}">Login now</a></p>
+                                <p>Already have an account? <a href="{{ url('template/user/pages/login') }}">Login now</a></p>
                             </div>
                         </form>
                     </div>
