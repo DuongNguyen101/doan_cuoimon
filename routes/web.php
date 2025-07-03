@@ -32,12 +32,13 @@ Route::group(['prefix' => 'template/user'], function () {
 });
 
 Route::group(['prefix' => 'template/user'], function () {
-    Route::get('/blog/blog-gird', [BlogController::class, 'bloggird']);
+    Route::get('/blog/blog-grid', [BlogController::class, 'bloggrid']);
     Route::get('/blog/blog-detail', [BlogController::class, 'blogdetail']);
 });
 
 Route::group(['prefix' => 'template/user'], function () {
     Route::get('/pages/register', [PagesController::class, 'register']);
+    Route::get('/pages/login', [PagesController::class, 'login']);
 });
 
 Route::group(['prefix' => 'template/user'], function () {

@@ -23,31 +23,6 @@
 
 <body class="tt-smooth-scroll">
 
-     <!-- Preloader -->
-     <div id="preloader">
-        <div class="preloader">
-            <svg class="cart" role="img" aria-label="Shopping cart line animation" viewBox="0 0 128 128" width="128px" height="128px" xmlns="http://www.w3.org/2000/svg">
-                <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="8">
-                    <g class="cart__track" stroke="hsla(0,10%,10%,0.1)">
-                        <polyline points="4,4 21,4 26,22 124,22 112,64 35,64 39,80 106,80" />
-                        <circle cx="43" cy="111" r="13" />
-                        <circle cx="102" cy="111" r="13" />
-                    </g>
-                    <g class="cart__lines" stroke="currentColor">
-                        <polyline class="cart__top" points="4,4 21,4 26,22 124,22 112,64 35,64 39,80 106,80" stroke-dasharray="338 338" stroke-dashoffset="-338" />
-                        <g class="cart__wheel1" transform="rotate(-90,43,111)">
-                            <circle class="cart__wheel-stroke" cx="43" cy="111" r="13" stroke-dasharray="81.68 81.68" stroke-dashoffset="81.68" />
-                        </g>
-                        <g class="cart__wheel2" transform="rotate(90,102,111)">
-                            <circle class="cart__wheel-stroke" cx="102" cy="111" r="13" stroke-dasharray="81.68 81.68" stroke-dashoffset="81.68" />
-                        </g>
-                    </g>
-                </g>
-            </svg>
-        </div>
-    </div>
-    <!-- Preloader -->
-    
     <!-- Main Wrapper Start -->
     <div id="scroll-container">
         <!-- Header Menu Start -->
@@ -58,7 +33,7 @@
                         <p class="fw-500 white">Welcome to Worldwide Electronic Store</p>
                     </div>
                     <div class="header-end">
-                        <a href="contact.html" class="top-bar-links d-sm-flex d-none align-items-center gap-2">
+                        <a href="{{asset('template/user/contact/index')}}" class="top-bar-links d-sm-flex d-none align-items-center gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <path
                                     d="M9.51246 19.7391C9.62113 19.9021 9.8041 20 10 20C10.1959 20 10.3789 19.9021 10.4875 19.7391C11.8742 17.6591 13.9167 15.0903 15.34 12.4778C16.478 10.3889 17.0312 8.60727 17.0312 7.03125C17.0312 3.15422 13.877 0 10 0C6.12297 0 2.96875 3.15422 2.96875 7.03125C2.96875 8.60727 3.52199 10.3889 4.66004 12.4778C6.08227 15.0883 8.12863 17.6634 9.51246 19.7391ZM10 1.17188C13.2309 1.17188 15.8594 3.80039 15.8594 7.03125C15.8594 8.40641 15.3529 10.0046 14.3109 11.9171C13.0841 14.1691 11.3334 16.4534 10 18.3738C8.66684 16.4537 6.91602 14.1692 5.6891 11.9171C4.64715 10.0046 4.14062 8.40641 4.14062 7.03125C4.14062 3.80039 6.76914 1.17188 10 1.17188Z"
@@ -71,35 +46,8 @@
                                 <p class="fw-500 white">Store Locator</p>
                             </div>
                         </a>
-                        <a href="tracking.html" class="top-bar-links d-flex align-items-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                <g clip-path="url(#clip0_7765_205)">
-                                    <path
-                                        d="M5.95035 13.125H5.95008C5.73434 13.125 5.55957 13.2999 5.55957 13.5156C5.55957 13.7313 5.73461 13.9063 5.95035 13.9063C6.16609 13.9063 6.34097 13.7313 6.34097 13.5156C6.34097 13.2999 6.16609 13.125 5.95035 13.125Z"
-                                        fill="#FAFAFA" />
-                                    <path
-                                        d="M15.7945 13.125H15.7942C15.5784 13.125 15.4037 13.2999 15.4037 13.5156C15.4037 13.7313 15.5787 13.9063 15.7945 13.9063C16.0102 13.9063 16.1851 13.7313 16.1851 13.5156C16.1851 13.2999 16.0102 13.125 15.7945 13.125Z"
-                                        fill="#FAFAFA" />
-                                    <path
-                                        d="M18.9191 8.43752H18.7649L17.5204 5.54862C17.4587 5.40534 17.3177 5.31253 17.1617 5.31253H14.2318V4.53128C14.2318 4.31558 14.0569 4.14066 13.8412 4.14066H2.82543C2.62227 4.14066 2.45301 4.29636 2.43617 4.49886L2.30731 6.04499H1.0675C0.851761 6.04499 0.676879 6.21991 0.676879 6.43561C0.676879 6.65131 0.851761 6.82624 1.0675 6.82624H2.24219L2.14859 7.94928H1.65344C1.4377 7.94928 1.26282 8.1242 1.26282 8.33991C1.26282 8.55561 1.4377 8.73053 1.65344 8.73053H2.08352L1.98992 9.85354H0.481567C0.265825 9.85354 0.0909424 10.0285 0.0909424 10.2442C0.0909424 10.4599 0.265825 10.6348 0.481567 10.6348H1.92481L1.65488 13.8738C1.64582 13.9827 1.68274 14.0904 1.75668 14.1708C1.83067 14.2512 1.93488 14.2969 2.04414 14.2969H3.74031C4.06277 15.2063 4.93164 15.8594 5.95019 15.8594C6.96874 15.8594 7.83761 15.2063 8.16007 14.2969H13.5844C13.9069 15.2063 14.7758 15.8594 15.7943 15.8594C16.8129 15.8594 17.6817 15.2063 18.0042 14.2969H19.7004C19.9161 14.2969 20.091 14.122 20.091 13.9063V9.60943C20.0909 8.94131 19.5872 8.43752 18.9191 8.43752ZM15.9899 6.09378H16.9046L17.9142 8.43752H15.9899V6.09378ZM3.18035 9.85354H2.77387L2.86746 8.73053H5.91472C6.13046 8.73053 6.30534 8.55561 6.30534 8.33991C6.30534 8.1242 6.13046 7.94928 5.91472 7.94928H2.93258L3.02617 6.82624H4.15691C4.37265 6.82624 4.54754 6.65131 4.54754 6.43561C4.54754 6.21991 4.37265 6.04499 4.15691 6.04499H3.09125L3.18484 4.9219H13.4506V11.7578H7.49882C7.08558 11.3933 6.54323 11.1719 5.95019 11.1719C5.35714 11.1719 4.8148 11.3933 4.40156 11.7578H2.6152L2.70879 10.6348H3.18035C3.39609 10.6348 3.57097 10.4599 3.57097 10.2442C3.57097 10.0285 3.39609 9.85354 3.18035 9.85354ZM2.46871 13.5156L2.55008 12.5391H3.81969C3.68281 12.8365 3.60644 13.1673 3.60644 13.5156H2.46871ZM5.95019 15.0781C5.08863 15.0781 4.38769 14.3772 4.38769 13.5156C4.38769 12.6541 5.08863 11.9531 5.95019 11.9531C6.81175 11.9531 7.51269 12.6541 7.51269 13.5156C7.51269 14.3772 6.81175 15.0781 5.95019 15.0781ZM8.29393 13.5156C8.29393 13.1673 8.21757 12.8365 8.08069 12.5391H13.6638C13.5269 12.8365 13.4506 13.1673 13.4506 13.5156H8.29393ZM15.7943 15.0781C14.9327 15.0781 14.2318 14.3772 14.2318 13.5156C14.2318 12.6541 14.9327 11.9531 15.7943 11.9531C16.6558 11.9531 17.3568 12.6541 17.3568 13.5156C17.3568 14.3772 16.6558 15.0781 15.7943 15.0781ZM19.3097 13.5156H18.138C18.138 13.1673 18.0617 12.8365 17.9248 12.5391H19.3097V13.5156H19.3097ZM19.3097 11.7578H17.3429C16.9297 11.3933 16.3873 11.1719 15.7943 11.1719C15.2012 11.1719 14.6589 11.3933 14.2456 11.7578H14.2318V6.09378H15.2086V8.82815C15.2086 9.04385 15.3835 9.21877 15.5993 9.21877H18.9191C19.16 9.21877 19.3097 9.36846 19.3097 9.6094V11.7578Z"
-                                        fill="#FAFAFA" />
-                                    <path
-                                        d="M7.75232 6.43561C7.75232 6.21991 7.57744 6.04499 7.3617 6.04499H5.91467C5.69893 6.04499 5.52405 6.21991 5.52405 6.43561C5.52405 6.65132 5.69893 6.82624 5.91467 6.82624H7.3617C7.57744 6.82624 7.75232 6.65132 7.75232 6.43561Z"
-                                        fill="#FAFAFA" />
-                                    <path
-                                        d="M7.28186 8.33991C7.28186 8.55561 7.45674 8.73053 7.67248 8.73053H8.396C8.61174 8.73053 8.78662 8.55561 8.78662 8.33991C8.78662 8.1242 8.61174 7.94928 8.396 7.94928H7.67248C7.45674 7.94928 7.28186 8.12416 7.28186 8.33991Z"
-                                        fill="#FAFAFA" />
-                                </g>
-                                <defs>
-                                    <clipPath id="clip0_7765_205">
-                                        <rect width="20" height="20" fill="white" transform="translate(0.0909424)" />
-                                    </clipPath>
-                                </defs>
-                            </svg>
-                            <p class="fw-500 white"> Order Tracking</p>
-                        </a>
                         <div class="d-sm-block d-none">
-                            <a href="about.html"><span class="fw-500 top-bar-links">FAQs</span></a>
+                            <a href="{{asset('template/user/about/index')}}"><span class="fw-500 top-bar-links">FAQs</span></a>
                         </div>
                         <div class="vr-line d-sm-block d-none">
                         </div>
@@ -140,7 +88,7 @@
                 </div>
                 <div class="container-fluid">
                     <div class="header-center">
-                        <a href="index.html" class="header-logo">
+                        <a href="{{asset('template/user/home/index')}}" class="header-logo">
                             <img src="{{url('user')}}/media/logo.png" alt="">
                         </a>
                         <div class="mixin-container d-xl-flex d-none">
@@ -153,21 +101,21 @@
                                             stroke-linejoin="round"></path>
                                     </svg>
                                     <ul class="topbar-dropdown bg-lightest-gray box-shadow-1">
-                                        <li class="item dark-black">Digital & Electronics</li>
-                                        <li class="item dark-black">Camera & Photo</li>
-                                        <li class="item dark-black">Computer Hardware</li>
-                                        <li class="item dark-black">Gamepad & Console</li>
-                                        <li class="item dark-black">Headphone & Speaker</li>
-                                        <li class="item dark-black">Laptop & Computer</li>
-                                        <li class="item dark-black">Smartphone & Tablet</li>
-                                        <li class="item dark-black">TV & Audio</li>
-                                        <li class="item dark-black">Watches & Eyewear</li>
-                                        <li class="item dark-black">Fan & AC</li>
+                                        <li class="item dark-gray">Digital & Electronics</li>
+                                        <li class="item dark-gray">Camera & Photo</li>
+                                        <li class="item dark-gray">Computer Hardware</li>
+                                        <li class="item dark-gray">Gamepad & Console</li>
+                                        <li class="item dark-gray">Headphone & Speaker</li>
+                                        <li class="item dark-gray">Laptop & Computer</li>
+                                        <li class="item dark-gray">Smartphone & Tablet</li>
+                                        <li class="item dark-gray">TV & Audio</li>
+                                        <li class="item dark-gray">Watches & Eyewear</li>
+                                        <li class="item dark-gray">Fan & AC</li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="vr-line vr-line-2"></div>
-                            <form action="index.html" method="post">
+                            <form action="{{asset('template/user/home/index')}}" method="post">
                                 <div class="input-field">
                                     <input type="text" name="search" id="searchInput" class="form-control" placeholder="Search for products...">
                                     <button type="submit" class="cus-btn">Search</button>
@@ -175,22 +123,18 @@
                             </form>
                         </div>
                         <div class="header-buttons">
-                            <a href="register.html" class="button-block align-items-sm-unset align-items-end">
+                            <a href="{{asset('template/user/pages/register')}}" class="button-block align-items-sm-unset align-items-end">
                                 <img src="{{url('user')}}/media/users/user-3.png" alt="" class="user">
                                 <div>
                                     <p>Login</p>
                                     <h6>Account</h6>
                                 </div>
                             </a>
-                            <a href="wishlist.html" class="button-block d-sm-flex d-none">
+                            <a href="{{asset('template/user/shop/wishlist')}}" class="button-block d-sm-flex d-none">
                                 <img src="{{url('user')}}/media/icons/wishlist.png" alt="">
                             </a>
                             <a href="#" class="button-block d-sm-flex d-none cart-button">
                                 <img src="{{url('user')}}/media/icons/cart.png" alt="">
-                                <div>
-                                    <p>Your Cart</p>
-                                    <h6>$120.00</h6>
-                                </div>
                             </a>
                         </div>
                     </div>
@@ -231,16 +175,16 @@
                                 <nav class="all-category-nav">
                                     <label class="open-menu-all" for="open-menu-all">
                                         <input class="input-menu-all" id="open-menu-all" type="checkbox" name="menu-open">
-                                        <span class="all-navigator"><i class="fa-solid fa-bars"></i> <span>Browse All Categories</span>
+                                        <span class="all-navigator"><i class="fa-solid fa-bars"></i><span>Browse All Categories</span>
                                         </span>
                                         <span class="all-category-list list-unstyled">
-                                            <span class="all-category-list-item"><a href="shop-grid-1.html"
+                                            <span class="all-category-list-item"><a href="{{asset('template/user/shop/shop-list')}}"
                                                     class="all-category-list-link dark-black fw-500">Value Of The Day
                                                  </a>
                                             </span>
-                                            <span class="all-category-list-item"><a href="shop-grid-1.html"
+                                            <span class="all-category-list-item"><a href="{{asset('template/user/shop/shop-list')}}"
                                                     class="all-category-list-link dark-black fw-500">Top 100 Offers</a></span>
-                                            <span class="all-category-list-item"><a href="shop-grid-1.html"
+                                            <span class="all-category-list-item"><a href="{{asset('template/user/shop/shop-list')}}"
                                                     class="all-category-list-link dark-black fw-500">New Arrivals</a></span>
                                             <span class="all-category-list-item"><a href="javascript:;" class="all-category-list-link d-flex align-items-center justify-content-between">Laptop & Computer<i class="fas fa-angle-right" aria-hidden="true"></i></a>
                                                 <span class="category-second-list">
@@ -288,7 +232,7 @@
                                                             <span class="h6 d-block fw-500 white mb-24">Radient View LCD</span>
                                                             <span class="d-block text-16 white mb-4p">Just from:</span>
                                                             <span class="d-block h4 color-ter mb-32">$840.99</span>
-                                                            <a href="shop-list-1.html" class="cus-btn-3 sec">Shop Now</a>
+                                                            <a href="{{asset('template/user/shop/shop-list')}}" class="cus-btn-3 sec">Shop Now</a>
                                                         </span>
                                                     </span>
                                                 </span>
@@ -330,120 +274,11 @@
                                                             <span class="d-block h6 fw-500 white mb-24">MACBOOK M1</span>
                                                             <span class="d-block text-16 white mb-4p">Just from:</span>
                                                             <span class="d-block h4 color-ter mb-32">$340.99</span>
-                                                            <a href="shop-list-1.html" class="cus-btn-3 sec">Shop Now</a>
+                                                            <a href="{{asset('template/user/shop/shop-list')}}" class="cus-btn-3 sec">Shop Now</a>
                                                         </span>
                                                     </span>
                                                 </span>
                                             </span>
-                                            <span class="all-category-list-item"><a href="shop-grid-2.html" class="all-category-list-link">Camera & Photo</a></span>
-                                            <span class="all-category-list-item"><a href="javascript:;" class="all-category-list-link d-flex align-items-center justify-content-between">Smartphone & Tablets<i class="fas fa-angle-right" aria-hidden="true"></i></a>
-                                                <span class="category-second-list">
-                                                    <span class="sub-menu-main-wrapper">
-                                                        <span class="wrapper-1">
-                                                            <span class="category-second-list-ul list-unstyled mb-40">
-                                                                <span class="dark-black fw-500 mb-16">Brands</span>
-                                                                <span class="category-second-item"><a href="">Apple </a></span>
-                                                                <span class="category-second-item"><a href="">Samsung</a></span>
-                                                                <span class="category-second-item"><a href="">Xiaomi</a></span>
-                                                                <span class="category-second-item"><a href="">Oppo </a></span>
-                                                                <span class="category-second-item"><a href=""> Huawei</a></span>
-                                                                <span class="category-second-item"><a href="">Nokia </a></span>
-                                                                <span class="category-second-item"><a href="">Vivo </a></span>
-                                                            </span>
-                                
-                                                            <span class="category-second-list-ul list-unstyled">
-                                                                <span class="dark-black fw-500 mb-16">Display Sizes</span>
-                                                                <span class="category-second-item"><a href="">Up to 6 Inches</a></span>
-                                                                <span class="category-second-item"><a href="">6 Inch - 8 Inch</a></span>
-                                                                <span class="category-second-item"><a href="">8 Inch - 10 Inch</a></span>
-                                                            </span>
-                                
-                                                        </span>
-                                                        <span class="wrapper-1">
-                                                            <span class="category-second-list-ul list-unstyled mb-40">
-                                                                <span class="dark-black fw-500 mb-16">Conditions</span>
-                                                                <span class="category-second-item"><a href="">All New</a></span>
-                                                                <span class="category-second-item"><a href="">Renewed</a></span>
-                                                                <span class="category-second-item"><a href="">Refurbished</a></span>
-                                                                <span class="category-second-item"><a href="">Used</a></span>
-                                                            </span>
-                                                            <span class="category-second-list-ul list-unstyled">
-                                                                <span class="dark-black fw-500 mb-16">Prices</span>
-                                                                <span class="category-second-item"><a href="">Up to $200</a></span>
-                                                                <span class="category-second-item"><a href="">$500 to $1000</a></span>
-                                                                <span class="category-second-item"><a href="">$1000 to $2000</a></span>
-                                                                <span class="category-second-item"><a href="">$2000 to $3000</a></span>
-                                                                <span class="category-second-item"><a href="">$3000 to $4000</a></span>
-                                                                <span class="category-second-item"><a href="">$4000 to $5000</a></span>
-                                                            </span>
-                                                        </span>
-                                                    </span>
-                                                    <span class="img-product-menu v-3">
-                                                        <span class="image-content">
-                                                            <span class="d-block h6 fw-400 white mb-4p">MOBIME</span>
-                                                            <span class="d-block h6 fw-500 white mb-24">Mobile Phone</span>
-                                                            <span class="text-16 white mb-4p">Just from:</span>
-                                                            <span class="d-block h4 color-ter mb-32">$500.99</span>
-                                                            <a href="shop-list-1.html" class="cus-btn-3 sec">Shop Now</a>
-                                                        </span>
-                                                    </span>
-                                                </span>
-                                            </span>
-                                            <span class="all-category-list-item"><a href="javascript:;" class="all-category-list-link d-flex align-items-center justify-content-between">TV & Audio<i class="fas fa-angle-right" aria-hidden="true"></i></a>
-                                                <span class="category-second-list">
-                                                    <span class="sub-menu-main-wrapper">
-                                                        <span class="wrapper-1">
-                                                            <span class="category-second-list-ul list-unstyled mb-40">
-                                                                <span class="dark-black fw-500 mb-16">Brands</span>
-                                                                <span class="category-second-item"><a href="">Sony </a></span>
-                                                                <span class="category-second-item"><a href="">LG</a></span>
-                                                                <span class="category-second-item"><a href="">Samsung </a></span>
-                                                                <span class="category-second-item"><a href="">Panasonic</a></span>
-                                                                <span class="category-second-item"><a href="">Toshiba </a></span>
-                                                            </span>
-                                                            <span class="category-second-list-ul list-unstyled">
-                                                                <span class="dark-black fw-500 mb-16">Department</span>
-                                                                <span class="category-second-item"><a href="">Smart TVs</a></span>
-                                                                <span class="category-second-item"><a href="">LED TVs</a></span>
-                                                                <span class="category-second-item"><a href="">Curved TVs</a></span>
-                                                                <span class="category-second-item"><a href="">OLED TVs</a></span>
-                                                                <span class="category-second-item"><a href="">Plasma TVs</a></span>
-                                                                <span class="category-second-item"><a href="">Smart TVs 4K</a></span>
-                                                            </span>
-                                                        </span>
-                                                        <span class="wrapper-1">
-                                                            <span class="category-second-list-ul list-unstyled">
-                                                                <span class="dark-black fw-500 mb-16">Prices</span>
-                                                                <span class="category-second-item"><a href="">Up to $200</a></span>
-                                                                <span class="category-second-item"><a href="">$500 to $1000</a></span>
-                                                                <span class="category-second-item"><a href="">$1000 to $2000</a></span>
-                                                                <span class="category-second-item"><a href="">$2000 to $3000</a></span>
-                                                                <span class="category-second-item"><a href="">$3000 to $4000</a></span>
-                                                                <span class="category-second-item"><a href="">$4000 to $5000</a></span>
-                                                                <span class="category-second-item"><a href="">$5000 to $6000</a></span>
-                                                            </span>
-                                                        </span>
-                                                    </span>
-                                                    <span class="img-product-menu v-4">
-                                                        <span class="image-content">
-                                                            <span class="d-block h6 fw-400 white mb-4p">HEADPHONE</span>
-                                                            <span class="d-block h6 fw-500 white mb-24">Bass Headphones</span>
-                                                            <span class="text-16 white mb-4p">Just from:</span>
-                                                            <span class="d-block h4 color-ter mb-32">$180.00</span>
-                                                            <a href="shop-list-1.html" class="cus-btn-3 sec">Shop Now</a>
-                                                        </span>
-                                                    </span>
-                                                </span>
-                                            </span>
-                                            <span class="all-category-list-item"><a href="shop-grid-3.html" class="all-category-list-link">Home &
-                                                    Electronic</a></span>
-                                            <span class="all-category-list-item"><a href="shop-grid-4.html" class="all-category-list-link">Headphone &
-                                                    Speakers</a>
-                                            </span>
-                                            <span class="all-category-list-item"><a href="shop-grid-sidebar-1.html"
-                                                    class="all-category-list-link">Watches & Eyewear</a></span>
-                                            <span class="all-category-list-item"><a href="shop-grid-sidebar-2.html"
-                                                    class="all-category-list-link">Gamepad & Console</a></span>
                                         </span>
                                     </label>
                                 </nav>
@@ -453,48 +288,20 @@
                                 <div class="main-menu__nav">
                                     <ul class="main-menu__list">
                                         <li>
-                                            <a href="index.html">Home Page</a>
+                                            <a href="{{asset('template/user/home/index')}}" class="active">Home Page</a>
                                         </li>
-                                        <li>
-                                            <a href="about.html">About Us</a>
-                                        </li>
+                                        
                                         <!--  -->
                                         <li class="dropdown">
-                                            <a href="javascript:void(0);" class="active">Shop</a>
+                                            <a href="javascript:void(0);">Shop</a>
                                             <ul class="sub-menu">
-                                                <li class="dropdown">
-                                                    <a href="javascript:void(0);">Shop Grid</a>
-                                                    <ul class="sub-menu">
-                                                        <li><a href="shop-grid-1.html">Shop Grid 1</a></li>
-                                                        <li><a href="shop-grid-2.html">Shop Grid 2</a></li>
-                                                        <li><a href="shop-grid-3.html">Shop Grid 3</a></li>
-                                                        <li><a href="shop-grid-4.html">Shop Grid 4</a></li>
-                                                    </ul>
+                                                <li>
+                                                    <a href="{{asset('template/user/shop/shop-list')}}">Shop List</a>
                                                 </li>
-                                                <li class="dropdown">
-                                                    <a href="javascript:void(0);">Shop Grid with Sidebar</a>
-                                                    <ul class="sub-menu">
-                                                        <li><a href="shop-grid-sidebar-1.html">Shop Grid Sidebar 1</a></li>
-                                                        <li><a href="shop-grid-sidebar-2.html">Shop Grid Sidebar 2</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="dropdown">
-                                                    <a href="javascript:void(0);">Shop List</a>
-                                                    <ul class="sub-menu">
-                                                        <li><a href="shop-list-1.html">Shop List 1</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="dropdown">
-                                                    <a href="javascript:void(0);">Shop List with Sidebar</a>
-                                                    <ul class="sub-menu">
-                                                        <li><a href="shop-list-sidebar-1.html">Shop List Sidebar 1</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="shop-detail.html">Shop Detail 1</a></li>
-                                                <li><a href="shop-detail-2.html" class="active">Shop Detail 2</a></li>
-                                                <li><a href="wishlist.html">Wishlist</a></li>
-                                                <li><a href="cart.html">Cart</a></li>
-                                                <li><a href="checkout.html">Checkout</a></li>
+                                                <li><a href="{{asset('template/user/shop/shop-detail')}}">Shop Detail </a></li>
+                                                <li><a href="{{asset('template/user/shop/wishlist')}}">Wishlist</a></li>
+                                                <li><a href="{{asset('template/user/shop/cart')}}">Cart</a></li>
+                                                <li><a href="{{asset('template/user/shop/checkout')}}">Checkout</a></li>
                                             </ul>
                                         </li>
 
@@ -502,24 +309,22 @@
                                         <li class="dropdown">
                                             <a href="javascript:void(0);">Blogs</a>
                                             <ul>
-                                                <li><a href="blog-grid.html">Blog Grid</a></li>
-                                                <li><a href="blog-grid-sidebar-1.html">Blog Grid Sidebar 1</a></li>
-                                                <li><a href="blog-grid-sidebar-2.html">Blog Grid Sidebar 2</a></li>
-                                                <li><a href="blog-list-sidebar-1.html">Blog List Sidebar 1</a></li>
-                                                <li><a href="blog-detail.html">Blog Detail</a></li>
+                                                <li><a href="{{asset('template/user/blog/blog-grid')}}">Blog Grid</a></li>
+                                                <li><a href="{{asset('template/user/blog/blog-detail')}}">Blog Detail</a></li>
                                             </ul>
                                         </li>
                                         <li class="dropdown">
                                             <a href="javascript:void(0);">Pages</a>
                                             <ul>
-                                                <li><a href="tracking.html" >Tracking</a></li>
-                                                <li><a href="register.html">Register</a></li>
-                                                <li><a href="404.html">404</a></li>
-                                                <li><a href="coming-soon.html">Coming Soon</a></li>
+                                                <li><a href="{{asset('template/user/pages/login')}}">Login</a></li>
+                                                <li><a href="{{asset('template/user/pages/register')}}">Register</a></li>
                                             </ul>
                                         </li>
                                         <li>
-                                            <a href="contact.html">Contact Us</a>
+                                            <a href="{{asset('template/user/about/index')}}">About Us</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{asset('template/user/contact/index')}}">Contact Us</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -1458,16 +1263,16 @@
             <!-- Recommended Product End -->
         
             <!-- Benefits Start -->
-            <footer class="bg-white">
+            <footer>
                 <div class="container-fluid">
                     <div class="benefits">
                         <div class="row justify-content-center  benefits-wrapper">
                             <div class="col-xxl-10 col-xl-12">
-                                <div class="row row-gap-4">
+                                <div class="row row-gap-3">
                                     <div class="col-xl-2 col-md-4 col-6">
                                         <div class="benefit-block">
                                             <div class="image-box mb-12">
-                                                <img src="{{url('user')}}/media/icons/icon-1-sm.png" alt=""> 
+                                                <img src="{{url('user')}}/media/icons/icon-1-sm.png" alt="">
                                             </div>
                                             <div class="content-box">
                                                 <p class="fw-500 mb-4p">Easy Returns</p>
@@ -1489,7 +1294,7 @@
                                     <div class="col-xl-2 col-md-4 col-6">
                                         <div class="benefit-block">
                                             <div class="image-box mb-12">
-                                                <img src="{{url('user')}}/media/icons/icon-3-sm.png" alt=""> 
+                                                <img src="{{url('user')}}/media/icons/icon-3-sm.png" alt="">
                                             </div>
                                             <div class="content-box">
                                                 <p class="fw-500 mb-4p">Safe Payment</p>
@@ -1538,7 +1343,7 @@
                     <div class="hr-line"></div>
                     <div class="footer-wrapper pt-40 mb-32">
                         <div class="store-desc">
-                            <a href="index.html"><img src="{{url('user')}}/media/logo.png" alt="" class="mb-16"></a>
+                            <a href="{{asset('template/user/home/index')}}"><img src="{{url('user')}}/media/logo.png" alt="" class="mb-16"></a>
                             <p class="light-gray mb-xl-32 mb-lg-0 mb-32">
                                 Lorem ipsum dolor sit amet consectetur. Eu dolor faucibus <br>
                                 sit fames elit ac. Hendrerit ultrices morbi faucibus.
@@ -1555,7 +1360,7 @@
                                     <p class="light-gray mb-4p">
                                         Call us 24/7
                                     </p>
-                                    <h5 class="color-primary">+001 123 456 789</h5>
+                                    <h5 class="color-primary">088 8899 3639</h5>
                                 </div>
                             </a>
                         </div>
@@ -1573,9 +1378,9 @@
                         <div class="footer-link-block">
                             <h6 class="fw-600 mb-24">Quick Link</h6>
                             <ul class="list-unstyled m-0">
-                                <li class="mb-8"><a href="index.html" class="light-gray">Home Page</a></li>
+                                <li class="mb-8"><a href="{{asset('template/user/home/index')}}" class="light-gray">Home Page</a></li>
                                 <li class="mb-8"><a href="about.html" class="light-gray">About Us</a></li>
-                                <li class="mb-8"><a href="shop-grid-1.html" class="light-gray">Shop Now</a></li>
+                                <li class="mb-8"><a href="{{asset('template/user/shop/shop-list')}}" class="light-gray">Shop Now</a></li>
                                 <li class="mb-8"><a href="register.html" class="light-gray">Signup</a></li>
                                 <li class="mb-8"><a href="register.html" class="light-gray">Login</a></li>
                                 <li class="mb-8"><a href="contact.html" class="light-gray">Privacy Policy</a></li>
@@ -1599,7 +1404,7 @@
                                         <div class="img-box">
                                             <img src="{{url('user')}}/media/icons/location.png" alt="">
                                         </div>
-                                        <p class="light-gray">26 South Street, New York, NY 98, USA.</p>
+                                        <p class="light-gray">Group 3 Aptech</p>
                                     </a>
                                 </li>
                                 <li class="mb-12 footer-link">
@@ -1607,7 +1412,7 @@
                                         <div class="img-box">
                                             <img src="{{url('user')}}/media/icons/mail-sm.png" alt="">
                                         </div>
-                                        <p class="color-primary">exampleinfo@gmail.com</p>
+                                        <p class="color-primary">Test@gmail.com</p>
                                     </a>
                                 </li>
                             </ul>
@@ -1681,7 +1486,7 @@
                     </div>
                     <div class="hr-line"></div>
                     <div class="footer-bottom-bar py-24">
-                        <p class="light-gray text-sm-left text-center">@2024 All Rights Copyright <a href="" class="color-primary"> Gadgetize</a>. Design & Developed By <span class="color-primary"> UIPARADOX</span></p>
+                        <p class="light-gray text-sm-left text-center">Group 3 Aptech</p>
                         <div class="payment-cards d-flex align-items-center gap-16">
                             <p class="fw-500 light-gray d-sm-flex d-none">Payment Mathods:</p>
                             <div class="card-block">
@@ -1711,315 +1516,6 @@
 
     <!-- Back To Top Start -->
     <a href="#main-wrapper" id="backto-top" class="back-to-top"><i class="fas fa-angle-up"></i></a>
-
-    <!-- Mobile Menu Start -->
-    <div class="mobile-nav__wrapper">
-        <div class="mobile-nav__overlay mobile-nav__toggler"></div>
-        <div class="mobile-nav__content">
-            <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
-            <div class="logo-box">
-                <a href="index.html" aria-label="logo image"><img src="{{url('user')}}/media/mobile-logo.png" alt=""></a>
-            </div>
-            <div class="mobile-nav__container"></div>
-            <ul class="mobile-nav__contact list-unstyled">
-                <li>
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:example@company.com">example@company.com</a>
-                </li>
-                <li>
-                    <i class="fa fa-phone-alt"></i>
-                    <a href="tel:+12345678">+123 (4567) -890</a>
-                </li>
-            </ul>
-            <div class="mobile-nav__social">
-                <a href=""><i class="fa-brands fa-x-twitter"></i></a>
-                <a href=""><i class="fab fa-facebook"></i></a>
-                <a href=""><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
-    </div>
-    <!-- Mobile Menu End -->
-
-    <!-- Modal -->
-    <div class="modal fade" id="productQuickView" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="shop-detail">
-                        <div class="detail-wrapper">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="quick-image-box">
-                                        <img src="{{url('user')}}/media/products/quick-view-image.png" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="product-text-container bg-white br-20">
-                                        <div class="close-content text-end">
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <h3 class="fw-600 mb-16">Nexus Mobile Pro 256GB</h3>
-                                        <div class="d-flex align-items-center flex-wrap gap-16 mb-24">
-                                            <h5 class="color-sec">★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                    class="text-16 fw-400 dark-black">(02 Reviews)</span></h5>
-                                            <div class="vr-line vr-line-2"></div>
-                                            <p class="light-gray">Brand: <span class="color-primary">Beast</span></p>
-                                        </div>
-                                        <div class="d-flex align-items-center gap-16 mb-24">
-                                            <p class="light-gray text-decoration-line-through">$450.00</p>
-                                            <h5>$400.00</h5>
-                                            <span class="label white">-12%</span>
-                                        </div>
-                                        <p class="light-gray mb-24">
-                                            Lorem ipsum dolor sit amet consectetur. Purus nulla nec in ac malesuada et nisi
-                                            ipsum. Massa scelerisque...
-                                        </p>
-                                        <div class="hr-line mb-24"></div>
-                                        <div class="function-bar mb-16">
-                                            <div class="quantity quantity-wrap">
-                                                <div class="input-area quantity-wrap">
-                                                    <input class="decrement" type="button" value="-">
-                                                    <input type="text" name="quantity" value="1" maxlength="2" size="1"
-                                                        class="number">
-                                                    <input class="increment" type="button" value="+">
-                                                </div>
-                                            </div>
-                                            <div class="cart-btn w-100">
-                                                <a href="cart.html" class="cus-btn-2 w-100">ADD TO CART</a>
-                                            </div>
-                                        </div>
-                                        <div class="hr-line mb-24"></div>
-                                        <div class="d-flex align-items-center gap-16 mb-16">
-                                            <h6>Category:</h6>
-                                            <p class="light-gray"><span class="color-primary">Mobile Phone</span> , Android , Flagship</p>
-                                        </div>
-                                        <div class="d-flex align-items-center gap-16 mb-16">
-                                            <h6>Tags:</h6>
-                                            <p class="light-gray">5G Compatible , <span class="color-primary">256GB Storage , </span> Student
-                                                Phone</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal -->
-
-    <!-- Shopping Cart Popup Start -->
-    <aside id="sidebar-cart">
-        <div class="title-cart-block mb-32 bg-lightest-gray">
-            <h6>Shopping Cart (02)</h6>
-            <a href="#" class="close-button close-popup"><span class="close-icon">X</span></a>
-        </div>
-        <ul class="product-list p-24">
-            <li class="product-item mb-24">
-                <span class="item-image">
-                    <img src="{{url('user')}}/media/images/cart-image-1.png" alt="Product Photo">
-                </span>
-                <div class="product-text">
-                    <div class="prod-title mb-16">
-                        <h6>Gaming Headphone</h6>
-                        <a href="javascript:;" class="cancel">
-                            <img src="{{url('user')}}/media/images/cancel.png" alt="">
-                        </a>
-                    </div>
-                    <div class="prod-desc">
-                        <div>
-                            <p class="fw-500 mb-8">Quantity: 1</p>
-                            <p class="fw-500">$30.00</p>
-                        </div>
-                        <div class="quantity quantity-wrap d-inline-flex">
-                            <div class="input-area quantity-wrap">
-                                <input class="decrement" type="button" value="-">
-                                <input type="text" name="quantity" value="1" maxlength="2" size="1"
-                                    class="number">
-                                <input class="increment" type="button" value="+">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="hr-line mb-24"></li>
-            <li class="product-item mb-24">
-                <span class="item-image">
-                    <img src="{{url('user')}}/media/images/cart-image-2.png" alt="Product Photo">
-                </span>
-                <div class="product-text">
-                    <div class="prod-title mb-16">
-                        <h6>Samsung S21 Ultra</h6>
-                        <a href="javascript:;" class="cancel">
-                            <img src="{{url('user')}}/media/images/cancel.png" alt="">
-                        </a>
-                    </div>
-                    <div class="prod-desc">
-                        <div>
-                            <p class="fw-500 mb-8">Quantity: 1</p>
-                            <p class="fw-500">$350.00</p>
-                        </div>
-                        <div class="quantity quantity-wrap d-inline-flex">
-                            <div class="input-area quantity-wrap">
-                                <input class="decrement" type="button" value="-">
-                                <input type="text" name="quantity" value="1" maxlength="2" size="1"
-                                    class="number">
-                                <input class="increment" type="button" value="+">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="hr-line mb-24"></li>
-        </ul>
-        <div class="price-total p-24">
-            <span class="h5">SUBTOTAL</span>
-            <span class="h5">$281.98</span>
-        </div>
-        <div class="hr-line mb-24"></div>
-        <div class="action-buttons p-24">
-            <a href="cart.html" class="cus-btn-2">VIEW CART</a>
-            <a href="checkout.html" class="cus-btn active-btn">CHECKOUT</a>
-        </div>
-    </aside>
-    <div id="sidebar-cart-curtain" class="close-popup"></div>
-    <!-- Shopping Cart Popup End -->
-
-    
-    <!-- Modal -->
-    <div class="modal fade" id="comparepopup" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog compare-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="zui-wrapper">
-                        <div class="close-content text-end">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div id="container" class="zui-scroller">
-                            <table class="zui-table">
-                                <thead>
-                                    <tr>
-                                        <th class="zui-sticky-col">&nbsp;</th>
-                                        <th id="product-col" class="table-col">
-                                            <img class="product-img mb-16" src="{{url('user')}}/media/products/list-1.png" alt="">
-                                            <span class="h6">
-                                                <a href="#" class="product-link">Gaming Headphones
-                                                </a>
-                                            </span>
-                                        </th>
-                                        <th class="table-col">
-                                            <img class="product-img mb-16" src="{{url('user')}}/media/products/list-2.png" alt="">
-                                            <span class="h6">
-                                                <a href="#" class="product-link">Ultra Bright LCD
-                                                </a>
-                                            </span>
-                                        </th>
-                                        <th class="table-col">
-                                            <img class="product-img mb-16" src="{{url('user')}}/media/products/list-3.png" alt="">
-                                            <span class="h6">
-                                                <a href="#" class="product-link">Hyper Glide Mouse
-                                                </a>
-                                            </span>
-                                        </th>
-                                        <th class="table-col">
-                                            <img class="product-img mb-16" src="{{url('user')}}/media/products/list-4.png" alt="">
-                                            <span class="h6">
-                                                <a href="#" class="product-link">Nexus Mobile Pro 256GB
-                                                </a>
-                                            </span>
-                                        </th>
-                                        <th class="table-col">
-                                            <img class="product-img mb-16" src="{{url('user')}}/media/products/list-5.png" alt="">
-                                            <span class="h6">
-                                                <a href="#" class="product-link">Silent Touch Pro</a>
-                                            </span>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="zui-sticky-col">Price</td>
-                                        <td class="text-center"><strong>$85.00</strong></td>
-                                        <td class="text-center"><strong>$700.00</strong></td>
-                                        <td class="text-center"><strong>$50.00</strong></td>
-                                        <td class="text-center"><strong>$500.00</strong></td>
-                                        <td class="text-center"><strong>$150.00</strong></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="zui-sticky-col zui-stripe-row">Description</td>
-                                        <td>AS4500</td>
-                                        <td>AS8500</td>
-                                        <td>AS6000</td>
-                                        <td>AS4600</td>
-                                        <td>AS1000</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="zui-sticky-col">Storage</td>
-                                        <td>up to 16 samples</td>
-                                        <td>up to 48 samples</td>
-                                        <td>up to 16 samples</td>
-                                        <td>up to 16 samples</td>
-                                        <td>up to 32 samples</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="zui-sticky-col zui-stripe-row">SKU</td>
-                                        <td><i class="far fa-check-circle"></i>Included</td>
-                                        <td><i class="far fa-plus-circle"></i>Optional</td>
-                                        <td><i class="far fa-times-circle"></i>Not Available</td>
-                                        <td><i class="far fa-check-circle"></i>Included</td>
-                                        <td><i class="far fa-check-circle"></i>Included</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="zui-sticky-col">Availablity</td>
-                                        <td><i class="far fa-plus-circle"></i>Optional</td>
-                                        <td><i class="far fa-check-circle"></i>Included</td>
-                                        <td><i class="far fa-check-circle"></i>Included</td>
-                                        <td><i class="far fa-check-circle"></i>Included</td>
-                                        <td><i class="far fa-check-circle"></i>Included</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="zui-sticky-col zui-stripe-row">Weight</td>
-                                        <td><i class="far fa-check-circle"></i>Included</td>
-                                        <td><i class="far fa-check-circle"></i>Included</td>
-                                        <td><i class="far fa-check-circle"></i>Included</td>
-                                        <td><i class="far fa-check-circle"></i>Included</td>
-                                        <td><i class="far fa-check-circle"></i>Included</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="zui-sticky-col">Dimensions</td>
-                                        <td><i class="far fa-check-circle"></i>Included</td>
-                                        <td><i class="far fa-check-circle"></i>Included</td>
-                                        <td><i class="far fa-check-circle"></i>Included</td>
-                                        <td><i class="far fa-check-circle"></i>Included</td>
-                                        <td><i class="far fa-check-circle"></i>Included</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="zui-sticky-col zui-stripe-row">Colors
-                                        </td>
-                                        <td><i class="far fa-times-circle"></i>Not Available</td>
-                                        <td><i class="far fa-check-circle"></i>Included</td>
-                                        <td><i class="far fa-times-circle"></i>Not Available</td>
-                                        <td><i class="far fa-times-circle"></i>Not Available</td>
-                                        <td><i class="far fa-times-circle"></i>Not Available</td>
-                                    </tr>
-                                    <!-- <tr>
-                                        <td class="zui-sticky-col"></td>
-                                        <td><i class="far fa-check-circle"></i>Included</td>
-                                        <td><i class="far fa-check-circle"></i>Included</td>
-                                        <td><i class="far fa-times-circle"></i>Not Available</td>
-                                        <td><i class="far fa-check-circle"></i>Included</td>
-                                        <td><i class="far fa-check-circle"></i>Included</td>
-                                    </tr> -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Jquery Js -->
     <script src="{{url('user')}}/js/vendor/bootstrap.min.js"></script>

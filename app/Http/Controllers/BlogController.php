@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 
 class BlogController extends Controller
 {
-    public function bloggird(){
-        return view('template/user/blog/blog-gird');
+    public function bloggrid(){
+        return view('template/user/blog/blog-grid');
     }
 
     public function blogdetail(){
