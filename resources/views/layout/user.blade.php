@@ -21,7 +21,6 @@
     <link rel="stylesheet" href="{{url('user')}}/css/vendor/slick-theme.css">
     <link rel="stylesheet" href="{{url('user')}}/css/vendor/slick-slider.css">
     <link rel="stylesheet" href="{{url('user')}}/css/register.css">
-
 </head>
 
 <body class="tt-smooth-scroll">

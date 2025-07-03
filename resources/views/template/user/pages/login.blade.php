@@ -19,7 +19,17 @@
                 <div class="account p-4 shadow-sm bg-white rounded">
                     <h4 class="mb-3 text-center fw-bold">Login</h4>
                     <p class="mb-4 light-gray text-center">Please enter your details to sign in.</p>
+                        @if(session('register_success'))
+                            <div class="alert alert-success">
+                                {{ session('register_success') }}
+                            </div>
+                        @endif
 
+                        @if(session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                     <form action="shop-list-1.html" method="post" class="contact-form needs-validation" novalidate>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email Address</label>

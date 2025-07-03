@@ -37,8 +37,9 @@ Route::group(['prefix' => 'template/user'], function () {
 });
 
 Route::group(['prefix' => 'template/user'], function () {
-    Route::get('/pages/register', [PagesController::class, 'register']);
     Route::get('/pages/login', [PagesController::class, 'login']);
+    Route::get('/pages/register', [PagesController::class, 'register']);
+    Route::post('/pages/register', [PagesController::class, 'postregister']);
 });
 
 Route::group(['prefix' => 'template/user'], function () {
@@ -62,6 +63,5 @@ Route::group(['prefix' => 'template/admin'], function () {
     Route::get('/upgrade', [TemplateAdminController::class, 'upgrade']);
 });
 
-Route::group(['prefix' => 'register'], function () {
-    Route::post('/save', [PagesController::class, 'save'])->name('register.save');
-});
+Route::post('/register/save', [PagesController::class, 'postregister'])->name('register.save');
+

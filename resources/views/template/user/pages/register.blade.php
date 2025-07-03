@@ -18,7 +18,7 @@
                     <h4 class="mb-3 text-center fw-bold">Register</h4>
                     <p class="mb-4 light-gray text-center">Please enter your details to sign up.</p>
                     <div class="wrapper px-2">
-                        <form action="{{ url('register/save') }}" method="post">
+                        <form action="" method="post">
                             @csrf
 
                             <div class="mb-3">
@@ -65,45 +65,12 @@
                             </div>
                         </form>
                     </div>
-
-
-                    @if(session('success_verify'))
-                    <div id="successModal" class="custom-modal">
-                        <div class="custom-modal-content">
-                            <div class="custom-modal-header">
-                                <span> Registration successful! </span>
-                                <button class="custom-modal-close" onclick="closeModal()">&times;</button>
-                            </div>
-                            <div class="custom-modal-body">
-                                <p>Please check your email to verify your account.</p>
-                            </div>
-                            <div class="custom-modal-footer">
-                                <button onclick="closeModal()">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
                 </div>
             </div>
         </div>
     </div>
 </section>
-@if(session('success_verify'))
-    <div id="successModal" class="custom-modal">
-        <div class="custom-modal-content">
-            <div class="custom-modal-header">
-                <span> Registration successful! </span>
-                <button class="custom-modal-close" onclick="closeModal()">&times;</button>
-            </div>
-            <div class="custom-modal-body">
-                <p>Please check your email to verify your account.</p>
-            </div>
-            <div class="custom-modal-footer">
-                <button onclick="closeModal()">Close</button>
-            </div>
-        </div>
-    </div>
-    @endif
+
 <script src="{{asset('user')}}/js/register.js"> </script>
 
 @endsection
