@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ShopController;
@@ -34,4 +35,8 @@ Route::group(['prefix' => 'template/user'], function () {
 
 Route::group(['prefix' => 'template/user'], function () {
     Route::get('/pages/register', [PagesController::class, 'register']);
+});
+
+Route::group(['prefix' => 'template/user'], function () {
+    Route::get('/contact/index', [ContactController::class, 'index']);
 });
