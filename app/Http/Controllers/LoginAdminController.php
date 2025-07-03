@@ -12,4 +12,8 @@ class LoginAdminController extends Controller
         return view('login/admin/index');
     }
 
+    public function logout()
+    {
+        return view('login/admin/logout');
+    }
 }

@@ -52,6 +52,13 @@ Route::group(['prefix' => 'login/admin'], function () {
 
 Route::group(['prefix' => 'template/admin'], function () {
     Route::get('/dashboard', [TemplateAdminController::class, 'dashboard']);
+    Route::get('/icon', [TemplateAdminController::class, 'icon']);
+    Route::get('/maps', [TemplateAdminController::class, 'maps']);
+    Route::get('/notifications', [TemplateAdminController::class, 'notifications']);
+    Route::get('/user', [TemplateAdminController::class, 'user']);
+    Route::get('/table', [TemplateAdminController::class, 'table']);
+    Route::get('/typography', [TemplateAdminController::class, 'typography']);
+    Route::get('/upgrade', [TemplateAdminController::class, 'upgrade']);
 });
 
 

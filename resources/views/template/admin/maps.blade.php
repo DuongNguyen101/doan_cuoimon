@@ -3,8 +3,8 @@
 
 <div class="content">
     <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-6">
-            dashboard
+        <div class="col-md-12">
+            maps
         </div>
     </div>
 </div>
