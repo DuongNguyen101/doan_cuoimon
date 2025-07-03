@@ -28,4 +28,5 @@ Route::group(['prefix' => 'template/user'], function () {
 
 Route::group(['prefix' => 'template/user'], function () {
     Route::get('/blog/blog-gird', [BlogController::class, 'bloggird']);
+    Route::get('/blog/blog-detail', [BlogController::class, 'blogdetail']);
 });
