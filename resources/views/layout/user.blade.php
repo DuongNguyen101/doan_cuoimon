@@ -16,11 +16,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 
     <!-- All CSS files -->
-    <link rel="stylesheet" href="{{url('user')}}/css/vendor/slick-theme.css">
-    <link rel="stylesheet" href="{{url('user')}}/css/vendor/slick-slider.css">
     <link rel="stylesheet" href="{{url('user')}}/css/vendor/bootstrap.min.css">
     <link rel="stylesheet" href="{{url('user')}}/css/vendor/country-code.css">
     <link rel="stylesheet" href="{{url('user')}}/css/app.css">
+    <link rel="stylesheet" href="{{url('user')}}/css/vendor/slick-theme.css">
+    <link rel="stylesheet" href="{{url('user')}}/css/vendor/slick-slider.css">
 
 </head>
 
