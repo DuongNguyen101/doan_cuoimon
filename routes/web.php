@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,4 +30,8 @@ Route::group(['prefix' => 'template/user'], function () {
 Route::group(['prefix' => 'template/user'], function () {
     Route::get('/blog/blog-gird', [BlogController::class, 'bloggird']);
     Route::get('/blog/blog-detail', [BlogController::class, 'blogdetail']);
+});
+
+Route::group(['prefix' => 'template/user'], function () {
+    Route::get('/pages/register', [PagesController::class, 'register']);
 });
