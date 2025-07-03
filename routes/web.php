@@ -60,6 +60,7 @@ Route::group(['prefix' => 'template/admin'], function () {
     Route::get('/table', [TemplateAdminController::class, 'table']);
     Route::get('/typography', [TemplateAdminController::class, 'typography']);
     Route::get('/upgrade', [TemplateAdminController::class, 'upgrade']);
+    Route::get('/dashboard/{id}', [TemplateAdminController::class, 'productlist']);
 });
 
 

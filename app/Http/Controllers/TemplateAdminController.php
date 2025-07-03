@@ -2,11 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
+use App\Models\Products;
 
 class TemplateAdminController extends Controller
 {
     public function dashboard(){
-        return view('template/admin/dashboard');
+        $data = [
+            'categories'=>Categories::get()
+        ];
+        return view('template/admin/dashboard')->with($data);
+    }
+     public function productlist($id){
+        $data = [
+            'products'=>Products::where('category_id','=',$id)->orderBy('created_at','desc')->get(),
+            'category'=>Categories::find($id)
+        ];
+        return view('template/admin/productlist')->with($data);
     }
 
     public function icon(){
