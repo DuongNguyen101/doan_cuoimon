@@ -12,4 +12,8 @@ class ShopController extends Controller
     public function shopdetail(){
         return view('template/user/shop/shop-detail');
     }
+
+    public function wishlist(){
+        return view('template/user/shop/wishlist');
+    }
 }
