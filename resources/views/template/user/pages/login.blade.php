@@ -12,56 +12,99 @@
     </div>
 </section>
 
-<section class="my-account d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+<section class="my-account d-flex justify-content-center align-items-center" style="min-height: 100vh; background-color: #eaeaec">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-6 col-lg-8 col-md-10">
                 <div class="account p-4 shadow-sm bg-white rounded">
                     <h4 class="mb-3 text-center fw-bold">Login</h4>
                     <p class="mb-4 light-gray text-center">Please enter your details to sign in.</p>
-                        @if(session('register_success'))
-                            <div class="alert alert-success">
-                                {{ session('register_success') }}
-                            </div>
-                        @endif
 
-                        @if(session('error'))
-                            <div class="alert alert-danger">
-                                {{ session('error') }}
-                            </div>
-                        @endif
-                    <form action="shop-list-1.html" method="post" class="contact-form needs-validation" novalidate>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email Address</label>
-                            <input type="email" name="mail" id="email" class="form-control" placeholder="Enter your email" required>
+                    @if(session('register_success'))
+                    <div class="alert alert-success">
+                        {{ session('register_success') }}
+                    </div>
+                    @endif
+
+                    @if(session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                    @endif
+
+                    <form action="{{ url('template/user/pages/login') }}" method="POST">
+                        @csrf
+                        <div class="input-box">
+                            <input type="email" placeholder="Email" name="email" value="{{ old('email') }}" required>
+                            @error('email')
+                            <div style="color: red;">{{ $message }}</div>
+                            @enderror
                         </div>
 
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required>
+                        <div class="input-box" style="position: relative; margin-top: 25px;">
+                            <input type="password" placeholder="Password" name="password" id="password" required>
+                            <i class="fa-solid fa-eye" id="togglePassword" style="position:absolute; right:15px; top:50%; transform:translateY(-50%); cursor:pointer;"></i>
+                            @error('password')
+                            <div style="color: red;">{{ $message }}</div>
+                            @enderror
                         </div>
 
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <div class="form-check">
-                                <input type="checkbox" id="remember" class="form-check-input">
-                                <label class="form-check-label" for="remember">Remember for 30 days</label>
-                            </div>
-                            <a href="#" class="text-decoration-none" style="color: #006937;">Forgot Password?</a>
+                        <div class="form-check my-3">
+                            <input class="form-check-input" type="checkbox" id="remember" name="remember">
+                            <label class="form-check-label" for="remember" style="font-size: 15px;">
+                                Remember password
+                            </label>
                         </div>
-
-                        <div class="text-center mb-4">
-                            <button type="submit" class="btn w-50" style="background-color: #006937; color: white; border: none; padding: 10px 24px; border-radius: 6px;">
-                                Sign In
-                            </button>
+                        <div class="input-box button">
+                            <input type="Submit" value="Login now">
                         </div>
-
-                        <div class="text-center">
-                            <p>Don't have an account? <a href="{{ url('template/user/pages/register') }}" style="color: #006937;">Register now</a></p>
-                        </div>
+                        <p class="text-center" style="font-size: 15px;">
+                            Already have an account? 
+                            <a href="{{ url('template/user/pages/register') }}" style="color: #006937; font-weight: 500;">
+                                Register now
+                            </a>
+                        </p>
                     </form>
+                    <!-- @if(session('need_verify'))
+                    <div id="verifyOverlay" class="verify-overlay">
+                        <div id="verifyBox" class="verify-alert">
+                            <div class="verify-alert-header">
+                                <span>Unverified email</span>
+                                <button class="verify-alert-close" onclick="closeVerifyBox()">&times;</button>
+                            </div>
+                            <p class="verify-alert-message">
+                                Please check your email to verify your account before logging in.
+                            </p>
+                        </div>
+                    </div>
+                    @endif -->
                 </div>
             </div>
         </div>
     </div>
+    <script src="{{asset('user')}}/js/login.js"> </script>
+
 </section>
+
+<div class="modal fade" id="logoutConfirmModal" tabindex="-1" aria-labelledby="logoutConfirmLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-warning">
+        <h5 class="modal-title" id="logoutConfirmLabel">Xác nhận đăng xuất</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+      </div>
+      <div class="modal-body">
+        Bạn có chắc chắn muốn đăng xuất không?
+      </div>
+      <div class="modal-footer">
+        <form action="{{ route('logout') }}" method="POST">
+          @csrf
+          <button type="submit" class="btn btn-danger">Đăng xuất</button>
+        </form>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 @endsection

@@ -13,14 +13,19 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{url('user')}}/media/favicon.png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 
     <!-- All CSS files -->
     <link rel="stylesheet" href="{{url('user')}}/css/vendor/bootstrap.min.css">
     <link rel="stylesheet" href="{{url('user')}}/css/vendor/country-code.css">
-    <link rel="stylesheet" href="{{url('user')}}/css/app.css">
     <link rel="stylesheet" href="{{url('user')}}/css/vendor/slick-theme.css">
     <link rel="stylesheet" href="{{url('user')}}/css/vendor/slick-slider.css">
     <link rel="stylesheet" href="{{url('user')}}/css/register.css">
+    <link rel="stylesheet" href="{{asset('user')}}/css/login.css">
+    <link rel="stylesheet" href="{{asset('user')}}/css/user.css">
+    <link rel="stylesheet" href="{{url('user')}}/css/app.css">
+
 </head>
 
 <body class="tt-smooth-scroll">
@@ -124,19 +129,41 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="header-buttons">
-                            <a href="{{asset('template/user/pages/register')}}" class="button-block align-items-sm-unset align-items-end">
-                                <img src="{{url('user')}}/media/users/user-3.png" alt="" class="user">
-                                <div>
-                                    <p>Login</p>
-                                    <h6>Account</h6>
+                        <div class="header-buttons d-flex align-items-center gap-3">
+
+                            @if(Auth::check())
+                            <div class="d-flex align-items-center gap-2">
+                                <img src="{{ url('user') }}/media/users/user-3.png" alt="User" class="user rounded-circle" width="40" height="40">
+                                <div class="text-start">
+                                    <h6 class="mb-0 fw-bold" style="color: #006937;">{{ Auth::user()->name }}</h6>
+
+                                    <button type="button" class="btn btn-sm btn-outline-danger py-0 px-2 mt-1" style="font-size: 13px;" onclick="showLogoutConfirm()">
+                                        Logout
+                                    </button>
+
+                                    <form id="logoutForm" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </div>
+                            @else
+                            <a href="{{ url('template/user/pages/login') }}" class="d-flex align-items-center gap-2 text-decoration-none">
+                                <img src="{{ url('user') }}/media/users/user-3.png" alt="User" class="user rounded-circle" width="40" height="40">
+                                <div class="text-start">
+                                    <p class="mb-0 text-muted" style="font-size: 13px;">Login</p>
+                                    <h6 class="mb-0 fw-bold" style="color: #006937;">Account</h6>
                                 </div>
                             </a>
-                            <a href="{{asset('template/user/shop/wishlist')}}" class="button-block d-sm-flex d-none">
-                                <img src="{{url('user')}}/media/icons/wishlist.png" alt="">
+                            @endif
+
+                            <!-- Wishlist -->
+                            <a href="{{ url('template/user/shop/wishlist') }}" class="button-block d-sm-flex d-none">
+                                <img src="{{ url('user') }}/media/icons/wishlist.png" alt="Wishlist">
                             </a>
+
+                            <!-- Cart -->
                             <a href="#" class="button-block d-sm-flex d-none cart-button">
-                                <img src="{{url('user')}}/media/icons/cart.png" alt="">
+                                <img src="{{ url('user') }}/media/icons/cart.png" alt="Cart">
                             </a>
                         </div>
                     </div>
@@ -628,8 +655,20 @@
     <script src="{{url('user')}}/js/vendor/jquery.countdown.min.js"></script>
     <script src="{{url('user')}}/js/vendor/countryCode.js"></script>
     <script src="{{url('user')}}/js/vendor/slick.min.js"></script>
+    <script src="{{url('user')}}/js/user.js"></script>
 
     <script src="{{url('user')}}/js/app.js"></script>
+    
+    <div id="logoutConfirmBox" style="display:none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5);">
+        <div style="background-color: #fff; padding: 20px; border-radius: 10px; width: 300px; margin: 15% auto; text-align: center;">
+            <h5>Are you sure you want to log in?</h5>
+            <div class="mt-3 d-flex justify-content-center gap-2">
+                <button onclick="submitLogout()" class="btn btn-danger">Sign out</button>
+                <button onclick="hideLogoutConfirm()" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+  
 </body>
 
 </html>

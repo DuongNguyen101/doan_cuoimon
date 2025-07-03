@@ -10,7 +10,7 @@
     </div>
 </section>
 
-<section class="my-account d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+<section class="my-account d-flex justify-content-center align-items-center" style="min-height: 100vh; background-color: #eaeaec">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-6 col-lg-8 col-md-10">
@@ -60,9 +60,12 @@
                                 <button type="submit" class="btn btn-success w-100">Register Now</button>
                             </div>
 
-                            <div class="text-center">
-                                <p>Already have an account? <a href="{{ url('template/user/pages/login') }}">Login now</a></p>
-                            </div>
+                            <p class="text-center" style="font-size: 15px;">
+                                Already have an account? 
+                                <a href="{{ url('template/user/pages/login') }}" style="color: #006937; font-weight: 500;">
+                                    Login now
+                                </a>
+                            </p>
                         </form>
                     </div>
                 </div>
