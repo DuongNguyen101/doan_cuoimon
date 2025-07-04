@@ -8,7 +8,6 @@ use App\Http\Controllers\LoginAdminController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\TemplateAdminController;
-use App\Http\Controllers\TemplateController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => '/'], function () {
@@ -16,6 +15,9 @@ Route::group(['prefix' => '/'], function () {
 });
 
 Route::group(['prefix' => 'template/user'], function () {
+    Route::get('/home/index', [HomeController::class, 'index'])
+        ->middleware(['auth', 'verified'])
+        ->name('user.home');
     Route::get('/home/index', [HomeController::class, 'index']);
 });
 
@@ -37,8 +39,11 @@ Route::group(['prefix' => 'template/user'], function () {
 });
 
 Route::group(['prefix' => 'template/user'], function () {
+    Route::get('/pages/login', [PagesController::class, 'login'])->name('login');
+    Route::post('/pages/login', [PagesController::class, 'postlogin']);
     Route::get('/pages/register', [PagesController::class, 'register']);
-    Route::get('/pages/login', [PagesController::class, 'login']);
+    Route::post('/pages/register', [PagesController::class, 'postregister']);
+    Route::post('/pages/logout', [PagesController::class, 'logout'])->name('logout');
 });
 
 Route::group(['prefix' => 'template/user'], function () {
@@ -66,4 +71,8 @@ Route::group(['prefix' => 'template/admin'], function () {
     Route::post('/dashboard/form/action', [TemplateAdminController::class, 'updatecategories']);
 });
 
+// Route::group(['prefix' => 'register'], function () {
+//     Route::post('/save', [LoginAdminController::class, 'postregister']);
+//     Route::post('/login', [LoginAdminController::class, 'postlogin']);
+// });
 

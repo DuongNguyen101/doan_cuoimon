@@ -1,0 +1,25 @@
+.modal-custom .modal-content {
+  border-radius: 16px;
+  background-color: #f0fdf4;
+  border: none;
+  transition: none !important;
+}
+
+.bg-soft-green {
+  background-color: #e6f5ee !important;
+}
+
+.modal-backdrop.show {
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 1 !important;
+}
+
+.modal.fade .modal-dialog {
+  transition: none !important;
+  transform: none !important;
+}
+
+body.modal-open {
+  padding-right: 0 !important;
+  overflow: hidden;
+}

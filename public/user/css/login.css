@@ -1,0 +1,156 @@
+  .verify-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4); /* nền mờ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.verify-alert {
+  background-color: #ffe9e9;
+  border: 1px solid #ff6b6b;
+  padding: 20px;
+  border-radius: 10px;
+  color: #b30000;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: fadeInAlert 0.3s ease;
+  max-width: 500px;
+  width: 90%;
+}
+
+.verify-alert-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.verify-alert-message {
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.verify-alert-close {
+  background: none;
+  border: none;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #b30000;
+  transition: 0.2s ease;
+}
+
+.verify-alert-close:hover {
+  color: #ff0000;
+  transform: scale(1.1);
+}
+
+@keyframes fadeInAlert {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .account {
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .account h4 {
+            font-size: 28px;
+            color: #006937;
+        }
+
+        .account p {
+            color: #888;
+        }
+
+        .input-box {
+            margin-bottom: 25px;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .input-box input:focus {
+            border-color: #006937;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 105, 55, 0.1);
+        }
+
+        .input-box.button input {
+            background-color: #006937;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .input-box.button input:hover {
+            background-color: #004f2b;
+        }
+
+        .policy {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #555;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .text h3 {
+            font-size: 15px;
+            color: #555;
+        }
+
+        .text h3 a {
+            color: #006937;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .text h3 a:hover {
+            text-decoration: underline;
+        }
+
+        .alert {
+            font-size: 14px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .fa-eye {
+            color: #888;
+        }
