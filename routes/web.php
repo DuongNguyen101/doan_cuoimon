@@ -61,6 +61,9 @@ Route::group(['prefix' => 'template/admin'], function () {
     Route::get('/typography', [TemplateAdminController::class, 'typography']);
     Route::get('/upgrade', [TemplateAdminController::class, 'upgrade']);
     Route::get('/dashboard/{id}', [TemplateAdminController::class, 'productlist']);
+    Route::get('/dashboard/form/{id}', [TemplateAdminController::class, 'loadformcate']);
+     Route::get('/dashboard/form/add', [TemplateAdminController::class, 'loadformcate_add']);
+    Route::post('/dashboard/form/action', [TemplateAdminController::class, 'updatecategories']);
 });
 
 
