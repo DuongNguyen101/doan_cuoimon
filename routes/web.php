@@ -68,8 +68,13 @@ Route::group(['prefix' => 'template/admin'], function () {
     Route::get('/upgrade', [TemplateAdminController::class, 'upgrade']);
     Route::get('/dashboard/{id}', [TemplateAdminController::class, 'productlist']);
     Route::get('/dashboard/form/{id}', [TemplateAdminController::class, 'loadformcate']);
-     Route::get('/dashboard/form/add', [TemplateAdminController::class, 'loadformcate_add']);
+    Route::get('/dashboard/form/add', [TemplateAdminController::class, 'loadformcate_add']);
     Route::post('/dashboard/form/action', [TemplateAdminController::class, 'updatecategories']);
+    Route::get('/dashboard/form/delete/{id}', [TemplateAdminController::class, 'deletecategories']);
+    Route::get('/product/form/{id}', [TemplateAdminController::class, 'loadformproduct']);
+    Route::get('/product/form/add/{id}', [TemplateAdminController::class, 'loadformproductadd']);
+    Route::post('/product/update', [TemplateAdminController::class, 'updateproduct']);
+    Route::get('/product/delete/{id}', [TemplateAdminController::class, 'deleteproduct']);
 });
 
 // Route::group(['prefix' => 'register'], function () {
