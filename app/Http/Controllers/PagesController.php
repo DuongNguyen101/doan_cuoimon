@@ -70,12 +70,12 @@ class PagesController extends Controller
             'password.required' => 'Please enter password.',
             'password.min' => 'Password must have at least :min characters.',
         ]);
-
         try {
             User::create([
                 'name' => strtolower($req->name),
                 'email' => strtolower($req->email),
                 'password' => Hash::make($req->password),
+                'image' => 'default.png',
             ]);
             return redirect('template/user/pages/login')->with('register_success', 'Registration successful. Please login.');
         } catch (\Throwable $th) {

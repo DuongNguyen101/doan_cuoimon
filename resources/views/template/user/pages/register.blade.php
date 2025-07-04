@@ -18,7 +18,18 @@
                     <h4 class="mb-3 text-center fw-bold">Register</h4>
                     <p class="mb-4 light-gray text-center">Please enter your details to sign up.</p>
                     <div class="wrapper px-2">
-                        <form action="" method="post">
+                        @if (session('error'))
+    <div class="alert alert-danger text-center">
+        {{ session('error') }}
+    </div>
+@endif
+
+@if (session('register_success'))
+    <div class="alert alert-success text-center">
+        {{ session('register_success') }}
+    </div>
+@endif
+                        <form action="{{ url('template/user/pages/register') }}" method="post">
                             @csrf
 
                             <div class="mb-3">
@@ -75,5 +86,4 @@
 </section>
 
 <script src="{{asset('user')}}/js/register.js"> </script>
-
 @endsection
