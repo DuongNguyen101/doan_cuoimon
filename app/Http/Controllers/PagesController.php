@@ -36,9 +36,9 @@ class PagesController extends Controller
             return back()->withErrors(['password' => 'Password is incorrect'])->withInput();
         }
 
-        // if (!$user->hasVerifiedEmail()) {
-        //     return back()->with('need_verify', true)->withInput();
-        // }
+        if (!$user->hasVerifiedEmail()) {
+            return back()->with('need_verify', true)->withInput();
+        }
 
         Auth::login($user);
         return redirect()->intended('template/user/home/index');
@@ -71,12 +71,13 @@ class PagesController extends Controller
             'password.min' => 'Password must have at least :min characters.',
         ]);
         try {
-            User::create([
-                'name' => strtolower($req->name),
-                'email' => strtolower($req->email),
-                'password' => Hash::make($req->password),
-                'image' => 'default.png',
+            $user = User::create([
+            'name' => strtolower($req->name),
+            'email' => strtolower($req->email),
+            'password' => Hash::make($req->password),
+            'image' => 'default.png',
             ]);
+            $user->sendEmailVerificationNotification();
             return redirect('template/user/pages/login')->with('register_success', 'Registration successful. Please login.');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Registration failed: ' . $th->getMessage());

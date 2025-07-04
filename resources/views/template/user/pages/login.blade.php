@@ -65,7 +65,7 @@
                             </a>
                         </p>
                     </form>
-                    <!-- @if(session('need_verify'))
+                    @if(session('need_verify'))
                     <div id="verifyOverlay" class="verify-overlay">
                         <div id="verifyBox" class="verify-alert">
                             <div class="verify-alert-header">
@@ -77,7 +77,7 @@
                             </p>
                         </div>
                     </div>
-                    @endif -->
+                    @endif
                 </div>
             </div>
         </div>

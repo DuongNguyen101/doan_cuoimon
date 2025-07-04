@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\EmailsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginAdminController;
 use App\Http\Controllers\PagesController;
@@ -76,3 +77,13 @@ Route::group(['prefix' => 'template/admin'], function () {
 //     Route::post('/login', [LoginAdminController::class, 'postlogin']);
 // });
 
+
+use App\Http\Controllers\Auth\VerificationController;
+
+Route::get('/email/verify', [VerificationController::class, 'notice'])->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
+
+Route::post('/email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
