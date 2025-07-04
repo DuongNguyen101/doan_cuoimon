@@ -12,8 +12,38 @@ class LoginAdminController extends Controller
         return view('login/admin/index');
     }
 
+
+    public function postloginadmin(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            $user = auth()->user();
+
+            if (in_array($user->role, ['admin', 'super admin'])) {
+                return redirect('/template/admin/dashboard');
+            }
+
+            Auth::logout();
+            return back()->withErrors(['email' => 'You do not have access to the admin page.']);
+        }
+
+        return back()->withErrors(['email' => 'Incorrect email or password.']);
+    }
+
     public function logout()
     {
         return view('login/admin/logout');
     }
+
+    public function postlogoutadmin(Request $request)
+    {
+        Auth::logout(); 
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('admin.login')->with('success', 'Log out successfully!');
+    }
+    
 }

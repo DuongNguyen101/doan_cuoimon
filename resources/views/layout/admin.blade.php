@@ -39,7 +39,7 @@
               </div>
 
 
-              <form action="{{ url('login/admin') }}" method="post">
+              <form action="{{ url('login/admin/index') }}" method="post">
                 @csrf
                 <div class="form-group first">
                   <label for="email">Email</label>

@@ -35,7 +35,7 @@
                     <!-- <p>CT</p> -->
                 </a>
                 <a href="https://www.creative-tim.com" class="simple-text logo-normal">
-                    Creative Tim
+                    {{$adminName }}
                     <!-- <div class="logo-image-big">
             <img src="{{url('admin')}}/template/assets/img/logo-big.png">
           </div> -->

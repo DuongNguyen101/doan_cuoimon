@@ -3,13 +3,13 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\EmailsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginAdminController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\TemplateAdminController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\VerificationController;
 
 Route::group(['prefix' => '/'], function () {
     Route::get('/', [HomeController::class, 'index']);
@@ -52,13 +52,14 @@ Route::group(['prefix' => 'template/user'], function () {
 });
 
 Route::group(['prefix' => 'login/admin'], function () {
-    Route::get('/index', [LoginAdminController::class, 'index']);
-    Route::post('/index', [LoginAdminController::class, 'login']);  
-    Route::post('/logout', [LoginAdminController::class, 'logout']);
+    Route::get('/index', [LoginAdminController::class, 'index'])->name('admin.login');
+    Route::post('/index', [LoginAdminController::class, 'postloginadmin']); 
+    Route::post('/logout', [LoginAdminController::class, 'postlogoutadmin'])->name('admin.logout');
 });
 
-Route::group(['prefix' => 'template/admin'], function () {
-    Route::get('/dashboard', [TemplateAdminController::class, 'dashboard']);
+
+Route::group(['prefix' => 'template/admin', 'middleware' => ['auth', 'check.admin']] , function () {
+    Route::get('/dashboard', [TemplateAdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/icon', [TemplateAdminController::class, 'icon']);
     Route::get('/maps', [TemplateAdminController::class, 'maps']);
     Route::get('/notifications', [TemplateAdminController::class, 'notifications']);
@@ -83,12 +84,10 @@ Route::group(['prefix' => 'template/admin'], function () {
 // });
 
 
-use App\Http\Controllers\Auth\VerificationController;
-
 Route::get('/email/verify', [VerificationController::class, 'notice'])->name('verification.notice');
 
 Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
 
 Route::post('/email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');

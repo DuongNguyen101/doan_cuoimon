@@ -10,16 +10,24 @@ use Illuminate\Http\Request;
 class TemplateAdminController extends Controller
 {
     //view dashboard and extract product categories
-    public function dashboard(){
+    public function dashboard()
+    {
+        $adminName = auth()->user()->name;
+
         $data = [
-            'categories'=>Categories::get(),
-            'products'=>Products::get()
+            'adminName'  => $adminName,
+            'categories' => Categories::get(),
+            'products'   => Products::get()
         ];
-        return view('template/admin/dashboard')->with($data);
+
+        return view('template.admin.dashboard')->with($data);
     }
     //extract product of each category detail
      public function productlist($id){
+        $adminName = auth()->user()->name;
+
         $data = [
+            'adminName'  => $adminName,
             'products'=>Products::where('category_id','=',$id)->orderBy('created_at','desc')->get(),
             'category'=>Categories::find($id)
         ];
@@ -27,23 +35,31 @@ class TemplateAdminController extends Controller
     }
     //load form cap nhap data
      public function loadformcate($id){
+        $adminName = auth()->user()->name;
+
         $data = [
+            'adminName'  => $adminName,
             'category'=>Categories::find($id),
             'id'=>$id
         ];
         return view('template/admin/formproduct')->with($data);
     }
      public function loadformcate_add(){
+        $adminName = auth()->user()->name;
+
  
-        return view('template/admin/formproduct');
+        return view('template/admin/formproduct')->with('adminName', $adminName);
     }
     //cap nhat danh muc
       public function updatecategories( Request $request,$id=null)
-      
       {
+
+        $adminName = auth()->user()->name;
+
         try{
 
             $Category = [
+                'adminName'  => $adminName,
                 'category_id'=> $request->post('category_id'),
                 'name'=> $request->post('name'),
                 'description'=> $request->post('description'),
@@ -66,21 +82,27 @@ class TemplateAdminController extends Controller
     }
       //xoa danh muc
       public function deletecategories($id){
+        $adminName = auth()->user()->name;
     
             Categories::where('category_id',$id)->delete();
 
-        return redirect('template/admin/dashboard');
+        return redirect('template/admin/dashboard')->with('adminName', $adminName);
     }
     //load form thay doi san pham
      public function loadformproduct($id){
+        $adminName = auth()->user()->name;
+
         $data = [
+            'adminName'  => $adminName,
             'product'=>Products::find($id),
             'id'=>$id
         ];
         return view('template/admin/formproductdetail')->with($data);
     }
        public function loadformproductadd($id){
+        $adminName = auth()->user()->name;
         $data = [
+            'adminName'  => $adminName,
             'id'=>$id
         ];
         return view('template/admin/formproductdetail')->with($data);
@@ -89,9 +111,12 @@ class TemplateAdminController extends Controller
     public function updateproduct( Request $request,$id=null)
       
       {
+        $adminName = auth()->user()->name;
+
         try{
 
             $product = [
+                'adminName'  => $adminName,
                 'product_id'=> $request->post('product_id'),
                 'name'=> $request->post('name'),
                 'description'=> $request->post('description'),
@@ -118,37 +143,52 @@ class TemplateAdminController extends Controller
         }
     }
       public function deleteproduct($id){
-    
+            $adminName = auth()->user()->name;
             Products::where('product_id',$id)->delete();
 
-        return redirect('template/admin/dashboard');
+        return redirect('template/admin/dashboard')->with('adminName', $adminName);
     }
 
-    public function icon(){
-        return view('template/admin/icon');
+    public function icon()
+    {
+        $adminName = auth()->user()->name;
+        return view('template/admin/icon')->with('adminName', $adminName);
     }
 
     public function maps(){
-        return view('template/admin/maps');
+        $adminName = auth()->user()->name;
+
+        return view('template/admin/maps')->with('adminName', $adminName);
     }
 
     public function notifications(){
-        return view('template/admin/notifications');
+        $adminName = auth()->user()->name;
+
+        return view('template/admin/notifications')->with('adminName', $adminName);
     }
 
     public function user(){
-        return view('template/admin/user');
+        $adminName = auth()->user()->name;
+
+        return view('template/admin/user')->with('adminName', $adminName);
     }
 
     public function table(){
-        return view('template/admin/table');
+        $adminName = auth()->user()->name;
+
+        return view('template/admin/table')->with('adminName', $adminName);
     }
 
     public function typography(){
-        return view('template/admin/typography');
+        $adminName = auth()->user()->name;
+
+        return view('template/admin/typography')->with('adminName', $adminName);
     }
 
     public function upgrade(){
-        return view('template/admin/upgrade');
+        $adminName = auth()->user()->name;
+
+        return view('template/admin/upgrade')->with('adminName', $adminName);
     }
+
 }
