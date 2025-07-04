@@ -12,7 +12,8 @@ class TemplateAdminController extends Controller
     //view dashboard and extract product categories
     public function dashboard(){
         $data = [
-            'categories'=>Categories::get()
+            'categories'=>Categories::get(),
+            'products'=>Products::get()
         ];
         return view('template/admin/dashboard')->with($data);
     }
@@ -63,15 +64,65 @@ class TemplateAdminController extends Controller
             return redirect('/template/admin/dashboard');
         }
     }
-      //cap nhat danh muc
-      public function deletecategories( Request $request, $id){
+      //xoa danh muc
+      public function deletecategories($id){
+    
+            Categories::where('category_id',$id)->delete();
+
+        return redirect('template/admin/dashboard');
+    }
+    //load form thay doi san pham
+     public function loadformproduct($id){
         $data = [
-            'category'=>Categories::find($id),
+            'product'=>Products::find($id),
             'id'=>$id
         ];
-        return view('template/admin/formproduct')->with($data);
+        return view('template/admin/formproductdetail')->with($data);
     }
+       public function loadformproductadd($id){
+        $data = [
+            'id'=>$id
+        ];
+        return view('template/admin/formproductdetail')->with($data);
+    }
+    //thuc hien hanh dong cap nhat du lieu san pham
+    public function updateproduct( Request $request,$id=null)
+      
+      {
+        try{
 
+            $product = [
+                'product_id'=> $request->post('product_id'),
+                'name'=> $request->post('name'),
+                'description'=> $request->post('description'),
+                'price'=> $request->post('price'),
+                'stock'=> $request->post('stock'),
+                'category_id'=> $request->post('category_id'),
+                'image_url'=> $request->post('image_url'),
+                'created_at'=> $request->post('created_at'),
+                'updated_at'=> $request->post('updated_at'),
+                'status'=> $request->post('status')
+            ];
+            if($request->post('product_id')){
+                Products::where('product_id',$request->post('product_id'))->update($product);
+                session()->flash('msg','Sua San Pham Thanh cong');
+                return redirect('/template/admin/dashboard/'.($request->post('category_id')) ?? '');
+            }else{
+                Products::create($product);
+                session()->flash('msg','Them San Pham Thanh cong');
+                return redirect('/template/admin/dashboard/'.($request->post('category_id') ?? ''));
+            }
+        }catch(Exception $ex){
+            session()->flash('msg','That bai');
+            return redirect('/template/admin/dashboard/'.($request->post('category_id') ?? ''));
+        }
+    }
+      public function deleteproduct($id){
+    
+            Products::where('product_id',$id)->delete();
+
+        return redirect('template/admin/dashboard');
+    }
 
     public function icon(){
         return view('template/admin/icon');
