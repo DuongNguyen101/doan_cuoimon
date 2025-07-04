@@ -10,6 +10,8 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\TemplateAdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\UserInfoController;
+use App\Http\Controllers\MyAccountController;
 
 Route::group(['prefix' => '/'], function () {
     Route::get('/', [HomeController::class, 'index']);
@@ -49,6 +51,10 @@ Route::group(['prefix' => 'template/user'], function () {
 
 Route::group(['prefix' => 'template/user'], function () {
     Route::get('/contact/index', [ContactController::class, 'index']);
+});
+
+Route::group(['prefix' => 'template/user'], function () {
+    Route::get('/myaccount/index', [MyAccountController::class, 'index']);
 });
 
 Route::group(['prefix' => 'login/admin'], function () {
@@ -91,3 +97,5 @@ Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'
 Route::post('/email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::post('/user/update', [UserInfoController::class, 'update'])->name('user.update');

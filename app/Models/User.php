@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\UserAddress;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -24,4 +25,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'role',
         'image',
     ];
+    public function address()
+{
+    return $this->hasOne(UserAddress::class, 'user_id');
+}
 }

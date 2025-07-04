@@ -52,10 +52,12 @@
                             <div>
                                 <p class="fw-500 white">Store Locator</p>
                             </div>
+                        </a>
+                        <a href="{{asset('template/user/myaccount/index')}}" class="top-bar-links d-sm-flex d-none align-items-center gap-2">
                             @auth
-                                <div>
-                                    <p class="fw-500 white">My Account</p>
-                                </div>
+                            <div>
+                                <p class="fw-500 white">My Account</p>
+                            </div>
                             @endauth
                         </a>
                         <div class="d-sm-block d-none">
@@ -138,7 +140,9 @@
 
                             @if(Auth::check())
                             <div class="d-flex align-items-center gap-2">
-                                <img src="{{ url('user') }}/media/users/user-3.png" alt="User" class="user rounded-circle" width="40" height="40">
+                                <img src="{{ Auth::user()->image ? asset('uploads/avatar/' . Auth::user()->image) : asset('images/default.png') }}"
+                                    alt="User" class="user rounded-circle" width="40" height="40" style="object-fit: cover;">
+
                                 <div class="text-start">
                                     <h6 class="mb-0 fw-bold" style="color: #006937;">{{ Auth::user()->name }}</h6>
 
@@ -160,6 +164,7 @@
                                 </div>
                             </a>
                             @endif
+
 
                             <!-- Wishlist -->
                             <a href="{{ url('template/user/shop/wishlist') }}" class="button-block d-sm-flex d-none">
@@ -663,7 +668,7 @@
     <script src="{{url('user')}}/js/user.js"></script>
 
     <script src="{{url('user')}}/js/app.js"></script>
-    
+
     <div id="logoutConfirmBox" style="display:none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5);">
         <div style="background-color: #fff; padding: 20px; border-radius: 10px; width: 300px; margin: 15% auto; text-align: center;">
             <h5>Are you sure you want to log in?</h5>
@@ -673,7 +678,7 @@
             </div>
         </div>
     </div>
-  
+
 </body>
 
 </html>

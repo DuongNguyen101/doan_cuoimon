@@ -49,10 +49,12 @@
                             <div>
                                 <p class="fw-500 white">Store Locator</p>
                             </div>
+                        </a>
+                        <a href="{{asset('template/user/myaccount/index')}}" class="top-bar-links d-sm-flex d-none align-items-center gap-2">
                             @auth
-                                <div>
-                                    <p class="fw-500 white">My Account</p>
-                                </div>
+                            <div>
+                                <p class="fw-500 white">My Account</p>
+                            </div>
                             @endauth
                         </a>
                         <div class="d-sm-block d-none">
@@ -135,7 +137,9 @@
 
                             @if(Auth::check())
                             <div class="d-flex align-items-center gap-2">
-                                <img src="{{ url('user') }}/media/users/user-3.png" alt="User" class="user rounded-circle" width="40" height="40">
+                                <img src="{{ Auth::user()->image ? asset('uploads/avatar/' . Auth::user()->image) : asset('images/default.png') }}"
+                                    alt="User" class="user rounded-circle" width="40" height="40" style="object-fit: cover;">
+
                                 <div class="text-start">
                                     <h6 class="mb-0 fw-bold" style="color: #006937;">{{ Auth::user()->name }}</h6>
 
@@ -157,6 +161,7 @@
                                 </div>
                             </a>
                             @endif
+
 
                             <!-- Wishlist -->
                             <a href="{{ url('template/user/shop/wishlist') }}" class="button-block d-sm-flex d-none">
