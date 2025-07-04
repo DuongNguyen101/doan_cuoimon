@@ -49,6 +49,11 @@
                             <div>
                                 <p class="fw-500 white">Store Locator</p>
                             </div>
+                            @auth
+                                <div>
+                                    <p class="fw-500 white">My Account</p>
+                                </div>
+                            @endauth
                         </a>
                         <div class="d-sm-block d-none">
                             <a href="{{asset('template/user/about/index')}}"><span class="fw-500 top-bar-links">FAQs</span></a>
