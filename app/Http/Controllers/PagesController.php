@@ -75,10 +75,11 @@ class PagesController extends Controller
             'name' => strtolower($req->name),
             'email' => strtolower($req->email),
             'password' => Hash::make($req->password),
+            'role' => 'user',
             'image' => 'default.png',
             ]);
             $user->sendEmailVerificationNotification();
-            return redirect('template/user/pages/login')->with('register_success', 'Registration successful. Please login.');
+            return redirect('template/user/pages/login')->with('register_success', 'Registered successfully and check your email.');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Registration failed: ' . $th->getMessage());
         }
