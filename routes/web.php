@@ -11,6 +11,7 @@ use App\Http\Controllers\TemplateAdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\UserInfoController;
 use App\Http\Controllers\MyAccountController;
 
@@ -63,6 +64,10 @@ Route::group(['prefix' => 'template/user'], function () {
     Route::post('/changepassword/update', [ChangePasswordController::class, 'update'])->name('user.changePassword');
 });
 
+Route::group(['prefix' => 'template/user'], function () {
+    Route::get('/pages/forgotpassword', [ForgotPasswordController::class, 'index'])->name('password.request');
+});
+
 Route::group(['prefix' => 'login/admin'], function () {
     Route::get('/index', [LoginAdminController::class, 'index'])->name('admin.login');
     Route::post('/index', [LoginAdminController::class, 'postloginadmin']);
@@ -111,3 +116,4 @@ Route::post('/email/resend', [VerificationController::class, 'resend'])->name('v
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::post('/user/update', [UserInfoController::class, 'update'])->name('user.update');
+

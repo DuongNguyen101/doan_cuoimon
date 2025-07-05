@@ -49,17 +49,26 @@
                             @enderror
                         </div>
 
-                        <div class="form-check my-3">
-                            <input class="form-check-input" type="checkbox" id="remember" name="remember">
-                            <label class="form-check-label" for="remember" style="font-size: 15px;">
-                                Remember password
-                            </label>
+                        <div class="form-check my-3 d-flex justify-content-between align-items-center">
+                            <div>
+                                <input class="form-check-input" type="checkbox" id="remember" name="remember">
+                                <label class="form-check-label" for="remember" style="font-size: 15px;">
+                                    Remember password
+                                </label>
+                            </div>
+
+                            <div>
+                                <a href="{{ route('password.request') }}" style="font-size: 15px; color: #006937; text-decoration: none;">
+                                    Forgot password?
+                                </a>
+                            </div>
                         </div>
+
                         <div class="input-box button">
                             <input type="Submit" value="Login now">
                         </div>
                         <p class="text-center" style="font-size: 15px;">
-                            Already have an account? 
+                            Already have an account?
                             <a href="{{ url('template/user/pages/register') }}" style="color: #006937; font-weight: 500;">
                                 Register now
                             </a>
