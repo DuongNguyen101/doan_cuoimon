@@ -131,8 +131,19 @@
 
                             @if(Auth::check())
                             <div class="d-flex align-items-center gap-2">
-                                <img src="{{ Auth::user()->image ? asset('uploads/avatar/' . Auth::user()->image) : asset('images/default.png') }}"
-                                    alt="User" class="user rounded-circle" width="40" height="40" style="object-fit: cover;">
+                                @php
+                                $imagePath = 'uploads/avatar/' . Auth::user()->image;
+                                $image = Auth::user()->image && file_exists(public_path($imagePath))
+                                ? asset($imagePath)
+                                : asset('image/vietnam.png');
+                                @endphp
+
+                                <img
+                                    src="{{ $image }}"
+                                    alt="User"
+                                    class="user rounded-circle"
+                                    width="40" height="40"
+                                    style="object-fit: cover;">
 
                                 <div class="text-start">
                                     <h6 class="mb-0 fw-bold" style="color: #006937;">{{ Auth::user()->name }}</h6>
@@ -155,7 +166,6 @@
                                 </div>
                             </a>
                             @endif
-
 
                             <!-- Wishlist -->
                             <a href="{{ url('template/user/shop/wishlist') }}" class="button-block d-sm-flex d-none">
