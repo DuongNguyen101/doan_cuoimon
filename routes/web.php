@@ -64,12 +64,12 @@ Route::group(['prefix' => 'template/user'], function () {
 
 Route::group(['prefix' => 'login/admin'], function () {
     Route::get('/index', [LoginAdminController::class, 'index'])->name('admin.login');
-    Route::post('/index', [LoginAdminController::class, 'postloginadmin']); 
+    Route::post('/index', [LoginAdminController::class, 'postloginadmin']);
     Route::post('/logout', [LoginAdminController::class, 'postlogoutadmin'])->name('admin.logout');
 });
 
 
-Route::group(['prefix' => 'template/admin', 'middleware' => ['auth', 'check.admin']] , function () {
+Route::group(['prefix' => 'template/admin', 'middleware' => ['auth', 'check.admin']], function () {
     Route::get('/dashboard', [TemplateAdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/icon', [TemplateAdminController::class, 'icon']);
     Route::get('/maps', [TemplateAdminController::class, 'maps']);
@@ -87,6 +87,12 @@ Route::group(['prefix' => 'template/admin', 'middleware' => ['auth', 'check.admi
     Route::get('/product/form/add/{id}', [TemplateAdminController::class, 'loadformproductadd']);
     Route::post('/product/update', [TemplateAdminController::class, 'updateproduct']);
     Route::get('/product/delete/{id}', [TemplateAdminController::class, 'deleteproduct']);
+    Route::get('/user', [TemplateAdminController::class, 'orderdata'])->name('admin.dashboard');
+    Route::get('/user/{id}', [TemplateAdminController::class, 'orderlist']);
+    Route::get('/user/form/{id}', [TemplateAdminController::class, 'loadformuser']);
+    Route::post('/user/form/action', [TemplateAdminController::class, 'updateuser']);
+    Route::get('/user/form/add', [TemplateAdminController::class, 'loadformuseradd']);
+    Route::get('/user/delete/{id}', [TemplateAdminController::class, 'deleteuser']);
 });
 
 // Route::group(['prefix' => 'register'], function () {
