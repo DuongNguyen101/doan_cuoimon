@@ -9,7 +9,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class OrderDetails extends Model{
+class OrderDetails extends Model
+{
     public $table = 'order_details';
     public $primaryKey = 'order_id';
     public $timestamps = false;
@@ -22,7 +23,8 @@ class OrderDetails extends Model{
         'subtotal'
 
     ];
-    
+    public function order()
+    {
+        return $this->belongsTo(Orders::class);
+    }
 }
-
-?>

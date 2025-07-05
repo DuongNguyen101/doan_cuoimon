@@ -248,6 +248,19 @@ class TemplateAdminController extends Controller
 
         return redirect('template/admin/user')->with('adminName', $adminName);
     }
+    public function orderdetail($id, $od)
+    {
+        $adminName = auth()->user()->name;
+        $OrderDetails = OrderDetails::where('order_id', $id)->get();
+        $User = User::where('id', $od)->get();
+        $data = [
+            'adminName'  => $adminName,
+            'OrderDetails' => $OrderDetails,
+            'Users' => $User
+        ];
+
+        return view('template.admin.orderdetail')->with($data);
+    }
     public function icon()
     {
         $adminName = auth()->user()->name;
