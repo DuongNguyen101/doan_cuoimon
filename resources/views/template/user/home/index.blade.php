@@ -9,12 +9,9 @@
                     <div class="banner-content-right">
                         <div class="text-box">
                             <h6 class="color-ter mb-32 d-sm-block d-none">NEW ARRIVALS</h6>
-                            <h2 class="white fw-600 mb-8">4K LCD <br> <span class="color-ter">Quantum&nbsp;</span>Vision LCD</h2>
+                            <h2 class="white fw-600 mb-8">Premium Dry Spices   <br> <span class="color-ter">Authentic&nbsp;</span>Vietnamese Flavor </h2>
                             <h6 class="white mb-32">Limited Time: Online Only!</h6>
                             <a href="shop-list-1.html" class="cus-btn-3 sec">Shop Now</a>
-                        </div>
-                        <div class="image-area">
-                            <img src="{{url('user')}}/media/banner/banner-sub-1.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -24,22 +21,16 @@
                     <div class="banner-right mb-16">
                         <div class="banner-content-right v-2">
                             <div class="text-box">
-                                <h5 class="fw-500 mb-16"><a href="shop-detail.html" class="white">Mobile <br> <span class="color-ter">Nexus&nbsp;</span>Mobile Pro 256GB</a></h5>
-                                <p class="white fw-500">Limited Time: Online Only!</p>
-                            </div>
-                            <div class="image-area">
-                                <a href="shop-detail.html"><img src="{{url('user')}}/media/banner/banner-sub-2.png" alt=""></a>
+                                <h5 class="fw-500 mb-16"><a href="shop-detail.html" class="white">Dry Spices<br> <span class="color-ter">Rich Flavor&nbsp;</span>for Every Meal</a></h5>
+                                <p class="white fw-500">Today Only: Online Exclusive!</p>
                             </div>
                         </div>
                     </div>
                     <div class="banner-right">
                         <div class="banner-content-right v-3">
                             <div class="text-box">
-                                <h5 class="fw-500 mb-16"><a href="shop-detail.html" class="white">iPadMini <br> <span class="color-ter">10 Inch&nbsp;</span>iPad Mini Pro</a></h5>
-                                <p class="white fw-500">Limited Time: Online Only!</p>
-                            </div>
-                            <div class="image-area">
-                                <a href="shop-detail.html"><img src="{{url('user')}}/media/banner/banner-sub-3.png" alt=""></a>
+                                <h5 class="fw-500 mb-16"><a href="shop-detail.html" class="white">Organic Spices <br> <span class="color-ter">Flavorful &nbsp;</span>Herbs & Seasoning Mix</a></h5>
+                                <p class="white fw-500">Freshly Packed – Limited Stock!</p>
                             </div>
                         </div>
                     </div>

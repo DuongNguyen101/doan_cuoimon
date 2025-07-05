@@ -2762,7 +2762,7 @@ header .header-section .mixin-container .input-field button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: url("../media/banner/banner-1.png") no-repeat;
+  background: url("/image/homepage/background-1.png") no-repeat;
   background-position: center;
   background-size: cover;
   height: clamp(370px, 24.167vw, 650px);
@@ -2778,7 +2778,7 @@ header .header-section .mixin-container .input-field button {
 .hero-banner .banner-right .banner-content-right.v-2 {
   padding: clamp(24px, 1.25vw, 48px);
   height: clamp(180px, 11.667vw, 480px);
-  background: url("../media/banner/banner-2.png") no-repeat;
+  background: url("/image/homepage/background-2.png") no-repeat;
   background-size: cover;
 }
 @media (max-width: 575px) {
@@ -2791,7 +2791,7 @@ header .header-section .mixin-container .input-field button {
 .hero-banner .banner-right .banner-content-right.v-3 {
   padding: clamp(24px, 1.25vw, 48px);
   height: clamp(180px, 11.667vw, 480px);
-  background: url("../media/banner/banner-3.png") no-repeat;
+  background: url("/image/homepage/background-3.png") no-repeat;
   background-size: cover;
 }
 @media (max-width: 575px) {
