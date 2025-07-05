@@ -9,10 +9,20 @@
 
         <h4 class="text-center fw-bold mb-4" style="color: #006937;">Forgot Password</h4>
 
+        @if (session('status'))
+        <div class="alert alert-success alert-dismissible fade show mt-3 text-center" role="alert">
+            {{ session('status') == 'passwords.sent'
+                ? 'A password reset link has been sent to your email. Please check your inbox to proceed.'
+                : session('status') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        @endif
+
         <div class="form-group mb-3 d-flex flex-column">
             <label for="email" class="mb-1">Email</label>
             <input type="email" name="email" id="email"
-                class="form-control" placeholder="Enter your email" required>
+                class="form-control" placeholder="Enter your email"
+                value="{{ old('email') }}" required>
             @error('email')
             <div class="text-danger mt-1" style="font-size: 13px;">{{ $message }}</div>
             @enderror
@@ -26,14 +36,6 @@
                 Back to Login
             </a>
         </div>
-
-
-        @if(session('status'))
-        <div class="alert alert-success alert-dismissible fade show mt-3 text-center" role="alert">
-            {{ session('status') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-        @endif
     </form>
 </div>
 @endsection
