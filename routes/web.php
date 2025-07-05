@@ -60,6 +60,7 @@ Route::group(['prefix' => 'template/user'], function () {
 
 Route::group(['prefix' => 'template/user'], function () {
     Route::get('/changepassword/index', [ChangePasswordController::class, 'index']);
+    Route::post('/changepassword/update', [ChangePasswordController::class, 'update'])->name('user.changePassword');
 });
 
 Route::group(['prefix' => 'login/admin'], function () {

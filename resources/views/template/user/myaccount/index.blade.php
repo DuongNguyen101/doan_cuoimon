@@ -71,9 +71,18 @@
             </div>
         </div>
 
-        <div class="btn-submit">
-            <button type="submit" class="btn-green">Save changes</button>
-            <button type="submit" class="btn-green">Changes Password</button>
+        <div class="d-flex justify-content-center gap-2 mt-3">
+            <button type="submit" class="btn-green px-4 py-2" style="min-width: 140px;">
+                Save Information
+            </button>
+
+            <a href="{{ url('template/user/changepassword/index') }}"
+            class="btn-green text-white text-decoration-none px-4 py-2 text-center"
+            style="min-width: 140px; line-height: 24px;">
+                Change Password
+            </a>
+        </div>
+
         </div>
        
         @if(session('success'))
