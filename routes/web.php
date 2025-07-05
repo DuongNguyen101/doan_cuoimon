@@ -37,6 +37,8 @@ Route::group(['prefix' => 'template/user'], function () {
     Route::get('/shop/wishlist', [ShopController::class, 'wishlist']);
     Route::get('/shop/cart', [ShopController::class, 'cart']);
     Route::get('/shop/checkout', [ShopController::class, 'checkout']);
+    Route::get('/shop/detail/{id}', [ShopController::class, 'shopdetail'])->name('shopdetail');
+    Route::get('/shop/category/{id}', [ShopController::class, 'categoryProducts'])->name('shop.category');
 });
 
 Route::group(['prefix' => 'template/user'], function () {
