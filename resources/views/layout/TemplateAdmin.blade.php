@@ -70,7 +70,7 @@
                     <li>
                         <a href="{{asset('/template/admin/user')}}">
                             <i class="nc-icon nc-single-02"></i>
-                            <p>User Profile</p>
+                            <p>Customers</p>
                         </a>
                     </li>
                     <li>

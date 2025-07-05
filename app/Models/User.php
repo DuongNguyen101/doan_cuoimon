@@ -17,16 +17,21 @@ class User extends Authenticatable implements MustVerifyEmail
     public $timestamps = true;
 
     protected $fillable = [
+        'id',
         'name',
         'email',
+        'phone',
         'password',
         'created_at',
         'updated_at',
         'role',
         'image',
+        'status',
+        'address_id'
+
     ];
     public function address()
-{
-    return $this->hasOne(UserAddress::class, 'user_id');
-}
+    {
+        return $this->hasOne(UserAddress::class, 'user_id');
+    }
 }
