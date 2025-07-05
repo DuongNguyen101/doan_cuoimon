@@ -65,12 +65,12 @@ Route::group(['prefix' => 'template/user'], function () {
     Route::post('/changepassword/update', [ChangePasswordController::class, 'update'])->name('user.changePassword');
 });
 
-Route::group(['prefix' => 'template/user'], function () {
+Route::group(['prefix' => 'template/user', 'middleware' => 'guest'], function () {
     Route::get('/pages/forgotpassword', [ForgotPasswordController::class, 'index'])->name('password.request');
     Route::post('/pages/forgotpassword', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 });
 
-Route::group(['prefix' => 'template/user'], function () {
+Route::group(['prefix' => 'template/user', 'middleware' => 'guest'], function () {
     Route::get('/pages/resetpassword', [ResetPasswordController::class, 'index'])->name('password.reset');
     Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
 });

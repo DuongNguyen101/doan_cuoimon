@@ -11,9 +11,16 @@ class ResetPasswordController extends Controller
 {
     public function index(Request $request)
     {
+        $token = $request->query('token');
+        $email = $request->query('email');
+
+        if (!$token || !$email) {
+            return redirect()->route('password.request')->withErrors(['token' => 'Invalid password reset link.']);
+        }
+
         return view('template/user/pages/resetpassword', [
-            'token' => $request->token,
-            'email' => $request->email 
+            'token' => $token,
+            'email' => $email,
         ]);
     }
 
