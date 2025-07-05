@@ -7,7 +7,12 @@
 <div class="profile-container">
     <form action="{{ route('user.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
-
+        @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show mt-3" role="alert" style="text-align:center;">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="position: absolute; right: 1rem;"></button>
+        </div>
+        @endif
         <div class="avatar-wrapper">
             <div style="display: flex; justify-content: center; align-items: center; position: relative;">
                 @php
@@ -39,7 +44,12 @@
 
             <div class="form-group">
                 <label for="phone">Phone Number</label>
-                <input type="text" name="phone" id="phone" class="form-control" placeholder="0987654321" required value="{{ old('phone', Auth::user()->phone ?? '') }}">
+                <input type="text" name="phone" id="phone" class="form-control"
+                    placeholder="0987654321" required
+                    maxlength="10"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                    value="{{ old('phone', Auth::user()->phone ?? '') }}">
+
                 @error('phone')
                 <div class="text-danger mt-1" style="font-size: 13px;">Please update your phone number.</div>
                 @enderror
@@ -77,20 +87,11 @@
             </button>
 
             <a href="{{ url('template/user/changepassword/index') }}"
-            class="btn-green text-white text-decoration-none px-4 py-2 text-center"
-            style="min-width: 140px; line-height: 24px;">
+                class="btn-green text-white text-decoration-none px-4 py-2 text-center"
+                style="min-width: 140px; line-height: 24px;">
                 Change Password
             </a>
         </div>
-
-        </div>
-       
-        @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show mt-3" role="alert" style="text-align:center;">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="position: absolute; right: 1rem;"></button>
-        </div>
-        @endif
     </form>
 </div>
 

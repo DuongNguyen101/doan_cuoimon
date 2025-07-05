@@ -12,11 +12,14 @@ class UserInfoController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'phone' => 'nullable|string|max:15',
+            'phone' => ['required', 'regex:/^[0-9]{10}$/'],
             'province' => 'nullable|string|max:100',
             'district' => 'nullable|string|max:100',
             'street' => 'nullable|string|max:100',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+        ], [
+            'phone.required' => 'Please enter your phone number.',
+            'phone.regex' => 'Phone number must be exactly 10 digits.',
         ]);
 
         $user = Auth::user();
