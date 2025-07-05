@@ -50,21 +50,21 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{asset('/template/admin/icon')}}">
+                        <a href="{{asset('/template/admin/search')}}">
                             <i class="nc-icon nc-diamond"></i>
-                            <p>Icons</p>
+                            <p>Search Function</p>
                         </a>
                     </li>
                     <li>
-                        <a href="{{asset('/template/admin/maps')}}">
+                        <a href="{{asset('/template/admin/news')}}">
                             <i class="nc-icon nc-pin-3"></i>
-                            <p>Maps</p>
+                            <p>News</p>
                         </a>
                     </li>
                     <li>
-                        <a href="{{asset('/template/admin/notifications')}}">
+                        <a href="{{asset('/template/admin/payments')}}">
                             <i class="nc-icon nc-bell-55"></i>
-                            <p>Notifications</p>
+                            <p>Payments</p>
                         </a>
                     </li>
                     <li>
@@ -74,9 +74,9 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{asset('/template/admin/table')}}">
+                        <a href="{{asset('/template/admin/promotions')}}">
                             <i class="nc-icon nc-tile-56"></i>
-                            <p>Table List</p>
+                            <p>Promotions</p>
                         </a>
                     </li>
                     <li>
