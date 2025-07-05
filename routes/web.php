@@ -10,6 +10,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\TemplateAdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\UserInfoController;
 use App\Http\Controllers\MyAccountController;
 
@@ -55,6 +56,10 @@ Route::group(['prefix' => 'template/user'], function () {
 
 Route::group(['prefix' => 'template/user'], function () {
     Route::get('/myaccount/index', [MyAccountController::class, 'index']);
+});
+
+Route::group(['prefix' => 'template/user'], function () {
+    Route::get('/changepassword/index', [ChangePasswordController::class, 'index']);
 });
 
 Route::group(['prefix' => 'login/admin'], function () {
