@@ -88,6 +88,7 @@ Route::group(['prefix' => 'template/admin', 'middleware' => ['auth', 'check.admi
     Route::post('/user/form/action', [TemplateAdminController::class, 'updateuser']);
     Route::get('/user/form/add', [TemplateAdminController::class, 'loadformuseradd']);
     Route::get('/user/delete/{id}', [TemplateAdminController::class, 'deleteuser']);
+    Route::get('/user/order/{id}/{od}', [TemplateAdminController::class, 'orderdetail']);
 });
 
 // Route::group(['prefix' => 'register'], function () {

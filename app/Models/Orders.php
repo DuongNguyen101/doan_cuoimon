@@ -9,7 +9,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Orders extends Model{
+class Orders extends Model
+{
     public $table = 'orders';
     public $primaryKey = 'order_id';
     public $timestamps = false;
@@ -24,7 +25,8 @@ class Orders extends Model{
         'updated_at'
 
     ];
-    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
-
-?>
