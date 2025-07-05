@@ -7,42 +7,52 @@
     <form action="{{ route('user.changePassword') }}" method="POST" style="max-width: 500px; margin: 0 auto;">
         @csrf
 
-        <div class="d-flex align-items-center mb-4">
-            <a href="{{ url('template/user/myaccount/index') }}" class="me-2 text-decoration-none" style="color: #006937; font-size: 20px;">
-                <i class="fas fa-arrow-left"></i>
-            </a>
+        <div class="mb-4 text-center">
             <h4 class="mb-0 fw-bold" style="color: #006937;">Change Password</h4>
         </div>
 
-        <div class="form-group mb-3 d-flex flex-column">
+        {{-- Current Password --}}
+        <div class="form-group mb-3 d-flex flex-column position-relative">
             <label for="current_password" class="mb-1">Current Password</label>
             <input type="password" name="current_password" id="current_password"
                 class="form-control" placeholder="Enter current password" required>
+            <i class="fa-solid fa-eye toggle-password" data-target="current_password"
+               style="position: absolute; top: 38px; right: 15px; cursor: pointer;"></i>
             @error('current_password')
             <div class="text-danger mt-1" style="font-size: 13px;">{{ $message }}</div>
             @enderror
         </div>
 
-        <div class="form-group mb-3 d-flex flex-column">
+        {{-- New Password --}}
+        <div class="form-group mb-3 d-flex flex-column position-relative">
             <label for="new_password" class="mb-1">New Password</label>
             <input type="password" name="new_password" id="new_password"
                 class="form-control" placeholder="Enter new password" required>
+            <i class="fa-solid fa-eye toggle-password" data-target="new_password"
+               style="position: absolute; top: 38px; right: 15px; cursor: pointer;"></i>
             @error('new_password')
             <div class="text-danger mt-1" style="font-size: 13px;">{{ $message }}</div>
             @enderror
         </div>
 
-        <div class="form-group mb-3 d-flex flex-column">
+        {{-- Confirm New Password --}}
+        <div class="form-group mb-3 d-flex flex-column position-relative">
             <label for="new_password_confirmation" class="mb-1">Confirm New Password</label>
             <input type="password" name="new_password_confirmation" id="new_password_confirmation"
                 class="form-control" placeholder="Re-enter new password" required>
+            <i class="fa-solid fa-eye toggle-password" data-target="new_password_confirmation"
+               style="position: absolute; top: 38px; right: 15px; cursor: pointer;"></i>
             @error('new_password_confirmation')
             <div class="text-danger mt-1" style="font-size: 13px;">{{ $message }}</div>
             @enderror
         </div>
 
-        <div class="btn-submit text-center mt-3">
-            <button type="submit" class="btn-green">Update Password</button>
+        <div class="btn-submit text-center mt-3 d-flex justify-content-center gap-3">
+            <button type="submit" class="btn-green px-4">Update Password</button>
+            <a href="{{ url('template/user/myaccount/index') }}"
+            class="btn-green text-white text-decoration-none px-4 py-2">
+                Back to My Info
+            </a>
         </div>
 
         @if(session('success'))
@@ -62,4 +72,6 @@
 </div>
 
 <script src="{{ url('user') }}/js/userinfo.js"></script>
+<script src="{{ url('user') }}/js/changepassword.js"></script>
+
 @endsection

@@ -14,6 +14,7 @@ use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\UserInfoController;
 use App\Http\Controllers\MyAccountController;
+use App\Http\Controllers\ResetPasswordController;
 
 Route::group(['prefix' => '/'], function () {
     Route::get('/', [HomeController::class, 'index']);
@@ -66,6 +67,12 @@ Route::group(['prefix' => 'template/user'], function () {
 
 Route::group(['prefix' => 'template/user'], function () {
     Route::get('/pages/forgotpassword', [ForgotPasswordController::class, 'index'])->name('password.request');
+    Route::post('/pages/forgotpassword', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+});
+
+Route::group(['prefix' => 'template/user'], function () {
+    Route::get('/pages/resetpassword', [ResetPasswordController::class, 'index'])->name('password.reset');
+    Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
 });
 
 Route::group(['prefix' => 'login/admin'], function () {
@@ -73,6 +80,7 @@ Route::group(['prefix' => 'login/admin'], function () {
     Route::post('/index', [LoginAdminController::class, 'postloginadmin']);
     Route::post('/logout', [LoginAdminController::class, 'postlogoutadmin'])->name('admin.logout');
 });
+
 
 
 Route::group(['prefix' => 'template/admin', 'middleware' => ['auth', 'check.admin']], function () {
@@ -116,4 +124,7 @@ Route::post('/email/resend', [VerificationController::class, 'resend'])->name('v
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::post('/user/update', [UserInfoController::class, 'update'])->name('user.update');
+
+
+
 
