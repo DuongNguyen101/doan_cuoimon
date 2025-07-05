@@ -10,9 +10,14 @@
 
         <div class="avatar-wrapper">
             <div style="display: flex; justify-content: center; align-items: center; position: relative;">
-                <img id="avatarPreview"
-                    src="{{ Auth::user()->image ? asset('uploads/avatar/' . Auth::user()->image) : asset('images/vietnam.png') }}"
-                    alt="Avatar">
+                @php
+                $imagePath = 'uploads/avatar/' . Auth::user()->image;
+                $image = Auth::user()->image && file_exists(public_path($imagePath))
+                ? asset($imagePath)
+                : asset('image/vietnam.png');
+                @endphp
+
+                <img id="avatarPreview" src="{{ $image }}" alt="Avatar">
                 <label for="avatar"><i class="fas fa-pen"></i></label>
             </div>
             <input type="file" id="avatar" name="image" accept="image/*" style="display: none;" onchange="previewAvatar(event)">

@@ -76,7 +76,8 @@ class PagesController extends Controller
             'email' => strtolower($req->email),
             'password' => Hash::make($req->password),
             'role' => 'user',
-            'image' => 'avatars/default.png',
+            'image' => 'vietnam.png',
+            'address_id' => 1, 
             ]);
             $user->sendEmailVerificationNotification();
             return redirect('template/user/pages/login')->with('register_success', 'Registered successfully and check your email.');

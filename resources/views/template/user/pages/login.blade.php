@@ -86,25 +86,4 @@
 
 </section>
 
-<div class="modal fade" id="logoutConfirmModal" tabindex="-1" aria-labelledby="logoutConfirmLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header bg-warning">
-        <h5 class="modal-title" id="logoutConfirmLabel">Xác nhận đăng xuất</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
-      </div>
-      <div class="modal-body">
-        Bạn có chắc chắn muốn đăng xuất không?
-      </div>
-      <div class="modal-footer">
-        <form action="{{ route('logout') }}" method="POST">
-          @csrf
-          <button type="submit" class="btn btn-danger">Đăng xuất</button>
-        </form>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 @endsection
