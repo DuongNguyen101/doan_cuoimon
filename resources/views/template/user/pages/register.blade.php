@@ -1,15 +1,5 @@
 @extends('layout.user')
 @section('content')
-<section class="title-banner">
-    <div class="container-fluid">
-        <div class="banner-wrapper text-center">
-            <img src="{{ url('user') }}/media/banner/left-image.png" alt="" class="banner-image1">
-            <h1 class="dark-black fw-600">My Account</h1>
-            <img src="{{ url('user') }}/media/banner/right-image.png" alt="" class="banner-image2">
-        </div>
-    </div>
-</section>
-
 <section class="my-account d-flex justify-content-center align-items-center" style="min-height: 100vh; background-color: #eaeaec">
     <div class="container">
         <div class="row justify-content-center">

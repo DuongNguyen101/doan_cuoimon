@@ -109,12 +109,6 @@ Route::group(['prefix' => 'template/admin', 'middleware' => ['auth', 'check.admi
     Route::get('/user/delete/{id}', [TemplateAdminController::class, 'deleteuser']);
 });
 
-// Route::group(['prefix' => 'register'], function () {
-//     Route::post('/save', [LoginAdminController::class, 'postregister']);
-//     Route::post('/login', [LoginAdminController::class, 'postlogin']);
-// });
-
-
 Route::get('/email/verify', [VerificationController::class, 'notice'])->name('verification.notice');
 
 Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
