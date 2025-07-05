@@ -25,6 +25,9 @@
     <link rel="stylesheet" href="{{asset('user')}}/css/login.css">
     <link rel="stylesheet" href="{{asset('user')}}/css/user.css">
     <link rel="stylesheet" href="{{url('user')}}/css/app.css">
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 
 </head>
 

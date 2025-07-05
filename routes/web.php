@@ -10,8 +10,11 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\TemplateAdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\UserInfoController;
 use App\Http\Controllers\MyAccountController;
+use App\Http\Controllers\ResetPasswordController;
 
 Route::group(['prefix' => '/'], function () {
     Route::get('/', [HomeController::class, 'index']);
@@ -57,11 +60,27 @@ Route::group(['prefix' => 'template/user'], function () {
     Route::get('/myaccount/index', [MyAccountController::class, 'index']);
 });
 
+Route::group(['prefix' => 'template/user'], function () {
+    Route::get('/changepassword/index', [ChangePasswordController::class, 'index']);
+    Route::post('/changepassword/update', [ChangePasswordController::class, 'update'])->name('user.changePassword');
+});
+
+Route::group(['prefix' => 'template/user', 'middleware' => 'guest'], function () {
+    Route::get('/pages/forgotpassword', [ForgotPasswordController::class, 'index'])->name('password.request');
+    Route::post('/pages/forgotpassword', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+});
+
+Route::group(['prefix' => 'template/user', 'middleware' => 'guest'], function () {
+    Route::get('/pages/resetpassword', [ResetPasswordController::class, 'index'])->name('password.reset');
+    Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
+});
+
 Route::group(['prefix' => 'login/admin'], function () {
     Route::get('/index', [LoginAdminController::class, 'index'])->name('admin.login');
     Route::post('/index', [LoginAdminController::class, 'postloginadmin']);
     Route::post('/logout', [LoginAdminController::class, 'postlogoutadmin'])->name('admin.logout');
 });
+
 
 
 Route::group(['prefix' => 'template/admin', 'middleware' => ['auth', 'check.admin']], function () {
@@ -91,12 +110,6 @@ Route::group(['prefix' => 'template/admin', 'middleware' => ['auth', 'check.admi
     Route::get('/user/order/{id}/{od}', [TemplateAdminController::class, 'orderdetail']);
 });
 
-// Route::group(['prefix' => 'register'], function () {
-//     Route::post('/save', [LoginAdminController::class, 'postregister']);
-//     Route::post('/login', [LoginAdminController::class, 'postlogin']);
-// });
-
-
 Route::get('/email/verify', [VerificationController::class, 'notice'])->name('verification.notice');
 
 Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
@@ -106,3 +119,7 @@ Route::post('/email/resend', [VerificationController::class, 'resend'])->name('v
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::post('/user/update', [UserInfoController::class, 'update'])->name('user.update');
+
+
+
+

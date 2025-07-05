@@ -39,7 +39,7 @@
 
             <div class="form-group">
                 <label for="phone">Phone Number</label>
-                <input type="text" name="phone" id="phone" class="form-control" placeholder="0987654321" value="{{ old('phone', Auth::user()->phone ?? '') }}">
+                <input type="text" name="phone" id="phone" class="form-control" placeholder="0987654321" required value="{{ old('phone', Auth::user()->phone ?? '') }}">
                 @error('phone')
                 <div class="text-danger mt-1" style="font-size: 13px;">Please update your phone number.</div>
                 @enderror
@@ -47,7 +47,7 @@
 
             <div class="form-group">
                 <label for="province">City</label>
-                <input type="text" class="form-control" id="province" name="province" placeholder="VD: Hanoi city" value="{{ old('province', Auth::user()->address->city ?? '') }}">
+                <input type="text" class="form-control" id="province" name="province" placeholder="VD: Hanoi city" required value="{{ old('province', Auth::user()->address->city ?? '') }}">
                 @error('province')
                 <div class="text-danger mt-1" style="font-size: 13px;">Please update your city.</div>
                 @enderror
@@ -55,7 +55,7 @@
 
             <div class="form-group">
                 <label for="district">District</label>
-                <input type="text" class="form-control" id="district" name="district" placeholder="VD: Ba Dinh District " value="{{ old('district', Auth::user()->address->district ?? '') }}">
+                <input type="text" class="form-control" id="district" name="district" placeholder="VD: Ba Dinh District " required value="{{ old('district', Auth::user()->address->district ?? '') }}">
                 @error('district')
                 <div class="text-danger mt-1" style="font-size: 13px;">Please update your district.</div>
                 @enderror
@@ -63,7 +63,7 @@
 
             <div class="form-group">
                 <label for="street">Street</label>
-                <input type="text" class="form-control" id="street" name="street" placeholder="VD: Nguyen Hue street" value="{{ old('street',Auth::user()->address->street ?? '') }}">
+                <input type="text" class="form-control" id="street" name="street" placeholder="VD: Nguyen Hue street" required value="{{ old('street',Auth::user()->address->street ?? '') }}">
 
                 @error('street')
                 <div class="text-danger mt-1" style="font-size: 13px;">Please update your Street.</div>
@@ -71,9 +71,20 @@
             </div>
         </div>
 
-        <div class="btn-submit">
-            <button type="submit" class="btn-green">Save changes</button>
+        <div class="d-flex justify-content-center gap-2 mt-3">
+            <button type="submit" class="btn-green px-4 py-2" style="min-width: 140px;">
+                Save Information
+            </button>
+
+            <a href="{{ url('template/user/changepassword/index') }}"
+            class="btn-green text-white text-decoration-none px-4 py-2 text-center"
+            style="min-width: 140px; line-height: 24px;">
+                Change Password
+            </a>
         </div>
+
+        </div>
+       
         @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show mt-3" role="alert" style="text-align:center;">
             {{ session('success') }}
