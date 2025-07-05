@@ -5,7 +5,7 @@
     @foreach ($products as $product)
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-4">
             <div class="card h-100 shadow-sm border-0">
-                <img src="{{ asset('image/shoplist/dryspices/' . $product->image_url) }}"
+                <img src="{{ asset('image/shoplist/' . $product->image_url) }}"
                      class="card-img-top"
                      alt="{{ $product->name }}"
                      style="height: 350px; object-fit: cover;">
