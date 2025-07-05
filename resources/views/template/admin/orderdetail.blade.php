@@ -35,15 +35,16 @@
                     <td style="padding: 8px;">{{ $OrderDetail->subtotal }}</td>
 
 
+
                     <td style="padding: 8px;">
-                        <a href="{{ url('/template/admin/product/form/' .$OrderDetail->order_detail_id ) }}"
+                        <a href="{{ url('/template/admin/orderdetails/form/' .$OrderDetail->order_detail_id  ) }}"
                             style="background-color: #ffc107; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Sửa</a>
                     </td>
                     <td style="padding: 8px;">
-                        <a href="{{ url('/template/admin/product/form/add/'. $OrderDetail->order_detail_id) }}" style="background-color: #28a745; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Thêm</a>
+                        <a href="{{ url('/template/admin/orderdetails/form/add') }}" style="background-color: #28a745; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Thêm</a>
                     </td>
                     <td style="padding: 8px;">
-                        <a href="{{ url('/template/admin/product/delete/' .$OrderDetail->order_detail_id ) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"
+                        <a href="{{ url('/template/admin/orderdetails/delete/'.$OrderDetail->order_detail_id  ) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"
                             style="background-color: #dc3545; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Xóa</a>
                     </td>
                 </tr>

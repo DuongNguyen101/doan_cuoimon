@@ -2,29 +2,13 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class OrderDetails extends Model
 {
-    public $table = 'order_details';
-    public $primaryKey = 'order_id';
+    protected $table = 'order_details';
+    protected $primaryKey = 'order_detail_id';
+    protected $fillable = ['order_detail_id', 'order_id', 'product_id', 'quantity', 'unit_price', 'subtotal'];
     public $timestamps = false;
-    public $fillable = [
-        'order_detail_id',
-        'order_id',
-        'product_id',
-        'quantity',
-        'unit_price',
-        'subtotal'
-
-    ];
-    public function order()
-    {
-        return $this->belongsTo(Orders::class);
-    }
+    public $incrementing = true;
 }

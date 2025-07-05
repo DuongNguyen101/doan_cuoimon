@@ -110,6 +110,18 @@ Route::group(['prefix' => 'template/admin', 'middleware' => ['auth', 'check.admi
     Route::get('/user/form/add', [TemplateAdminController::class, 'loadformuseradd']);
     Route::get('/user/delete/{id}', [TemplateAdminController::class, 'deleteuser']);
     Route::get('/user/order/{id}/{od}', [TemplateAdminController::class, 'orderdetail']);
+    Route::get('/search', [TemplateAdminController::class, 'search'])->name('admin.search');
+    // OrderDetails
+    Route::get('/orderdetails/form/{id}', [TemplateAdminController::class, 'loadFormOrderDetails']);
+    Route::get('/orderdetails/form/add', [TemplateAdminController::class, 'loadFormOrderDetailsAdd']);
+    Route::post('/orderdetails/update/{id?}', [TemplateAdminController::class, 'updateOrderDetails'])->name('orderdetails.update');
+    Route::get('/orderdetails/delete/{id}', [TemplateAdminController::class, 'deleteOrderDetails']);
+    //news
+    Route::get('/news', [TemplateAdminController::class, 'news']);
+    //payments
+    Route::get('/payments', [TemplateAdminController::class, 'payments']);
+    //promotions
+    Route::get('/promotions', [TemplateAdminController::class, 'promotions']);
 });
 
 Route::get('/email/verify', [VerificationController::class, 'notice'])->name('verification.notice');
@@ -121,7 +133,3 @@ Route::post('/email/resend', [VerificationController::class, 'resend'])->name('v
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::post('/user/update', [UserInfoController::class, 'update'])->name('user.update');
-
-
-
-

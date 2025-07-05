@@ -2,13 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
+
+use App\Models\MenuTabs;
+use App\Models\News;
+use App\Models\Payment;
+
+use App\Models\Promotions;
+use App\Models\Qna;
+use App\Models\Review;
+
+use App\Models\UserAddress;
+
 use App\Models\Categories;
 use App\Models\OrderDetails;
 use App\Models\Orders;
+use App\Models\Payments;
+use App\Models\ProductImage;
 use App\Models\Products;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Log;
 
 class TemplateAdminController extends Controller
 {
@@ -307,5 +322,130 @@ class TemplateAdminController extends Controller
         $adminName = auth()->user()->name;
 
         return view('template/admin/upgrade')->with('adminName', $adminName);
+    }
+    //Search data in admin
+    public function search(Request $request)
+    {
+        $adminName = auth()->user()->name;
+        $searchTerm = $request->input('search');
+
+        $results = [
+            'admins' => Admin::where('name', 'like', "%$searchTerm%")->orWhere('email', 'like', "%$searchTerm%")->get(),
+            'categories' => Categories::where('name', 'like', "%$searchTerm%")->orWhere('description', 'like', "%$searchTerm%")->get(),
+            'menuTabs' => MenuTabs::where('name', 'like', "%$searchTerm%")->orWhere('slug', 'like', "%$searchTerm%")->get(),
+            'news' => News::where('title', 'like', "%$searchTerm%")->orWhere('content', 'like', "%$searchTerm%")->get(),
+            'orders' => Orders::where('address', 'like', "%$searchTerm%")->orWhere('total_amount', 'like', "%$searchTerm%")->get(),
+            'orderDetails' => OrderDetails::where('unit_price', 'like', "%$searchTerm%")->orWhere('subtotal', 'like', "%$searchTerm%")->get(),
+            'payments' => Payments::where('amount', 'like', "%$searchTerm%")->orWhere('payment_method', 'like', "%$searchTerm%")->get(),
+            'products' => Products::where('name', 'like', "%$searchTerm%")->orWhere('description', 'like', "%$searchTerm%")->get(),
+            'productImages' => ProductImage::where('image_path', 'like', "%$searchTerm%")->orWhere('caption', 'like', "%$searchTerm%")->get(),
+            'promotions' => Promotions::where('title', 'like', "%$searchTerm%")->orWhere('description', 'like', "%$searchTerm%")->get(),
+            'qna' => Qna::where('question', 'like', "%$searchTerm%")->orWhere('answer', 'like', "%$searchTerm%")->get(),
+            'reviews' => Review::where('comment', 'like', "%$searchTerm%")->get(),
+            'userAddresses' => UserAddress::where('street', 'like', "%$searchTerm%")->orWhere('city', 'like', "%$searchTerm%")->get(),
+            'users' => User::where('name', 'like', "%$searchTerm%")->orWhere('email', 'like', "%$searchTerm%")->get(),
+        ];
+
+        $data = [
+            'adminName' => $adminName,
+            'results' => $results,
+            'searchTerm' => $searchTerm,
+        ];
+
+        return view('template.admin.search')->with($data);
+    }
+    //main function update them xoa sua
+    // Generic methods for CRUD
+    private function loadForm($model, $id, $view, $data = [])
+    {
+        $adminName = auth()->user()->name;
+        $record = $id ? $model::find($id) : null;
+        $data = array_merge($data, [
+            'adminName' => $adminName,
+            'record' => $record,
+            'id' => $id
+        ]);
+        return view($view, $data);
+    }
+
+    private function updateRecord(Request $request, $model, $redirectRoute, $id = null)
+    {
+        $adminName = auth()->user()->name;
+        try {
+            // Lọc dữ liệu chỉ lấy các trường trong $fillable, loại bỏ _token và các trường không mong muốn
+            $data = $request->only($model->getFillable());
+
+            if ($id) {
+                // Kiểm tra và sử dụng primary key của model
+                $primaryKey = $model->getKeyName(); // Lấy tên cột khóa chính từ model
+                $model::where($primaryKey, $id)->update($data);
+                session()->flash('msg', 'Cập nhật chi tiết đơn hàng thành công');
+            } else {
+                $model::create($data);
+                session()->flash('msg', 'Thêm chi tiết đơn hàng thành công');
+            }
+            return redirect($redirectRoute)->with('adminName', $adminName);
+        } catch (\Exception $e) {
+            Log::error('Lỗi cập nhật/thêm chi tiết đơn hàng: ' . $e->getMessage());
+            session()->flash('msg', 'Thất bại: ' . $e->getMessage());
+            return redirect($redirectRoute)->with('adminName', $adminName);
+        }
+    }
+
+    private function deleteRecord($model, $id, $redirectRoute)
+    {
+        try {
+            $adminName = auth()->user()->name;
+            $primaryKey = $model->getKeyName(); // Lấy tên cột khóa chính từ model
+            $model::where($primaryKey, $id)->delete();
+            session()->flash('msg', 'xoa chi tiết đơn hàng thành công');
+            return redirect($redirectRoute)->with('adminName', $adminName);
+        } catch (\Exception $e) {
+            Log::error('Lỗi cập nhật/thêm chi tiết đơn hàng: ' . $e->getMessage());
+            session()->flash('msg', 'Thất bại: ' . $e->getMessage());
+            return redirect($redirectRoute)->with('adminName', $adminName);
+        }
+    }
+    private function extract($model, $view, $data = [])
+    {
+        $adminName = auth()->user()->name;
+        $record = $model::get();
+        $data = array_merge($data, [
+            'adminName' => $adminName,
+            'records' => $record,
+        ]);
+        return view($view, $data);
+    }
+    //update record cho oderdetails
+    public function loadFormOrderDetails($id)
+    {
+        return $this->loadForm(new OrderDetails(), $id, 'template.admin.formorderdetails');
+    }
+    public function loadFormOrderDetailsAdd()
+    {
+        return $this->loadForm(new OrderDetails(), null, 'template.admin.formorderdetails');
+    }
+    public function updateOrderDetails(Request $request, $id = null)
+    {
+        return $this->updateRecord($request, new OrderDetails(), '/template/admin/user', $id);
+    }
+    public function deleteOrderDetails($id)
+    {
+        return $this->deleteRecord(new OrderDetails(), $id, '/template/admin/user');
+    }
+    //news
+    public function news()
+    {
+        return $this->extract(new News(), '/template/admin/news');
+    }
+    //payments
+    public function payments()
+    {
+        return $this->extract(new Payments(), '/template/admin/payments');
+    }
+    //promotions
+    public function promotions()
+    {
+        return $this->extract(new Promotions(), '/template/admin/promotions');
     }
 }
