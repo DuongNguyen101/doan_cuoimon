@@ -45,77 +45,27 @@
 <div class="categories-sec py-24">
     <div class="container-fluid">
         <div class="row">
-            <div class="categories-wrapper">
-                <a href="shop-grid-sidebar-1.html" class="category-block">
-                    <div class="image-box mb-12">
-                        <img src="{{url('user')}}/media/images/tab-1.png" alt="">
-                    </div>
-                    <p class="fw-500 mb-4p">Headphones</p>
-                    <p class="dark-gray">8 Product</p>
-                </a>
-                <a href="shop-grid-sidebar-1.html" class="category-block">
-                    <div class="image-box mb-12">
-                        <img src="{{url('user')}}/media/images/tab-2.png" alt="">
-                    </div>
-                    <p class="fw-500 mb-4p">Gaming Mouse</p>
-                    <p class="dark-gray">4 Product</p>
-                </a>
-                <a href="shop-grid-sidebar-1.html" class="category-block">
-                    <div class="image-box mb-12">
-                        <img src="{{url('user')}}/media/images/tab-3.png" alt="">
-                    </div>
-                    <p class="fw-500 mb-4p">MacBook/PCs</p>
-                    <p class="dark-gray">6 Product</p>
-                </a>
-                <a href="shop-grid-sidebar-1.html" class="category-block">
-                    <div class="image-box mb-12">
-                        <img src="{{url('user')}}/media/images/tab-4.png" alt="">
-                    </div>
-                    <p class="fw-500 mb-4p">RGB Keyboard</p>
-                    <p class="dark-gray">7 Product</p>
-                </a>
-                <a href="shop-grid-sidebar-1.html" class="category-block">
-                    <div class="image-box mb-12">
-                        <img src="{{url('user')}}/media/images/tab-5.png" alt="">
-                    </div>
-                    <p class="fw-500 mb-4p">Playstation</p>
-                    <p class="dark-gray">8 Product</p>
-                </a>
-                <a href="shop-grid-sidebar-1.html" class="category-block">
-                    <div class="image-box mb-12">
-                        <img src="{{url('user')}}/media/images/tab-6.png" alt="">
-                    </div>
-                    <p class="fw-500 mb-4p">Gaming Headphones</p>
-                    <p class="dark-gray">3 Product</p>
-                </a>
-                <a href="shop-grid-sidebar-1.html" class="category-block">
-                    <div class="image-box mb-12">
-                        <img src="{{url('user')}}/media/images/tab-7.png" alt="">
-                    </div>
-                    <p class="fw-500 mb-4p">Apple LED</p>
-                    <p class="dark-gray">2 Product</p>
-                </a>
-                <a href="shop-grid-sidebar-1.html" class="category-block">
-                    <div class="image-box mb-12">
-                        <img src="{{url('user')}}/media/images/tab-8.png" alt="">
-                    </div>
-                    <p class="fw-500 mb-4p">Samsung Phone</p>
-                    <p class="dark-gray">12 Product</p>
-                </a>
-                <a href="shop-grid-sidebar-1.html" class="category-block">
-                    <div class="image-box mb-12">
-                        <img src="{{url('user')}}/media/images/tab-10.png" alt="">
-                    </div>
-                    <p class="fw-500 mb-4p">Earbuds</p>
-                    <p class="dark-gray">4 Product</p>
-                </a>
-                <a href="shop-grid-sidebar-1.html" class="category-block">
-                    <div class="image-box mb-12">
-                        <img src="{{url('user')}}/media/images/tab-9.png" alt="">
-                    </div>
-                    <p class="fw-500 mb-4p">Ipad Min</p>
-                    <p class="dark-gray">8 Product</p>
-                </a>
+            <div class="categories-wrapper d-flex flex-wrap gap-4">
+                @foreach ($categories as $category)
+                    @php
+                        $firstProduct = $category->products->first(); 
+                    @endphp
+                    <a href="{{ route('shop.category', ['id' => $category->category_id]) }}" class="category-block text-center">
+                        <div class="image-box mb-2">
+                            @if ($firstProduct)
+                                <img src="{{ asset('image/shoplist/' . $firstProduct->image_url) }}"
+                                    alt="{{ $category->name }}"
+                                    style="width: 100px; height:85px; object-fit: cover; border-radius: 50%;">
+                            @else
+                                <img src="{{ asset('images/default-category.png') }}"
+                                    alt="No Image"
+                                    style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;">
+                            @endif
+                        </div>
+                        <p class="fw-500 mb-1">{{ $category->name }}</p>
+                        <p class="dark-gray">{{ $category->products_count }} Product</p>
+                    </a>
+                @endforeach
             </div>
         </div>
     </div>
