@@ -17,22 +17,38 @@ class ShopController extends Controller
     }
 
     public function categoryProducts($id)
-    {
-        $categories = Categories::all();
+{
+    $categories = Categories::all();
+    $search = request()->get('search');
+    $sort = request()->get('sort');
 
-        $query = Products::where('category_id', $id)->where('status', 1);
-
-        $sort = request()->get('sort');
-        if ($sort === 'asc') {
-            $query->orderBy('price', 'asc');
-        } elseif ($sort === 'desc') {
-            $query->orderBy('price', 'desc');
-        }
-
-        $products = $query->paginate(12)->appends(['sort' => $sort]);
-
-        return view('template.user.shop.dryspices.index', compact('products', 'categories'));
+    // Nếu có tìm kiếm, thì tìm toàn bộ sản phẩm có status = 1
+    if ($search) {
+        $query = Products::where('status', 1)
+            ->where('name', 'like', '%' . $search . '%');
+    } else {
+        // Nếu không tìm kiếm thì chỉ lấy theo category
+        $query = Products::where('category_id', $id)
+            ->where('status', 1);
     }
+
+    // Xử lý sắp xếp
+    if ($sort === 'asc') {
+        $query->orderBy('price', 'asc');
+    } elseif ($sort === 'desc') {
+        $query->orderBy('price', 'desc');
+    } else {
+        $query->orderBy('name', 'asc');
+    }
+
+    $products = $query->paginate(12)->appends([
+        'search' => $search,
+        'sort' => $sort,
+    ]);
+
+    return view('template.user.shop.dryspices.index', compact('products', 'categories', 'id'));
+}
+
 
     public function searchProducts()
     {

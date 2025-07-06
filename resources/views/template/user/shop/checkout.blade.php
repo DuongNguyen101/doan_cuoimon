@@ -104,27 +104,18 @@
                         </a>
                         <div class="mixin-container d-xl-flex d-none">
                             <div class="drop-container">
-                                <div class="wrapper-dropdown" id="dropdown3">
+                                <div  id="dropdown3">
                                     <span class="selected-display black fw-500" id="destination3">All Categories</span>
-                                    <svg id="drp-arrow3" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg" class="arrow transition-all ml-auto rotate-180">
-                                        <path d="M7 14.5l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                            stroke-linejoin="round"></path>
-                                    </svg>
-                                    <ul class="topbar-dropdown bg-lightest-gray box-shadow-1">
-                                        @foreach($categories as $category)
-                                            <li class="item dark-gray">{{ $category->name }}</li>
-                                        @endforeach
-                                    </ul>
                                 </div>
                             </div>
                             <div class="vr-line vr-line-2"></div>
-                            <form action="{{asset('template/user/home/index')}}" method="post">
-                                <div class="input-field">
-                                    <input type="text" name="search" id="searchInput" class="form-control" placeholder="Search for products...">
-                                    <button type="submit" class="cus-btn">Search</button>
-                                </div>
-                            </form>
+                                <form id="searchRedirectForm">
+                                    <div class="input-field d-flex">
+                                        <input type="text" name="search" id="searchInput" class="form-control me-2"
+                                            placeholder="Search for products..." required>
+                                        <button type="submit" class="cus-btn">Search</button>
+                                    </div>
+                                </form>
                         </div>
                         <div class="header-buttons d-flex align-items-center gap-3">
 
@@ -177,36 +168,6 @@
                             </a>
                         </div>
                     </div>
-                    <div class="mixin-container d-xl-none d-flex">
-                        <div class="drop-container">
-                            <div class="wrapper-dropdown" id="dropdown4">
-                                <span class="selected-display black fw-500" id="destination4">All Categories</span>
-                                <svg id="drp-arrow4" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg" class="arrow transition-all ml-auto rotate-180">
-                                    <path d="M7 14.5l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round"></path>
-                                </svg>
-                                <ul class="topbar-dropdown bg-lightest-gray box-shadow-1">
-                                    <li class="item dark-black">Digital & Electronics</li>
-                                    <li class="item dark-black">Camera & Photo</li>
-                                    <li class="item dark-black">Computer Hardware</li>
-                                    <li class="item dark-black">Gamepad & Console</li>
-                                    <li class="item dark-black">Headphone & Speaker</li>
-                                    <li class="item dark-black">Laptop & Computer</li>
-                                    <li class="item dark-black">Smartphone & Tablet</li>
-                                    <li class="item dark-black">TV & Audio</li>
-                                    <li class="item dark-black">Watches & Eyewear</li>
-                                    <li class="item dark-black">Fan & AC</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="vr-line vr-line-2"></div>
-                        <div class="input-field">
-                            <input type="text" name="search" id="searchInput2" class="form-control" placeholder="Search for products...">
-                            <button type="submit" class="cus-btn">Search</button>
-                        </div>
-                    </div>
-
                     <div class="header-bottom-area">
                         <nav class="navigation d-flex align-items-center justify-content-between">
                             <!-- Categories Dropdown -->
