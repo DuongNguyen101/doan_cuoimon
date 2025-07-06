@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="{{url('user')}}/css/vendor/bootstrap.min.css">
     <link rel="stylesheet" href="{{url('user')}}/css/app.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-
 </head>
 
 <body class="tt-smooth-scroll">
@@ -98,18 +97,18 @@
                         </a>
                         <div class="mixin-container d-xl-flex d-none">
                             <div class="drop-container">
-                                <div  id="dropdown3">
+                                <div id="dropdown3">
                                     <span class="selected-display black fw-500" id="destination3">All Categories</span>
                                 </div>
                             </div>
                             <div class="vr-line vr-line-2"></div>
-                                <form id="searchRedirectForm">
-                                    <div class="input-field d-flex">
-                                        <input type="text" name="search" id="searchInput" class="form-control me-2"
-                                            placeholder="Search for products..." required>
-                                        <button type="submit" class="cus-btn">Search</button>
-                                    </div>
-                                </form>
+                            <form id="searchRedirectForm">
+                                <div class="input-field d-flex">
+                                    <input type="text" name="search" id="searchInput" class="form-control me-2"
+                                        placeholder="Search for products..." required>
+                                    <button type="submit" class="cus-btn">Search</button>
+                                </div>
+                            </form>
                         </div>
                         <div class="header-buttons d-flex align-items-center gap-3">
 
@@ -169,7 +168,7 @@
                                 <nav class="all-category-nav">
                                     <label class="open-menu-all" for="open-menu-all">
                                         <input class="input-menu-all" id="open-menu-all" type="checkbox" name="menu-open">
-                                        
+
                                         <span class="all-navigator">
                                             <i class="fa-solid fa-bars"></i>
                                             <span>Browse All Categories</span>
@@ -177,12 +176,12 @@
 
                                         <span class="all-category-list list-unstyled">
                                             @foreach ($categories as $category)
-                                                <span class="all-category-list-item">
-                                                    <a href="{{ route('shop.category', ['id' => $category->category_id]) }}"
+                                            <span class="all-category-list-item">
+                                                <a href="{{ route('shop.category', ['id' => $category->category_id]) }}"
                                                     class="all-category-list-link dark-black fw-500">
-                                                        {{ $category->name }}
-                                                    </a>
-                                                </span>
+                                                    {{ $category->name }}
+                                                </a>
+                                            </span>
                                             @endforeach
                                         </span>
                                     </label>
@@ -282,11 +281,8 @@
                     <div class="row row-gap-3">
                         <div class="col-xl-3">
                             <div class="sidebar bg-white">
-                                <form action="{{ route('shop.search') }}" method="GET" class="mb-24 d-flex">
-                                    <input type="text" name="search" class="form-control me-2" placeholder="Search Here..." value="{{ request('search') }}">
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                    </button>
+                                <form action="{{ route('shop.search') }}" method="GET" class="search-box">
+                                    <input type="text" name="search" class="form-control" placeholder="Search for products..." value="{{ request('search') }}">
                                 </form>
                                 <div class="hr-line mb-24"></div>
                                 <div class="category-block box-1 mb-24">
@@ -299,183 +295,19 @@
                                     <div class="content-block">
                                         <ul class="list-unstyled">
                                             @foreach($categories as $category)
-                                                <li class="checkbox-group">
-                                                    <div class="arrow-block d-flex align-items-center justify-content-between mb-16">
-                                                        <div class="check-block">
-                                                            <a href="{{ route('shop.category', ['id' => $category->category_id]) }}" class="text-dark">
-                                                                {{ $category->name }}
-                                                            </a>
-                                                        </div>
+                                            <li class="checkbox-group">
+                                                <div class="arrow-block d-flex align-items-center justify-content-between mb-16">
+                                                    <div class="check-block">
+                                                        <a href="{{ route('shop.category', ['id' => $category->category_id]) }}" class="text-dark">
+                                                            {{ $category->name }}
+                                                        </a>
                                                     </div>
-                                                </li>
+                                                </div>
+                                            </li>
                                             @endforeach
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="hr-line mb-24"></div>
-                                <div class="category-block box-5 mb-24">
-                                    <div class="title mb-24" data-count="5">
-                                        <h6>Filter By Storage</h6>
-                                        <span>
-                                            <i class="fa-solid fa-minus"></i>
-                                        </span>
-                                    </div>
-                                    <div class="content-block">
-                                        <ul class="list-unstyled">
-                                            <li class="d-flex align-items-center justify-content-between mb-12">
-                                                <div class="check-block">Infinix</div>
-                                                <p class="light-gray fw-400">(20)</p>
-                                            </li>
-                                            <li class="d-flex align-items-center justify-content-between mb-12">
-                                                <div class="check-block">Oppo</div>
-                                                <p class="light-gray fw-400">(20)</p>
-                                            </li>
-                                            <li class="d-flex align-items-center justify-content-between mb-12">
-                                                <div class="check-block">Vivo</div>
-                                                <p class="light-gray fw-400">(20)</p>
-                                            </li>
-                                            <li class="d-flex align-items-center justify-content-between mb-12">
-                                                <div class="check-block">Samsung</div>
-                                                <p class="light-gray fw-400">(20)</p>
-                                            </li>
-                                            <li class="d-flex align-items-center justify-content-between mb-12">
-                                                <div class="check-block">One Plus</div>
-                                                <p class="light-gray fw-400">(20)</p>
-                                            </li>
-                                            <li class="d-flex align-items-center justify-content-between mb-12">
-                                                <div class="check-block">Nokia</div>
-                                                <p class="light-gray fw-400">(20)</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="hr-line mb-24"></div>
-                                <div class="category-block box-6 mb-24">
-                                    <div class="title mb-24" data-count="6">
-                                        <h6>Filter By Reviews</h6>
-                                        <span>
-                                            <i class="fa-solid fa-minus"></i>
-                                        </span>
-                                    </div>
-                                    <div class="content-block">
-                                        <div class="d-flex justify-content-between align-items-center mb-16">
-                                            <div class="star-rating">
-                                                <input type="radio" id="1-star" checked name="rating" value="1">
-                                                <label for="1-star" class="star">&#9733;</label>
-                                                <input type="radio" id="2-stars" name="rating" value="2">
-                                                <label for="2-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="3-stars" name="rating" value="3">
-                                                <label for="3-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="4-stars" name="rating" value="4">
-                                                <label for="4-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="5-stars" name="rating" value="5">
-                                                <label for="5-stars" class="star">&#9733;</label>
-                                            </div>
-                                            <p class="light-gray fw-400">(20)</p>
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center mb-16">
-                                            <div class="star-rating">
-                                                <input type="radio" id="11-star" name="rating2" value="11">
-                                                <label for="11-star" class="star">&#9733;</label>
-                                                <input type="radio" id="12-stars" checked name="rating2" value="12">
-                                                <label for="12-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="13-stars" name="rating2" value="13">
-                                                <label for="13-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="14-stars" name="rating2" value="14">
-                                                <label for="14-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="15-stars" name="rating2" value="15">
-                                                <label for="15-stars" class="star">&#9733;</label>
-                                            </div>
-                                            <p class="light-gray fw-400">(20)</p>
-
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center mb-16">
-                                            <div class="star-rating ">
-                                                <input type="radio" id="21-star" name="rating3" value="21">
-                                                <label for="21-star" class="star">&#9733;</label>
-                                                <input type="radio" id="22-stars" name="rating3" value="22">
-                                                <label for="22-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="23-stars" checked name="rating3" value="23">
-                                                <label for="23-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="24-stars" name="rating3" value="24">
-                                                <label for="24-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="25-stars" name="rating3" value="25">
-                                                <label for="25-stars" class="star">&#9733;</label>
-                                            </div>
-                                            <p class="light-gray fw-400">(20)</p>
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center mb-16">
-                                            <div class="star-rating ">
-                                                <input type="radio" id="31-star" name="rating4" value="31">
-                                                <label for="31-star" class="star">&#9733;</label>
-                                                <input type="radio" id="32-stars" name="rating4" value="32">
-                                                <label for="32-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="33-stars" name="rating4" value="33">
-                                                <label for="33-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="34-stars" checked name="rating4" value="34">
-                                                <label for="34-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="35-stars" name="rating4" value="35">
-                                                <label for="35-stars" class="star">&#9733;</label>
-                                            </div>
-                                            <p class="light-gray fw-400">(20)</p>
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center mb-16">
-                                            <div class="star-rating">
-                                                <input type="radio" id="41-star" name="rating5" value="41">
-                                                <label for="41-star" class="star">&#9733;</label>
-                                                <input type="radio" id="42-stars" name="rating5" value="42">
-                                                <label for="42-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="43-stars" name="rating5" value="43">
-                                                <label for="43-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="44-stars" name="rating5" value="44">
-                                                <label for="44-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="45-stars" checked name="rating5" value="45">
-                                                <label for="45-stars" class="star">&#9733;</label>
-                                            </div>
-                                            <p class="light-gray fw-400">(20)</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="hr-line mb-24"></div>
-                                <div class="category-block box-7 mb-24">
-                                    <div class="title mb-24" data-count="7">
-                                        <h6>Feature Products</h6>
-                                        <span>
-                                            <i class="fa-solid fa-minus"></i>
-                                        </span>
-                                    </div>
-                                    <div class="content-block">
-                                        <a href="shop-list-1.html" class="d-flex gap-24 align-items-center mb-24">
-                                            <div>
-                                                <p class="mb-8">Samsung Galaxy S20 FE 8GB/256GB Blue</p>
-                                                <p class="color-primary"><span class="light-gray text-decoration-line-through">$700.00</span>&nbsp;$650.00</p>
-                                            </div>
-                                        </a>
-                                        <div class="hr-line mb-24"></div>
-                                        <a href="shop-list-1.html" class="d-flex gap-24 align-items-center mb-24">
-                                            <div>
-                                                <p class="mb-8">Beats Studio Wireless Noise Cancelling Over-Ear</p>
-                                                <p class="color-primary">$650.00</p>
-                                            </div>
-                                        </a>
-                                        <div class="hr-line mb-24"></div>
-                                        <a href="shop-list-1.html" class="d-flex gap-24 align-items-center">
-                                            <div>
-                                                <p class="mb-8">Logitech F710 Wireless Gamepad - 940-000119</p>
-                                                <p class="color-primary"><span class="light-gray text-decoration-line-through">$700.00</span>&nbsp;$650.00</p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="hr-line mb-24"></div>
-                                <a href="" class="main-card">
-                                    <h4 class="fw-500 white mb-32">Special Offer</h4>
-                                    <div class="image mb-32">
-                                        <img src="{{url('user')}}/media/products/main-image.png" alt="">
-                                    </div>
-                                    <h5 class="fw-500 white mb-16 text-center">Gamepad Game Controller</h5>
-                                    <h5 class="fw-500 white text-center">$90.00</h5>
-                                </a>
                             </div>
                         </div>
                         <div class="col-xl-9">
@@ -766,6 +598,7 @@
     <script src="{{url('user')}}/js/vendor/jquery-3.6.3.min.js"></script>
     <script src="{{url('user')}}/js/vendor/jquery-validator.js"></script>
     <script src="{{url('user')}}/js/user.js"></script>
+    <script src="{{url('user')}}/js/shoplist.js"></script>
 
     <script src="{{url('user')}}/js/app.js"></script>
 
@@ -778,24 +611,6 @@
             </div>
         </div>
     </div>
-<script>
-    document.querySelectorAll('.topbar-dropdown .item').forEach(item => {
-        item.addEventListener('click', function () {
-            const sortValue = this.getAttribute('data-sort');
-            const currentUrl = new URL(window.location.href);
-            currentUrl.searchParams.set('sort', sortValue); 
-            window.location.href = currentUrl.toString(); 
-        });
-    });
-
-    const currentSort = new URLSearchParams(window.location.search).get('sort') || 'desc';
-    const selectedItem = document.querySelector(`.topbar-dropdown .item[data-sort="${currentSort}"]`);
-    if (selectedItem) {
-        document.getElementById('destination12').textContent = selectedItem.textContent;
-    }
-</script>
-
-
 </body>
 
 </html>
