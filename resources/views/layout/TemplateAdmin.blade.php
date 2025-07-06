@@ -46,7 +46,7 @@
                     <li class="active ">
                         <a href="{{asset('/template/admin/dashboard')}}">
                             <i class="nc-icon nc-bank"></i>
-                            <p>Dashboard</p>
+                            <p>Categories & Products</p>
                         </a>
                     </li>
                     <li>

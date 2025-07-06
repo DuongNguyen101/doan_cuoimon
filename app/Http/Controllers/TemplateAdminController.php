@@ -150,6 +150,15 @@ class TemplateAdminController extends Controller
                 'updated_at' => $request->post('updated_at'),
                 'status' => $request->post('status')
             ];
+            if ($request->hasFile('image_url')) {
+                $file = $request->file('image_url');
+                $fileName = time() . '_' . $file->getClientOriginalName(); // Tạo tên duy nhất
+                $file->move(public_path('image'), $fileName); // Lưu vào thư mục public/images
+                $product['image_url'] = $fileName; // Lưu tên tệp vào dữ liệu
+            } elseif ($id && !$request->hasFile('image_url') && Products::find($id)->image_url) {
+                // Giữ nguyên hình hiện tại nếu không upload mới
+                $data['image_url'] = Products::find($id)->image_url;
+            }
             if ($request->post('product_id')) {
                 Products::where('product_id', $request->post('product_id'))->update($product);
                 session()->flash('msg', 'Sua San Pham Thanh cong');
