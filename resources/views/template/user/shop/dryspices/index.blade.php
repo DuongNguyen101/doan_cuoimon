@@ -1,0 +1,39 @@
+@extends('template.user.shop.shop-list') {{-- Đúng path --}}
+
+@section('list-products')
+<div class="row">
+    @foreach ($products as $product)
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <img src="{{ asset('image/shoplist/' . $product->image_url) }}"
+                     class="card-img-top"
+                     alt="{{ $product->name }}"
+                     style="height: 350px; object-fit: cover;">
+                <div class="card-body">
+                    <h6 class="card-title fw-bold">{{ $product->name }}</h6>
+                    <p class="card-text text-muted" style="min-height: 48px;">
+                        {{ $product->short_description }}
+                    </p>
+                    <div class="mt-3">
+                        <span class="fw-bold text-success d-block mb-2">
+                            ${{ number_format($product->price, 2) }}
+                        </span>
+                        <div class="d-flex gap-2">
+                            <a href="{{ route('shopdetail', ['id' => $product->product_id]) }}"
+                               class="btn btn-sm btn-outline-success flex-fill text-center">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a href="#" class="btn btn-sm btn-outline-danger flex-fill text-center">
+                                <i class="fas fa-heart"></i>
+                            </a>
+                            <a href="#" class="btn btn-sm btn-outline-primary flex-fill text-center">
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+</div>
+@endsection
