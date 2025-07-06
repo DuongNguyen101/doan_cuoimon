@@ -449,130 +449,6 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="hr-line mb-24"> </div>
-                                <div class="category-block box-2 mb-24">
-                                    <div class="title mb-32" data-count="2">
-                                        <h6>Filter By Price</h6>
-                                        <span>
-                                            <i class="fa-solid fa-minus"></i>
-                                        </span>
-                                    </div>
-                                    <div class="content-block">
-                                        <div class="wrapper">
-                                            <div class="price-input mb-24">
-                                                <div class="field">
-                                                    <div class="fw-500 mb-4p">Low</div>
-                                                    <input type="number" class="input-min" value="2500">
-                                                </div>
-                                                <div class="field">
-                                                    <div class="fw-500 mb-4p">High</div>
-                                                    <input type="number" class="input-max" value="7500">
-                                                </div>
-                                            </div>
-                                            <div class="slider">
-                                                <div class="progress"></div>
-                                            </div>
-                                            <div class="range-input">
-                                                <input type="range" class="range-min" min="0" max="10000" value="2500" step="100">
-                                                <input type="range" class="range-max" min="0" max="10000" value="7500" step="100">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="hr-line mb-24"></div>
-                                <div class="category-block box-3 mb-24">
-                                    <div class="title mb-32" data-count="3">
-                                        <h6>Filter By Storage</h6>
-                                        <span>
-                                            <i class="fa-solid fa-minus"></i>
-                                        </span>
-                                    </div>
-                                    <div class="content-block">
-                                        <ul class="list-unstyled">
-                                            <li class="d-flex align-items-center justify-content-between mb-12">
-                                                <div class="check-block">64GB</div>
-                                                <p class="light-gray fw-400">(20)</p>
-                                            </li>
-                                            <li class="d-flex align-items-center justify-content-between mb-12">
-                                                <div class="check-block">128GB</div>
-                                                <p class="light-gray fw-400">(20)</p>
-                                            </li>
-                                            <li class="d-flex align-items-center justify-content-between mb-12">
-                                                <div class="check-block">256GB</div>
-                                                <p class="light-gray fw-400">(20)</p>
-                                            </li>
-                                            <li class="d-flex align-items-center justify-content-between mb-12">
-                                                <div class="check-block">512GB</div>
-                                                <p class="light-gray fw-400">(20)</p>
-                                            </li>
-                                            <li class="d-flex align-items-center justify-content-between mb-12">
-                                                <div class="check-block">1TB</div>
-                                                <p class="light-gray fw-400">(20)</p>
-                                            </li>
-                                            <li class="d-flex align-items-center justify-content-between mb-12">
-                                                <div class="check-block">2TB Cables</div>
-                                                <p class="light-gray fw-400">(20)</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="hr-line mb-24"></div>
-                                <div class="category-block box-4 mb-24">
-                                    <div class="title mb-32" data-count="4">
-                                        <h6>Filter By Colors</h6>
-                                        <span>
-                                            <i class="fa-solid fa-minus"></i>
-                                        </span>
-                                    </div>
-                                    <div class="content-block">
-                                        <div class="product-color">
-                                            <ul class="unstyled list">
-                                                <li>
-                                                    <label for="muhRadio9"
-                                                        class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                        <input type="radio" id="muhRadio9" name="muhRadio" class="radio-1" value="muhRadio1">
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label for="muhRadio8"
-                                                        class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                        <input type="radio" id="muhRadio8" name="muhRadio" class="radio-2" value="muhRadio2">
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label for="muhRadio7"
-                                                        class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                        <input type="radio" id="muhRadio7" name="muhRadio" class="radio-3" value="muhRadio3">
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label for="muhRadio1"
-                                                        class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                        <input type="radio" id="muhRadio1" name="muhRadio" class="radio-4" value="muhRadio1">
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label for="muhRadio2"
-                                                        class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                        <input type="radio" id="muhRadio2" name="muhRadio" class="radio-5" value="muhRadio2">
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label for="muhRadio3"
-                                                        class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                        <input type="radio" id="muhRadio3" name="muhRadio" class="radio-6" value="muhRadio3">
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label for="muhRadio4"
-                                                        class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                        <input type="radio" id="muhRadio4" name="muhRadio" class="radio-7" value="muhRadio4">
-                                                    </label>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="hr-line mb-24"></div>
                                 <div class="category-block box-5 mb-24">
                                     <div class="title mb-24" data-count="5">
@@ -707,9 +583,6 @@
                                     </div>
                                     <div class="content-block">
                                         <a href="shop-list-1.html" class="d-flex gap-24 align-items-center mb-24">
-                                            <div class="image-box d-flex flex-shrink-0">
-                                                <img src="{{url('user')}}/media/images/sidebar-1.png" alt="">
-                                            </div>
                                             <div>
                                                 <p class="mb-8">Samsung Galaxy S20 FE 8GB/256GB Blue</p>
                                                 <p class="color-primary"><span class="light-gray text-decoration-line-through">$700.00</span>&nbsp;$650.00</p>
@@ -717,9 +590,6 @@
                                         </a>
                                         <div class="hr-line mb-24"></div>
                                         <a href="shop-list-1.html" class="d-flex gap-24 align-items-center mb-24">
-                                            <div class="image-box d-flex flex-shrink-0">
-                                                <img src="{{url('user')}}/media/images/sidebar-2.png" alt="">
-                                            </div>
                                             <div>
                                                 <p class="mb-8">Beats Studio Wireless Noise Cancelling Over-Ear</p>
                                                 <p class="color-primary">$650.00</p>
@@ -727,9 +597,6 @@
                                         </a>
                                         <div class="hr-line mb-24"></div>
                                         <a href="shop-list-1.html" class="d-flex gap-24 align-items-center">
-                                            <div class="image-box d-flex flex-shrink-0">
-                                                <img src="{{url('user')}}/media/images/sidebar-3.png" alt="">
-                                            </div>
                                             <div>
                                                 <p class="mb-8">Logitech F710 Wireless Gamepad - 940-000119</p>
                                                 <p class="color-primary"><span class="light-gray text-decoration-line-through">$700.00</span>&nbsp;$650.00</p>
@@ -753,18 +620,16 @@
                                 <div class="last-block">
                                     <div class="d-lg-flex d-none align-items-center gap-8">
                                         <p class="dark-gray">Short by:</p>
-                                        <div class="drop-container ">
+                                        <div class="drop-container">
                                             <div class="wrapper-dropdown dark-black" id="dropdown12">
                                                 <span class="selected-display" id="destination12">Price:</span>
-                                                <svg id="drp-arrow1" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg" class="arrow transition-all ml-auto rotate-180">
+                                                <svg id="drp-arrow1" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                     <path d="M7 14.5l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                                                         stroke-linejoin="round"></path>
                                                 </svg>
                                                 <ul class="topbar-dropdown bg-light-gray">
-                                                    <li class="item dark-black">Price: low to high</li>
-                                                    <li class="item dark-black">high to low</li>
-                                                    <li class="item dark-black">Average Rating</li>
+                                                    <li class="item dark-black" data-sort="asc">Price: Low to high</li>
+                                                    <li class="item dark-black" data-sort="desc">Price: High to low</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -1050,6 +915,25 @@
             </div>
         </div>
     </div>
+<script>
+    // Khi click chọn sort
+    document.querySelectorAll('.topbar-dropdown .item').forEach(item => {
+        item.addEventListener('click', function () {
+            const sortValue = this.getAttribute('data-sort');
+            const currentUrl = new URL(window.location.href);
+            currentUrl.searchParams.set('sort', sortValue); // thêm hoặc cập nhật sort
+            window.location.href = currentUrl.toString(); // reload lại trang với URL mới
+        });
+    });
+
+    // Hiển thị label tương ứng với sort hiện tại
+    const currentSort = new URLSearchParams(window.location.search).get('sort') || 'desc';
+    const selectedItem = document.querySelector(`.topbar-dropdown .item[data-sort="${currentSort}"]`);
+    if (selectedItem) {
+        document.getElementById('destination12').textContent = selectedItem.textContent;
+    }
+</script>
+
 
 </body>
 

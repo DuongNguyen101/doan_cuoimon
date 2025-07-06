@@ -18,10 +18,21 @@ class ShopController extends Controller
     public function categoryProducts($id)
     {
         $categories = Categories::all();
-        $products = Products::where('category_id', $id)->get();
+
+        $query = Products::where('category_id', $id)->where('status', 1);
+
+        $sort = request()->get('sort');
+        if ($sort === 'asc') {
+            $query->orderBy('price', 'asc');
+        } elseif ($sort === 'desc') {
+            $query->orderBy('price', 'desc');
+        }
+
+        $products = $query->paginate(12)->appends(['sort' => $sort]);
 
         return view('template.user.shop.dryspices.index', compact('products', 'categories'));
     }
+
 
 
     public function shopdetail(){
