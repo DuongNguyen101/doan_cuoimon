@@ -35,6 +35,13 @@
                 <textarea id="description" name="description" rows="4"
                     style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">{{ old('description', $product->description ?? '') }}</textarea>
             </div>
+            {{-- Mo ta ngan --}}
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label for="short_description" style="display: block; margin-bottom: 6px;">Mô tả ngắn:</label>
+                <input type="text" id="short_description" name="short_description"
+                    value="{{ old('short_description', $product->short_description ?? '') }}"
+                    style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+            </div>
             {{-- Giá sản phẩm --}}
             <div class="form-group" style="margin-bottom: 15px;">
                 <label for="name" style="display: block; margin-bottom: 6px;">Giá sản phẩm:</label>

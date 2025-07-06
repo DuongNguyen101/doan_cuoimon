@@ -82,7 +82,7 @@
                     <td style="padding: 8px;">{{ $product->category_id }}</td>
                     <td style="padding: 8px;">
                         @if ($product->image_url)
-                        <img src="{{ $product->image_url }}" alt="Product Image" style="width: 60px; height: auto; border-radius: 4px;">
+                        <img src="{{asset( 'image/shoplist/'.$product->image_url) }}" alt="Product Image" style="width: 60px; height: auto; border-radius: 4px;">
                         @else
                         <em>Không có ảnh</em>
                         @endif

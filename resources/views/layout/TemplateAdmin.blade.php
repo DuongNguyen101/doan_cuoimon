@@ -80,15 +80,15 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{asset('/template/admin/typography')}}">
+                        <a href="{{asset('/template/admin/reviews')}}">
                             <i class="nc-icon nc-caps-small"></i>
-                            <p>Typography</p>
+                            <p>Reviews</p>
                         </a>
                     </li>
                     <li class="active-pro">
-                        <a href="{{asset('/template/admin/upgrade')}}">
+                        <a href="{{asset('/template/admin/qna')}}">
                             <i class="nc-icon nc-spaceship"></i>
-                            <p>Upgrade to PRO</p>
+                            <p>QnA</p>
                         </a>
                     </li>
                 </ul>

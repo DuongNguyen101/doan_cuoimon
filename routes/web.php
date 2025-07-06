@@ -109,8 +109,14 @@ Route::group(['prefix' => 'template/admin', 'middleware' => ['auth', 'check.admi
     Route::post('/user/form/action', [TemplateAdminController::class, 'updateuser']);
     Route::get('/user/form/add', [TemplateAdminController::class, 'loadformuseradd']);
     Route::get('/user/delete/{id}', [TemplateAdminController::class, 'deleteuser']);
+    //oders
     Route::get('/user/order/{id}/{od}', [TemplateAdminController::class, 'orderdetail']);
-    Route::get('/search', [TemplateAdminController::class, 'search'])->name('admin.search');
+    Route::get('/order/form/{id}', [TemplateAdminController::class, 'loadFormOrder']);
+    Route::get('/order/form/add', [TemplateAdminController::class, 'loadFormOrderAdd']);
+    Route::post('/order/update/{id?}', [TemplateAdminController::class, 'updateOrder'])->name('order.update');
+    Route::get('/order/delete/{id}', [TemplateAdminController::class, 'deleteOrder']);
+    //search
+    Route::get('/search', [TemplateAdminController::class, 'search'])->name('search');
     // OrderDetails
     Route::get('/orderdetails/form/{id}', [TemplateAdminController::class, 'loadFormOrderDetails']);
     Route::get('/orderdetails/form/add', [TemplateAdminController::class, 'loadFormOrderDetailsAdd']);
@@ -118,10 +124,18 @@ Route::group(['prefix' => 'template/admin', 'middleware' => ['auth', 'check.admi
     Route::get('/orderdetails/delete/{id}', [TemplateAdminController::class, 'deleteOrderDetails']);
     //news
     Route::get('/news', [TemplateAdminController::class, 'news']);
+    Route::get('/news/form/{id}', [TemplateAdminController::class, 'loadFormNews']);
+    Route::get('/news/form/add', [TemplateAdminController::class, 'loadFormNewsAdd']);
+    Route::post('/news/update/{id?}', [TemplateAdminController::class, 'updateNews'])->name('news.update');
+    Route::get('/news/delete/{id}', [TemplateAdminController::class, 'deleteNews']);
     //payments
     Route::get('/payments', [TemplateAdminController::class, 'payments']);
     //promotions
     Route::get('/promotions', [TemplateAdminController::class, 'promotions']);
+    //reviews
+    Route::get('/reviews', [TemplateAdminController::class, 'reviews']);
+    //qna
+    Route::get('/qna', [TemplateAdminController::class, 'qna']);
 });
 
 Route::get('/email/verify', [VerificationController::class, 'notice'])->name('verification.notice');

@@ -29,7 +29,7 @@
             @endif
             <div class="form-group" style="margin-bottom: 15px;">
                 <label for="order_id" style="display: block; margin-bottom: 6px;">Mã đơn hàng</label>
-                <input type="text" id="order_id" name="order_id" value="{{ old('order_id', $record->order_id ?? '') }}" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;" readonly>
+                <input type="text" id="order_id" name="order_id" value="{{ old('order_id', $record->order_id ?? '') }}" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
             </div>
             <div class="form-group" style="margin-bottom: 15px;">
                 <label for="product_id" style="display: block; margin-bottom: 6px;">Mã sản phẩm</label>

@@ -36,11 +36,11 @@
                     <td style="padding: 8px;">{{ $Order->created_at }}</td>
                     <td style="padding: 8px;">{{ $Order->updated_at }}</td>
                     <td style="padding: 8px;">
-                        <a href="{{ url('/template/admin/user/order/' . $Order->user_id.'/'.$Order->user_id) }}"
+                        <a href="{{ url('/template/admin/user/order/' . $Order->order_id.'/'.$Order->user_id) }}"
                             style="color: #007bff; text-decoration: none;">Xem</a>
                     </td>
                     <td style="padding: 8px;">
-                        <a href="{{ url('/template/admin/order/form/' . $Order->order_id.'/'.$Order->user_id) }}"
+                        <a href="{{ url('/template/admin/order/form/' . $Order->order_id) }}"
                             style="background-color: #ffc107; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Sửa</a>
                     </td>
                     <td style="padding: 8px;">
@@ -48,7 +48,7 @@
                             style="background-color: #28a745; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Thêm</a>
                     </td>
                     <td style="padding: 8px;">
-                        <a href="{{ url('/template/admin/order/form/delete/' . $Order->order_id) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"
+                        <a href="{{ url('/template/admin/order/delete/' . $Order->order_id) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"
                             style="background-color: #dc3545; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Xóa</a>
                     </td>
                 </tr>
