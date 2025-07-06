@@ -220,18 +220,22 @@
                                 <nav class="all-category-nav">
                                     <label class="open-menu-all" for="open-menu-all">
                                         <input class="input-menu-all" id="open-menu-all" type="checkbox" name="menu-open">
-                                        <span class="all-navigator"><i class="fa-solid fa-bars"></i><span>Browse All Categories</span>
+                                        
+                                        <span class="all-navigator">
+                                            <i class="fa-solid fa-bars"></i>
+                                            <span>Browse All Categories</span>
                                         </span>
+
                                         <span class="all-category-list list-unstyled">
-                                        @foreach ($categories as $category)
-                                            <span class="all-category-list-item">
-                                                <a href="{{ url('template/user/shop/shop-list') }}"
-                                                class="all-category-list-link dark-black fw-500">
-                                                {{ $category->name }}
-                                                </a>
-                                            </span>
-                                        @endforeach
-                                    </span>
+                                            @foreach ($categories as $category)
+                                                <span class="all-category-list-item">
+                                                    <a href="{{ route('shop.category', ['id' => $category->category_id]) }}"
+                                                    class="all-category-list-link dark-black fw-500">
+                                                        {{ $category->name }}
+                                                    </a>
+                                                </span>
+                                            @endforeach
+                                        </span>
                                     </label>
                                 </nav>
                             </div>

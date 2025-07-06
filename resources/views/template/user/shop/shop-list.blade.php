@@ -106,16 +106,9 @@
                                             stroke-linejoin="round"></path>
                                     </svg>
                                     <ul class="topbar-dropdown bg-lightest-gray box-shadow-1">
-                                        <li class="item dark-gray">Digital & Electronics</li>
-                                        <li class="item dark-gray">Camera & Photo</li>
-                                        <li class="item dark-gray">Computer Hardware</li>
-                                        <li class="item dark-gray">Gamepad & Console</li>
-                                        <li class="item dark-gray">Headphone & Speaker</li>
-                                        <li class="item dark-gray">Laptop & Computer</li>
-                                        <li class="item dark-gray">Smartphone & Tablet</li>
-                                        <li class="item dark-gray">TV & Audio</li>
-                                        <li class="item dark-gray">Watches & Eyewear</li>
-                                        <li class="item dark-gray">Fan & AC</li>
+                                        @foreach($categories as $category)
+                                            <li class="item dark-gray">{{ $category->name }}</li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
@@ -218,108 +211,15 @@
                                         <span class="all-navigator"><i class="fa-solid fa-bars"></i><span>Browse All Categories</span>
                                         </span>
                                         <span class="all-category-list list-unstyled">
-                                            <span class="all-category-list-item"><a href="{{asset('template/user/shop/shop-list')}}"
-                                                    class="all-category-list-link dark-black fw-500">Value Of The Day
+                                        @foreach ($categories as $category)
+                                            <span class="all-category-list-item">
+                                                <a href="{{ url('template/user/shop/category/' . $category->category_id) }}"
+                                                class="all-category-list-link dark-black fw-500">
+                                                    {{ $category->name }}
                                                 </a>
                                             </span>
-                                            <span class="all-category-list-item"><a href="{{asset('template/user/shop/shop-list')}}"
-                                                    class="all-category-list-link dark-black fw-500">Top 100 Offers</a></span>
-                                            <span class="all-category-list-item"><a href="{{asset('template/user/shop/shop-list')}}"
-                                                    class="all-category-list-link dark-black fw-500">New Arrivals</a></span>
-                                            <span class="all-category-list-item"><a href="javascript:;" class="all-category-list-link d-flex align-items-center justify-content-between">Laptop & Computer<i class="fas fa-angle-right" aria-hidden="true"></i></a>
-                                                <span class="category-second-list">
-                                                    <span class="sub-menu-main-wrapper">
-                                                        <span class="wrapper-1">
-                                                            <span class="category-second-list-ul list-unstyled mb-40">
-                                                                <span class="dark-black fw-500 mb-16">Brands</span>
-                                                                <span class="category-second-item"><a href="">Apple </a></span>
-                                                                <span class="category-second-item"><a href="">Dell</a></span>
-                                                                <span class="category-second-item"><a href="">Asus </a></span>
-                                                                <span class="category-second-item"><a href="">Acer </a></span>
-                                                                <span class="category-second-item"><a href="">MSI </a></span>
-                                                                <span class="category-second-item"><a href="">Lenovo </a></span>
-                                                            </span>
-                                                            <span class="category-second-list-ul list-unstyled">
-                                                                <span class="dark-black fw-500 mb-16">Devices</span>
-                                                                <span class="category-second-item"><a href="">Printer and Ink</a></span>
-                                                                <span class="category-second-item"><a href="">Project and Screen</a></span>
-                                                                <span class="category-second-item"><a href="">Network Adaptor</a></span>
-                                                                <span class="category-second-item"><a href="">Photocopy and Scanner</a></span>
-                                                            </span>
-                                                        </span>
-                                                        <span class="wrapper-1">
-                                                            <span class="category-second-list-ul list-unstyled mb-40">
-                                                                <span class="dark-black fw-500 mb-16">Models</span>
-                                                                <span class="category-second-item"><a href="">Office Computer</a></span>
-                                                                <span class="category-second-item"><a href="">Business Computer</a></span>
-                                                                <span class="category-second-item"><a href="">Gaming Computer</a></span>
-                                                                <span class="category-second-item"><a href="">Programming Computer</a></span>
-                                                            </span>
-                                                            <span class="category-second-list-ul list-unstyled">
-                                                                <span class="dark-black fw-500 mb-16">Prices</span>
-                                                                <span class="category-second-item"><a href="">Up to $200</a></span>
-                                                                <span class="category-second-item"><a href="">$500 to $1000</a></span>
-                                                                <span class="category-second-item"><a href="">$1000 to $2000</a></span>
-                                                                <span class="category-second-item"><a href="">$2000 to $3000</a></span>
-                                                                <span class="category-second-item"><a href="">$3000 to $4000</a></span>
-                                                                <span class="category-second-item"><a href="">$4000 to $5000</a></span>
-                                                            </span>
-                                                        </span>
-                                                    </span>
-                                                    <span class="img-product-menu">
-                                                        <span class="image-content">
-                                                            <span class="h6 d-block fw-400 white mb-4p">LCD</span>
-                                                            <span class="h6 d-block fw-500 white mb-24">Radient View LCD</span>
-                                                            <span class="d-block text-16 white mb-4p">Just from:</span>
-                                                            <span class="d-block h4 color-ter mb-32">$840.99</span>
-                                                            <a href="{{asset('template/user/shop/shop-list')}}" class="cus-btn-3 sec">Shop Now</a>
-                                                        </span>
-                                                    </span>
-                                                </span>
-                                            </span>
-                                            <span class="all-category-list-item"><a href="javascript:;" class="all-category-list-link d-flex align-items-center justify-content-between">Computer Hardware<i class="fas fa-angle-right" aria-hidden="true"></i></a>
-                                                <span class="category-second-list">
-                                                    <span class="sub-menu-main-wrapper">
-                                                        <span class="wrapper-1">
-                                                            <span class="category-second-list-ul list-unstyled mb-40">
-                                                                <span class="dark-black fw-500 mb-16">Hardware</span>
-                                                                <span class="category-second-item"><a href="">CPU, Processor </a></span>
-                                                                <span class="category-second-item"><a href="">Motherboard</a></span>
-                                                                <span class="category-second-item"><a href="">RAM, Memory</a></span>
-                                                                <span class="category-second-item"><a href="">VGA, Graphic Card </a></span>
-                                                                <span class="category-second-item"><a href="">PSU, Power Supply</a></span>
-                                                                <span class="category-second-item"><a href="">Cooling Systems</a></span>
-                                                            </span>
-                                                            <span class="category-second-list-ul list-unstyled">
-                                                                <span class="dark-black fw-500 mb-16">Others</span>
-                                                                <span class="category-second-item"><a href="">Security</a></span>
-                                                                <span class="category-second-item"><a href="">Barcode Scanner</a></span>
-                                                                <span class="category-second-item"><a href="">Attendence Machines</a></span>
-                                                                <span class="category-second-item"><a href="">Bill Counters</a></span>
-                                                            </span>
-                                                        </span>
-                                                        <span class="wrapper-1">
-                                                            <span class="category-second-list-ul list-unstyled mb-40">
-                                                                <span class="dark-black fw-500 mb-16">Peripherals</span>
-                                                                <span class="category-second-item"><a href="">Mointer</a></span>
-                                                                <span class="category-second-item"><a href="">Mouse</a></span>
-                                                                <span class="category-second-item"><a href="">Keyboard</a></span>
-                                                                <span class="category-second-item"><a href="">Microphone</a></span>
-                                                            </span>
-                                                        </span>
-                                                    </span>
-                                                    <span class="img-product-menu v-2">
-                                                        <span class="image-content">
-                                                            <span class="d-block h6 fw-400 white mb-4p">LAPTOP</span>
-                                                            <span class="d-block h6 fw-500 white mb-24">MACBOOK M1</span>
-                                                            <span class="d-block text-16 white mb-4p">Just from:</span>
-                                                            <span class="d-block h4 color-ter mb-32">$340.99</span>
-                                                            <a href="{{asset('template/user/shop/shop-list')}}" class="cus-btn-3 sec">Shop Now</a>
-                                                        </span>
-                                                    </span>
-                                                </span>
-                                            </span>
-                                        </span>
+                                        @endforeach
+                                    </span>
                                     </label>
                                 </nav>
                             </div>
@@ -336,7 +236,7 @@
                                             <a href="javascript:void(0);">Shop</a>
                                             <ul class="sub-menu">
                                                 <li>
-                                                    <a href="{{asset('template/user/shop/shop-list')}}">Shop List</a>
+                                                    <a href="{{ route('shop.category', ['id' => 1]) }}">Shop List</a>
                                                 </li>
                                                 <li><a href="{{asset('template/user/shop/shop-detail')}}">Shop Detail </a></li>
                                                 <li><a href="{{asset('template/user/shop/wishlist')}}">Wishlist</a></li>
@@ -405,9 +305,7 @@
             <section class="title-banner">
                 <div class="container-fluid">
                     <div class="banner-wrapper">
-                        <img src="{{url('user')}}/media/banner/left-image.png" alt="" class="banner-image1">
-                        <h1 class="dark-black fw-600">Shop</h1>
-                        <img src="{{url('user')}}/media/banner/right-image.png" alt="" class="banner-image2">
+                        <h1 class="dark-black fw-600">Products</h1>
                     </div>
                 </div>
             </section>
@@ -419,9 +317,9 @@
                     <div class="row row-gap-3">
                         <div class="col-xl-3">
                             <div class="sidebar bg-white">
-                                <form action="shop-grid-1.html" class="mb-24">
-                                    <input type="text" name="search" id="searchBar" class="form-control" placeholder="Search Here...">
-                                    <button>
+                                <form action="{{ route('shop.search') }}" method="GET" class="mb-24 d-flex">
+                                    <input type="text" name="search" class="form-control me-2" placeholder="Search Here..." value="{{ request('search') }}">
+                                    <button type="submit" class="btn btn-primary">
                                         <i class="fa-solid fa-magnifying-glass"></i>
                                     </button>
                                 </form>
@@ -916,17 +814,15 @@
         </div>
     </div>
 <script>
-    // Khi click chọn sort
     document.querySelectorAll('.topbar-dropdown .item').forEach(item => {
         item.addEventListener('click', function () {
             const sortValue = this.getAttribute('data-sort');
             const currentUrl = new URL(window.location.href);
-            currentUrl.searchParams.set('sort', sortValue); // thêm hoặc cập nhật sort
-            window.location.href = currentUrl.toString(); // reload lại trang với URL mới
+            currentUrl.searchParams.set('sort', sortValue); 
+            window.location.href = currentUrl.toString(); 
         });
     });
 
-    // Hiển thị label tương ứng với sort hiện tại
     const currentSort = new URLSearchParams(window.location.search).get('sort') || 'desc';
     const selectedItem = document.querySelector(`.topbar-dropdown .item[data-sort="${currentSort}"]`);
     if (selectedItem) {

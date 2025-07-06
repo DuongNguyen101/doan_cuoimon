@@ -8,7 +8,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $categories = Categories::select('name')->get();
+        $categories = Categories::select('category_id', 'name')->get();
 
         return view('template/user/home/index', compact('categories'));
     }
