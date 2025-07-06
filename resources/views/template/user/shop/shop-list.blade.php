@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="{{url('user')}}/css/vendor/bootstrap.min.css">
     <link rel="stylesheet" href="{{url('user')}}/css/app.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-
 </head>
 
 <body class="tt-smooth-scroll">
@@ -98,31 +97,15 @@
                         </a>
                         <div class="mixin-container d-xl-flex d-none">
                             <div class="drop-container">
-                                <div class="wrapper-dropdown" id="dropdown3">
+                                <div id="dropdown3">
                                     <span class="selected-display black fw-500" id="destination3">All Categories</span>
-                                    <svg id="drp-arrow3" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg" class="arrow transition-all ml-auto rotate-180">
-                                        <path d="M7 14.5l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                            stroke-linejoin="round"></path>
-                                    </svg>
-                                    <ul class="topbar-dropdown bg-lightest-gray box-shadow-1">
-                                        <li class="item dark-gray">Digital & Electronics</li>
-                                        <li class="item dark-gray">Camera & Photo</li>
-                                        <li class="item dark-gray">Computer Hardware</li>
-                                        <li class="item dark-gray">Gamepad & Console</li>
-                                        <li class="item dark-gray">Headphone & Speaker</li>
-                                        <li class="item dark-gray">Laptop & Computer</li>
-                                        <li class="item dark-gray">Smartphone & Tablet</li>
-                                        <li class="item dark-gray">TV & Audio</li>
-                                        <li class="item dark-gray">Watches & Eyewear</li>
-                                        <li class="item dark-gray">Fan & AC</li>
-                                    </ul>
                                 </div>
                             </div>
                             <div class="vr-line vr-line-2"></div>
-                            <form action="{{asset('template/user/home/index')}}" method="post">
-                                <div class="input-field">
-                                    <input type="text" name="search" id="searchInput" class="form-control" placeholder="Search for products...">
+                            <form id="searchRedirectForm">
+                                <div class="input-field d-flex">
+                                    <input type="text" name="search" id="searchInput" class="form-control me-2"
+                                        placeholder="Search for products..." required>
                                     <button type="submit" class="cus-btn">Search</button>
                                 </div>
                             </form>
@@ -178,36 +161,6 @@
                             </a>
                         </div>
                     </div>
-                    <div class="mixin-container d-xl-none d-flex">
-                        <div class="drop-container">
-                            <div class="wrapper-dropdown" id="dropdown4">
-                                <span class="selected-display black fw-500" id="destination4">All Categories</span>
-                                <svg id="drp-arrow4" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg" class="arrow transition-all ml-auto rotate-180">
-                                    <path d="M7 14.5l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round"></path>
-                                </svg>
-                                <ul class="topbar-dropdown bg-lightest-gray box-shadow-1">
-                                    <li class="item dark-black">Digital & Electronics</li>
-                                    <li class="item dark-black">Camera & Photo</li>
-                                    <li class="item dark-black">Computer Hardware</li>
-                                    <li class="item dark-black">Gamepad & Console</li>
-                                    <li class="item dark-black">Headphone & Speaker</li>
-                                    <li class="item dark-black">Laptop & Computer</li>
-                                    <li class="item dark-black">Smartphone & Tablet</li>
-                                    <li class="item dark-black">TV & Audio</li>
-                                    <li class="item dark-black">Watches & Eyewear</li>
-                                    <li class="item dark-black">Fan & AC</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="vr-line vr-line-2"></div>
-                        <div class="input-field">
-                            <input type="text" name="search" id="searchInput2" class="form-control" placeholder="Search for products...">
-                            <button type="submit" class="cus-btn">Search</button>
-                        </div>
-                    </div>
-
                     <div class="header-bottom-area">
                         <nav class="navigation d-flex align-items-center justify-content-between">
                             <!-- Categories Dropdown -->
@@ -215,110 +168,21 @@
                                 <nav class="all-category-nav">
                                     <label class="open-menu-all" for="open-menu-all">
                                         <input class="input-menu-all" id="open-menu-all" type="checkbox" name="menu-open">
-                                        <span class="all-navigator"><i class="fa-solid fa-bars"></i><span>Browse All Categories</span>
+
+                                        <span class="all-navigator">
+                                            <i class="fa-solid fa-bars"></i>
+                                            <span>Browse All Categories</span>
                                         </span>
+
                                         <span class="all-category-list list-unstyled">
-                                            <span class="all-category-list-item"><a href="{{asset('template/user/shop/shop-list')}}"
-                                                    class="all-category-list-link dark-black fw-500">Value Of The Day
+                                            @foreach ($categories as $category)
+                                            <span class="all-category-list-item">
+                                                <a href="{{ route('shop.category', ['id' => $category->category_id]) }}"
+                                                    class="all-category-list-link dark-black fw-500">
+                                                    {{ $category->name }}
                                                 </a>
                                             </span>
-                                            <span class="all-category-list-item"><a href="{{asset('template/user/shop/shop-list')}}"
-                                                    class="all-category-list-link dark-black fw-500">Top 100 Offers</a></span>
-                                            <span class="all-category-list-item"><a href="{{asset('template/user/shop/shop-list')}}"
-                                                    class="all-category-list-link dark-black fw-500">New Arrivals</a></span>
-                                            <span class="all-category-list-item"><a href="javascript:;" class="all-category-list-link d-flex align-items-center justify-content-between">Laptop & Computer<i class="fas fa-angle-right" aria-hidden="true"></i></a>
-                                                <span class="category-second-list">
-                                                    <span class="sub-menu-main-wrapper">
-                                                        <span class="wrapper-1">
-                                                            <span class="category-second-list-ul list-unstyled mb-40">
-                                                                <span class="dark-black fw-500 mb-16">Brands</span>
-                                                                <span class="category-second-item"><a href="">Apple </a></span>
-                                                                <span class="category-second-item"><a href="">Dell</a></span>
-                                                                <span class="category-second-item"><a href="">Asus </a></span>
-                                                                <span class="category-second-item"><a href="">Acer </a></span>
-                                                                <span class="category-second-item"><a href="">MSI </a></span>
-                                                                <span class="category-second-item"><a href="">Lenovo </a></span>
-                                                            </span>
-                                                            <span class="category-second-list-ul list-unstyled">
-                                                                <span class="dark-black fw-500 mb-16">Devices</span>
-                                                                <span class="category-second-item"><a href="">Printer and Ink</a></span>
-                                                                <span class="category-second-item"><a href="">Project and Screen</a></span>
-                                                                <span class="category-second-item"><a href="">Network Adaptor</a></span>
-                                                                <span class="category-second-item"><a href="">Photocopy and Scanner</a></span>
-                                                            </span>
-                                                        </span>
-                                                        <span class="wrapper-1">
-                                                            <span class="category-second-list-ul list-unstyled mb-40">
-                                                                <span class="dark-black fw-500 mb-16">Models</span>
-                                                                <span class="category-second-item"><a href="">Office Computer</a></span>
-                                                                <span class="category-second-item"><a href="">Business Computer</a></span>
-                                                                <span class="category-second-item"><a href="">Gaming Computer</a></span>
-                                                                <span class="category-second-item"><a href="">Programming Computer</a></span>
-                                                            </span>
-                                                            <span class="category-second-list-ul list-unstyled">
-                                                                <span class="dark-black fw-500 mb-16">Prices</span>
-                                                                <span class="category-second-item"><a href="">Up to $200</a></span>
-                                                                <span class="category-second-item"><a href="">$500 to $1000</a></span>
-                                                                <span class="category-second-item"><a href="">$1000 to $2000</a></span>
-                                                                <span class="category-second-item"><a href="">$2000 to $3000</a></span>
-                                                                <span class="category-second-item"><a href="">$3000 to $4000</a></span>
-                                                                <span class="category-second-item"><a href="">$4000 to $5000</a></span>
-                                                            </span>
-                                                        </span>
-                                                    </span>
-                                                    <span class="img-product-menu">
-                                                        <span class="image-content">
-                                                            <span class="h6 d-block fw-400 white mb-4p">LCD</span>
-                                                            <span class="h6 d-block fw-500 white mb-24">Radient View LCD</span>
-                                                            <span class="d-block text-16 white mb-4p">Just from:</span>
-                                                            <span class="d-block h4 color-ter mb-32">$840.99</span>
-                                                            <a href="{{asset('template/user/shop/shop-list')}}" class="cus-btn-3 sec">Shop Now</a>
-                                                        </span>
-                                                    </span>
-                                                </span>
-                                            </span>
-                                            <span class="all-category-list-item"><a href="javascript:;" class="all-category-list-link d-flex align-items-center justify-content-between">Computer Hardware<i class="fas fa-angle-right" aria-hidden="true"></i></a>
-                                                <span class="category-second-list">
-                                                    <span class="sub-menu-main-wrapper">
-                                                        <span class="wrapper-1">
-                                                            <span class="category-second-list-ul list-unstyled mb-40">
-                                                                <span class="dark-black fw-500 mb-16">Hardware</span>
-                                                                <span class="category-second-item"><a href="">CPU, Processor </a></span>
-                                                                <span class="category-second-item"><a href="">Motherboard</a></span>
-                                                                <span class="category-second-item"><a href="">RAM, Memory</a></span>
-                                                                <span class="category-second-item"><a href="">VGA, Graphic Card </a></span>
-                                                                <span class="category-second-item"><a href="">PSU, Power Supply</a></span>
-                                                                <span class="category-second-item"><a href="">Cooling Systems</a></span>
-                                                            </span>
-                                                            <span class="category-second-list-ul list-unstyled">
-                                                                <span class="dark-black fw-500 mb-16">Others</span>
-                                                                <span class="category-second-item"><a href="">Security</a></span>
-                                                                <span class="category-second-item"><a href="">Barcode Scanner</a></span>
-                                                                <span class="category-second-item"><a href="">Attendence Machines</a></span>
-                                                                <span class="category-second-item"><a href="">Bill Counters</a></span>
-                                                            </span>
-                                                        </span>
-                                                        <span class="wrapper-1">
-                                                            <span class="category-second-list-ul list-unstyled mb-40">
-                                                                <span class="dark-black fw-500 mb-16">Peripherals</span>
-                                                                <span class="category-second-item"><a href="">Mointer</a></span>
-                                                                <span class="category-second-item"><a href="">Mouse</a></span>
-                                                                <span class="category-second-item"><a href="">Keyboard</a></span>
-                                                                <span class="category-second-item"><a href="">Microphone</a></span>
-                                                            </span>
-                                                        </span>
-                                                    </span>
-                                                    <span class="img-product-menu v-2">
-                                                        <span class="image-content">
-                                                            <span class="d-block h6 fw-400 white mb-4p">LAPTOP</span>
-                                                            <span class="d-block h6 fw-500 white mb-24">MACBOOK M1</span>
-                                                            <span class="d-block text-16 white mb-4p">Just from:</span>
-                                                            <span class="d-block h4 color-ter mb-32">$340.99</span>
-                                                            <a href="{{asset('template/user/shop/shop-list')}}" class="cus-btn-3 sec">Shop Now</a>
-                                                        </span>
-                                                    </span>
-                                                </span>
-                                            </span>
+                                            @endforeach
                                         </span>
                                     </label>
                                 </nav>
@@ -336,7 +200,7 @@
                                             <a href="javascript:void(0);">Shop</a>
                                             <ul class="sub-menu">
                                                 <li>
-                                                    <a href="{{asset('template/user/shop/shop-list')}}">Shop List</a>
+                                                    <a href="{{ route('shop.category', ['id' => 1]) }}">Shop List</a>
                                                 </li>
                                                 <li><a href="{{asset('template/user/shop/shop-detail')}}">Shop Detail </a></li>
                                                 <li><a href="{{asset('template/user/shop/wishlist')}}">Wishlist</a></li>
@@ -405,9 +269,7 @@
             <section class="title-banner">
                 <div class="container-fluid">
                     <div class="banner-wrapper">
-                        <img src="{{url('user')}}/media/banner/left-image.png" alt="" class="banner-image1">
-                        <h1 class="dark-black fw-600">Shop</h1>
-                        <img src="{{url('user')}}/media/banner/right-image.png" alt="" class="banner-image2">
+                        <h1 class="dark-black fw-600">Products</h1>
                     </div>
                 </div>
             </section>
@@ -419,11 +281,8 @@
                     <div class="row row-gap-3">
                         <div class="col-xl-3">
                             <div class="sidebar bg-white">
-                                <form action="shop-grid-1.html" class="mb-24">
-                                    <input type="text" name="search" id="searchBar" class="form-control" placeholder="Search Here...">
-                                    <button>
-                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                    </button>
+                                <form action="{{ route('shop.search') }}" method="GET" class="search-box">
+                                    <input type="text" name="search" class="form-control" placeholder="Search for products..." value="{{ request('search') }}">
                                 </form>
                                 <div class="hr-line mb-24"></div>
                                 <div class="category-block box-1 mb-24">
@@ -436,316 +295,19 @@
                                     <div class="content-block">
                                         <ul class="list-unstyled">
                                             @foreach($categories as $category)
-                                                <li class="checkbox-group">
-                                                    <div class="arrow-block d-flex align-items-center justify-content-between mb-16">
-                                                        <div class="check-block">
-                                                            <a href="{{ route('shop.category', ['id' => $category->category_id]) }}" class="text-dark">
-                                                                {{ $category->name }}
-                                                            </a>
-                                                        </div>
+                                            <li class="checkbox-group">
+                                                <div class="arrow-block d-flex align-items-center justify-content-between mb-16">
+                                                    <div class="check-block">
+                                                        <a href="{{ route('shop.category', ['id' => $category->category_id]) }}" class="text-dark">
+                                                            {{ $category->name }}
+                                                        </a>
                                                     </div>
-                                                </li>
+                                                </div>
+                                            </li>
                                             @endforeach
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="hr-line mb-24"> </div>
-                                <div class="category-block box-2 mb-24">
-                                    <div class="title mb-32" data-count="2">
-                                        <h6>Filter By Price</h6>
-                                        <span>
-                                            <i class="fa-solid fa-minus"></i>
-                                        </span>
-                                    </div>
-                                    <div class="content-block">
-                                        <div class="wrapper">
-                                            <div class="price-input mb-24">
-                                                <div class="field">
-                                                    <div class="fw-500 mb-4p">Low</div>
-                                                    <input type="number" class="input-min" value="2500">
-                                                </div>
-                                                <div class="field">
-                                                    <div class="fw-500 mb-4p">High</div>
-                                                    <input type="number" class="input-max" value="7500">
-                                                </div>
-                                            </div>
-                                            <div class="slider">
-                                                <div class="progress"></div>
-                                            </div>
-                                            <div class="range-input">
-                                                <input type="range" class="range-min" min="0" max="10000" value="2500" step="100">
-                                                <input type="range" class="range-max" min="0" max="10000" value="7500" step="100">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="hr-line mb-24"></div>
-                                <div class="category-block box-3 mb-24">
-                                    <div class="title mb-32" data-count="3">
-                                        <h6>Filter By Storage</h6>
-                                        <span>
-                                            <i class="fa-solid fa-minus"></i>
-                                        </span>
-                                    </div>
-                                    <div class="content-block">
-                                        <ul class="list-unstyled">
-                                            <li class="d-flex align-items-center justify-content-between mb-12">
-                                                <div class="check-block">64GB</div>
-                                                <p class="light-gray fw-400">(20)</p>
-                                            </li>
-                                            <li class="d-flex align-items-center justify-content-between mb-12">
-                                                <div class="check-block">128GB</div>
-                                                <p class="light-gray fw-400">(20)</p>
-                                            </li>
-                                            <li class="d-flex align-items-center justify-content-between mb-12">
-                                                <div class="check-block">256GB</div>
-                                                <p class="light-gray fw-400">(20)</p>
-                                            </li>
-                                            <li class="d-flex align-items-center justify-content-between mb-12">
-                                                <div class="check-block">512GB</div>
-                                                <p class="light-gray fw-400">(20)</p>
-                                            </li>
-                                            <li class="d-flex align-items-center justify-content-between mb-12">
-                                                <div class="check-block">1TB</div>
-                                                <p class="light-gray fw-400">(20)</p>
-                                            </li>
-                                            <li class="d-flex align-items-center justify-content-between mb-12">
-                                                <div class="check-block">2TB Cables</div>
-                                                <p class="light-gray fw-400">(20)</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="hr-line mb-24"></div>
-                                <div class="category-block box-4 mb-24">
-                                    <div class="title mb-32" data-count="4">
-                                        <h6>Filter By Colors</h6>
-                                        <span>
-                                            <i class="fa-solid fa-minus"></i>
-                                        </span>
-                                    </div>
-                                    <div class="content-block">
-                                        <div class="product-color">
-                                            <ul class="unstyled list">
-                                                <li>
-                                                    <label for="muhRadio9"
-                                                        class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                        <input type="radio" id="muhRadio9" name="muhRadio" class="radio-1" value="muhRadio1">
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label for="muhRadio8"
-                                                        class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                        <input type="radio" id="muhRadio8" name="muhRadio" class="radio-2" value="muhRadio2">
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label for="muhRadio7"
-                                                        class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                        <input type="radio" id="muhRadio7" name="muhRadio" class="radio-3" value="muhRadio3">
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label for="muhRadio1"
-                                                        class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                        <input type="radio" id="muhRadio1" name="muhRadio" class="radio-4" value="muhRadio1">
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label for="muhRadio2"
-                                                        class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                        <input type="radio" id="muhRadio2" name="muhRadio" class="radio-5" value="muhRadio2">
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label for="muhRadio3"
-                                                        class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                        <input type="radio" id="muhRadio3" name="muhRadio" class="radio-6" value="muhRadio3">
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label for="muhRadio4"
-                                                        class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                        <input type="radio" id="muhRadio4" name="muhRadio" class="radio-7" value="muhRadio4">
-                                                    </label>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="hr-line mb-24"></div>
-                                <div class="category-block box-5 mb-24">
-                                    <div class="title mb-24" data-count="5">
-                                        <h6>Filter By Storage</h6>
-                                        <span>
-                                            <i class="fa-solid fa-minus"></i>
-                                        </span>
-                                    </div>
-                                    <div class="content-block">
-                                        <ul class="list-unstyled">
-                                            <li class="d-flex align-items-center justify-content-between mb-12">
-                                                <div class="check-block">Infinix</div>
-                                                <p class="light-gray fw-400">(20)</p>
-                                            </li>
-                                            <li class="d-flex align-items-center justify-content-between mb-12">
-                                                <div class="check-block">Oppo</div>
-                                                <p class="light-gray fw-400">(20)</p>
-                                            </li>
-                                            <li class="d-flex align-items-center justify-content-between mb-12">
-                                                <div class="check-block">Vivo</div>
-                                                <p class="light-gray fw-400">(20)</p>
-                                            </li>
-                                            <li class="d-flex align-items-center justify-content-between mb-12">
-                                                <div class="check-block">Samsung</div>
-                                                <p class="light-gray fw-400">(20)</p>
-                                            </li>
-                                            <li class="d-flex align-items-center justify-content-between mb-12">
-                                                <div class="check-block">One Plus</div>
-                                                <p class="light-gray fw-400">(20)</p>
-                                            </li>
-                                            <li class="d-flex align-items-center justify-content-between mb-12">
-                                                <div class="check-block">Nokia</div>
-                                                <p class="light-gray fw-400">(20)</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="hr-line mb-24"></div>
-                                <div class="category-block box-6 mb-24">
-                                    <div class="title mb-24" data-count="6">
-                                        <h6>Filter By Reviews</h6>
-                                        <span>
-                                            <i class="fa-solid fa-minus"></i>
-                                        </span>
-                                    </div>
-                                    <div class="content-block">
-                                        <div class="d-flex justify-content-between align-items-center mb-16">
-                                            <div class="star-rating">
-                                                <input type="radio" id="1-star" checked name="rating" value="1">
-                                                <label for="1-star" class="star">&#9733;</label>
-                                                <input type="radio" id="2-stars" name="rating" value="2">
-                                                <label for="2-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="3-stars" name="rating" value="3">
-                                                <label for="3-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="4-stars" name="rating" value="4">
-                                                <label for="4-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="5-stars" name="rating" value="5">
-                                                <label for="5-stars" class="star">&#9733;</label>
-                                            </div>
-                                            <p class="light-gray fw-400">(20)</p>
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center mb-16">
-                                            <div class="star-rating">
-                                                <input type="radio" id="11-star" name="rating2" value="11">
-                                                <label for="11-star" class="star">&#9733;</label>
-                                                <input type="radio" id="12-stars" checked name="rating2" value="12">
-                                                <label for="12-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="13-stars" name="rating2" value="13">
-                                                <label for="13-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="14-stars" name="rating2" value="14">
-                                                <label for="14-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="15-stars" name="rating2" value="15">
-                                                <label for="15-stars" class="star">&#9733;</label>
-                                            </div>
-                                            <p class="light-gray fw-400">(20)</p>
-
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center mb-16">
-                                            <div class="star-rating ">
-                                                <input type="radio" id="21-star" name="rating3" value="21">
-                                                <label for="21-star" class="star">&#9733;</label>
-                                                <input type="radio" id="22-stars" name="rating3" value="22">
-                                                <label for="22-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="23-stars" checked name="rating3" value="23">
-                                                <label for="23-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="24-stars" name="rating3" value="24">
-                                                <label for="24-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="25-stars" name="rating3" value="25">
-                                                <label for="25-stars" class="star">&#9733;</label>
-                                            </div>
-                                            <p class="light-gray fw-400">(20)</p>
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center mb-16">
-                                            <div class="star-rating ">
-                                                <input type="radio" id="31-star" name="rating4" value="31">
-                                                <label for="31-star" class="star">&#9733;</label>
-                                                <input type="radio" id="32-stars" name="rating4" value="32">
-                                                <label for="32-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="33-stars" name="rating4" value="33">
-                                                <label for="33-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="34-stars" checked name="rating4" value="34">
-                                                <label for="34-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="35-stars" name="rating4" value="35">
-                                                <label for="35-stars" class="star">&#9733;</label>
-                                            </div>
-                                            <p class="light-gray fw-400">(20)</p>
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center mb-16">
-                                            <div class="star-rating">
-                                                <input type="radio" id="41-star" name="rating5" value="41">
-                                                <label for="41-star" class="star">&#9733;</label>
-                                                <input type="radio" id="42-stars" name="rating5" value="42">
-                                                <label for="42-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="43-stars" name="rating5" value="43">
-                                                <label for="43-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="44-stars" name="rating5" value="44">
-                                                <label for="44-stars" class="star">&#9733;</label>
-                                                <input type="radio" id="45-stars" checked name="rating5" value="45">
-                                                <label for="45-stars" class="star">&#9733;</label>
-                                            </div>
-                                            <p class="light-gray fw-400">(20)</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="hr-line mb-24"></div>
-                                <div class="category-block box-7 mb-24">
-                                    <div class="title mb-24" data-count="7">
-                                        <h6>Feature Products</h6>
-                                        <span>
-                                            <i class="fa-solid fa-minus"></i>
-                                        </span>
-                                    </div>
-                                    <div class="content-block">
-                                        <a href="shop-list-1.html" class="d-flex gap-24 align-items-center mb-24">
-                                            <div class="image-box d-flex flex-shrink-0">
-                                                <img src="{{url('user')}}/media/images/sidebar-1.png" alt="">
-                                            </div>
-                                            <div>
-                                                <p class="mb-8">Samsung Galaxy S20 FE 8GB/256GB Blue</p>
-                                                <p class="color-primary"><span class="light-gray text-decoration-line-through">$700.00</span>&nbsp;$650.00</p>
-                                            </div>
-                                        </a>
-                                        <div class="hr-line mb-24"></div>
-                                        <a href="shop-list-1.html" class="d-flex gap-24 align-items-center mb-24">
-                                            <div class="image-box d-flex flex-shrink-0">
-                                                <img src="{{url('user')}}/media/images/sidebar-2.png" alt="">
-                                            </div>
-                                            <div>
-                                                <p class="mb-8">Beats Studio Wireless Noise Cancelling Over-Ear</p>
-                                                <p class="color-primary">$650.00</p>
-                                            </div>
-                                        </a>
-                                        <div class="hr-line mb-24"></div>
-                                        <a href="shop-list-1.html" class="d-flex gap-24 align-items-center">
-                                            <div class="image-box d-flex flex-shrink-0">
-                                                <img src="{{url('user')}}/media/images/sidebar-3.png" alt="">
-                                            </div>
-                                            <div>
-                                                <p class="mb-8">Logitech F710 Wireless Gamepad - 940-000119</p>
-                                                <p class="color-primary"><span class="light-gray text-decoration-line-through">$700.00</span>&nbsp;$650.00</p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="hr-line mb-24"></div>
-                                <a href="" class="main-card">
-                                    <h4 class="fw-500 white mb-32">Special Offer</h4>
-                                    <div class="image mb-32">
-                                        <img src="{{url('user')}}/media/products/main-image.png" alt="">
-                                    </div>
-                                    <h5 class="fw-500 white mb-16 text-center">Gamepad Game Controller</h5>
-                                    <h5 class="fw-500 white text-center">$90.00</h5>
-                                </a>
                             </div>
                         </div>
                         <div class="col-xl-9">
@@ -753,18 +315,16 @@
                                 <div class="last-block">
                                     <div class="d-lg-flex d-none align-items-center gap-8">
                                         <p class="dark-gray">Short by:</p>
-                                        <div class="drop-container ">
+                                        <div class="drop-container">
                                             <div class="wrapper-dropdown dark-black" id="dropdown12">
                                                 <span class="selected-display" id="destination12">Price:</span>
-                                                <svg id="drp-arrow1" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg" class="arrow transition-all ml-auto rotate-180">
+                                                <svg id="drp-arrow1" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                     <path d="M7 14.5l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                                                         stroke-linejoin="round"></path>
                                                 </svg>
                                                 <ul class="topbar-dropdown bg-light-gray">
-                                                    <li class="item dark-black">Price: low to high</li>
-                                                    <li class="item dark-black">high to low</li>
-                                                    <li class="item dark-black">Average Rating</li>
+                                                    <li class="item dark-black" data-sort="asc">Price: Low to high</li>
+                                                    <li class="item dark-black" data-sort="desc">Price: High to low</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -1038,6 +598,7 @@
     <script src="{{url('user')}}/js/vendor/jquery-3.6.3.min.js"></script>
     <script src="{{url('user')}}/js/vendor/jquery-validator.js"></script>
     <script src="{{url('user')}}/js/user.js"></script>
+    <script src="{{url('user')}}/js/shoplist.js"></script>
 
     <script src="{{url('user')}}/js/app.js"></script>
 
@@ -1050,7 +611,6 @@
             </div>
         </div>
     </div>
-
 </body>
 
 </html>
