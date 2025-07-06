@@ -26,6 +26,12 @@ class HomeController extends Controller
             ->take(6) 
             ->get();
 
+        $featuredProducts3 = Products::where('status', 1)
+        ->where('category_id', 5)
+        ->latest()
+        ->take(6) 
+        ->get();
+
         $search = request()->get('search');
         $products = Products::where('status', 1);
         if ($search) {
@@ -33,6 +39,6 @@ class HomeController extends Controller
         }
         $products = $products->paginate(12)->appends(['search' => $search]);
 
-        return view('template.user.home.index', compact('categories', 'products', 'featuredProducts', 'featuredProducts2'));
+        return view('template.user.home.index', compact('categories', 'products', 'featuredProducts', 'featuredProducts2', 'featuredProducts3'));
     }
 }
