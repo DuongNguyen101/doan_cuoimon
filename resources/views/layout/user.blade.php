@@ -248,7 +248,7 @@
                                             <a href="javascript:void(0);">Shop</a>
                                             <ul class="sub-menu">
                                                 <li>
-                                                    <a href="{{asset('template/user/shop/shop-list')}}">Shop List</a>
+                                                    <a href="{{ route('shop.category', ['id' => 1]) }}">Shop List</a>
                                                 </li>
                                                 <li><a href="{{asset('template/user/shop/shop-detail')}}">Shop Detail </a></li>
                                                 <li><a href="{{asset('template/user/shop/wishlist')}}">Wishlist</a></li>

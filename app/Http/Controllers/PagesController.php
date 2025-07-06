@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -9,10 +10,10 @@ use Illuminate\Support\Facades\Hash;
 
 class PagesController extends Controller
 {
-    public function login()
-    {
-        return view('template/user/pages/login');
-    }
+    public function login(){
+    $categories = Categories::all();
+    return view('template/user/pages/login', compact('categories'));
+}
 
     public function postlogin(Request $req)
     {
@@ -45,10 +46,10 @@ class PagesController extends Controller
     }
 
 
-    public function register()
-    {
-        return view('template/user/pages/register');
-    }
+    public function register(){
+    $categories = Categories::all();
+    return view('template/user/pages/register', compact('categories'));
+}
 
     public function postregister(Request $req)
     {

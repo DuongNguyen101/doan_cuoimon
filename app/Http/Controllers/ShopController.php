@@ -29,14 +29,17 @@ class ShopController extends Controller
     }
 
     public function wishlist(){
-        return view('template/user/shop/wishlist');
-    }
+    $categories = Categories::all(); // thêm dòng này
+    return view('template/user/shop/wishlist', compact('categories')); // truyền vào view
+}
 
     public function cart(){
-        return view('template/user/shop/cart');
-    }
+    $categories = Categories::all();
+    return view('template/user/shop/cart', compact('categories'));
+}
 
     public function checkout(){
-        return view('template/user/shop/checkout');
-    }
+    $categories = Categories::all();
+    return view('template/user/shop/checkout', compact('categories'));
+}
 }

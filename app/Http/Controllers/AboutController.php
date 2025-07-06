@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
 
 class AboutController extends Controller
 {
     public function index(){
-        return view('template/user/about/index');
-    }
+    $categories = Categories::all();
+    return view('template/user/about/index', compact('categories'));
+}
 }
