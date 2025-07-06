@@ -9,7 +9,7 @@
                     <div class="banner-content-right">
                         <div class="text-box">
                             <h6 class="color-ter mb-32 d-sm-block d-none">NEW ARRIVALS</h6>
-                            <h2 class="white fw-600 mb-8">Premium Dry Spices   <br> <span class="color-ter">Authentic&nbsp;</span>Vietnamese Flavor </h2>
+                            <h2 class="white fw-600 mb-8">Premium Dry Spices <br> <span class="color-ter">Authentic&nbsp;</span>Vietnamese Flavor </h2>
                             <h6 class="white mb-32">Limited Time: Online Only!</h6>
                             <a href="shop-list-1.html" class="cus-btn-3 sec">Shop Now</a>
                         </div>
@@ -47,24 +47,24 @@
         <div class="row">
             <div class="categories-wrapper d-flex flex-wrap gap-4">
                 @foreach ($categories as $category)
-                    @php
-                        $firstProduct = $category->products->first(); 
-                    @endphp
-                    <a href="{{ route('shop.category', ['id' => $category->category_id]) }}" class="category-block text-center">
-                        <div class="image-box mb-2">
-                            @if ($firstProduct)
-                                <img src="{{ asset('image/shoplist/' . $firstProduct->image_url) }}"
-                                    alt="{{ $category->name }}"
-                                    style="width: 100px; height:85px; object-fit: cover; border-radius: 50%;">
-                            @else
-                                <img src="{{ asset('images/default-category.png') }}"
-                                    alt="No Image"
-                                    style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;">
-                            @endif
-                        </div>
-                        <p class="fw-500 mb-1">{{ $category->name }}</p>
-                        <p class="dark-gray">{{ $category->products_count }} Product</p>
-                    </a>
+                @php
+                $firstProduct = $category->products->first();
+                @endphp
+                <a href="{{ route('shop.category', ['id' => $category->category_id]) }}" class="category-block text-center">
+                    <div class="image-box mb-2">
+                        @if ($firstProduct)
+                        <img src="{{ asset('image/shoplist/' . $firstProduct->image_url) }}"
+                            alt="{{ $category->name }}"
+                            style="width: 100px; height:85px; object-fit: cover; border-radius: 50%;">
+                        @else
+                        <img src="{{ asset('images/default-category.png') }}"
+                            alt="No Image"
+                            style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;">
+                        @endif
+                    </div>
+                    <p class="fw-500 mb-1">{{ $category->name }}</p>
+                    <p class="dark-gray">{{ $category->products_count }} Product</p>
+                </a>
                 @endforeach
             </div>
         </div>
@@ -80,7 +80,7 @@
                 <a href="shop-grid-2.html" class="main-card text-center">
                     <h4 class="fw-500 white mb-32">Special Offer</h4>
                     <div class="image mb-32">
-                        <img src="{{url('user')}}/media/products/main-image.png" alt="">
+                        <img src="{{ url('/image/shoplist/bay-leaves-no-phong.png') }}" alt="">
                     </div>
                     <h5 class="fw-500 white mb-20 text-center">Aero Control Pro Joysticks</h5>
                     <h5 class="fw-500 white text-center">$120.00</h5>
@@ -89,185 +89,68 @@
             <div class="col-xl-9">
                 <div class="top-bar mb-16">
                     <h5>Feature Products</h5>
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all"
-                                type="button" role="tab" aria-controls="all" aria-selected="true">All Products </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="laptop-tab" data-bs-toggle="tab" data-bs-target="#laptop" type="button"
-                                role="tab" aria-controls="laptop" aria-selected="false">Laptop</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="keyboard-tab" data-bs-toggle="tab" data-bs-target="#keyboard" type="button"
-                                role="tab" aria-controls="keyboard" aria-selected="false">Keyboard</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="mouse-tab" data-bs-toggle="tab" data-bs-target="#mouse" type="button"
-                                role="tab" aria-controls="mouse" aria-selected="false">Mouse</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="headphone-tab" data-bs-toggle="tab" data-bs-target="#headphone" type="button"
-                                role="tab" aria-controls="headphone" aria-selected="false">Headphone</button>
-                        </li>
-                    </ul>
                 </div>
                 <div class="tab-content " id="myTabContent">
                     <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
                         <div class="row row-gap-3">
-                            <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
-                                <div class="featured-product-card bg-white br-10 ">
-                                    <div class="image-box mb-16">
+                            @foreach ($featuredProducts as $product)
+                            <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6 d-flex">
+                                <div class="featured-product-card bg-white br-10 h-100 d-flex flex-column w-100">
+                                    <div class="image-box mb-16" style="height: 289px; overflow: hidden;">
                                         <span class="sale-label">-12%</span>
-                                        <a href="shop-detail.html"><img src="{{url('user')}}/media/products/product-1.png" class="product-image" alt=""></a>
+                                        <a href="{{ route('shopdetail', $product->product_id) }}">
+                                            <img src="{{ asset('image/shoplist/' . $product->image_url) }}"
+                                                class="product-image w-100 h-100 object-fit-cover" alt="{{ $product->name }}">
+                                        </a>
                                         <div class="side-icons">
                                             <ul class="list-unstyled">
                                                 <li>
-                                                    <a href="wishlist.html">
-                                                        <img src="{{url('user')}}/media/icons/heart.png" alt="">
+                                                    <a href="javascript:void(0)">
+                                                        <img src="{{ url('user') }}/media/icons/heart.png" alt="Wishlist">
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#productQuickView">
-                                                        <img src="{{url('user')}}/media/icons/eye.png" alt="">
+                                                    <a href="javascript:void(0)" class="btn" data-bs-toggle="modal" data-bs-target="#productQuickView">
+                                                        <img src="{{ url('user') }}/media/icons/eye.png" alt="Quick View">
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="" class="zui-wrapper-button" data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                        <img src="{{url('user')}}/media/icons/compare.png" alt="">
+                                                    <a href="javascript:void(0)" class="zui-wrapper-button" data-bs-toggle="modal" data-bs-target="#comparepopup">
+                                                        <img src="{{ url('user') }}/media/icons/compare.png" alt="Compare">
                                                     </a>
                                                 </li>
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="product-desc">
-                                        <h6 class="product-title mb-8"><a href="shop-detail.html">Elite Audio Gear</a></h6>
-                                        <div class="text mb-12">
-                                            <p class="light-gray">Lorem ipsum dolor sit amet consectetur. Id viverra cursus enim risus mattis urnanullam quis magna. Ligula maecenas integer diam risus rhoncus at. Viverra a consectetur ac lobortis.</p>
+                                    <div class="product-desc d-flex flex-column flex-grow-1">
+                                        <h6 class="product-title mb-8">
+                                            <a href="{{ route('shopdetail', $product->product_id) }}">
+                                                {{ $product->name }}
+                                            </a>
+                                        </h6>
+                                        <div class="text mb-12 flex-grow-1">
+                                            <p class="light-gray" style="min-height: 72px;">
+                                                {{ Str::limit($product->short_description, 150) }}
+                                            </p>
                                         </div>
-                                        <div class="rating-star mb-16 bg-white">
-                                            <h5 class="color-sec mb-24">★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span class="text-16 fw-400 dark-black">(80)</span></h5>
-                                            <h6><span class="text-decoration-line-through light-gray"> $12.00</span>&nbsp;&nbsp;$85.00</h6>
+                                        <div class="mb-16">
+                                            <h6>
+                                                <span class="text-decoration-line-through light-gray">
+                                                    ${{ number_format($product->price * 1.1, 2) }}
+                                                </span>
+                                                &nbsp;&nbsp;
+                                                ${{ number_format($product->price, 2) }}
+                                            </h6>
                                         </div>
-                                        <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
+                                        <a href="javascript:void(0)" class="cus-btn-2 w-100 mt-auto">Add to Cart</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
-                                <div class="featured-product-card bg-white br-10">
-                                    <div class="image-box mb-16">
-                                        <span class="sale-label">-12%</span>
-                                        <a href="shop-detail.html"><img src="{{url('user')}}/media/products/product-2.png" class="product-image" alt=""></a>
-                                        <div class="side-icons">
-                                            <ul class="list-unstyled">
-                                                <li>
-                                                    <a href="wishlist.html">
-                                                        <img src="{{url('user')}}/media/icons/heart.png" alt="">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#productQuickView">
-                                                        <img src="{{url('user')}}/media/icons/eye.png" alt="">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="" class="zui-wrapper-button" data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                        <img src="{{url('user')}}/media/icons/compare.png" alt="">
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="product-desc">
-                                        <h6 class="product-title mb-8"><a href="shop-detail.html">Ultra Bright LCD</a></h6>
-                                        <div class="text mb-12">
-                                            <p class="light-gray">Lorem ipsum dolor sit amet consectetur. Id viverra cursus enim risus mattis urnanullam quis magna. Ligula maecenas integer diam risus rhoncus at. Viverra a consectetur ac lobortis.</p>
-                                        </div>
-                                        <div class="rating-star mb-16 bg-white">
-                                            <h5 class="color-sec mb-24">★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span class="text-16 fw-400 dark-black">(80)</span></h5>
-                                            <h6><span class="text-decoration-line-through light-gray"> $12.00</span>&nbsp;&nbsp;$10.00</h6>
-                                        </div>
-                                        <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
-                                <div class="featured-product-card bg-white br-10">
-                                    <div class="image-box mb-16">
-                                        <span class="sale-label">-12%</span>
-                                        <a href="shop-detail.html"><img src="{{url('user')}}/media/products/product-4.png" class="product-image" alt=""></a>
-                                        <div class="side-icons">
-                                            <ul class="list-unstyled">
-                                                <li>
-                                                    <a href="wishlist.html">
-                                                        <img src="{{url('user')}}/media/icons/heart.png" alt="">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#productQuickView">
-                                                        <img src="{{url('user')}}/media/icons/eye.png" alt="">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="" class="zui-wrapper-button" data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                        <img src="{{url('user')}}/media/icons/compare.png" alt="">
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="product-desc">
-                                        <h6 class="product-title mb-8"><a href="shop-detail.html">Nexus Mobile Pro 256GB</a></h6>
-                                        <div class="text mb-12">
-                                            <p class="light-gray">Lorem ipsum dolor sit amet consectetur. Id viverra cursus enim risus mattis urnanullam quis magna. Ligula maecenas integer diam risus rhoncus at. Viverra a consectetur ac lobortis.</p>
-                                        </div>
-                                        <div class="rating-star mb-16 bg-white">
-                                            <h5 class="color-sec mb-24">★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span class="text-16 fw-400 dark-black">(80)</span></h5>
-                                            <h6><span class="text-decoration-line-through light-gray"> $12.00</span>&nbsp;&nbsp;$10.00</h6>
-                                        </div>
-                                        <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6 d-xxl-block d-lg-none">
-                                <div class="featured-product-card bg-white br-10">
-                                    <div class="image-box mb-16">
-                                        <span class="sale-label">-12%</span>
-                                        <a href="shop-detail.html"><img src="{{url('user')}}/media/products/product-5b.png" class="product-image" alt=""></a>
-                                        <div class="side-icons">
-                                            <ul class="list-unstyled">
-                                                <li>
-                                                    <a href="wishlist.html">
-                                                        <img src="{{url('user')}}/media/icons/heart.png" alt="">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#productQuickView">
-                                                        <img src="{{url('user')}}/media/icons/eye.png" alt="">
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="" class="zui-wrapper-button" data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                        <img src="{{url('user')}}/media/icons/compare.png" alt="">
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="product-desc">
-                                        <h6 class="product-title mb-8"><a href="shop-detail.html">Ultra Tech Book Plus</a></h6>
-                                        <div class="text mb-12">
-                                            <p class="light-gray">Lorem ipsum dolor sit amet consectetur. Id viverra cursus enim risus mattis urnanullam quis magna. Ligula maecenas integer diam risus rhoncus at. Viverra a consectetur ac lobortis.</p>
-                                        </div>
-                                        <div class="rating-star mb-16 bg-white">
-                                            <h5 class="color-sec mb-24">★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span class="text-16 fw-400 dark-black">(80)</span></h5>
-                                            <h6><span class="text-decoration-line-through light-gray"> $1350.00</span>&nbsp;&nbsp;$$1250.00</h6>
-                                        </div>
-                                        <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
+
+
+
                     </div>
                     <div class="tab-pane fade" id="laptop" role="tabpanel" aria-labelledby="laptop-tab">
                         <div class="row row-gap-3">

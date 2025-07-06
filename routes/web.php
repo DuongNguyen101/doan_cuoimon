@@ -40,6 +40,7 @@ Route::group(['prefix' => 'template/user'], function () {
     Route::get('/shop/detail/{id}', [ShopController::class, 'shopdetail'])->name('shopdetail');
     Route::get('/shop/category/{id}', [ShopController::class, 'categoryProducts'])->name('shop.category');
     Route::get('/shop/search', [ShopController::class, 'searchProducts'])->name('shop.search');
+
 });
 
 Route::group(['prefix' => 'template/user'], function () {
