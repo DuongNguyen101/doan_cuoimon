@@ -9,7 +9,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Products extends Model{
+class Products extends Model
+{
     public $table = 'products';
     public $primaryKey = 'product_id';
     public $timestamps = false;
@@ -19,7 +20,6 @@ class Products extends Model{
         'description',
         'short_description',
         'price',
-        'quantity',
         'stock',
         'category_id',
         'image_url',
@@ -33,5 +33,3 @@ class Products extends Model{
         return $this->belongsTo(Categories::class, 'category_id', 'category_id');
     }
 }
-
-?>
