@@ -258,6 +258,7 @@ class TemplateAdminController extends Controller
                 'updated_at' => $request->post('updated_at'),
                 'image' => $request->post('image'),
                 'status' => $request->post('status'),
+                'description' => $request->post('description'),
             ];
             if ($request->post('id')) {
                 User::where('id', $request->post('id'))->update($user);

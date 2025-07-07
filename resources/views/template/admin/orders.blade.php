@@ -69,6 +69,7 @@
                     <th style="padding: 10px;">email</th>
                     <th style="padding: 10px;">phone</th>
                     <th style="padding: 10px;">role</th>
+                    <th style="padding: 10px;">description</th>
                     <th style="padding: 10px;">image</th>
                     <th style="padding: 10px;">created_at</th>
                     <th style="padding: 10px;">updated_at</th>
@@ -84,6 +85,7 @@
                     <td style="padding: 8px;">{{ $User->email }}</td>
                     <td style="padding: 8px;">{{ $User->phone }}</td>
                     <td style="padding: 8px;">{{ $User->role }}</td>
+                    <td style="padding: 8px;">{{ $User->description }}</td>
                     <td style="padding: 8px;">
                         @if ($User->image_url)
                         <img src="{{ $User->image_url }}" alt="Product Image" style="width: 60px; height: auto; border-radius: 4px;">

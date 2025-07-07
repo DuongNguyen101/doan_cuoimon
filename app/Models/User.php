@@ -28,6 +28,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'image',
         'status',
         'remember_token',
+        'description'
 
     ];
     public function address()
