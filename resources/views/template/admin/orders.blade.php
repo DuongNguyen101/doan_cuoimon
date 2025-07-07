@@ -87,8 +87,8 @@
                     <td style="padding: 8px;">{{ $User->role }}</td>
                     <td style="padding: 8px;">{{ $User->description }}</td>
                     <td style="padding: 8px;">
-                        @if ($User->image_url)
-                        <img src="{{asset('image/shoplist/'. $User->image_url) }}" alt="Product Image" style="width: 60px; height: auto; border-radius: 4px;">
+                        @if ($User->image)
+                        <img src="{{asset('image/shoplist/'. $User->image) }}" alt="Product Image" style="width: 60px; height: auto; border-radius: 4px;">
                         @else
                         <em>Không có ảnh</em>
                         @endif

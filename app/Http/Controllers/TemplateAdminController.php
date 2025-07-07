@@ -258,13 +258,13 @@ class TemplateAdminController extends Controller
                 'role' => $request->post('role'),
                 'created_at' => $request->post('created_at'),
                 'updated_at' => $request->post('updated_at'),
-                'image_url' => $request->post('image'),
+                'image' => $request->post('image'),
                 'status' => $request->post('status'),
                 'description' => $request->post('description'),
             ];
             // Xử lý upload hình ảnh
-            if ($request->hasFile('image_url')) {
-                $file = $request->file('image_url');
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
                 $fileName = time() . '_' . $file->getClientOriginalName(); // Tạo tên duy nhất
                 $destinationPath = public_path('image/shoplist'); // Thay đổi thành thư mục phù hợp
                 if (!file_exists($destinationPath)) {
@@ -272,10 +272,10 @@ class TemplateAdminController extends Controller
                 }
                 $file->move($destinationPath, $fileName); // Lưu vào thư mục
                 $user['image_url'] = $fileName; // Cập nhật tên tệp
-            } elseif ($id && !$request->hasFile('image_url') && Products::find($id)) {
+            } elseif ($id && !$request->hasFile('image') && Products::find($id)) {
                 $existingProduct = Products::find($id);
                 if ($existingProduct->image_url) {
-                    $product['image_url'] = $existingProduct->image_url;
+                    $product['image'] = $existingProduct->image_url;
                 }
             }
             if ($request->post('id')) {
