@@ -71,7 +71,7 @@
                     accept="image/*"
                     style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
                 @if (old('image_url', $product->image_url ?? ''))
-                <p>{{ isset($product->product_id) ? 'Giu hinh hien tai' : 'Up hinh moi' }} <img src="{{ asset('images/' . (old('image_url', $product->image_url ?? ''))) }}" alt="Current Image" style="max-width: 200px; margin-top: 10px;"></p>
+                <p>{{ isset($product->product_id) ? 'Giu hinh hien tai' : 'Up hinh moi' }} <img src="{{ asset('image/shoplist/' . (old('image_url', $product->image_url ?? ''))) }}" alt="Current Image" style="max-width: 50px; margin-top: 10px;"></p>
                 @endif
             </div>
             {{-- trang thái pham sản phẩm --}}

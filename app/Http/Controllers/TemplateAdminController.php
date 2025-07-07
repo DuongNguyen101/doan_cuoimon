@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
 use App\Models\Admin;
 
 use App\Models\MenuTabs;
@@ -39,6 +40,18 @@ class TemplateAdminController extends Controller
         ];
 
         return view('template.admin.dashboard')->with($data);
+    }
+    public function products()
+    {
+        $adminName = auth()->user()->name;
+
+        $data = [
+            'adminName'  => $adminName,
+            'categories' => Categories::get(),
+            'products'   => Products::get()
+        ];
+
+        return view('template.admin.products')->with($data);
     }
     //extract product of each category detail
     public function productlist($id)
@@ -206,6 +219,20 @@ class TemplateAdminController extends Controller
 
         return view('template.admin.orders')->with($data);
     }
+    //customer list
+    public function customerlist()
+    {
+        $adminName = auth()->user()->name;
+
+        $data = [
+            'adminName'  => $adminName,
+            'Orders' => Orders::get(),
+            'Users'   => User::get(),
+            'Orderdetai' => OrderDetails::get()
+        ];
+
+        return view('template.admin.customers')->with($data);
+    }
     //extract orders of each user
     public function orderlist($id)
     {
@@ -262,6 +289,22 @@ class TemplateAdminController extends Controller
                 'status' => $request->post('status'),
                 'description' => $request->post('description'),
             ];
+            // Xử lý upload hình ảnh
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $fileName = time() . '_' . $file->getClientOriginalName(); // Tạo tên duy nhất
+                $destinationPath = public_path('image/shoplist'); // Thay đổi thành thư mục phù hợp
+                if (!file_exists($destinationPath)) {
+                    mkdir($destinationPath, 0777, true); // Tạo thư mục nếu không tồn tại
+                }
+                $file->move($destinationPath, $fileName); // Lưu vào thư mục
+                $user['image_url'] = $fileName; // Cập nhật tên tệp
+            } elseif ($id && !$request->hasFile('image') && Products::find($id)) {
+                $existingProduct = Products::find($id);
+                if ($existingProduct->image_url) {
+                    $product['image'] = $existingProduct->image_url;
+                }
+            }
             if ($request->post('id')) {
                 User::where('id', $request->post('id'))->update($user);
                 session()->flash('msg', 'update user infor sucessfully');
@@ -345,38 +388,81 @@ class TemplateAdminController extends Controller
         return view('template/admin/upgrade')->with('adminName', $adminName);
     }
     //Search data in admin
-    public function search(Request $request)
+    public function searchcategories(Request $request)
     {
         $adminName = auth()->user()->name;
         $searchTerm = $request->input('search', ''); // Mặc định là chuỗi rỗng nếu không có input
-
-        $results = [];
-        if (!empty(trim($searchTerm))) {
-            $results = [
-                'admins' => Admin::where('name', 'like', "%$searchTerm%")->orWhere('email', 'like', "%$searchTerm%")->get(),
-                'categories' => Categories::where('name', 'like', "%$searchTerm%")->orWhere('description', 'like', "%$searchTerm%")->get(),
-                'menuTabs' => MenuTabs::where('name', 'like', "%$searchTerm%")->orWhere('slug', 'like', "%$searchTerm%")->get(),
-                'news' => News::where('title', 'like', "%$searchTerm%")->orWhere('content', 'like', "%$searchTerm%")->get(),
-                'orders' => Orders::where('address', 'like', "%$searchTerm%")->orWhere('total_amount', 'like', "%$searchTerm%")->get(),
-                'orderDetails' => OrderDetails::where('unit_price', 'like', "%$searchTerm%")->orWhere('subtotal', 'like', "%$searchTerm%")->get(),
-                'payments' => Payments::where('amount', 'like', "%$searchTerm%")->orWhere('payment_method', 'like', "%$searchTerm%")->get(),
-                'products' => Products::where('name', 'like', "%$searchTerm%")->orWhere('description', 'like', "%$searchTerm%")->get(),
-                'productImages' => ProductImage::where('image_path', 'like', "%$searchTerm%")->orWhere('caption', 'like', "%$searchTerm%")->get(),
-                'promotions' => Promotions::where('title', 'like', "%$searchTerm%")->orWhere('description', 'like', "%$searchTerm%")->get(),
-                'qna' => Qna::where('question', 'like', "%$searchTerm%")->orWhere('answer', 'like', "%$searchTerm%")->get(),
-                'reviews' => Review::where('comment', 'like', "%$searchTerm%")->get(),
-                'userAddresses' => UserAddress::where('street', 'like', "%$searchTerm%")->orWhere('city', 'like', "%$searchTerm%")->get(),
-                'users' => User::where('name', 'like', "%$searchTerm%")->orWhere('email', 'like', "%$searchTerm%")->get(),
-            ];
-        }
-
-        $data = [
+        $results = [
+            // 'admins' => Admin::where('name', 'like', "%$searchTerm%")->orWhere('email', 'like', "%$searchTerm%")->get(),
+            'categories' => Categories::where('name', 'like', "%$searchTerm%")->orWhere('description', 'like', "%$searchTerm%")->get(),
+            // 'menuTabs' => MenuTabs::where('name', 'like', "%$searchTerm%")->orWhere('slug', 'like', "%$searchTerm%")->get(),
+            // 'news' => News::where('title', 'like', "%$searchTerm%")->orWhere('content', 'like', "%$searchTerm%")->get(),
+            // 'orders' => Orders::where('address', 'like', "%$searchTerm%")->orWhere('total_amount', 'like', "%$searchTerm%")->get(),
+            // 'orderDetails' => OrderDetails::where('unit_price', 'like', "%$searchTerm%")->orWhere('subtotal', 'like', "%$searchTerm%")->get(),
+            // 'payments' => Payments::where('amount', 'like', "%$searchTerm%")->orWhere('payment_method', 'like', "%$searchTerm%")->get(),
+            // 'products' => Products::where('name', 'like', "%$searchTerm%")->orWhere('description', 'like', "%$searchTerm%")->get(),
+            // 'productImages' => ProductImage::where('image_path', 'like', "%$searchTerm%")->orWhere('caption', 'like', "%$searchTerm%")->get(),
+            // 'promotions' => Promotions::where('title', 'like', "%$searchTerm%")->orWhere('description', 'like', "%$searchTerm%")->get(),
+            // 'qna' => Qna::where('question', 'like', "%$searchTerm%")->orWhere('answer', 'like', "%$searchTerm%")->get(),
+            // 'reviews' => Review::where('comment', 'like', "%$searchTerm%")->get(),
+            // 'userAddresses' => UserAddress::where('street', 'like', "%$searchTerm%")->orWhere('city', 'like', "%$searchTerm%")->get(),
+            // 'users' => User::where('name', 'like', "%$searchTerm%")->orWhere('email', 'like', "%$searchTerm%")->get(),
             'adminName' => $adminName,
-            'results' => $results,
+            'searchTerm' => $searchTerm,
+            'keyword' => 'categories',
+        ];
+
+        return view('template.admin.search')->with($results);
+    }
+    public function searchproducts(Request $request)
+    {
+        $adminName = auth()->user()->name;
+        $searchTerm = $request->input('search', ''); // Mặc định là chuỗi rỗng nếu không có input
+        $results = [
+            // 'admins' => Admin::where('name', 'like', "%$searchTerm%")->orWhere('email', 'like', "%$searchTerm%")->get(),
+            // 'categories' => Categories::where('name', 'like', "%$searchTerm%")->orWhere('description', 'like', "%$searchTerm%")->get(),
+            // 'menuTabs' => MenuTabs::where('name', 'like', "%$searchTerm%")->orWhere('slug', 'like', "%$searchTerm%")->get(),
+            // 'news' => News::where('title', 'like', "%$searchTerm%")->orWhere('content', 'like', "%$searchTerm%")->get(),
+            // 'orders' => Orders::where('address', 'like', "%$searchTerm%")->orWhere('total_amount', 'like', "%$searchTerm%")->get(),
+            // 'orderDetails' => OrderDetails::where('unit_price', 'like', "%$searchTerm%")->orWhere('subtotal', 'like', "%$searchTerm%")->get(),
+            // 'payments' => Payments::where('amount', 'like', "%$searchTerm%")->orWhere('payment_method', 'like', "%$searchTerm%")->get(),
+            'products' => Products::where('name', 'like', "%$searchTerm%")->orWhere('description', 'like', "%$searchTerm%")->get(),
+            // 'productImages' => ProductImage::where('image_path', 'like', "%$searchTerm%")->orWhere('caption', 'like', "%$searchTerm%")->get(),
+            // 'promotions' => Promotions::where('title', 'like', "%$searchTerm%")->orWhere('description', 'like', "%$searchTerm%")->get(),
+            // 'qna' => Qna::where('question', 'like', "%$searchTerm%")->orWhere('answer', 'like', "%$searchTerm%")->get(),
+            // 'reviews' => Review::where('comment', 'like', "%$searchTerm%")->get(),
+            // 'userAddresses' => UserAddress::where('street', 'like', "%$searchTerm%")->orWhere('city', 'like', "%$searchTerm%")->get(),
+            // 'users' => User::where('name', 'like', "%$searchTerm%")->orWhere('email', 'like', "%$searchTerm%")->get(),
+            'adminName' => $adminName,
             'searchTerm' => $searchTerm,
         ];
 
-        return view('template.admin.search')->with($data);
+        return view('template.admin.searchproducts')->with($results);
+    }
+    public function searchcustomers(Request $request)
+    {
+        $adminName = auth()->user()->name;
+        $searchTerm = $request->input('search', ''); // Mặc định là chuỗi rỗng nếu không có input
+        $results = [
+            // 'admins' => Admin::where('name', 'like', "%$searchTerm%")->orWhere('email', 'like', "%$searchTerm%")->get(),
+            // 'categories' => Categories::where('name', 'like', "%$searchTerm%")->orWhere('description', 'like', "%$searchTerm%")->get(),
+            // 'menuTabs' => MenuTabs::where('name', 'like', "%$searchTerm%")->orWhere('slug', 'like', "%$searchTerm%")->get(),
+            // 'news' => News::where('title', 'like', "%$searchTerm%")->orWhere('content', 'like', "%$searchTerm%")->get(),
+            // 'orders' => Orders::where('address', 'like', "%$searchTerm%")->orWhere('total_amount', 'like', "%$searchTerm%")->get(),
+            // 'orderDetails' => OrderDetails::where('unit_price', 'like', "%$searchTerm%")->orWhere('subtotal', 'like', "%$searchTerm%")->get(),
+            // 'payments' => Payments::where('amount', 'like', "%$searchTerm%")->orWhere('payment_method', 'like', "%$searchTerm%")->get(),
+            // 'products' => Products::where('name', 'like', "%$searchTerm%")->orWhere('description', 'like', "%$searchTerm%")->get(),
+            // 'productImages' => ProductImage::where('image_path', 'like', "%$searchTerm%")->orWhere('caption', 'like', "%$searchTerm%")->get(),
+            // 'promotions' => Promotions::where('title', 'like', "%$searchTerm%")->orWhere('description', 'like', "%$searchTerm%")->get(),
+            // 'qna' => Qna::where('question', 'like', "%$searchTerm%")->orWhere('answer', 'like', "%$searchTerm%")->get(),
+            // 'reviews' => Review::where('comment', 'like', "%$searchTerm%")->get(),
+            // 'userAddresses' => UserAddress::where('street', 'like', "%$searchTerm%")->orWhere('city', 'like', "%$searchTerm%")->get(),
+            'users' => User::where('name', 'like', "%$searchTerm%")->orWhere('email', 'like', "%$searchTerm%")->get(),
+            'adminName' => $adminName,
+            'searchTerm' => $searchTerm,
+        ];
+
+        return view('template.admin.searchcustomers')->with($results);
     }
     //main function update them xoa sua
     // Generic methods for CRUD
@@ -494,19 +580,109 @@ class TemplateAdminController extends Controller
     {
         return $this->extract(new Payments(), '/template/admin/payments');
     }
+    public function loadFormPayments($id)
+    {
+        return $this->loadForm(new Payments(), $id, 'template.admin.formpayments', $data = [], new Orders());
+    }
+    public function updatePayments(Request $request, $id = null)
+    {
+        return $this->updateRecord($request, new Payments(), '/template/admin/payments', $id);
+    }
+    public function deletePayments($id)
+    {
+        return $this->deleteRecord(new Payments(), $id, '/template/admin/payments');
+    }
     //promotions
     public function promotions()
     {
         return $this->extract(new Promotions(), '/template/admin/promotions');
+    }
+    public function loadFormPromotions($id)
+    {
+        return $this->loadForm(new Promotions(), $id, 'template.admin.formpromotions', $data = [], new Products());
+    }
+    public function updatePromotions(Request $request, $id = null)
+    {
+        return $this->updateRecord($request, new Promotions(), '/template/admin/promotions', $id);
+    }
+    public function deletePromotions($id)
+    {
+        return $this->deleteRecord(new Promotions(), $id, '/template/admin/promotions');
     }
     //reviews
     public function reviews()
     {
         return $this->extract(new Review(), '/template/admin/reviews');
     }
+    public function loadFormReviews($id)
+    {
+        return $this->loadForm(new Review(), $id, 'template.admin.formreviews', $data = [], new User());
+    }
+    public function updateReviews(Request $request, $id = null)
+    {
+        return $this->updateRecord($request, new Review(), '/template/admin/reviews', $id);
+    }
+    public function deleteReviews($id)
+    {
+        return $this->deleteRecord(new Review(), $id, '/template/admin/reviews');
+    }
     //qna
     public function qna()
     {
         return $this->extract(new Qna(), '/template/admin/qna');
+    }
+    //About
+
+    public function about()
+    {
+        return $this->extract(new About(), '/template/admin/about');
+    }
+    public function loadFormAbout($id)
+    {
+        return $this->loadForm(new About(), $id, 'template.admin.formabout', $data = [], new User());
+    }
+    public function updateAbout(Request $request, $id = null)
+
+    {
+        $adminName = auth()->user()->name;
+
+        try {
+
+            $user = [
+                'id' => $request->post('id'),
+                'title' => $request->post('title'),
+                'description' => $request->post('description'),
+                'image' => $request->post('image'),
+                'create_at' => $request->post('create_at')
+            ];
+            // Xử lý upload hình ảnh
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $fileName = time() . '_' . $file->getClientOriginalName(); // Tạo tên duy nhất
+                $destinationPath = public_path('image/shoplist'); // Thay đổi thành thư mục phù hợp
+                if (!file_exists($destinationPath)) {
+                    mkdir($destinationPath, 0777, true); // Tạo thư mục nếu không tồn tại
+                }
+                $file->move($destinationPath, $fileName); // Lưu vào thư mục
+                $user['image_url'] = $fileName; // Cập nhật tên tệp
+            } elseif ($id && !$request->hasFile('image') && Products::find($id)) {
+                $existingProduct = Products::find($id);
+                if ($existingProduct->image_url) {
+                    $product['image'] = $existingProduct->image_url;
+                }
+            }
+            if ($request->post('id')) {
+                User::where('id', $request->post('id'))->update($user);
+                session()->flash('msg', 'update user infor sucessfully');
+                return redirect('/template/admin/user');
+            } else {
+                User::create($user);
+                session()->flash('msg', 'Add new user successfuly');
+                return redirect('/template/admin/user');
+            }
+        } catch (Exception $ex) {
+            session()->flash('msg', 'Failed');
+            return redirect('/template/admin/about');
+        }
     }
 }

@@ -34,15 +34,11 @@
                     <td style="padding: 8px;">{{ $record->created_at }}</td>
                     <td style="padding: 8px;">{{ $record->updated_at }}</td>
                     <td style="padding: 8px;">
-                        <a href="{{ url('/template/admin/reviews/' . $record->review_id) }}"
-                            style="color: #007bff; text-decoration: none;">Xem</a>
-                    </td>
-                    <td style="padding: 8px;">
-                        <a href="{{ url('/template/admin/news/reviews/' . $record->review_id) }}"
+                        <a href="{{ url('/template/admin/reviews/form/' . $record->review_id) }}"
                             style="background-color: #ffc107; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Sửa</a>
                     </td>
                     <td style="padding: 8px;">
-                        <a href="{{ url('/template/admin/order/form/add') }}"
+                        <a href="{{ url('/template/admin/reviews/form/add') }}"
                             style="background-color: #28a745; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Thêm</a>
                     </td>
                     <td style="padding: 8px;">
