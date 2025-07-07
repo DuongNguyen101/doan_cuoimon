@@ -86,62 +86,64 @@
                     <h5 class="fw-500 white text-center">$120.00</h5>
                 </a>
             </div>
-<div class="col-xl-9 d-flex flex-column h-100">
-    <div class="top-bar mb-16">
-        <h5>Feature Products</h5>
-    </div>
-    <div class="tab-content h-100 flex-grow-1" id="myTabContent">
-        <div class="tab-pane fade show active h-100" id="all" role="tabpanel" aria-labelledby="all-tab">
-            <div class="row row-gap-3 h-100">
-                @foreach ($featuredProducts as $product)
-                    <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6 d-flex">
-                        <div class="featured-product-card bg-white br-10 shadow-sm h-100 d-flex flex-column w-100 p-3">
-                            {{-- Image --}}
-                            <div class="position-relative" style="aspect-ratio: 4 / 3;">
-                    <a href="{{ route('shopdetail', $product->product_id) }}">
-                        <img src="{{ asset('image/shoplist/' . $product->image_url) }}"
-                             class="w-100 h-120 object-fit-cover rounded-top" alt="{{ $product->name }}">
-                    </a>
-                                <div class="side-icons position-absolute top-0 end-0 mt-2 me-2">
-                                    <ul class="list-unstyled d-flex flex-column gap-2">
-                                        <li><a href="javascript:void(0)"><img src="{{ url('user') }}/media/icons/heart.png" alt="Wishlist"></a></li>
-                                        <li><a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#productQuickView"><img src="{{ url('user') }}/media/icons/eye.png" alt="Quick View"></a></li>
-                                        <li><a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#comparepopup"><img src="{{ url('user') }}/media/icons/compare.png" alt="Compare"></a></li>
-                                    </ul>
+            <div class="col-xl-9 d-flex flex-column h-100">
+                <div class="top-bar mb-16">
+                    <h5>Feature Products</h5>
+                </div>
+                <div class="tab-content" id="myProductContent">
+                    <div class="tab-pane fade show active" id="all-product" role="tabpanel" aria-labelledby="all-product-tab">
+                        <div class="row row-gap-3 align-items-stretch">
+                            @foreach ($featuredProducts->where('category_id', 1) as $product)
+                            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 d-flex">
+                                <div class="featured-product-card bg-white br-10 shadow-sm h-100 d-flex flex-column w-100">
+                                    {{-- Image Box --}}
+                                    <div class="image-box position-relative" style="aspect-ratio: 4/3; overflow: hidden;">
+                                        <span class="sale-label position-absolute top-0 start-0 m-2">-12%</span>
+                                        <a href="{{ route('shopdetail', $product->product_id) }}">
+                                            <img
+                                                src="{{ asset('image/shoplist/' . $product->image_url) }}"
+                                                class="w-100 h-100 object-fit-cover"
+                                                alt="{{ $product->name }}">
+                                        </a>
+                                        <div class="side-icons position-absolute top-0 end-0 m-2">
+                                            <ul class="list-unstyled d-flex flex-column gap-2">
+                                                <li><a href="#"><img src="{{ url('user/media/icons/heart.png') }}" alt="Wishlist"></a></li>
+                                                <li><a href="#" data-bs-toggle="modal" data-bs-target="#productQuickView"><img src="{{ url('user/media/icons/eye.png') }}" alt="Quick View"></a></li>
+                                                <li><a href="#" data-bs-toggle="modal" data-bs-target="#comparepopup"><img src="{{ url('user/media/icons/compare.png') }}" alt="Compare"></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    {{-- Content --}}
+                                    <div class="product-desc d-flex flex-column flex-grow-1 p-3">
+                                        <h6 class="product-title mb-2 text-dark fw-semibold">
+                                            <a href="{{ route('shopdetail', $product->product_id) }}" class="text-decoration-none text-dark">
+                                                {{ Str::limit($product->name, 45) }}
+                                            </a>
+                                        </h6>
+                                        <p class="light-gray small flex-grow-1 mb-3" style="min-height: 72px;">
+                                            {{ Str::limit($product->short_description, 150) }}
+                                        </p>
+                                        <div class="mb-3">
+                                            <h6 class="fw-bold mb-0">
+                                                <span class="text-decoration-line-through light-gray me-2">
+                                                    ${{ number_format($product->price * 1.1, 2) }}
+                                                </span>
+                                                <span class="text-danger">
+                                                    ${{ number_format($product->price, 2) }}
+                                                </span>
+                                            </h6>
+                                        </div>
+                                        <a href="#" class="cus-btn-2 w-100 text-center mt-auto">Add to Cart</a>
+                                    </div>
                                 </div>
                             </div>
-
-                            {{-- Product Content --}}
-                            <div class="product-desc d-flex flex-column flex-grow-1">
-                                <h6 class="product-title mb-2 text-dark fw-bold">
-                                    <a href="{{ route('shopdetail', $product->product_id) }}" class="text-decoration-none text-dark">
-                                        {{ Str::limit($product->name, 45) }}
-                                    </a>
-                                </h6>
-                                <p class="text-muted small flex-grow-1 mb-3" style="line-height: 1.4;">
-                                    {{ Str::limit($product->short_description, 100) }}
-                                </p>
-
-                                {{-- Price --}}
-                                <div class="mb-3">
-                                    <h6 class="fw-bold mb-0">
-                                        <span class="text-decoration-line-through text-muted me-2">${{ number_format($product->price * 1.1, 2) }}</span>
-                                        <span class="text-danger">${{ number_format($product->price, 2) }}</span>
-                                    </h6>
-                                </div>
-
-                                {{-- Add to cart --}}
-                                <a href="javascript:void(0)" class="cus-btn-2 w-100 text-center mt-auto">Add to Cart</a>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
-                @endforeach
+                </div>
+
             </div>
-        </div>
-    </div>
-</div>
-
-
         </div>
     </div>
 </section>
@@ -159,7 +161,7 @@
                     @foreach ($featuredProducts2->where('category_id', 2) as $product)
                     <div class="col-xxl-2 col-xl-2 col-lg-4 col-md-6 d-flex">
                         <div class="featured-product-card bg-white br-10 h-100 d-flex flex-column w-100">
-                            <div class="image-box mb-16" style="height: 289px; overflow: hidden;">
+                            <div class="image-box mb-16" style="height: 300px; overflow: hidden;">
                                 <span class="sale-label">-12%</span>
                                 <a href="{{ route('shopdetail', $product->product_id) }}">
                                     <img src="{{ asset('image/shoplist/' . $product->image_url) }}"

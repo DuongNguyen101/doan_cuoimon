@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
@@ -17,10 +18,12 @@ class ResetPasswordController extends Controller
         if (!$token || !$email) {
             return redirect()->route('password.request')->withErrors(['token' => 'Invalid password reset link.']);
         }
+        $categories = Categories::all();
 
         return view('template/user/pages/resetpassword', [
             'token' => $token,
             'email' => $email,
+            'categories' => $categories,
         ]);
     }
 

@@ -3,9 +3,7 @@
 <section class="title-banner">
     <div class="container-fluid">
         <div class="banner-wrapper">
-            <img src="{{url('user')}}/media/banner/left-image.png" alt="" class="banner-image1">
-            <h1 class="dark-black fw-600">About Us</h1>
-            <img src="{{url('user')}}/media/banner/right-image.png" alt="" class="banner-image2">
+            <h1 class="dark-black fw-600">About Products</h1>
         </div>
     </div>
 </section>
@@ -13,87 +11,44 @@
 <section class="about-section py-40">
     <div class="container-fluid">
         <div class="about-wrapper bg-white">
-            <div class="about-block mb-24">
-                <div class="row align-items-center row-gap-4">
-                    <div class="col-xl-6 col-lg-7 order-sm-1 order-2">
-                        <div class="about-content">
-                            <h3 class="mb-24">Discover Our Story</h3>
-                            <p class="light-gray mb-12">
-                                Welcome to <span class="dark-black fw-500"> Gadgetize - Electronics Accessories Store, </span> your number one source for all things electronics accessories.
-                                We're dedicated to providing you the very best of chargers, headphones, cables, and more, with an emphasis on
-                                quality, affordability, and customer satisfaction.
-                            </p>
-                            <p class="light-gray">
-                                Founded in 2010 by Founder's <span class="dark-black fw-500"> John Smith,</span> Gadgetize has come a long way from its beginnings in New York, USA. When John
-                                Smith first started out, their passion for technology and electronics drove them to start their own business. Their goal
-                                was simple: to offer high-quality products that were not only reliable but also affordable.
-                            </p>
-
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-5 order-sm-2 order-1">
-                        <div class="about-image">
-                            <img src="{{url('user')}}/media/about/about-1.png" alt="" class="br-20">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="about-block mb-24">
-                <div class="row align-items-center row-gap-4">
-                    <div class="col-xl-6 col-lg-5 ">
-                        <div class="about-image">
-                            <img src="{{url('user')}}/media/about/about-2.png" alt="" class="br-20">
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-7">
-                        <div class="about-content">
-                            <h3 class="mb-24">Our Mission and Values</h3>
-                            <p class="light-gray mb-24">
-                                At <span class="dark-black fw-500"> Gadgetize - Electronics Accessories Store, </span> your number one source for all things electronics accessories.
-                                We're dedicated to providing you the very best of chargers, headphones, cables, and more, with an emphasis on
-                                quality, affordability, and customer satisfaction.
-                            </p>
-                            <ul>
-                                <li class="fw-500 mb-8">Quality Products</li>
-                                <li class="fw-500 mb-8">Affordability</li>
-                                <li class="fw-500 mb-8">Excellent Customer Service</li>
-                                <li class="fw-500 mb-8">Innovation</li>
-                                <li class="fw-500">Sustainability:</li>
-                            </ul>
-
-                        </div>
+            @foreach($abouts as $index => $about)
+                <div class="about-block mb-24">
+                    <div class="row align-items-center row-gap-4">
+                        {{-- Nội dung trái/phải tùy theo index --}}
+                        @if($index % 2 === 0)
+                            {{-- Text Left, Image Right --}}
+                            <div class="col-xl-6 col-lg-7 order-sm-1 order-2">
+                                <div class="about-content">
+                                    <h3 class="mb-24">{{ $about->title }}</h3>
+                                    <p class="light-gray mb-24">{!! nl2br(e($about->description)) !!}</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-5 order-sm-2 order-1">
+                                <div class="about-image">
+                                    <img src="{{ asset('image/about/' . $about->image) }}" alt="{{ $about->title }}" class="br-20">
+                                </div>
+                            </div>
+                        @else
+                            {{-- Image Left, Text Right --}}
+                            <div class="col-xl-6 col-lg-5">
+                                <div class="about-image">
+                                    <img src="{{ asset('image/about/' . $about->image) }}" alt="{{ $about->title }}" class="br-20">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-7">
+                                <div class="about-content">
+                                    <h3 class="mb-24">{{ $about->title }}</h3>
+                                    <p class="light-gray mb-24">{!! nl2br(e($about->description)) !!}</p>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
-            </div>
-            <div class="about-block">
-                <div class="row align-items-center row-gap-4">
-                    <div class="col-xl-6 col-lg-7 order-sm-1 order-2">
-                        <div class="about-content">
-                            <h3 class="mb-24">Our Mission and Values</h3>
-                            <p class="light-gray mb-24">
-                                We offer a wide range of electronic accessories designed to meet your every need. Whether you're looking for the latest
-                                wireless headphones, fast charging cables, durable cases, or innovative gadgets, we have something for everyone.
-                            </p>
-                            <ul>
-                                <li class="fw-500 mb-8">Chargers</li>
-                                <li class="fw-500 mb-8">headphones &amp; Earphones</li>
-                                <li class="fw-500 mb-8">Cables &amp; Connectors</li>
-                                <li class="fw-500 mb-8">Cases &amp; Covers</li>
-                                <li class="fw-500">Smart Home Gadgets</li>
-                            </ul>
-
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-5 order-sm-2 order-1">
-                        <div class="about-image">
-                            <img src="{{url('user')}}/media/about/about-3.png" alt="" class="br-20">
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
+
 
 <section class="whyChoose-us py-40">
     <div class="container-fluid">
