@@ -258,10 +258,26 @@ class TemplateAdminController extends Controller
                 'role' => $request->post('role'),
                 'created_at' => $request->post('created_at'),
                 'updated_at' => $request->post('updated_at'),
-                'image' => $request->post('image'),
+                'image_url' => $request->post('image'),
                 'status' => $request->post('status'),
                 'description' => $request->post('description'),
             ];
+            // Xử lý upload hình ảnh
+            if ($request->hasFile('image_url')) {
+                $file = $request->file('image_url');
+                $fileName = time() . '_' . $file->getClientOriginalName(); // Tạo tên duy nhất
+                $destinationPath = public_path('image/shoplist'); // Thay đổi thành thư mục phù hợp
+                if (!file_exists($destinationPath)) {
+                    mkdir($destinationPath, 0777, true); // Tạo thư mục nếu không tồn tại
+                }
+                $file->move($destinationPath, $fileName); // Lưu vào thư mục
+                $user['image_url'] = $fileName; // Cập nhật tên tệp
+            } elseif ($id && !$request->hasFile('image_url') && Products::find($id)) {
+                $existingProduct = Products::find($id);
+                if ($existingProduct->image_url) {
+                    $product['image_url'] = $existingProduct->image_url;
+                }
+            }
             if ($request->post('id')) {
                 User::where('id', $request->post('id'))->update($user);
                 session()->flash('msg', 'update user infor sucessfully');

@@ -6,7 +6,7 @@
     <div class="form-container">
         <h2>{{ isset($User->id) ? 'Update User Infor' : 'Add new user' }}</h2>
         <form method="POST" action="{{ url('/template/admin/user/form/action') }}"
-            style="max-width: 600px; margin: 40px auto; padding: 25px; background-color: #f7f7f7; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+            style="max-width: 600px; margin: 40px auto; padding: 25px; background-color: #f7f7f7; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);" enctype="multipart/form-data">
 
             @csrf
 
@@ -75,19 +75,21 @@
             </div>
             {{-- Image --}}
             <div class="form-group" style="margin-bottom: 15px;">
-                <label for="role" style="display: block; margin-bottom: 6px;">Image:</label>
-                <input type="text" id="image" name="image"
-                    value="{{ old('role', $User->image ?? '') }}"
-                    required
+                <label for="image_url" style="display: block; margin-bottom: 6px;"><button style="cursor: pointer;">Up hinh</button></label>
+                <input type="file" id="image_url" name="image_url"
+                    accept="image/*"
                     style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                @if (old('image_url', $User->image_url ?? ''))
+                <p>{{ isset($User->id) ? 'Giu hinh hien tai' : 'Up hinh moi' }} <img src="{{ asset('image/shoplist/' . (old('image_url', $User->image_url ?? ''))) }}" alt="Current Image" style="max-width: 50px; margin-top: 10px;"></p>
+                @endif
             </div>
             {{-- status --}}
             <div class="form-group" style="margin-bottom: 15px;">
                 <label for="status" style="display: block; margin-bottom: 6px;">Status:</label>
                 <select id="status" name="status" required
                     style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
-                    <option value="active" {{ old('status', $product->status ?? '') == 'active' ? 'selected' : '' }}>Active</option>
-                    <option value="unactive" {{ old('status', $product->status ?? '') == 'unactive' ? 'selected' : '' }}>Unactive</option>
+                    <option value="active" {{ old('status', $User->status ?? '') == 'active' ? 'selected' : '' }}>Active</option>
+                    <option value="unactive" {{ old('status', $User->status ?? '') == 'unactive' ? 'selected' : '' }}>Unactive</option>
                 </select>
             </div>
             {{-- password --}}
@@ -102,7 +104,8 @@
             <div class="form-group" style="margin-bottom: 15px;">
                 <label for="description" style="display: block; margin-bottom: 6px;">description:</label>
                 <input type="text" id="description" name="description"
-                    value="{{ old('description', $User->description ?? "") }}"
+                    value="{{ old('description', $User->password ?? "") }}"
+
                     style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
             </div>
 
