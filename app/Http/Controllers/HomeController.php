@@ -9,18 +9,36 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $categories = Categories::all();
+        $categories = Categories::withCount('products')
+            ->with(['products' => function ($query) {
+                $query->where('status', 1)->latest();
+            }])
+            ->get();
 
-        // Xử lý tìm kiếm sản phẩm
+        $featuredProducts = Products::where('status', 1)
+            ->latest()
+            ->take(4)
+            ->get();
+
+        $featuredProducts2 = Products::where('status', 1)
+            ->where('category_id', 2)
+            ->latest()
+            ->take(6) 
+            ->get();
+
+        $featuredProducts3 = Products::where('status', 1)
+        ->where('category_id', 5)
+        ->latest()
+        ->take(6) 
+        ->get();
+
         $search = request()->get('search');
         $products = Products::where('status', 1);
-
         if ($search) {
             $products->where('name', 'like', '%' . $search . '%');
         }
-
         $products = $products->paginate(12)->appends(['search' => $search]);
 
-        return view('template.user.home.index', compact('categories', 'products'));
+        return view('template.user.home.index', compact('categories', 'products', 'featuredProducts', 'featuredProducts2', 'featuredProducts3'));
     }
 }

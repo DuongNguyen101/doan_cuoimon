@@ -514,7 +514,8 @@
                                 <img src="{{url('user')}}/media/icons/card-2.png" alt="">
                             </div>
                             <div class="card-block">
-                                <img src="{{url('user')}}/media/icons/card-3.png" alt="">
+          
+                            <img src="{{url('user')}}/media/icons/card-3.png" alt="">
                             </div>
                             <div class="card-block">
                                 <img src="{{url('user')}}/media/icons/card-4.png" alt="">
