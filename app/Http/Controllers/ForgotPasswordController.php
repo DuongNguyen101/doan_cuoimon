@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 
@@ -9,7 +10,8 @@ class ForgotPasswordController extends Controller
 {
     public function index()
     {
-        return view('template/user/pages/forgotpassword');
+        $categories = Categories::all(); 
+        return view('template.user.pages.forgotpassword', compact('categories'));
     }
 
     public function sendResetLinkEmail(Request $request)
