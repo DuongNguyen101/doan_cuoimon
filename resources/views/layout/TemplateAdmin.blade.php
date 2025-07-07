@@ -46,15 +46,16 @@
                     <li class="active ">
                         <a href="{{asset('/template/admin/dashboard')}}">
                             <i class="nc-icon nc-bank"></i>
-                            <p>Categories & Products</p>
+                            <p>Categories</p>
                         </a>
                     </li>
                     <li>
-                        <a href="{{asset('/template/admin/search')}}">
-                            <i class="nc-icon nc-diamond"></i>
-                            <p>Search Function</p>
+                        <a href="{{asset('/template/admin/products')}}">
+                            <i class="nc-icon nc-bank"></i>
+                            <p>Products</p>
                         </a>
                     </li>
+
                     <li>
                         <a href="{{asset('/template/admin/news')}}">
                             <i class="nc-icon nc-pin-3"></i>
@@ -68,9 +69,15 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{asset('/template/admin/user')}}">
+                        <a href="{{asset('/template/admin/customers')}}">
                             <i class="nc-icon nc-single-02"></i>
                             <p>Customers</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{asset('/template/admin/user')}}">
+                            <i class="nc-icon nc-single-02"></i>
+                            <p>Orders</p>
                         </a>
                     </li>
                     <li>
@@ -91,7 +98,7 @@
                             <p>About Us</p>
                         </a>
                     </li>
-                    <li class="active-pro">
+                    <li>
                         <a href="{{asset('/template/admin/qna')}}">
                             <i class="nc-icon nc-spaceship"></i>
                             <p>QnA</p>

@@ -41,6 +41,18 @@ class TemplateAdminController extends Controller
 
         return view('template.admin.dashboard')->with($data);
     }
+    public function products()
+    {
+        $adminName = auth()->user()->name;
+
+        $data = [
+            'adminName'  => $adminName,
+            'categories' => Categories::get(),
+            'products'   => Products::get()
+        ];
+
+        return view('template.admin.products')->with($data);
+    }
     //extract product of each category detail
     public function productlist($id)
     {
@@ -207,6 +219,20 @@ class TemplateAdminController extends Controller
 
         return view('template.admin.orders')->with($data);
     }
+    //customer list
+    public function customerlist()
+    {
+        $adminName = auth()->user()->name;
+
+        $data = [
+            'adminName'  => $adminName,
+            'Orders' => Orders::get(),
+            'Users'   => User::get(),
+            'Orderdetai' => OrderDetails::get()
+        ];
+
+        return view('template.admin.customers')->with($data);
+    }
     //extract orders of each user
     public function orderlist($id)
     {
@@ -362,38 +388,81 @@ class TemplateAdminController extends Controller
         return view('template/admin/upgrade')->with('adminName', $adminName);
     }
     //Search data in admin
-    public function search(Request $request)
+    public function searchcategories(Request $request)
     {
         $adminName = auth()->user()->name;
         $searchTerm = $request->input('search', ''); // Mặc định là chuỗi rỗng nếu không có input
-
-        $results = [];
-        if (!empty(trim($searchTerm))) {
-            $results = [
-                'admins' => Admin::where('name', 'like', "%$searchTerm%")->orWhere('email', 'like', "%$searchTerm%")->get(),
-                'categories' => Categories::where('name', 'like', "%$searchTerm%")->orWhere('description', 'like', "%$searchTerm%")->get(),
-                'menuTabs' => MenuTabs::where('name', 'like', "%$searchTerm%")->orWhere('slug', 'like', "%$searchTerm%")->get(),
-                'news' => News::where('title', 'like', "%$searchTerm%")->orWhere('content', 'like', "%$searchTerm%")->get(),
-                'orders' => Orders::where('address', 'like', "%$searchTerm%")->orWhere('total_amount', 'like', "%$searchTerm%")->get(),
-                'orderDetails' => OrderDetails::where('unit_price', 'like', "%$searchTerm%")->orWhere('subtotal', 'like', "%$searchTerm%")->get(),
-                'payments' => Payments::where('amount', 'like', "%$searchTerm%")->orWhere('payment_method', 'like', "%$searchTerm%")->get(),
-                'products' => Products::where('name', 'like', "%$searchTerm%")->orWhere('description', 'like', "%$searchTerm%")->get(),
-                'productImages' => ProductImage::where('image_path', 'like', "%$searchTerm%")->orWhere('caption', 'like', "%$searchTerm%")->get(),
-                'promotions' => Promotions::where('title', 'like', "%$searchTerm%")->orWhere('description', 'like', "%$searchTerm%")->get(),
-                'qna' => Qna::where('question', 'like', "%$searchTerm%")->orWhere('answer', 'like', "%$searchTerm%")->get(),
-                'reviews' => Review::where('comment', 'like', "%$searchTerm%")->get(),
-                'userAddresses' => UserAddress::where('street', 'like', "%$searchTerm%")->orWhere('city', 'like', "%$searchTerm%")->get(),
-                'users' => User::where('name', 'like', "%$searchTerm%")->orWhere('email', 'like', "%$searchTerm%")->get(),
-            ];
-        }
-
-        $data = [
+        $results = [
+            // 'admins' => Admin::where('name', 'like', "%$searchTerm%")->orWhere('email', 'like', "%$searchTerm%")->get(),
+            'categories' => Categories::where('name', 'like', "%$searchTerm%")->orWhere('description', 'like', "%$searchTerm%")->get(),
+            // 'menuTabs' => MenuTabs::where('name', 'like', "%$searchTerm%")->orWhere('slug', 'like', "%$searchTerm%")->get(),
+            // 'news' => News::where('title', 'like', "%$searchTerm%")->orWhere('content', 'like', "%$searchTerm%")->get(),
+            // 'orders' => Orders::where('address', 'like', "%$searchTerm%")->orWhere('total_amount', 'like', "%$searchTerm%")->get(),
+            // 'orderDetails' => OrderDetails::where('unit_price', 'like', "%$searchTerm%")->orWhere('subtotal', 'like', "%$searchTerm%")->get(),
+            // 'payments' => Payments::where('amount', 'like', "%$searchTerm%")->orWhere('payment_method', 'like', "%$searchTerm%")->get(),
+            // 'products' => Products::where('name', 'like', "%$searchTerm%")->orWhere('description', 'like', "%$searchTerm%")->get(),
+            // 'productImages' => ProductImage::where('image_path', 'like', "%$searchTerm%")->orWhere('caption', 'like', "%$searchTerm%")->get(),
+            // 'promotions' => Promotions::where('title', 'like', "%$searchTerm%")->orWhere('description', 'like', "%$searchTerm%")->get(),
+            // 'qna' => Qna::where('question', 'like', "%$searchTerm%")->orWhere('answer', 'like', "%$searchTerm%")->get(),
+            // 'reviews' => Review::where('comment', 'like', "%$searchTerm%")->get(),
+            // 'userAddresses' => UserAddress::where('street', 'like', "%$searchTerm%")->orWhere('city', 'like', "%$searchTerm%")->get(),
+            // 'users' => User::where('name', 'like', "%$searchTerm%")->orWhere('email', 'like', "%$searchTerm%")->get(),
             'adminName' => $adminName,
-            'results' => $results,
+            'searchTerm' => $searchTerm,
+            'keyword' => 'categories',
+        ];
+
+        return view('template.admin.search')->with($results);
+    }
+    public function searchproducts(Request $request)
+    {
+        $adminName = auth()->user()->name;
+        $searchTerm = $request->input('search', ''); // Mặc định là chuỗi rỗng nếu không có input
+        $results = [
+            // 'admins' => Admin::where('name', 'like', "%$searchTerm%")->orWhere('email', 'like', "%$searchTerm%")->get(),
+            // 'categories' => Categories::where('name', 'like', "%$searchTerm%")->orWhere('description', 'like', "%$searchTerm%")->get(),
+            // 'menuTabs' => MenuTabs::where('name', 'like', "%$searchTerm%")->orWhere('slug', 'like', "%$searchTerm%")->get(),
+            // 'news' => News::where('title', 'like', "%$searchTerm%")->orWhere('content', 'like', "%$searchTerm%")->get(),
+            // 'orders' => Orders::where('address', 'like', "%$searchTerm%")->orWhere('total_amount', 'like', "%$searchTerm%")->get(),
+            // 'orderDetails' => OrderDetails::where('unit_price', 'like', "%$searchTerm%")->orWhere('subtotal', 'like', "%$searchTerm%")->get(),
+            // 'payments' => Payments::where('amount', 'like', "%$searchTerm%")->orWhere('payment_method', 'like', "%$searchTerm%")->get(),
+            'products' => Products::where('name', 'like', "%$searchTerm%")->orWhere('description', 'like', "%$searchTerm%")->get(),
+            // 'productImages' => ProductImage::where('image_path', 'like', "%$searchTerm%")->orWhere('caption', 'like', "%$searchTerm%")->get(),
+            // 'promotions' => Promotions::where('title', 'like', "%$searchTerm%")->orWhere('description', 'like', "%$searchTerm%")->get(),
+            // 'qna' => Qna::where('question', 'like', "%$searchTerm%")->orWhere('answer', 'like', "%$searchTerm%")->get(),
+            // 'reviews' => Review::where('comment', 'like', "%$searchTerm%")->get(),
+            // 'userAddresses' => UserAddress::where('street', 'like', "%$searchTerm%")->orWhere('city', 'like', "%$searchTerm%")->get(),
+            // 'users' => User::where('name', 'like', "%$searchTerm%")->orWhere('email', 'like', "%$searchTerm%")->get(),
+            'adminName' => $adminName,
             'searchTerm' => $searchTerm,
         ];
 
-        return view('template.admin.search')->with($data);
+        return view('template.admin.searchproducts')->with($results);
+    }
+    public function searchcustomers(Request $request)
+    {
+        $adminName = auth()->user()->name;
+        $searchTerm = $request->input('search', ''); // Mặc định là chuỗi rỗng nếu không có input
+        $results = [
+            // 'admins' => Admin::where('name', 'like', "%$searchTerm%")->orWhere('email', 'like', "%$searchTerm%")->get(),
+            // 'categories' => Categories::where('name', 'like', "%$searchTerm%")->orWhere('description', 'like', "%$searchTerm%")->get(),
+            // 'menuTabs' => MenuTabs::where('name', 'like', "%$searchTerm%")->orWhere('slug', 'like', "%$searchTerm%")->get(),
+            // 'news' => News::where('title', 'like', "%$searchTerm%")->orWhere('content', 'like', "%$searchTerm%")->get(),
+            // 'orders' => Orders::where('address', 'like', "%$searchTerm%")->orWhere('total_amount', 'like', "%$searchTerm%")->get(),
+            // 'orderDetails' => OrderDetails::where('unit_price', 'like', "%$searchTerm%")->orWhere('subtotal', 'like', "%$searchTerm%")->get(),
+            // 'payments' => Payments::where('amount', 'like', "%$searchTerm%")->orWhere('payment_method', 'like', "%$searchTerm%")->get(),
+            // 'products' => Products::where('name', 'like', "%$searchTerm%")->orWhere('description', 'like', "%$searchTerm%")->get(),
+            // 'productImages' => ProductImage::where('image_path', 'like', "%$searchTerm%")->orWhere('caption', 'like', "%$searchTerm%")->get(),
+            // 'promotions' => Promotions::where('title', 'like', "%$searchTerm%")->orWhere('description', 'like', "%$searchTerm%")->get(),
+            // 'qna' => Qna::where('question', 'like', "%$searchTerm%")->orWhere('answer', 'like', "%$searchTerm%")->get(),
+            // 'reviews' => Review::where('comment', 'like', "%$searchTerm%")->get(),
+            // 'userAddresses' => UserAddress::where('street', 'like', "%$searchTerm%")->orWhere('city', 'like', "%$searchTerm%")->get(),
+            'users' => User::where('name', 'like', "%$searchTerm%")->orWhere('email', 'like', "%$searchTerm%")->get(),
+            'adminName' => $adminName,
+            'searchTerm' => $searchTerm,
+        ];
+
+        return view('template.admin.searchcustomers')->with($results);
     }
     //main function update them xoa sua
     // Generic methods for CRUD

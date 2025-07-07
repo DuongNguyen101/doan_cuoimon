@@ -88,6 +88,7 @@ Route::group(['prefix' => 'login/admin'], function () {
 
 Route::group(['prefix' => 'template/admin', 'middleware' => ['auth', 'check.admin']], function () {
     Route::get('/dashboard', [TemplateAdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/products', [TemplateAdminController::class, 'products'])->name('admin.dashboard');
     Route::get('/icon', [TemplateAdminController::class, 'icon']);
     Route::get('/maps', [TemplateAdminController::class, 'maps']);
     Route::get('/notifications', [TemplateAdminController::class, 'notifications']);
@@ -105,6 +106,7 @@ Route::group(['prefix' => 'template/admin', 'middleware' => ['auth', 'check.admi
     Route::post('/product/update', [TemplateAdminController::class, 'updateproduct']);
     Route::get('/product/delete/{id}', [TemplateAdminController::class, 'deleteproduct']);
     Route::get('/user', [TemplateAdminController::class, 'orderdata'])->name('admin.dashboard');
+    Route::get('/customers', [TemplateAdminController::class, 'customerlist'])->name('admin.dashboard');
     Route::get('/user/{id}', [TemplateAdminController::class, 'orderlist']);
     Route::get('/user/form/{id}', [TemplateAdminController::class, 'loadformuser']);
     Route::post('/user/form/action', [TemplateAdminController::class, 'updateuser']);
@@ -117,7 +119,9 @@ Route::group(['prefix' => 'template/admin', 'middleware' => ['auth', 'check.admi
     Route::post('/order/update/{id?}', [TemplateAdminController::class, 'updateOrder'])->name('order.update');
     Route::get('/order/delete/{id}', [TemplateAdminController::class, 'deleteOrder']);
     //search
-    Route::get('/search', [TemplateAdminController::class, 'search'])->name('search');
+    Route::get('/searchcategories', [TemplateAdminController::class, 'searchcategories'])->name('search');
+    Route::get('/searchproducts', [TemplateAdminController::class, 'searchproducts'])->name('search');
+    Route::get('/searchcustomers', [TemplateAdminController::class, 'searchcustomers'])->name('search');
     // OrderDetails
     Route::get('/orderdetails/form/{id}', [TemplateAdminController::class, 'loadFormOrderDetails']);
     Route::get('/orderdetails/form/add', [TemplateAdminController::class, 'loadFormOrderDetailsAdd']);
