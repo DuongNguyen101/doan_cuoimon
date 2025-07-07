@@ -85,6 +85,12 @@
                             <p>Reviews</p>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{asset('/template/admin/about')}}">
+                            <i class="nc-icon nc-caps-small"></i>
+                            <p>About Us</p>
+                        </a>
+                    </li>
                     <li class="active-pro">
                         <a href="{{asset('/template/admin/qna')}}">
                             <i class="nc-icon nc-spaceship"></i>

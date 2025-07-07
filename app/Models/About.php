@@ -16,7 +16,4 @@ class About extends Model
         'created_at',
 
     ];
-   
 }
-
-?>

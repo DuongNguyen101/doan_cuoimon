@@ -38,19 +38,15 @@
                     <td style="padding: 8px;">{{ $record->created_at }}</td>
                     <td style="padding: 8px;">{{ $record->updated_at }}</td>
                     <td style="padding: 8px;">
-                        <a href="{{ url('/template/admin/news/' . $record->news_id) }}"
-                            style="color: #007bff; text-decoration: none;">Xem</a>
-                    </td>
-                    <td style="padding: 8px;">
-                        <a href="{{ url('/template/admin/news/form/' . $record->news_id) }}"
+                        <a href="{{ url('/template/admin/payments/form/' . $record->payment_id) }}"
                             style="background-color: #ffc107; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Sửa</a>
                     </td>
                     <td style="padding: 8px;">
-                        <a href="{{ url('/template/admin/order/form/add') }}"
+                        <a href="{{ url('/template/admin/payments/form/add') }}"
                             style="background-color: #28a745; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Thêm</a>
                     </td>
                     <td style="padding: 8px;">
-                        <a href="{{ url('/template/admin/newsdelete/' . $record->news_id) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"
+                        <a href="{{ url('/template/admin/payments/delete/' . $record->payment_id) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"
                             style="background-color: #dc3545; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Xóa</a>
                     </td>
                 </tr>

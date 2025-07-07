@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
 use App\Models\Admin;
 
 use App\Models\MenuTabs;
@@ -510,19 +511,109 @@ class TemplateAdminController extends Controller
     {
         return $this->extract(new Payments(), '/template/admin/payments');
     }
+    public function loadFormPayments($id)
+    {
+        return $this->loadForm(new Payments(), $id, 'template.admin.formpayments', $data = [], new Orders());
+    }
+    public function updatePayments(Request $request, $id = null)
+    {
+        return $this->updateRecord($request, new Payments(), '/template/admin/payments', $id);
+    }
+    public function deletePayments($id)
+    {
+        return $this->deleteRecord(new Payments(), $id, '/template/admin/payments');
+    }
     //promotions
     public function promotions()
     {
         return $this->extract(new Promotions(), '/template/admin/promotions');
+    }
+    public function loadFormPromotions($id)
+    {
+        return $this->loadForm(new Promotions(), $id, 'template.admin.formpromotions', $data = [], new Products());
+    }
+    public function updatePromotions(Request $request, $id = null)
+    {
+        return $this->updateRecord($request, new Promotions(), '/template/admin/promotions', $id);
+    }
+    public function deletePromotions($id)
+    {
+        return $this->deleteRecord(new Promotions(), $id, '/template/admin/promotions');
     }
     //reviews
     public function reviews()
     {
         return $this->extract(new Review(), '/template/admin/reviews');
     }
+    public function loadFormReviews($id)
+    {
+        return $this->loadForm(new Review(), $id, 'template.admin.formreviews', $data = [], new User());
+    }
+    public function updateReviews(Request $request, $id = null)
+    {
+        return $this->updateRecord($request, new Review(), '/template/admin/reviews', $id);
+    }
+    public function deleteReviews($id)
+    {
+        return $this->deleteRecord(new Review(), $id, '/template/admin/reviews');
+    }
     //qna
     public function qna()
     {
         return $this->extract(new Qna(), '/template/admin/qna');
+    }
+    //About
+
+    public function about()
+    {
+        return $this->extract(new About(), '/template/admin/about');
+    }
+    public function loadFormAbout($id)
+    {
+        return $this->loadForm(new About(), $id, 'template.admin.formabout', $data = [], new User());
+    }
+    public function updateAbout(Request $request, $id = null)
+
+    {
+        $adminName = auth()->user()->name;
+
+        try {
+
+            $user = [
+                'id' => $request->post('id'),
+                'title' => $request->post('title'),
+                'description' => $request->post('description'),
+                'image' => $request->post('image'),
+                'create_at' => $request->post('create_at')
+            ];
+            // Xử lý upload hình ảnh
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $fileName = time() . '_' . $file->getClientOriginalName(); // Tạo tên duy nhất
+                $destinationPath = public_path('image/shoplist'); // Thay đổi thành thư mục phù hợp
+                if (!file_exists($destinationPath)) {
+                    mkdir($destinationPath, 0777, true); // Tạo thư mục nếu không tồn tại
+                }
+                $file->move($destinationPath, $fileName); // Lưu vào thư mục
+                $user['image_url'] = $fileName; // Cập nhật tên tệp
+            } elseif ($id && !$request->hasFile('image') && Products::find($id)) {
+                $existingProduct = Products::find($id);
+                if ($existingProduct->image_url) {
+                    $product['image'] = $existingProduct->image_url;
+                }
+            }
+            if ($request->post('id')) {
+                User::where('id', $request->post('id'))->update($user);
+                session()->flash('msg', 'update user infor sucessfully');
+                return redirect('/template/admin/user');
+            } else {
+                User::create($user);
+                session()->flash('msg', 'Add new user successfuly');
+                return redirect('/template/admin/user');
+            }
+        } catch (Exception $ex) {
+            session()->flash('msg', 'Failed');
+            return redirect('/template/admin/about');
+        }
     }
 }
