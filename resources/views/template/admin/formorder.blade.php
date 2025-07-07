@@ -25,13 +25,14 @@
             @endif
 
             {{-- user_id --}}
-            <div class="form-group" style="margin-bottom: 15px;">
-                <label for="user_id" style="display: block; margin-bottom: 6px;">user_id</label>
-                <input type="text" id="user_id" name="user_id"
-                    value="{{ old('user_id', $record->user_id ?? '') }}"
-                    required
-                    style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
-            </div>
+
+            <label for="user_id" style="display: block; margin-bottom: 6px;">user_id:</label>
+            <select id="user_id" name="user_id" required
+                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                @foreach ( $fk as $key)
+                <option value="{{$key->id}}">{{$key->id}}. {{ $key->name }}</option>
+                @endforeach
+            </select>
             {{-- order_id --}}
             <input type="hidden" name="order_id" value="{{ old('news_id', $record->order_id ?? '') }}" readonly>
 

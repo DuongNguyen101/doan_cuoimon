@@ -60,7 +60,7 @@ class TemplateAdminController extends Controller
         $data = [
             'adminName'  => $adminName,
             'category' => Categories::find($id),
-            'id' => $id
+            'id' => $id,
         ];
         return view('template/admin/formproduct')->with($data);
     }
@@ -117,7 +117,8 @@ class TemplateAdminController extends Controller
         $data = [
             'adminName'  => $adminName,
             'product' => Products::find($id),
-            'id' => $id
+            'id' => $id,
+            'categories' => Categories::get()
         ];
         return view('template/admin/formproductdetail')->with($data);
     }
@@ -126,7 +127,8 @@ class TemplateAdminController extends Controller
         $adminName = auth()->user()->name;
         $data = [
             'adminName'  => $adminName,
-            'id' => $id
+            'id' => $id,
+            'categories' => Categories::get()
         ];
         return view('template/admin/formproductdetail')->with($data);
     }
@@ -378,14 +380,16 @@ class TemplateAdminController extends Controller
     }
     //main function update them xoa sua
     // Generic methods for CRUD
-    private function loadForm($model, $id, $view, $data = [])
+    private function loadForm($model, $id, $view, $data = [], $model2)
     {
         $adminName = auth()->user()->name;
         $record = $id ? $model::find($id) : null;
+        $fk = $model2::get();
         $data = array_merge($data, [
             'adminName' => $adminName,
             'record' => $record,
-            'id' => $id
+            'id' => $id,
+            'fk' => $fk
         ]);
         return view($view, $data);
     }
@@ -441,11 +445,11 @@ class TemplateAdminController extends Controller
     //update record cho oderdetails
     public function loadFormOrderDetails($id)
     {
-        return $this->loadForm(new OrderDetails(), $id, 'template.admin.formorderdetails');
+        return $this->loadForm(new OrderDetails(), $id, 'template.admin.formorderdetails', $data = [], new Orders());
     }
     public function loadFormOrderDetailsAdd()
     {
-        return $this->loadForm(new OrderDetails(), null, 'template.admin.formorderdetails');
+        return $this->loadForm(new OrderDetails(), null, 'template.admin.formorderdetails', $data = [], new Orders());
     }
     public function updateOrderDetails(Request $request, $id = null)
     {
@@ -462,7 +466,7 @@ class TemplateAdminController extends Controller
     }
     public function loadFormNews($id)
     {
-        return $this->loadForm(new News(), $id, 'template.admin.formnews');
+        return $this->loadForm(new News(), $id, 'template.admin.formnews', $data = [], new Orders());
     }
     public function updateNews(Request $request, $id = null)
     {
@@ -475,7 +479,7 @@ class TemplateAdminController extends Controller
     //oders
     public function loadFormOrder($id)
     {
-        return $this->loadForm(new Orders(), $id, 'template.admin.formorder');
+        return $this->loadForm(new Orders(), $id, 'template.admin.formorder', $data = [], new User());
     }
     public function updateOrder(Request $request, $id = null)
     {

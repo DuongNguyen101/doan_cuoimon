@@ -26,11 +26,16 @@
             <input type="hidden" name="product_id" value="{{ old('product_id', $product->product_id ?? '') }}" readonly>
 
             {{-- cate ID --}}
-            <label for="name" style="display: block; margin-bottom: 6px;">danh mục:</label>
-            <input type="text" name="category_id" value="{{ old('category_id', $product->category_id ?? $id) }}" readonly>
+            <label for="category_id" style="display: block; margin-bottom: 6px;">danh mục:</label>
+            <select id="category_id" name="category_id" required
+                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                @foreach ( $categories as $category)
+                <option value="{{$category->category_id}}">{{$category->category_id}}. {{ $category->name }}</option>
+                @endforeach
+            </select>
 
             {{-- Mô tả --}}
-            <div class="form-group" style="margin-bottom: 15px;">
+            <div class=" form-group" style="margin-bottom: 15px;">
                 <label for="description" style="display: block; margin-bottom: 6px;">Mô tả:</label>
                 <textarea id="description" name="description" rows="4"
                     style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">{{ old('description', $product->description ?? '') }}</textarea>
@@ -61,7 +66,7 @@
 
             {{-- hinh san pham sản phẩm --}}
             <div class="form-group" style="margin-bottom: 15px;">
-                <label for="image_url" style="display: block; margin-bottom: 6px;">Hình sản phẩm:</label>
+                <label for="image_url" style="display: block; margin-bottom: 6px;"><button style="cursor: pointer;">Up hinh</button></label>
                 <input type="file" id="image_url" name="image_url"
                     accept="image/*"
                     style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
