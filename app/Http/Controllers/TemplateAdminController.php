@@ -298,25 +298,26 @@ class TemplateAdminController extends Controller
                     mkdir($destinationPath, 0777, true); // Tạo thư mục nếu không tồn tại
                 }
                 $file->move($destinationPath, $fileName); // Lưu vào thư mục
-                $user['image_url'] = $fileName; // Cập nhật tên tệp
-            } elseif ($id && !$request->hasFile('image') && Products::find($id)) {
-                $existingProduct = Products::find($id);
-                if ($existingProduct->image_url) {
-                    $product['image'] = $existingProduct->image_url;
+                $user['image'] = $fileName; // Cập nhật tên tệp
+            } elseif ($id && !$request->hasFile('image') && User::find($id)) {
+                $existingProduct = User::find($id);
+                if ($existingProduct->image) {
+                    $user['image'] = $existingProduct->image;
                 }
             }
             if ($request->post('id')) {
                 User::where('id', $request->post('id'))->update($user);
                 session()->flash('msg', 'update user infor sucessfully');
-                return redirect('/template/admin/user');
+                return redirect('/template/admin/customers');
             } else {
                 User::create($user);
                 session()->flash('msg', 'Add new user successfuly');
-                return redirect('/template/admin/user');
+                return redirect('/template/admin/customers');
             }
         } catch (Exception $ex) {
-            session()->flash('msg', 'Failed');
-            return redirect('/template/admin/user');
+            Log::error('Lỗi cập nhật/thêm chi tiết đơn hàng: ' . $ex->getMessage());
+            session()->flash('msg', 'Failed' . $ex);
+            return redirect('/template/admin/customers');
         }
     }
     // xoa san pham
@@ -325,7 +326,7 @@ class TemplateAdminController extends Controller
         $adminName = auth()->user()->name;
         User::where('id', $id)->delete();
 
-        return redirect('template/admin/user')->with('adminName', $adminName);
+        return redirect('template/admin/customers')->with('adminName', $adminName);
     }
     public function orderdetail($id, $od)
     {
@@ -556,7 +557,51 @@ class TemplateAdminController extends Controller
     }
     public function updateNews(Request $request, $id = null)
     {
-        return $this->updateRecord($request, new News(), '/template/admin/news', $id);
+        $adminName = auth()->user()->name;
+
+        try {
+
+            $product = [
+                'news_id' => $request->post('news_id'),
+                'title' => $request->post('title'),
+                'content' => $request->post('content'),
+                'author' => $request->post('author'),
+                'image_url' => $request->post('price'),
+                'publish_date' => $request->post('publish_date'),
+                'status' => $request->post('category_id'),
+                'created_at' => $request->post('created_at'),
+                'updated_at' => $request->post('updated_at')
+            ];
+            // Xử lý upload hình ảnh
+            if ($request->hasFile('image_url')) {
+                $file = $request->file('image_url');
+                $fileName = time() . '_' . $file->getClientOriginalName(); // Tạo tên duy nhất
+                $destinationPath = public_path('image/shoplist'); // Thay đổi thành thư mục phù hợp
+                if (!file_exists($destinationPath)) {
+                    mkdir($destinationPath, 0777, true); // Tạo thư mục nếu không tồn tại
+                }
+                $file->move($destinationPath, $fileName); // Lưu vào thư mục
+                $product['image_url'] = $fileName; // Cập nhật tên tệp
+            } elseif ($id && !$request->hasFile('image_url') && News::find($id)) {
+                $existingProduct = News::find($id);
+                if ($existingProduct->image_url) {
+                    $product['image_url'] = $existingProduct->image_url;
+                }
+            }
+            if ($request->post('news_id')) {
+                News::where('news_id', $request->post('news_id'))->update($product);
+                session()->flash('msg', 'Sua San Pham Thanh cong');
+                return redirect('/template/admin/news/' . ($request->post('category_id')) ?? '');
+            } else {
+                News::create($product);
+                session()->flash('msg', 'Them San Pham Thanh cong');
+                return redirect('/template/admin/news/' . ($request->post('category_id') ?? ''));
+            }
+        } catch (\Exception $e) {
+            Log::error('Lỗi cập nhật/thêm chi tiết đơn hàng: ' . $e->getMessage());
+            session()->flash('msg', 'That bai' . $e->getMessage());
+            return redirect('/template/admin/news/' . ($request->post('category_id') ?? ''));
+        }
     }
     public function deleteNews($id)
     {
@@ -665,18 +710,18 @@ class TemplateAdminController extends Controller
                 }
                 $file->move($destinationPath, $fileName); // Lưu vào thư mục
                 $user['image_url'] = $fileName; // Cập nhật tên tệp
-            } elseif ($id && !$request->hasFile('image') && Products::find($id)) {
-                $existingProduct = Products::find($id);
-                if ($existingProduct->image_url) {
-                    $product['image'] = $existingProduct->image_url;
+            } elseif ($id && !$request->hasFile('image') && About::find($id)) {
+                $existingProduct = About::find($id);
+                if ($existingProduct->image) {
+                    $user['image'] = $existingProduct->image;
                 }
             }
             if ($request->post('id')) {
-                User::where('id', $request->post('id'))->update($user);
+                About::where('id', $request->post('id'))->update($user);
                 session()->flash('msg', 'update user infor sucessfully');
                 return redirect('/template/admin/user');
             } else {
-                User::create($user);
+                About::create($user);
                 session()->flash('msg', 'Add new user successfuly');
                 return redirect('/template/admin/user');
             }
@@ -684,5 +729,56 @@ class TemplateAdminController extends Controller
             session()->flash('msg', 'Failed');
             return redirect('/template/admin/about');
         }
+    }
+    //manage products
+    public function productsin()
+    {
+        $adminName = auth()->user()->name;
+
+        $data = [
+            'adminName'  => $adminName,
+            'categories' => Categories::get(),
+            'products'   => Products::where('stock', '>', 0)->get()
+        ];
+
+        return view('template.admin.productsin')->with($data);
+    }
+    public function productsout()
+    {
+        $adminName = auth()->user()->name;
+
+        $data = [
+            'adminName'  => $adminName,
+            'categories' => Categories::get(),
+            'products'   => Products::where('stock', '=', 0)->get()
+        ];
+
+        return view('template.admin.productsin')->with($data);
+    }
+    public function productssold()
+    {
+        $adminName = auth()->user()->name;
+        $sold = OrderDetails::pluck('product_id')->unique()->values();
+
+        $data = [
+            'adminName'  => $adminName,
+            'categories' => Categories::get(),
+            'products'   => Products::whereIn('product_id', $sold)->get()
+        ];
+
+        return view('template.admin.productsin')->with($data);
+    }
+    public function productsdiscounted()
+    {
+        $adminName = auth()->user()->name;
+        $sold = Promotions::pluck('product_id')->unique()->values();
+
+        $data = [
+            'adminName'  => $adminName,
+            'categories' => Categories::get(),
+            'products'   => Products::whereIn('product_id', $sold)->get()
+        ];
+
+        return view('template.admin.productsin')->with($data);
     }
 }

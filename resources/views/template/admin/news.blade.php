@@ -17,6 +17,7 @@
                     <th style="padding: 10px;">title</th>
                     <th style="padding: 10px;">content</th>
                     <th style="padding: 10px;">author</th>
+                    <th style="padding: 10px;">image_url</th>
                     <th style="padding: 10px;">publish_date</th>
                     <th style="padding: 10px;">status</th>
                     <th style="padding: 10px;">created_at</th>
@@ -31,6 +32,13 @@
                     <td style="padding: 8px;">{{ $record->title }}</td>
                     <td style="padding: 8px;">{{ $record->content }}</td>
                     <td style="padding: 8px;">{{ $record->author }}</td>
+                    <td style="padding: 8px;">
+                        @if ($record->image_url)
+                        <img src="{{ asset( 'image/shoplist/'.$record->image_url) }}" alt="Product Image" style="width: 60px; height: auto; border-radius: 4px;">
+                        @else
+                        <em>Không có ảnh</em>
+                        @endif
+                    </td>
                     <td style="padding: 8px;">{{ $record->publish_date }}</td>
                     <td style="padding: 8px;">{{ $record->status }}</td>
                     <td style="padding: 8px;">{{ $record->created_at }}</td>

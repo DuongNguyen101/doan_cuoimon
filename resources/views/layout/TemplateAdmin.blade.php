@@ -55,6 +55,30 @@
                             <p>Products</p>
                         </a>
                     </li>
+                    <li class="ml-3">
+                        <a href="{{asset('/template/admin/products/sold')}}">
+                            <i class="nc-icon nc-bus-front-12" style="font-size: 15px;"></i>
+                            <p style="font-size: 12px;">Sold products</p>
+                        </a>
+                    </li>
+                    <li class="ml-3">
+                        <a href="{{asset('/template/admin/products/in')}}">
+                            <i class="nc-icon nc-atom" style="font-size: 15px;"></i>
+                            <p style="font-size: 12px;">In stocks</p>
+                        </a>
+                    </li>
+                    <li class="ml-3">
+                        <a href="{{asset('/template/admin/products/discounted')}}">
+                            <i class="nc-icon nc-air-baloon" style="font-size: 15px;"></i>
+                            <p style="font-size: 12px;">Discounted </p>
+                        </a>
+                    </li>
+                    <li class="ml-3">
+                        <a href="{{asset('/template/admin/products/out')}}">
+                            <i class="nc-icon nc-simple-add" style="font-size: 15px;"></i>
+                            <p style="font-size: 12px;">out of Stock</p>
+                        </a>
+                    </li>
 
                     <li>
                         <a href="{{asset('/template/admin/news')}}">

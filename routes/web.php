@@ -157,6 +157,11 @@ Route::group(['prefix' => 'template/admin', 'middleware' => ['auth', 'check.admi
     Route::get('/about', [TemplateAdminController::class, 'about']);
     Route::get('/about/form/{id}', [TemplateAdminController::class, 'loadFormAbout']);
     Route::post('/about/update/{id?}', [TemplateAdminController::class, 'updateAbout'])->name('about.update');
+    //manage products
+    Route::get('/products/in', [TemplateAdminController::class, 'productsin']);
+    Route::get('/products/out', [TemplateAdminController::class, 'productsout']);
+    Route::get('/products/sold', [TemplateAdminController::class, 'productssold']);
+    Route::get('/products/discounted', [TemplateAdminController::class, 'productsdiscounted']);
 });
 
 Route::get('/email/verify', [VerificationController::class, 'notice'])->name('verification.notice');

@@ -48,11 +48,11 @@
             </div>
             {{-- hinh --}}
             <div class="form-group" style="margin-bottom: 15px;">
-                <label for="image_url" style="display: block; margin-bottom: 6px;">Hình sản phẩm:</label>
+                <label for="image_url" style="display: block; margin-bottom: 6px;"><button style="cursor: pointer;">Up hinh</button></label>
                 <input type="file" id="image_url" name="image_url"
                     accept="image/*"
                     style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
-                @if (old('image_url', $product->image_url ?? ''))
+                @if (old('image_url', $record->image_url ?? ''))
                 <p>{{ isset($record->image_url) ? 'Giu hinh hien tai' : 'Up hinh moi' }} <img src="{{ asset('image/shoplist' . (old('image_url', $record->image_url ?? ''))) }}" alt="Current Image" style="max-width: 200px; margin-top: 10px;"></p>
                 @endif
             </div>
@@ -68,8 +68,9 @@
                 <label for="status" style="display: block; margin-bottom: 6px;">Trạng thái:</label>
                 <select id="status" name="status" required
                     style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                    <option value="draft" {{ old('status', $record->status ?? '') == 'draft' ? 'selected' : '' }}>draft</option>
                     <option value="published" {{ old('status', $record->status ?? '') == 'published' ? 'selected' : '' }}>published</option>
-                    <option value="unpublish" {{ old('status', $record->status ?? '') == 'unpublish' ? 'selected' : '' }}>unpublish</option>
+                    <option value="archived" {{ old('status', $record->status ?? '') == 'archived' ? 'selected' : '' }}>archived</option>
                 </select>
             </div>
             {{-- Created At --}}
