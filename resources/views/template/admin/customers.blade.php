@@ -9,7 +9,7 @@
         <input type="text" name="search" placeholder="Nhập từ khóa tìm kiếm" style="padding: 10px; width: 300px; border: 1px solid #ccc; border-radius: 6px;">
         <button type="submit" style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 6px;">Tìm kiếm</button>
     </form>
-    <div class="danh-muc-sp" style="max-width: 900px; margin: 20px 5px 5px 5px; font-family: Arial, sans-serif; font-size:12px;">
+    <div class="danh-muc-sp" style="max-width: 900px; margin: 20px 5px 5px 5px; font-family: Arial, sans-serif; font-size:14px;">
         <div class="row" style="margin-bottom: 25px;">
             <h2 style="text-align: center; color: #333;">Customer List </h2>
         </div>
@@ -22,7 +22,7 @@
                     <th style="padding: 10px;">email</th>
                     <th style="padding: 10px;">phone</th>
                     <th style="padding: 10px;">role</th>
-                    <th style="padding: 10px;">description</th>
+                    <!-- <th style="padding: 10px;">description</th> -->
                     <th style="padding: 10px;">image</th>
                     <th style="padding: 10px;">created_at</th>
                     <th style="padding: 10px;">updated_at</th>
@@ -38,7 +38,7 @@
                     <td style="padding: 8px;">{{ $User->email }}</td>
                     <td style="padding: 8px;">{{ $User->phone }}</td>
                     <td style="padding: 8px;">{{ $User->role }}</td>
-                    <td style="padding: 8px;">{{ $User->description }}</td>
+                    <!-- <td style="padding: 8px;">{{ $User->description }}</td> -->
                     <td style="padding: 8px;">
                         @if ($User->image)
                         <img src="{{asset('image/shoplist/'. $User->image) }}" alt="Product Image" style="width: 60px; height: auto; border-radius: 4px;">
