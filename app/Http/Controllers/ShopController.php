@@ -22,17 +22,14 @@ class ShopController extends Controller
         $search = request()->get('search');
         $sort = request()->get('sort');
 
-        // Nếu có tìm kiếm, thì tìm toàn bộ sản phẩm có status = 1
         if ($search) {
             $query = Products::where('status', 1)
                 ->where('name', 'like', '%' . $search . '%');
         } else {
-            // Nếu không tìm kiếm thì chỉ lấy theo category
             $query = Products::where('category_id', $id)
                 ->where('status', 1);
         }
 
-        // Xử lý sắp xếp
         if ($sort === 'asc') {
             $query->orderBy('price', 'asc');
         } elseif ($sort === 'desc') {
@@ -96,8 +93,9 @@ class ShopController extends Controller
 
     public function wishlist()
     {
-        $categories = Categories::all(); // thêm dòng này
-        return view('template/user/shop/wishlist', compact('categories')); // truyền vào view
+        $categories = Categories::all();
+        $wishlist = session('wishlist', []);
+        return view('template/user/shop/wishlist', compact('categories', 'wishlist'));
     }
 
     public function cart()
@@ -110,5 +108,45 @@ class ShopController extends Controller
     {
         $categories = Categories::all();
         return view('template/user/shop/checkout', compact('categories'));
+    }
+
+    public function addToWishlist($id)
+    {
+        $product = Products::findOrFail($id);
+
+        $wishlist = session()->get('wishlist', []);
+
+        if (isset($wishlist[$id])) {
+            $wishlist[$id]['quantity'] += 1;
+            session()->flash('info', 'Increase the number of products in your wishlist!');
+        } else {
+            $wishlist[$id] = [
+                'product_id' => $product->id,
+                'name' => $product->name,
+                'price' => $product->price,
+                'image_url' => $product->image_url,
+                'quantity' => 1,
+                'added_at' => now()->format('d M, Y'),
+            ];
+            session()->flash('success', 'Added to favorites successfully!');
+        }
+
+        session()->put('wishlist', $wishlist);
+        return redirect()->back();
+    }
+
+    public function removeFromWishlist($id)
+    {
+        $wishlist = session()->get('wishlist', []);
+
+        if (isset($wishlist[$id])) {
+            unset($wishlist[$id]);
+            session()->put('wishlist', $wishlist);
+            session()->flash('success', 'Remove product from wishlist!');
+        } else {
+            session()->flash('info', 'Product does not exist in wishlist!');
+        }
+
+        return redirect()->back();
     }
 }

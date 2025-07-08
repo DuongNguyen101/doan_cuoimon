@@ -97,18 +97,18 @@
                         </a>
                         <div class="mixin-container d-xl-flex d-none">
                             <div class="drop-container">
-                                <div id="dropdown3">
+                                <div  id="dropdown3">
                                     <span class="selected-display black fw-500" id="destination3">All Categories</span>
                                 </div>
                             </div>
                             <div class="vr-line vr-line-2"></div>
-                            <form id="searchRedirectForm">
-                                <div class="input-field d-flex">
-                                    <input type="text" name="search" id="searchInput" class="form-control me-2"
-                                        placeholder="Search for products..." required>
-                                    <button type="submit" class="cus-btn">Search</button>
-                                </div>
-                            </form>
+                                <form id="searchRedirectForm">
+                                    <div class="input-field d-flex">
+                                        <input type="text" name="search" id="searchInput" class="form-control me-2"
+                                            placeholder="Search for products..." required>
+                                        <button type="submit" class="cus-btn">Search</button>
+                                    </div>
+                                </form>
                         </div>
                         <div class="header-buttons d-flex align-items-center gap-3">
 
@@ -152,12 +152,12 @@
 
                             <!-- Wishlist -->
                             <a href="{{ url('template/user/shop/wishlist') }}" class="button-block d-sm-flex d-none">
-                                <img src="{{ url('user') }}/media/icons/wishlist.png" alt="Wishlist">
+                                <i class="fa-regular fa-heart"></i>
                             </a>
 
                             <!-- Cart -->
                             <a href="#" class="button-block d-sm-flex d-none cart-button">
-                                <img src="{{ url('user') }}/media/icons/cart.png" alt="Cart">
+                                <i class="fa-solid fa-cart-shopping"></i>
                             </a>
                         </div>
                     </div>
@@ -168,7 +168,7 @@
                                 <nav class="all-category-nav">
                                     <label class="open-menu-all" for="open-menu-all">
                                         <input class="input-menu-all" id="open-menu-all" type="checkbox" name="menu-open">
-
+                                        
                                         <span class="all-navigator">
                                             <i class="fa-solid fa-bars"></i>
                                             <span>Browse All Categories</span>
@@ -176,12 +176,12 @@
 
                                         <span class="all-category-list list-unstyled">
                                             @foreach ($categories as $category)
-                                            <span class="all-category-list-item">
-                                                <a href="{{ route('shop.category', ['id' => $category->category_id]) }}"
+                                                <span class="all-category-list-item">
+                                                    <a href="{{ route('shop.category', ['id' => $category->category_id]) }}"
                                                     class="all-category-list-link dark-black fw-500">
-                                                    {{ $category->name }}
-                                                </a>
-                                            </span>
+                                                        {{ $category->name }}
+                                                    </a>
+                                                </span>
                                             @endforeach
                                         </span>
                                     </label>
@@ -202,7 +202,6 @@
                                                 <li>
                                                     <a href="{{ route('shop.category', ['id' => 1]) }}">Shop List</a>
                                                 </li>
-                                                <li><a href="{{asset('template/user/shop/shop-detail')}}">Shop Detail </a></li>
                                                 <li><a href="{{asset('template/user/shop/wishlist')}}">Wishlist</a></li>
                                                 <li><a href="{{asset('template/user/shop/cart')}}">Cart</a></li>
                                                 <li><a href="{{asset('template/user/shop/checkout')}}">Checkout</a></li>

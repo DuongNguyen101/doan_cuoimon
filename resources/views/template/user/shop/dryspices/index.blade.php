@@ -1,6 +1,18 @@
 @extends('template.user.shop.shop-list') {{-- Đúng path --}}
 
 @section('list-products')
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+@if (session('info'))
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        {{ session('info') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
 <div class="row">
     @foreach ($products as $product)
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-4">
@@ -23,9 +35,11 @@
                                class="btn btn-sm btn-outline-success flex-fill text-center">
                                 <i class="fas fa-eye"></i>
                             </a>
-                            <a href="#" class="btn btn-sm btn-outline-danger flex-fill text-center">
-                                <i class="fas fa-heart"></i>
-                            </a>
+                           <a href="{{ route('wishlist.add', $product->product_id) }}"
+   class="btn btn-sm btn-outline-danger flex-fill text-center">
+    <i class="fas fa-heart"></i>
+</a>
+
                             <a href="#" class="btn btn-sm btn-outline-primary flex-fill text-center">
                                 <i class="fas fa-shopping-cart"></i>
                             </a>

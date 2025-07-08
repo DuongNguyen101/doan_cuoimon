@@ -155,12 +155,12 @@
 
                             <!-- Wishlist -->
                             <a href="{{ url('template/user/shop/wishlist') }}" class="button-block d-sm-flex d-none">
-                                <img src="{{ url('user') }}/media/icons/wishlist.png" alt="Wishlist">
+                                <i class="fa-regular fa-heart"></i>
                             </a>
 
                             <!-- Cart -->
                             <a href="#" class="button-block d-sm-flex d-none cart-button">
-                                <img src="{{ url('user') }}/media/icons/cart.png" alt="Cart">
+                                <i class="fa-solid fa-cart-shopping"></i>
                             </a>
                         </div>
                     </div>
@@ -205,7 +205,6 @@
                                                 <li>
                                                     <a href="{{ route('shop.category', ['id' => 1]) }}">Shop List</a>
                                                 </li>
-                                                <li><a href="{{asset('template/user/shop/shop-detail')}}">Shop Detail </a></li>
                                                 <li><a href="{{asset('template/user/shop/wishlist')}}">Wishlist</a></li>
                                                 <li><a href="{{asset('template/user/shop/cart')}}">Cart</a></li>
                                                 <li><a href="{{asset('template/user/shop/checkout')}}">Checkout</a></li>
@@ -276,7 +275,7 @@
                                 <div class="product-image-container container-2 bg-white">
                                     <div class="product-slider slider-2">
                                         <div class="detail-image detail-2">
-                                            <img src="{{ asset('image/shoplist/' . $product->image_url) }}" alt="{{ $product->name }}">
+                                            <img src="{{ asset('image/shoplist/' . $product->image_url) }}" alt="{{ $product->name }}" >
                                         </div>
                                     </div>
                                 </div>
@@ -285,17 +284,9 @@
                                 <div class="product-text-container bg-white br-20">
                                     @if(isset($product))
                                         <h3>{{ $product->name }}</h3>
-                                    <div class="d-flex align-items-center flex-wrap gap-16 mb-24">
-                                        <h5 class="color-sec">★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(02 Reviews)</span></h5>
-                                        <div class="vr-line vr-line-2"></div>
-                                        <p class="light-gray">Brand: <span class="color-primary">Beast</span></p>
-                                        <div class="vr-line vr-line-2"></div>
-                                        <p class="light-gray">SKU: <span class="light-black">3, 24, 672</span></p>
-                                    </div>
                                     <div class="d-flex align-items-center gap-16 mb-24">
-                                        <p class="light-gray text-decoration-line-through">$1.8</p>
-                                        <h5>${{ number_format($product->price, 2) }}</h5>
+                                        <span class="text-decoration-line-through light-gray">${{ number_format($product->price * 1.1, 2) }}</span>
+                                        &nbsp;&nbsp;${{ number_format($product->price, 2) }}
                                         <span class="label white">-12%</span>
                                     </div>
                                     <p class="light-gray mb-24">

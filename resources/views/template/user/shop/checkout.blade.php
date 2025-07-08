@@ -159,12 +159,12 @@
 
                             <!-- Wishlist -->
                             <a href="{{ url('template/user/shop/wishlist') }}" class="button-block d-sm-flex d-none">
-                                <img src="{{ url('user') }}/media/icons/wishlist.png" alt="Wishlist">
+                                <i class="fa-regular fa-heart"></i>
                             </a>
 
                             <!-- Cart -->
                             <a href="#" class="button-block d-sm-flex d-none cart-button">
-                                <img src="{{ url('user') }}/media/icons/cart.png" alt="Cart">
+                                <i class="fa-solid fa-cart-shopping"></i>
                             </a>
                         </div>
                     </div>
@@ -209,7 +209,6 @@
                                                 <li>
                                                     <a href="{{ route('shop.category', ['id' => 1]) }}">Shop List</a>
                                                 </li>
-                                                <li><a href="{{asset('template/user/shop/shop-detail')}}">Shop Detail </a></li>
                                                 <li><a href="{{asset('template/user/shop/wishlist')}}">Wishlist</a></li>
                                                 <li><a href="{{asset('template/user/shop/cart')}}">Cart</a></li>
                                                 <li><a href="{{asset('template/user/shop/checkout')}}">Checkout</a></li>
