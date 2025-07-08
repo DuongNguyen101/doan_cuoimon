@@ -86,7 +86,7 @@ Route::group(['prefix' => 'login/admin'], function () {
 
 
 
-Route::group(['prefix' => 'template/admin', 'middleware' => ['auth', 'check.admin']], function () {
+Route::group(['prefix' => 'template/admin', 'middleware' => ['auth:admin', 'check.admin']], function () {
     Route::get('/dashboard', [TemplateAdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/products', [TemplateAdminController::class, 'products'])->name('admin.dashboard');
     Route::get('/icon', [TemplateAdminController::class, 'icon']);

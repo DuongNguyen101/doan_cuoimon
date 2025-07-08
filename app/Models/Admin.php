@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Admin extends Model
+class Admin extends Authenticatable
 {
+    use Notifiable;
+
     protected $table = 'admin';
     protected $primaryKey = 'id';
-    public $timestamps = false;
-    protected $fillable = ['id', 'name', 'email', 'password', 'role', 'created_at'];
+    public $timestamps = true; 
+
+    protected $fillable = ['name', 'email', 'password', 'role', 'created_at'];
 }

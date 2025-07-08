@@ -10,13 +10,13 @@ class CheckAdminRole
 {
     public function handle(Request $request, Closure $next)
     {
-        $user = Auth::user();
+        $user = Auth::guard('admin')->user();
 
         if ($user && in_array($user->role, ['admin', 'super admin'])) {
             return $next($request);
         }
 
-        Auth::logout();
+        Auth::guard('admin')->logout();
         return redirect()->route('admin.login')->withErrors(['email' => 'You do not have access.']);
     }
 }

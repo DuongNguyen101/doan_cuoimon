@@ -17,14 +17,14 @@ class LoginAdminController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
-            $user = auth()->user();
+        if (Auth::guard('admin')->attempt($credentials)) {
+            $admin = Auth::guard('admin')->user();
 
-            if (in_array($user->role, ['admin', 'super admin'])) {
+            if (in_array($admin->role, ['admin', 'super admin'])) {
                 return redirect('/template/admin/dashboard');
             }
 
-            Auth::logout();
+            Auth::guard('admin')->logout();
             return back()->withErrors(['email' => 'You do not have access to the admin page.']);
         }
 
@@ -38,12 +38,11 @@ class LoginAdminController extends Controller
 
     public function postlogoutadmin(Request $request)
     {
-        Auth::logout(); 
+        Auth::guard('admin')->logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
         return redirect()->route('admin.login')->with('success', 'Log out successfully!');
     }
-    
 }
