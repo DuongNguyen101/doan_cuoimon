@@ -17,37 +17,37 @@ class ShopController extends Controller
     }
 
     public function categoryProducts($id)
-{
-    $categories = Categories::all();
-    $search = request()->get('search');
-    $sort = request()->get('sort');
+    {
+        $categories = Categories::all();
+        $search = request()->get('search');
+        $sort = request()->get('sort');
 
-    // Nếu có tìm kiếm, thì tìm toàn bộ sản phẩm có status = 1
-    if ($search) {
-        $query = Products::where('status', 1)
-            ->where('name', 'like', '%' . $search . '%');
-    } else {
-        // Nếu không tìm kiếm thì chỉ lấy theo category
-        $query = Products::where('category_id', $id)
-            ->where('status', 1);
+        // Nếu có tìm kiếm, thì tìm toàn bộ sản phẩm có status = 1
+        if ($search) {
+            $query = Products::where('status', 1)
+                ->where('name', 'like', '%' . $search . '%');
+        } else {
+            // Nếu không tìm kiếm thì chỉ lấy theo category
+            $query = Products::where('category_id', $id)
+                ->where('status', 1);
+        }
+
+        // Xử lý sắp xếp
+        if ($sort === 'asc') {
+            $query->orderBy('price', 'asc');
+        } elseif ($sort === 'desc') {
+            $query->orderBy('price', 'desc');
+        } else {
+            $query->orderBy('name', 'asc');
+        }
+
+        $products = $query->paginate(12)->appends([
+            'search' => $search,
+            'sort' => $sort,
+        ]);
+
+        return view('template.user.shop.dryspices.index', compact('products', 'categories', 'id'));
     }
-
-    // Xử lý sắp xếp
-    if ($sort === 'asc') {
-        $query->orderBy('price', 'asc');
-    } elseif ($sort === 'desc') {
-        $query->orderBy('price', 'desc');
-    } else {
-        $query->orderBy('name', 'asc');
-    }
-
-    $products = $query->paginate(12)->appends([
-        'search' => $search,
-        'sort' => $sort,
-    ]);
-
-    return view('template.user.shop.dryspices.index', compact('products', 'categories', 'id'));
-}
 
 
     public function searchProducts()
@@ -78,12 +78,21 @@ class ShopController extends Controller
         return view('template.user.shop.dryspices.index', compact('products', 'categories'));
     }
 
-        public function shopdetail($id = null) 
+    public function shopdetail($id = null)
     {
         $categories = Categories::all();
 
-        return view('template/user/shop/shop-detail', compact('categories'));
+        $product = null;
+        if ($id) {
+            $product = Products::find($id);
+            if (!$product) {
+                abort(404);
+            }
+        }
+
+        return view('template/user/shop/shop-detail', compact('categories', 'product'));
     }
+
 
     public function wishlist()
     {

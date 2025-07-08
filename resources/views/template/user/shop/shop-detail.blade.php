@@ -274,39 +274,17 @@
                         <div class="row row-gap-3">
                             <div class="col-xl-6">
                                 <div class="product-image-container container-2 bg-white">
-                                    <div class="product-slider-asnav asnav-2">
-                                        <div class="nav-image">
-                                            <img src="{{url('user')}}/media/products/nav-image-1.png" alt="">
-                                        </div>
-                                        <div class="nav-image">
-                                            <img src="{{url('user')}}/media/products/nav-image-2.png" alt="">
-                                        </div>
-                                        <div class="nav-image">
-                                            <img src="{{url('user')}}/media/products/nav-image-3.png" alt="">
-                                        </div>
-                                        <div class="nav-image">
-                                            <img src="{{url('user')}}/media/products/nav-image-4.png" alt="">
-                                        </div>
-                                    </div>
                                     <div class="product-slider slider-2">
                                         <div class="detail-image detail-2">
-                                            <img src="{{url('user')}}/media/products/large-image-1.png" alt="">
-                                        </div>
-                                        <div class="detail-image detail-2">
-                                            <img src="{{url('user')}}/media/products/large-image-2.png" alt="">
-                                        </div>
-                                        <div class="detail-image detail-2">
-                                            <img src="{{url('user')}}/media/products/large-image-3.png" alt="">
-                                        </div>
-                                        <div class="detail-image detail-2">
-                                            <img src="{{url('user')}}/media/products/large-image-4.png" alt="">
+                                            <img src="{{ asset('image/shoplist/' . $product->image_url) }}" alt="{{ $product->name }}">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-6">
                                 <div class="product-text-container bg-white br-20">
-                                    <h3 class="fw-700 mb-16">Nexus Mobile Pro 256GB</h3>
+                                    @if(isset($product))
+                                        <h3>{{ $product->name }}</h3>
                                     <div class="d-flex align-items-center flex-wrap gap-16 mb-24">
                                         <h5 class="color-sec">★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
                                                 class="text-16 fw-400 dark-black">(02 Reviews)</span></h5>
@@ -316,104 +294,17 @@
                                         <p class="light-gray">SKU: <span class="light-black">3, 24, 672</span></p>
                                     </div>
                                     <div class="d-flex align-items-center gap-16 mb-24">
-                                        <p class="light-gray text-decoration-line-through">$450.00</p>
-                                        <h5>$400.00</h5>
+                                        <p class="light-gray text-decoration-line-through">$1.8</p>
+                                        <h5>${{ number_format($product->price, 2) }}</h5>
                                         <span class="label white">-12%</span>
                                     </div>
                                     <p class="light-gray mb-24">
-                                        Lorem ipsum dolor sit amet consectetur. Purus nulla nec in ac malesuada et nisi ipsum.
-                                        Massa scelerisque commodo nam
-                                        elementum fermentum sed sit.
+                                        {{ $product->description }}
                                     </p>
                                     <div class="d-flex align-items-center gap-24 mb-24">
-                                        <h6>Size:</h6>
+                                        <h6>Stock:</h6>
                                         <div class="drop-container bg-lightest-gray p-8-12 br-5">
-                                            <div class="wrapper-dropdown black" id="dropdown-02">
-                                                <span class="selected-display" id="destination-02">256GB</span>
-                                                <svg id="drp-arrow-02" width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <g clip-path="url(#clip0_7951_48322)">
-                                                        <g clip-path="url(#clip1_7951_48322)">
-                                                            <path
-                                                                d="M0.0742188 4.01306L8.07424 11.987L16.0742 4.01306H0.0742188Z"
-                                                                fill="#141516" />
-                                                        </g>
-                                                    </g>
-                                                    <defs>
-                                                        <clipPath id="clip0_7951_48322">
-                                                            <rect width="16" height="16" fill="white" />
-                                                        </clipPath>
-                                                        <clipPath id="clip1_7951_48322">
-                                                            <rect width="16" height="16" fill="white"
-                                                                transform="translate(0.0742188)" />
-                                                        </clipPath>
-                                                    </defs>
-                                                </svg>
-        
-                                                <ul class="topbar-dropdown bg-lightest-gray">
-                                                    <li class="item dark-black">512GB</li>
-                                                    <li class="item dark-black">256GB</li>
-                                                    <li class="item dark-black">128GB</li>
-                                                    <li class="item dark-black">64GB</li>
-                                                    <li class="item dark-black">32GB</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="content-block mb-24">
-                                        <h6 class="mb-24">Color:</h6>
-                                        <div class="product-color">
-                                            <ul class="unstyled list">
-                                                <li>
-                                                    <label for="muhRadio1"
-                                                        class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                        <input type="radio" id="muhRadio1" name="muhRadio" class="radio-1"
-                                                            value="muhRadio1">
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label for="muhRadio2"
-                                                        class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                        <input type="radio" id="muhRadio2" name="muhRadio" class="radio-2"
-                                                            value="muhRadio2">
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label for="muhRadio3"
-                                                        class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                        <input type="radio" id="muhRadio3" name="muhRadio" class="radio-3"
-                                                            value="muhRadio3">
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label for="muhRadio4"
-                                                        class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                        <input type="radio" id="muhRadio4" name="muhRadio" class="radio-4"
-                                                            value="muhRadio4">
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label for="muhRadio5"
-                                                        class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                        <input type="radio" id="muhRadio5" name="muhRadio" class="radio-5"
-                                                            value="muhRadio5">
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label for="muhRadio6"
-                                                        class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                        <input type="radio" id="muhRadio6" name="muhRadio" class="radio-6"
-                                                            value="muhRadio6">
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label for="muhRadio7"
-                                                        class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                        <input type="radio" id="muhRadio7" name="muhRadio" class="radio-7"
-                                                            value="muhRadio7">
-                                                    </label>
-                                                </li>
-                                            </ul>
+                                            <p class="text-muted">{{ $product->stock }}</p>
                                         </div>
                                     </div>
                                     <div class="hr-line mb-24"></div>
@@ -472,18 +363,16 @@
                                     <div class="hr-line mb-24"></div>
                                     <div class="d-flex align-items-center gap-16 mb-16">
                                         <h6>Category:</h6>
-                                        <p class="light-gray">Mobile Phone , Android , Flagship</p>
-                                    </div>
-                                    <div class="d-flex align-items-center gap-16 mb-16">
-                                        <h6>Tags:</h6>
-                                        <p class="light-gray">5G Compatible , <span>256GB Storage , </span> Student Phone</p>
+                                        <p class="light-gray">
+                                            {{ $product->category->name ?? 'No Category' }}
+                                        </p>
                                     </div>
                                     <div class="hr-line mb-24"></div>
                                     <div class="d-flex align-items-center gap-16 mb-24">
                                         <h6>Share:</h6>
                                         <ul class="list-unstyled social-link m-0">
                                             <li>
-                                                <a href="">
+                                                <a href="https://www.facebook.com/">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                         viewBox="0 0 16 16" fill="none">
                                                         <g clip-path="url(#clip0_7951_48369)">
@@ -500,7 +389,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="">
+                                                <a href="https://x.com/account/access">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                         viewBox="0 0 16 16" fill="none">
                                                         <g clip-path="url(#clip0_7951_48371)">
@@ -517,7 +406,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="">
+                                                <a href="https://www.instagram.com/">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                         viewBox="0 0 16 16" fill="none">
                                                         <g clip-path="url(#clip0_7951_48373)">
@@ -534,7 +423,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="">
+                                                <a href="https://www.linkedin.com/">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                         viewBox="0 0 16 16" fill="none">
                                                         <g clip-path="url(#clip0_7951_48375)">
@@ -559,6 +448,7 @@
                                         </ul>
                                     </div>
                                     <div class="hr-line"></div>
+                                    @endif
                                 </div>
                             </div>
                         </div>

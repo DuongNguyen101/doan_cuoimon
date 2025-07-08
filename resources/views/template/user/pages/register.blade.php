@@ -9,16 +9,16 @@
                     <p class="mb-4 light-gray text-center">Please enter your details to sign up.</p>
                     <div class="wrapper px-2">
                         @if (session('error'))
-    <div class="alert alert-danger text-center">
-        {{ session('error') }}
-    </div>
-@endif
+                        <div class="alert alert-danger text-center">
+                            {{ session('error') }}
+                        </div>
+                        @endif
 
-@if (session('register_success'))
-    <div class="alert alert-success text-center">
-        {{ session('register_success') }}
-    </div>
-@endif
+                        @if (session('register_success'))
+                        <div class="alert alert-success text-center">
+                            {{ session('register_success') }}
+                        </div>
+                        @endif
                         <form action="{{ url('template/user/pages/register') }}" method="post">
                             @csrf
 
@@ -62,7 +62,7 @@
                             </div>
 
                             <p class="text-center" style="font-size: 15px;">
-                                Already have an account? 
+                                Already have an account?
                                 <a href="{{ url('template/user/pages/login') }}" style="color: #006937; font-weight: 500;">
                                     Login now
                                 </a>
