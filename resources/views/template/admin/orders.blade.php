@@ -21,6 +21,7 @@
                     <th style="padding: 10px;">address</th>
                     <th style="padding: 10px;">created_at</th>
                     <th style="padding: 10px;">updated_at</th>
+                    <th style="padding: 10px;">order_detail</th>
                     <th colspan="4" style="text-align: center; padding: 10px;">Hành động</th>
                 </tr>
             </thead>
