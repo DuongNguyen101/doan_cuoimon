@@ -5,7 +5,7 @@
     @if (session('msg'))
     <div style="color: green;">{{ session('msg') }}</div>
     @endif
-    <form method="GET" action="{{ url('/template/admin/search') }}" style="margin-bottom: 20px;">
+    <form method="GET" action="{{ url('/template/admin/searchproducts') }}" style="margin-bottom: 20px;">
         <input type="text" name="search" placeholder="Nhập từ khóa tìm kiếm" style="padding: 10px; width: 300px; border: 1px solid #ccc; border-radius: 6px;">
         <button type="submit" style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 6px;">Tìm kiếm</button>
     </form>
