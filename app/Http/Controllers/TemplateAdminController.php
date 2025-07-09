@@ -12,6 +12,7 @@ use App\Models\Payment;
 use App\Models\Promotions;
 use App\Models\Qna;
 use App\Models\Review;
+use App\Models\ProductDetail;
 
 use App\Models\UserAddress;
 

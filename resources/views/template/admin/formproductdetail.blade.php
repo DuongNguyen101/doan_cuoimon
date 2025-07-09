@@ -74,6 +74,38 @@
                 <p>{{ isset($product->product_id) ? 'Giu hinh hien tai' : 'Up hinh moi' }} <img src="{{ asset('image/shoplist/' . (old('image_url', $product->image_url ?? ''))) }}" alt="Current Image" style="max-width: 50px; margin-top: 10px;"></p>
                 @endif
             </div>
+            {{-- nutritional_info --}}
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label for="nutritional_info" style="display: block; margin-bottom: 6px;">nutritional_info:</label>
+                <input type="text" id="nutritional_info" name="nutritional_info"
+                    value="{{ old('stock', $product->nutritional_info ?? '') }}"
+                    required
+                    style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+            </div>
+            {{-- usage_instructions--}}
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label for="usage_instructions" style="display: block; margin-bottom: 6px;">usage_instructions:</label>
+                <input type="text" id="usage_instructions" name="usage_instructions"
+                    value="{{ old('stock', $product->usage_instructions ?? '') }}"
+                    required
+                    style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+            </div>
+            {{-- packaging --}}
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label for="packaging" style="display: block; margin-bottom: 6px;">packaging:</label>
+                <input type="text" id="packaging" name="packaging"
+                    value="{{ old('stock', $product->packaging ?? '') }}"
+                    required
+                    style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+            </div>
+            {{-- origin --}}
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label for="name" style="display: block; margin-bottom: 6px;">origin:</label>
+                <input type="text" id="origin" name="origin"
+                    value="{{ old('stock', $product->origin ?? '') }}"
+                    required
+                    style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+            </div>
             {{-- trang thái pham sản phẩm --}}
             <div class="form-group" style="margin-bottom: 15px;">
                 <label for="status" style="display: block; margin-bottom: 6px;">Trạng thái:</label>
