@@ -76,19 +76,29 @@ class ShopController extends Controller
     }
 
     public function shopdetail($id = null)
-    {
-        $categories = Categories::all();
+{
+    $categories = Categories::all();
 
-        $product = null;
-        if ($id) {
-            $product = Products::find($id);
-            if (!$product) {
-                abort(404);
-            }
+    $product = null;
+    $relatedProducts = [];
+
+    if ($id) {
+        $product = Products::find($id);
+        if (!$product) {
+            abort(404);
         }
 
-        return view('template/user/shop/shop-detail', compact('categories', 'product'));
+        $relatedProducts = Products::where('category_id', $product->category_id)
+            ->where('product_id', '!=', $product->product_id)
+            ->where('status', 1)
+            ->latest()
+            ->take(6)
+            ->get();
     }
+
+    return view('template/user/shop/shop-detail', compact('categories', 'product', 'relatedProducts'));
+}
+
 
 
     public function wishlist()

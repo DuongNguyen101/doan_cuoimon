@@ -33,17 +33,20 @@ Route::group(['prefix' => 'template/user'], function () {
 
 Route::group(['prefix' => 'template/user'], function () {
     Route::get('/shop/shop-list', [ShopController::class, 'shoplist'])->name('shop.list');
-    Route::get('/shop/shop-detail', [ShopController::class, 'shopdetail']);
+
+    Route::get('/shop/detail/{id}', [ShopController::class, 'shopdetail'])->name('shopdetail');
+
     Route::get('/shop/wishlist', [ShopController::class, 'wishlist']);
     Route::get('/shop/wishlist/add/{id}', [ShopController::class, 'addToWishlist'])->name('wishlist.add');
     Route::get('/shop/wishlist/remove/{id}', [ShopController::class, 'removeFromWishlist'])->name('wishlist.remove');
+
     Route::get('/shop/cart', [ShopController::class, 'cart']);
     Route::get('/shop/checkout', [ShopController::class, 'checkout']);
-    Route::get('/shop/detail/{id}', [ShopController::class, 'shopdetail'])->name('shopdetail');
+
     Route::get('/shop/category/{id}', [ShopController::class, 'categoryProducts'])->name('shop.category');
     Route::get('/shop/search', [ShopController::class, 'searchProducts'])->name('shop.search');
-    Route::get('/shop/wishlist/remove/{id}', [ShopController::class, 'removeFromWishlist'])->name('wishlist.remove');
 });
+
 
 
 Route::group(['prefix' => 'template/user'], function () {

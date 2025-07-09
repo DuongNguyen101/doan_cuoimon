@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +17,6 @@
     <link rel="stylesheet" href="{{url('user')}}/css/vendor/slick-slider.css">
     <link rel="stylesheet" href="{{url('user')}}/css/app.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-
 </head>
 
 <body class="tt-smooth-scroll">
@@ -100,18 +98,18 @@
                         </a>
                         <div class="mixin-container d-xl-flex d-none">
                             <div class="drop-container">
-                                <div  id="dropdown3">
+                                <div id="dropdown3">
                                     <span class="selected-display black fw-500" id="destination3">All Categories</span>
                                 </div>
                             </div>
                             <div class="vr-line vr-line-2"></div>
-                                <form id="searchRedirectForm">
-                                    <div class="input-field d-flex">
-                                        <input type="text" name="search" id="searchInput" class="form-control me-2"
-                                            placeholder="Search for products..." required>
-                                        <button type="submit" class="cus-btn">Search</button>
-                                    </div>
-                                </form>
+                            <form id="searchRedirectForm">
+                                <div class="input-field d-flex">
+                                    <input type="text" name="search" id="searchInput" class="form-control me-2"
+                                        placeholder="Search for products..." required>
+                                    <button type="submit" class="cus-btn">Search</button>
+                                </div>
+                            </form>
                         </div>
                         <div class="header-buttons d-flex align-items-center gap-3">
 
@@ -171,7 +169,7 @@
                                 <nav class="all-category-nav">
                                     <label class="open-menu-all" for="open-menu-all">
                                         <input class="input-menu-all" id="open-menu-all" type="checkbox" name="menu-open">
-                                        
+
                                         <span class="all-navigator">
                                             <i class="fa-solid fa-bars"></i>
                                             <span>Browse All Categories</span>
@@ -179,12 +177,12 @@
 
                                         <span class="all-category-list list-unstyled">
                                             @foreach ($categories as $category)
-                                                <span class="all-category-list-item">
-                                                    <a href="{{ route('shop.category', ['id' => $category->category_id]) }}"
+                                            <span class="all-category-list-item">
+                                                <a href="{{ route('shop.category', ['id' => $category->category_id]) }}"
                                                     class="all-category-list-link dark-black fw-500">
-                                                        {{ $category->name }}
-                                                    </a>
-                                                </span>
+                                                    {{ $category->name }}
+                                                </a>
+                                            </span>
                                             @endforeach
                                         </span>
                                     </label>
@@ -275,7 +273,7 @@
                                 <div class="product-image-container container-2 bg-white">
                                     <div class="product-slider slider-2">
                                         <div class="detail-image detail-2">
-                                            <img src="{{ asset('image/shoplist/' . $product->image_url) }}" alt="{{ $product->name }}" >
+                                            <img src="{{ asset('image/shoplist/' . $product->image_url) }}" alt="{{ $product->name }}">
                                         </div>
                                     </div>
                                 </div>
@@ -283,7 +281,7 @@
                             <div class="col-xl-6">
                                 <div class="product-text-container bg-white br-20">
                                     @if(isset($product))
-                                        <h3>{{ $product->name }}</h3>
+                                    <h3>{{ $product->name }}</h3>
                                     <div class="d-flex align-items-center gap-16 mb-24">
                                         <span class="text-decoration-line-through light-gray">${{ number_format($product->price * 1.1, 2) }}</span>
                                         &nbsp;&nbsp;${{ number_format($product->price, 2) }}
@@ -447,7 +445,7 @@
                 </div>
             </section>
             <!-- Shop Detail End -->
-        
+
             <!-- Product Description Start -->
             <section class="product-description pb-40">
                 <div class="container-fluid">
@@ -455,246 +453,72 @@
                         <div class="description-wrapper bg-white br-20">
                             <nav class="mb-32">
                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                    <button class="nav-link " id="nav-desc-tab" data-bs-toggle="tab"
-                                        data-bs-target="#nav-desc" type="button" role="tab" aria-controls="nav-desc"
-                                        aria-selected="true">Description</button>
-        
                                     <button class="nav-link active" id="nav-info-tab" data-bs-toggle="tab" data-bs-target="#nav-info"
                                         type="button" role="tab" aria-controls="nav-info" aria-selected="true">Additional
                                         Information</button>
-        
+
                                     <button class="nav-link" id="nav-review-tab" data-bs-toggle="tab"
                                         data-bs-target="#nav-review" type="button" role="tab" aria-controls="nav-review"
                                         aria-selected="false">Reviews (02)</button>
                                 </div>
                             </nav>
                             <div class="tab-content" id="nav-tabContent">
-                                <div class="tab-pane fade " id="nav-desc" role="tabpanel"
-                                    aria-labelledby="nav-desc-tab">
-                                    <h5 class="mb-24">Product Supreme Quality</h5>
-                                    <p class="light-gray mb-16">
-                                        Lorem ipsum dolor sit amet consectetur. Est morbi cum bibendum id eleifend ultrices enim
-                                        nec. Vitae morbi mus
-                                        imperdiet tincidunt ultrices hendrerit. Lobortis donec massa fermentum aliquet sapien.
-                                        Magna risus donec aliquam
-                                        diam aliquet consectetur. Etiam accumsan ipsum augue sed vitae. Tortor volutpat et dui
-                                        in malesuada euismod. Sociis
-                                        aenean porttitor aliquet sit amet.
-                                    </p>
-                                    <p class="light-gray mb-32">
-                                        Lorem ipsum dolor sit amet consectetur. Est morbi cum bibendum id eleifend ultrices enim
-                                        nec. Vitae morbi mus
-                                        imperdiet tincidunt ultrices hendrerit. Lobortis donec massa fermentum aliquet sapien.
-                                        Magna risus donec aliquam
-                                        diam aliquet consectetur. Etiam accumsan ipsum augue sed vitae.
-                                    </p>
-                                    <div class="py-40">
-                                        <div class="row row-gap-4">
-                                            <div class="col-lg-6">
-                                                <img src="{{url('user')}}/media/products/product-detail-1.png" alt="">
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <img src="{{url('user')}}/media/products/product-detail-2.png" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="light-gray mb-16">
-                                        Lorem ipsum dolor sit amet consectetur. Est morbi cum bibendum id eleifend ultrices enim
-                                        nec. Vitae morbi mus
-                                        imperdiet tincidunt ultrices hendrerit. Lobortis donec massa fermentum aliquet sapien.
-                                        Magna risus donec aliquam
-                                        diam aliquet consectetur. Etiam accumsan ipsum augue sed vitae. Tortor volutpat et dui
-                                        in malesuada euismod. Sociis
-                                        aenean porttitor aliquet sit amet.
-                                    </p>
-                                    <p class="light-gray">
-                                        Lorem ipsum dolor sit amet consectetur. Est morbi cum bibendum id eleifend ultrices enim
-                                        nec. Vitae morbi mus
-                                        imperdiet tincidunt ultrices hendrerit. Lobortis donec massa fermentum aliquet sapien.
-                                        Magna risus donec aliquam
-                                        diam aliquet consectetur. Etiam accumsan ipsum augue sed vitae.
-                                    </p>
-                                </div>
                                 <div class="tab-pane fade active show" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
-                                    <h5 class="mb-32">Technical Specifications</h5>
+                                    <h5 class="mb-32">Product Information</h5>
+
+                                    @if ($product->nutritional_info)
                                     <div class="specs-chart mb-32">
-                                        <h6 class="color-primary mb-16">Network</h6>
+                                        <h6 class="color-primary mb-16">Nutritional Info</h6>
                                         <ul class="list-unstyled">
                                             <li>
                                                 <div class="brand-block">
-                                                    <p class="item fw-500">
-                                                        Brand
-                                                    </p>
-                                                    <p class="category light-gray">
-                                                        Apple
-                                                    </p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="brand-block">
-                                                    <p class="item fw-500">
-                                                        Model
-                                                    </p>
-                                                    <p class="category light-gray">
-                                                        13 Pro
-                                                    </p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="brand-block">
-                                                    <p class="item fw-500">
-                                                        Relaease Date
-                                                    </p>
-                                                    <p class="category light-gray">
-                                                        13-05-2020
-                                                    </p>
+                                                    <p class="category light-gray">{{ $product->nutritional_info }}</p>
                                                 </div>
                                             </li>
                                         </ul>
                                     </div>
+                                    @endif
+
+                                    @if ($product->usage_instructions)
                                     <div class="specs-chart mb-32">
-                                        <h6 class="color-primary mb-16">Display</h6>
+                                        <h6 class="color-primary mb-16">Usage Instructions</h6>
                                         <ul class="list-unstyled">
                                             <li>
                                                 <div class="brand-block">
-                                                    <p class="item fw-500">
-                                                        Type
-                                                    </p>
-                                                    <p class="category light-gray">
-                                                        AMOLED/LCD/IPS
-                                                    </p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="brand-block">
-                                                    <p class="item fw-500">
-                                                        Size
-                                                    </p>
-                                                    <p class="category light-gray">
-                                                        5.6 Inches
-                                                    </p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="brand-block">
-                                                    <p class="item fw-500">
-                                                        Resolution
-                                                    </p>
-                                                    <p class="category light-gray">
-                                                        1920 Pixels
-                                                    </p>
+                                                    <p class="category light-gray">{{ $product->usage_instructions }}</p>
                                                 </div>
                                             </li>
                                         </ul>
                                     </div>
+                                    @endif
+
+                                    @if ($product->packaging)
                                     <div class="specs-chart mb-32">
-                                        <h6 class="color-primary mb-16">Body</h6>
+                                        <h6 class="color-primary mb-16">Packaging</h6>
                                         <ul class="list-unstyled">
                                             <li>
                                                 <div class="brand-block">
-                                                    <p class="item fw-500">
-                                                        Dimensions
-                                                    </p>
-                                                    <p class="category light-gray">
-                                                        Height x Width x Depth mm
-                                                    </p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="brand-block">
-                                                    <p class="item fw-500">
-                                                        Weight
-        
-                                                    </p>
-                                                    <p class="category light-gray">
-                                                        12.5 Grams
-                                                    </p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="brand-block">
-                                                    <p class="item fw-500">
-                                                        SIM
-                                                    </p>
-                                                    <p class="category light-gray">
-                                                        Dual SIM
-                                                    </p>
+                                                    <p class="category light-gray">{{ $product->packaging }}</p>
                                                 </div>
                                             </li>
                                         </ul>
                                     </div>
+                                    @endif
+
+                                    @if ($product->origin)
                                     <div class="specs-chart mb-32">
-                                        <h6 class="color-primary mb-16">Performance</h6>
+                                        <h6 class="color-primary mb-16">Origin</h6>
                                         <ul class="list-unstyled">
                                             <li>
                                                 <div class="brand-block">
-                                                    <p class="item fw-500">
-                                                        OS
-                                                    </p>
-                                                    <p class="category light-gray">
-                                                        IOS
-                                                    </p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="brand-block">
-                                                    <p class="item fw-500">
-                                                        Chipset
-                                                    </p>
-                                                    <p class="category light-gray">
-                                                        6 Gen 1
-                                                    </p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="brand-block">
-                                                    <p class="item fw-500">
-                                                        Relaease Date
-                                                    </p>
-                                                    <p class="category light-gray">
-                                                        13-05-2020
-                                                    </p>
+                                                    <p class="category light-gray">{{ $product->origin }}</p>
                                                 </div>
                                             </li>
                                         </ul>
                                     </div>
-                                    <div class="specs-chart">
-                                        <h6 class="color-primary mb-16">Features</h6>
-                                        <ul class="list-unstyled">
-                                            <li>
-                                                <div class="brand-block">
-                                                    <p class="item fw-500">
-                                                        Water Resistance
-                                                    </p>
-                                                    <p class="category light-gray">
-                                                        Rating
-                                                    </p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="brand-block">
-                                                    <p class="item fw-500">
-                                                        Audio
-                                                    </p>
-                                                    <p class="category light-gray">
-                                                        Stereo/3.5mm Jack
-                                                    </p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="brand-block">
-                                                    <p class="item fw-500">
-                                                        Colors
-                                                    </p>
-                                                    <p class="category light-gray">
-                                                        Black
-                                                    </p>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-        
+                                    @endif
                                 </div>
+
                                 <div class="tab-pane fade show " id="nav-review" role="tabpanel"
                                     aria-labelledby="nav-review-tab">
                                     <div class="comments-sec mb-48">
@@ -735,7 +559,7 @@
                                                     integer vestibulum in proin. Imperdiet pellentesque nisl cursus arcu nulla
                                                     massa pharetra.
                                                     Tristique.</p>
-        
+
                                             </div>
                                         </div>
                                     </div>
@@ -743,7 +567,7 @@
                                         <h5 class="fw-500 mb-8">Write a Review</h5>
                                         <p class="light-gray mb-32">Your email address will not be published. Required fields
                                             are marked.</p>
-        
+
                                         <p class="mb-16 fw-500">Your Review</p>
                                         <form method="post" action="shop-detail.html" class="form-group contact-form">
                                             <div class="row">
@@ -751,7 +575,7 @@
                                                     <div class="input-block mb-24">
                                                         <textarea class="form-control" name="message" id="comment"
                                                             rows="4" placeholder="Write Your Review here..."></textarea>
-        
+
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
@@ -796,8 +620,8 @@
                                 </div>
                             </div>
                         </div>
-        
-        
+
+
                     </div>
                 </div>
             </section>
@@ -808,7 +632,7 @@
                 <div class="container-fluid">
                     <div class="top-bar mb-16">
                         <h5>Recommended Products</h5>
-                        <a href="shop-grid-sidebar-1.html" class="cus-btn-arrow"> Show All 
+                        <a href="shop-grid-sidebar-1.html" class="cus-btn-arrow"> Show All
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15" fill="none">
                                 <path
                                     d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
@@ -816,240 +640,79 @@
                             </svg>
                         </a>
                     </div>
-                    <div class="row row-gap-4">
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-                                    <span class="sale-label">-12%</span>
-                                    <a href="shop-detail.html"><img src="{{url('user')}}/media/products/product-1.png"  class="product-image" alt=""></a>
-                                    <div class="side-icons">
-                                        <ul class="list-unstyled">
-                                            <li>
-                                                <a href="wishlist.html">
-                                                    <img src="{{url('user')}}/media/icons/heart.png" alt="">
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#productQuickView">
-                                                    <img src="{{url('user')}}/media/icons/eye.png" alt="">
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="" class="zui-wrapper-button" data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                    <img src="{{url('user')}}/media/icons/compare.png" alt="">
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8"><a href="shop-detail.html">Elite Audio Gear</a></h6>
-                                    <div class="text mb-16">
-                                        <p class="light-gray">Lorem ipsum dolor sit amet consectetur. Id viverra cursus enim risus mattis urnanullam quis magna. Ligula maecenas integer diam risus rhoncus at. Viverra a consectetur ac lobortis.</p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span class="text-16 fw-400 dark-black">(80)</span></h5>
-                                        <h6 ><span class="text-decoration-line-through light-gray"> $12.00</span>&nbsp;&nbsp;$10.00</h6>
-                                    </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
+<div class="row row-gap-4">
+    @foreach($relatedProducts as $related)
+        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6 d-flex">
+            <div class="featured-product-card bg-white br-10 d-flex flex-column w-100 h-100 p-3">
+                {{-- Hình ảnh --}}
+                <div class="image-box mb-3 position-relative">
+                    @if ($related->discount_percent)
+                        <span class="sale-label position-absolute top-0 start-0 bg-danger text-white px-2 py-1 rounded-end">-{{ $related->discount_percent }}%</span>
+                    @endif
+                    <a href="{{ route('shopdetail', $related->product_id) }}">
+                        <img src="{{ asset('image/shoplist/' . $related->image_url) }}" class="product-image w-100" style="aspect-ratio: 1/1; object-fit: cover;" alt="{{ $related->name }}">
+                    </a>
+                    {{-- Icon --}}
+                    <div class="side-icons position-absolute top-0 end-0 m-2">
+                        <ul class="list-unstyled d-flex flex-column gap-2">
+                            <li>
+                                <a href="{{ route('wishlist.add', $related->product_id) }}">
+                                    <img src="{{ url('user') }}/media/icons/heart.png" alt="Wishlist">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#productQuickView" data-id="{{ $related->product_id }}">
+                                    <img src="{{ url('user') }}/media/icons/eye.png" alt="Quick View">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#comparepopup">
+                                    <img src="{{ url('user') }}/media/icons/compare.png" alt="Compare">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                {{-- Nội dung --}}
+                <div class="product-desc d-flex flex-column flex-grow-1">
+                    <h6 class="product-title mb-2" style="min-height: 48px;">
+                        <a href="{{ route('shopdetail', $related->product_id) }}" class="text-dark text-decoration-none">
+                            {{ Str::limit($related->name, 40) }}
+                        </a>
+                    </h6>
+                    <div class="text mb-2" style="min-height: 60px;">
+                        <p class="text-muted small mb-0">{{ Str::limit($related->description, 80) }}</p>
+                    </div>
+                    <div class="rating-star mb-2">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="text-warning">★★★★<span class="text-muted">★</span></span>
+                            <span class="text-muted small">({{ $related->review_count ?? 0 }})</span>
                         </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-                                    <span class="sale-label">-12%</span>
-                                    <a href="shop-detail.html"><img src="{{url('user')}}/media/products/product-2.png"  class="product-image" alt=""></a>
-                                    <div class="side-icons">
-                                        <ul class="list-unstyled">
-                                            <li>
-                                                <a href="wishlist.html">
-                                                    <img src="{{url('user')}}/media/icons/heart.png" alt="">
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#productQuickView">
-                                                    <img src="{{url('user')}}/media/icons/eye.png" alt="">
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="" class="zui-wrapper-button" data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                    <img src="{{url('user')}}/media/icons/compare.png" alt="">
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8"><a href="shop-detail.html">Ultra Bright LCD</a></h6>
-                                    <div class="text mb-16">
-                                        <p class="light-gray">Lorem ipsum dolor sit amet consectetur. Id viverra cursus enim risus mattis urnanullam quis magna. Ligula maecenas integer diam risus rhoncus at. Viverra a consectetur ac lobortis.</p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span class="text-16 fw-400 dark-black">(80)</span></h5>
-                                        <h6 ><span class="text-decoration-line-through light-gray"> $12.00</span>&nbsp;&nbsp;$10.00</h6>
-                                    </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-                                    <span class="sale-label">-12%</span>
-                                    <a href="shop-detail.html"><img src="{{url('user')}}/media/products/product-4.png"  class="product-image" alt=""></a>
-                                    <div class="side-icons">
-                                        <ul class="list-unstyled">
-                                            <li>
-                                                <a href="wishlist.html">
-                                                    <img src="{{url('user')}}/media/icons/heart.png" alt="">
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#productQuickView">
-                                                    <img src="{{url('user')}}/media/icons/eye.png" alt="">
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="" class="zui-wrapper-button" data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                    <img src="{{url('user')}}/media/icons/compare.png" alt="">
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8"><a href="shop-detail.html">Nexus Mobile Pro</a></h6>
-                                    <div class="text mb-16">
-                                        <p class="light-gray">Lorem ipsum dolor sit amet consectetur. Id viverra cursus enim risus mattis urnanullam quis magna. Ligula maecenas integer diam risus rhoncus at. Viverra a consectetur ac lobortis.</p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span class="text-16 fw-400 dark-black">(80)</span></h5>
-                                        <h6 ><span class="text-decoration-line-through light-gray"> $12.00</span>&nbsp;&nbsp;$10.00</h6>
-                                    </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-                                    <span class="sale-label">-12%</span>
-                                    <a href="shop-detail.html"><img src="{{url('user')}}/media/products/product-10.png" class="product-image"  alt=""></a>
-                                    <div class="side-icons">
-                                        <ul class="list-unstyled">
-                                            <li>
-                                                <a href="wishlist.html">
-                                                    <img src="{{url('user')}}/media/icons/heart.png" alt="">
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#productQuickView">
-                                                    <img src="{{url('user')}}/media/icons/eye.png" alt="">
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="" class="zui-wrapper-button" data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                    <img src="{{url('user')}}/media/icons/compare.png" alt="">
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8"><a href="shop-detail.html">Aero Pro Joysticks</a></h6>
-                                    <div class="text mb-16">
-                                        <p class="light-gray">Lorem ipsum dolor sit amet consectetur. Id viverra cursus enim risus mattis urnanullam quis magna. Ligula maecenas integer diam risus rhoncus at. Viverra a consectetur ac lobortis.</p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span class="text-16 fw-400 dark-black">(80)</span></h5>
-                                        <h6 ><span class="text-decoration-line-through light-gray"> $12.00</span>&nbsp;&nbsp;$10.00</h6>
-                                    </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-                                    <span class="sale-label">-12%</span>
-                                    <a href="shop-detail.html"><img src="{{url('user')}}/media/products/product-3.png"  class="product-image" alt=""></a>
-                                    <div class="side-icons">
-                                        <ul class="list-unstyled">
-                                            <li>
-                                                <a href="wishlist.html">
-                                                    <img src="{{url('user')}}/media/icons/heart.png" alt="">
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#productQuickView">
-                                                    <img src="{{url('user')}}/media/icons/eye.png" alt="">
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="" class="zui-wrapper-button" data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                    <img src="{{url('user')}}/media/icons/compare.png" alt="">
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8"><a href="shop-detail.html">Hyper Glide Mouse</a></h6>
-                                    <div class="text mb-16">
-                                        <p class="light-gray">Lorem ipsum dolor sit amet consectetur. Id viverra cursus enim risus mattis urnanullam quis magna. Ligula maecenas integer diam risus rhoncus at. Viverra a consectetur ac lobortis.</p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span class="text-16 fw-400 dark-black">(80)</span></h5>
-                                        <h6 ><span class="text-decoration-line-through light-gray"> $12.00</span>&nbsp;&nbsp;$10.00</h6>
-                                    </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-                                    <span class="sale-label">-12%</span>
-                                    <a href="shop-detail.html"><img src="{{url('user')}}/media/products/product-5.png" class="product-image"  alt=""></a>
-                                    <div class="side-icons">
-                                        <ul class="list-unstyled">
-                                            <li>
-                                                <a href="wishlist.html">
-                                                    <img src="{{url('user')}}/media/icons/heart.png" alt="">
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#productQuickView">
-                                                    <img src="{{url('user')}}/media/icons/eye.png" alt="">
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="" class="zui-wrapper-button" data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                    <img src="{{url('user')}}/media/icons/compare.png" alt="">
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8"><a href="shop-detail.html">Silent Touch Pro</a></h6>
-                                    <div class="text mb-16">
-                                        <p class="light-gray">Lorem ipsum dolor sit amet consectetur. Id viverra cursus enim risus mattis urnanullam quis magna. Ligula maecenas integer diam risus rhoncus at. Viverra a consectetur ac lobortis.</p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span class="text-16 fw-400 dark-black">(80)</span></h5>
-                                        <h6 ><span class="text-decoration-line-through light-gray"> $12.00</span>&nbsp;&nbsp;$10.00</h6>
-                                    </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
+                        <div>
+                            <h6 class="mb-0">
+                                @if ($related->old_price)
+                                    <span class="text-decoration-line-through text-muted">${{ $related->old_price }}</span>
+                                @endif
+                                &nbsp;${{ $related->price }}
+                            </h6>
                         </div>
                     </div>
+
+                    {{-- Button --}}
+                    <div class="mt-auto">
+                        <a href="cart.html" class="cus-btn-2 w-100 text-center">ADD TO CART</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+</div>
+
                 </div>
             </section>
             <!-- Recommended Product End -->
-        
+
             <!-- Benefits Start -->
             <footer>
                 <div class="container-fluid">
@@ -1071,7 +734,7 @@
                                     <div class="col-xl-2 col-md-4 col-6">
                                         <div class="benefit-block">
                                             <div class="image-box mb-12">
-                                                <img src="{{url('user')}}/media/icons/icon-2-sm.png" alt=""> 
+                                                <img src="{{url('user')}}/media/icons/icon-2-sm.png" alt="">
                                             </div>
                                             <div class="content-box">
                                                 <p class="fw-500 mb-4p">Fast Delivery</p>
@@ -1093,7 +756,7 @@
                                     <div class="col-xl-2 col-md-4 col-6">
                                         <div class="benefit-block">
                                             <div class="image-box mb-12">
-                                                <img src="{{url('user')}}/media/icons/icon-4-sm.png" alt=""> 
+                                                <img src="{{url('user')}}/media/icons/icon-4-sm.png" alt="">
                                             </div>
                                             <div class="content-box">
                                                 <p class="fw-500 mb-4p">Online Discount</p>
@@ -1104,7 +767,7 @@
                                     <div class="col-xl-2 col-md-4 col-6">
                                         <div class="benefit-block">
                                             <div class="image-box mb-12">
-                                                <img src="{{url('user')}}/media/icons/icon-5-sm.png" alt=""> 
+                                                <img src="{{url('user')}}/media/icons/icon-5-sm.png" alt="">
                                             </div>
                                             <div class="content-box">
                                                 <p class="fw-500 mb-4p">Need Help</p>
@@ -1115,7 +778,7 @@
                                     <div class="col-xl-2 col-md-4 col-6">
                                         <div class="benefit-block">
                                             <div class="image-box mb-12">
-                                                <img src="{{url('user')}}/media/icons/icon-6-sm.png" alt=""> 
+                                                <img src="{{url('user')}}/media/icons/icon-6-sm.png" alt="">
                                             </div>
                                             <div class="content-box">
                                                 <p class="fw-500 mb-4p">Curated Items</p>
@@ -1126,7 +789,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                     <div class="hr-line"></div>
                     <div class="footer-wrapper pt-40 mb-32">
@@ -1205,7 +868,7 @@
                                 </li>
                             </ul>
                             <p class="fw-500 mb-16">Follow Us!</p>
-                            <ul class="list-unstyled social-link"> 
+                            <ul class="list-unstyled social-link">
                                 <li>
                                     <a href="">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
@@ -1313,7 +976,7 @@
     <script src="{{url('user')}}/js/user.js"></script>
 
     <script src="{{url('user')}}/js/app.js"></script>
-    
+
     <div id="logoutConfirmBox" style="display:none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5);">
         <div style="background-color: #fff; padding: 20px; border-radius: 10px; width: 300px; margin: 15% auto; text-align: center;">
             <h5>Are you sure you want to log in?</h5>
