@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="{{url('user')}}/css/vendor/slick-slider.css">
     <link rel="stylesheet" href="{{url('user')}}/css/app.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
 </head>
 
 <body class="tt-smooth-scroll">
@@ -459,7 +461,7 @@
 
                                     <button class="nav-link" id="nav-review-tab" data-bs-toggle="tab"
                                         data-bs-target="#nav-review" type="button" role="tab" aria-controls="nav-review"
-                                        aria-selected="false">Reviews (02)</button>
+                                        aria-selected="false">Reviews ({{ $product->reviews->count() }})</button>
                                 </div>
                             </nav>
                             <div class="tab-content" id="nav-tabContent">
@@ -519,449 +521,450 @@
                                     @endif
                                 </div>
 
-                                <div class="tab-pane fade show " id="nav-review" role="tabpanel"
-                                    aria-labelledby="nav-review-tab">
+                                <div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab">
                                     <div class="comments-sec mb-48">
-                                        <h5 class="mb-48">(02) Reviews For Mobile Phone</h5>
+                                        <h5 class="mb-48">
+                                            ({{ $product->reviews->count() }}) Reviews For {{ $product->title }}
+                                        </h5>
+
+                                        {{-- Vòng lặp review --}}
+                                        @foreach($product->reviews as $review)
                                         <div class="comment-box mb-24">
-                                            <img src="{{url('user')}}/media/users/user-4.png" alt="" class="br-5">
+                                            <img src="{{ asset('user/media/users/user.png') }}" alt="" class="br-5" width="60">
                                             <div class="block">
                                                 <div class="top-row mb-16">
                                                     <div class="info">
-                                                        <h5 class="light-black">Ethan Clarke</h5>
+                                                        <h5 class="light-black">{{ $review->user->name }}</h5>
                                                     </div>
-                                                    <h5 class="color-sec">★★★★<span class="light-gray">★</span></h5>
+                                                    <h5 class="color-sec">
+                                                        @for($i = 1; $i <= 5; $i++)
+                                                            @if($i <=$review->rating)
+                                                            ★
+                                                            @else
+                                                            <span class="light-gray">★</span>
+                                                            @endif
+                                                            @endfor
+                                                    </h5>
                                                 </div>
-                                                <p class="light-gray">Lorem ipsum dolor sit amet consectetur. Pharetra luctus in
-                                                    dignissim amet.
-                                                    Dignissim adipiscing amet praesent nec libero ultrices ac ullamcorper. Enim
-                                                    mattis faucibus
-                                                    viverra integer vestibulum in proin. Imperdiet pellentesque nisl cursus arcu
-                                                    nulla massa pharetra.
-                                                    Tristique.</p>
+                                                <p class="light-gray">{{ $review->comment }}</p>
                                             </div>
                                         </div>
+                                        @if(!$loop->last)
                                         <div class="hr-line mb-24"></div>
-                                        <div class="comment-box">
-                                            <img src="{{url('user')}}/media/users/user-5.png" alt="" class="br-5">
-                                            <div class="block">
-                                                <div class="top-row mb-16">
-                                                    <div class="info">
-                                                        <h5 class="light-black">Sophia Reynolds</h5>
-                                                    </div>
-                                                    <h5 class="color-sec">★★★★<span class="light-gray">★</span></h5>
-                                                </div>
-                                                <p class="light-gray">Lorem ipsum dolor sit amet consectetur. Pharetra luctus in
-                                                    dignissim amet.
-                                                    Dignissim adipiscing amet praesent nec libero ultrices ac ullamcorper. Enim
-                                                    mattis faucibus
-                                                    viverra
-                                                    integer vestibulum in proin. Imperdiet pellentesque nisl cursus arcu nulla
-                                                    massa pharetra.
-                                                    Tristique.</p>
-
-                                            </div>
-                                        </div>
+                                        @endif
+                                        @endforeach
                                     </div>
-                                    <div class="review-form">
-                                        <h5 class="fw-500 mb-8">Write a Review</h5>
-                                        <p class="light-gray mb-32">Your email address will not be published. Required fields
-                                            are marked.</p>
 
-                                        <p class="mb-16 fw-500">Your Review</p>
-                                        <form method="post" action="shop-detail.html" class="form-group contact-form">
+                                    {{-- FORM GỬI ĐÁNH GIÁ --}}
+                                    <div class="review-form">
+                                        @if(session('success'))
+                                        <div class="alert alert-success">{{ session('success') }}</div>
+                                        @endif
+
+                                        @if($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul class="mb-0">
+                                                @foreach($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        @endif
+
+                                        <form method="POST" action="{{ route('reviews.store') }}">
+
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $product->product_id }}">
                                             <div class="row">
+                                                <div class="col-sm-12 mb-24">
+                                                    <label class="fw-500 mb-8">Your Rating</label>
+                                                    <div id="star-rating" class="text-warning fs-4">
+                                                        @for ($i = 1; $i <= 5; $i++)
+                                                            <i class="bi bi-star" data-value="{{ $i }}"></i>
+                                                            @endfor
+                                                    </div>
+                                                    <input type="hidden" name="rating" id="rating" value="{{ old('rating') }}">
+                                                </div>
+
+
                                                 <div class="col-sm-12">
                                                     <div class="input-block mb-24">
-                                                        <textarea class="form-control" name="message" id="comment"
-                                                            rows="4" placeholder="Write Your Review here..."></textarea>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <div class="input-block mb-24">
-                                                        <input type="text" class="form-control" id="name" name="name"
-                                                            required placeholder="Name Example">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                            viewBox="0 0 20 20" fill="none">
-                                                            <g clip-path="url(#clip0_7949_46233)">
-                                                                <path
-                                                                    d="M10 0.00292969C7.09223 0.00292969 4.72656 2.36859 4.72656 5.27637C4.72656 8.18414 7.09223 10.5498 10 10.5498C12.9078 10.5498 15.2734 8.18414 15.2734 5.27637C15.2734 2.36859 12.9078 0.00292969 10 0.00292969ZM10 9.37793C7.7384 9.37793 5.89844 7.53797 5.89844 5.27637C5.89844 3.01477 7.7384 1.1748 10 1.1748C12.2616 1.1748 14.1016 3.01477 14.1016 5.27637C14.1016 7.53797 12.2616 9.37793 10 9.37793Z"
-                                                                    fill="#141516" />
-                                                                <path
-                                                                    d="M16.5612 13.9949C15.1174 12.529 13.2035 11.7217 11.1719 11.7217H8.82812C6.79656 11.7217 4.88258 12.529 3.43883 13.9949C2.00215 15.4537 1.21094 17.3792 1.21094 19.417C1.21094 19.7406 1.47328 20.0029 1.79688 20.0029H18.2031C18.5267 20.0029 18.7891 19.7406 18.7891 19.417C18.7891 17.3792 17.9979 15.4537 16.5612 13.9949ZM2.40859 18.8311C2.70215 15.5074 5.46918 12.8936 8.82812 12.8936H11.1719C14.5308 12.8936 17.2979 15.5074 17.5914 18.8311H2.40859Z"
-                                                                    fill="#141516" />
-                                                            </g>
-                                                            <defs>
-                                                                <clipPath id="clip0_7949_46233">
-                                                                    <rect width="20" height="20" fill="white"
-                                                                        transform="translate(0 0.00292969)" />
-                                                                </clipPath>
-                                                            </defs>
-                                                        </svg>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <div class="input-block mb-24">
-                                                        <input type="email" class="form-control" id="mail" name="email"
-                                                            required placeholder="Your Email">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                            viewBox="0 0 20 20" fill="none">
-                                                            <path
-                                                                d="M18.2422 2.97168H1.75781C0.786602 2.97168 0 3.76316 0 4.72949V15.2764C0 16.2484 0.792383 17.0342 1.75781 17.0342H18.2422C19.2053 17.0342 20 16.2518 20 15.2764V4.72949C20 3.76488 19.2165 2.97168 18.2422 2.97168ZM17.996 4.14355C17.6369 4.50078 11.4564 10.6488 11.243 10.861C10.9109 11.193 10.4695 11.3759 10 11.3759C9.53047 11.3759 9.08906 11.193 8.75594 10.8599C8.61242 10.7171 2.50012 4.63707 2.00398 4.14355H17.996ZM1.17188 15.0379V4.96875L6.23586 10.0061L1.17188 15.0379ZM2.00473 15.8623L7.06672 10.8325L7.9284 11.6896C8.48176 12.243 9.21746 12.5477 10 12.5477C10.7825 12.5477 11.5182 12.243 12.0705 11.6907L12.9333 10.8325L17.9953 15.8623H2.00473ZM18.8281 15.0379L13.7641 10.0061L18.8281 4.96875V15.0379Z"
-                                                                fill="#141516" />
-                                                        </svg>
+                                                        <label for="comment" class="fw-500 mb-8">Your Review</label>
+                                                        <textarea class="form-control" name="comment" id="comment"
+                                                            rows="4" placeholder="Write Your Review here..." required>{{ old('comment') }}</textarea>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <button type="submit" class="cus-btn-3 w-25">Submit</button>
                                         </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
+
+
                 </div>
-            </section>
-            <!-- Product Description End -->
+    </div>
+    </section>
+    <!-- Product Description End -->
 
-            <!-- Recommended Product Start -->
-            <section class="recommended-product bg-lightest-gray pb-40">
-                <div class="container-fluid">
-                    <div class="top-bar mb-16">
-                        <h5>Recommended Products</h5>
-                        <a href="shop-grid-sidebar-1.html" class="cus-btn-arrow"> Show All
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15" fill="none">
-                                <path
-                                    d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
-                                    stroke="#0C0C0D" stroke-width="2" />
-                            </svg>
-                        </a>
-                    </div>
-<div class="row row-gap-4">
-    @foreach($relatedProducts as $related)
-        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6 d-flex">
-            <div class="featured-product-card bg-white br-10 d-flex flex-column w-100 h-100 p-3">
-                {{-- Hình ảnh --}}
-                <div class="image-box mb-3 position-relative">
-                    @if ($related->discount_percent)
-                        <span class="sale-label position-absolute top-0 start-0 bg-danger text-white px-2 py-1 rounded-end">-{{ $related->discount_percent }}%</span>
+    <!-- Recommended Product Start -->
+    <section class="recommended-product bg-lightest-gray pb-40">
+        <div class="container-fluid">
+            <div class="top-bar mb-16">
+                <h5>Recommended Products</h5>
+                <a href="shop-grid-sidebar-1.html" class="cus-btn-arrow"> Show All
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15" fill="none">
+                        <path
+                            d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
+                            stroke="#0C0C0D" stroke-width="2" />
+                    </svg>
+                </a>
+            </div>
+            <div class="row row-gap-4">
+                @foreach($relatedProducts as $related)
+                <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6 d-flex">
+                    <div class="featured-product-card bg-white br-10 d-flex flex-column w-100 h-100 p-3">
+                        {{-- Hình ảnh --}}
+                        <div class="image-box mb-3 position-relative">
+                            @if ($related->discount_percent)
+                            <span class="sale-label position-absolute top-0 start-0 bg-danger text-white px-2 py-1 rounded-end">-{{ $related->discount_percent }}%</span>
+                            @endif
+                            <a href="{{ route('shopdetail', $related->product_id) }}">
+                                <img src="{{ asset('image/shoplist/' . $related->image_url) }}" class="product-image w-100" style="aspect-ratio: 1/1; object-fit: cover;" alt="{{ $related->name }}">
+                            </a>
+                            {{-- Icon --}}
+                            <div class="side-icons position-absolute top-0 end-0 m-2">
+                                <ul class="list-unstyled d-flex flex-column gap-2">
+                                    <li>
+                                        <a href="{{ route('wishlist.add', $related->product_id) }}">
+                                            <img src="{{ url('user') }}/media/icons/heart.png" alt="Wishlist">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#productQuickView" data-id="{{ $related->product_id }}">
+                                            <img src="{{ url('user') }}/media/icons/eye.png" alt="Quick View">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#comparepopup">
+                                            <img src="{{ url('user') }}/media/icons/compare.png" alt="Compare">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        {{-- Nội dung --}}
+<div class="product-desc d-flex flex-column flex-grow-1">
+    <h6 class="product-title mb-2" style="min-height: 48px;">
+        <a href="{{ route('shopdetail', $related->product_id) }}" class="text-dark text-decoration-none">
+            {{ Str::limit($related->name, 40) }}
+        </a>
+    </h6>
+
+    <div class="text mb-2" style="min-height: 60px;">
+        <p class="text-muted small mb-0">{{ Str::limit($related->description, 80) }}</p>
+    </div>
+
+    <div class="rating-star mb-2">
+        <div class="d-flex align-items-center gap-2">
+            @php
+                $avgRating = round($related->reviews_avg_rating ?? 0);
+                $reviewCount = $related->reviews_count ?? 0;
+            @endphp
+
+            {{-- Hiển thị sao --}}
+            <span class="text-warning">
+                @for ($i = 1; $i <= 5; $i++)
+                    @if ($i <= $avgRating)
+                        ★
+                    @else
+                        <span class="text-muted">★</span>
                     @endif
-                    <a href="{{ route('shopdetail', $related->product_id) }}">
-                        <img src="{{ asset('image/shoplist/' . $related->image_url) }}" class="product-image w-100" style="aspect-ratio: 1/1; object-fit: cover;" alt="{{ $related->name }}">
-                    </a>
-                    {{-- Icon --}}
-                    <div class="side-icons position-absolute top-0 end-0 m-2">
-                        <ul class="list-unstyled d-flex flex-column gap-2">
-                            <li>
-                                <a href="{{ route('wishlist.add', $related->product_id) }}">
-                                    <img src="{{ url('user') }}/media/icons/heart.png" alt="Wishlist">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#productQuickView" data-id="{{ $related->product_id }}">
-                                    <img src="{{ url('user') }}/media/icons/eye.png" alt="Quick View">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                    <img src="{{ url('user') }}/media/icons/compare.png" alt="Compare">
-                                </a>
-                            </li>
-                        </ul>
+                @endfor
+            </span>
+
+            {{-- Hiển thị số lượt đánh giá --}}
+            <span class="text-muted small">({{ $reviewCount }})</span>
+        </div>
+
+        {{-- Hiển thị giá --}}
+        <div>
+            <h6 class="mb-0">
+                @if ($related->old_price)
+                    <span class="text-decoration-line-through text-muted">${{ $related->old_price }}</span>
+                @endif
+                &nbsp;${{ $related->price }}
+            </h6>
+        </div>
+    </div>
+
+    {{-- Button --}}
+    <div class="mt-auto">
+        <a href="cart.html" class="cus-btn-2 w-100 text-center">ADD TO CART</a>
+    </div>
+</div>
+
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    <!-- Recommended Product End -->
+
+    <!-- Benefits Start -->
+    <footer>
+        <div class="container-fluid">
+            <div class="benefits">
+                <div class="row justify-content-center  benefits-wrapper">
+                    <div class="col-xxl-10 col-xl-12">
+                        <div class="row row-gap-3">
+                            <div class="col-xl-2 col-md-4 col-6">
+                                <div class="benefit-block">
+                                    <div class="image-box mb-12">
+                                        <img src="{{url('user')}}/media/icons/icon-1-sm.png" alt="">
+                                    </div>
+                                    <div class="content-box">
+                                        <p class="fw-500 mb-4p">Easy Returns</p>
+                                        <p class="light-gray">From handpicked sellers</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-md-4 col-6">
+                                <div class="benefit-block">
+                                    <div class="image-box mb-12">
+                                        <img src="{{url('user')}}/media/icons/icon-2-sm.png" alt="">
+                                    </div>
+                                    <div class="content-box">
+                                        <p class="fw-500 mb-4p">Fast Delivery</p>
+                                        <p class="light-gray">Delivery in 24 hours max!</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-md-4 col-6">
+                                <div class="benefit-block">
+                                    <div class="image-box mb-12">
+                                        <img src="{{url('user')}}/media/icons/icon-3-sm.png" alt="">
+                                    </div>
+                                    <div class="content-box">
+                                        <p class="fw-500 mb-4p">Safe Payment</p>
+                                        <p class="light-gray">100% secure payment</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-md-4 col-6">
+                                <div class="benefit-block">
+                                    <div class="image-box mb-12">
+                                        <img src="{{url('user')}}/media/icons/icon-4-sm.png" alt="">
+                                    </div>
+                                    <div class="content-box">
+                                        <p class="fw-500 mb-4p">Online Discount</p>
+                                        <p class="light-gray">Add multi-buy discount</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-md-4 col-6">
+                                <div class="benefit-block">
+                                    <div class="image-box mb-12">
+                                        <img src="{{url('user')}}/media/icons/icon-5-sm.png" alt="">
+                                    </div>
+                                    <div class="content-box">
+                                        <p class="fw-500 mb-4p">Need Help</p>
+                                        <p class="light-gray">Dedicated 24/7 Support</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-md-4 col-6">
+                                <div class="benefit-block">
+                                    <div class="image-box mb-12">
+                                        <img src="{{url('user')}}/media/icons/icon-6-sm.png" alt="">
+                                    </div>
+                                    <div class="content-box">
+                                        <p class="fw-500 mb-4p">Curated Items</p>
+                                        <p class="light-gray">From handpciked sellers</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                {{-- Nội dung --}}
-                <div class="product-desc d-flex flex-column flex-grow-1">
-                    <h6 class="product-title mb-2" style="min-height: 48px;">
-                        <a href="{{ route('shopdetail', $related->product_id) }}" class="text-dark text-decoration-none">
-                            {{ Str::limit($related->name, 40) }}
-                        </a>
-                    </h6>
-                    <div class="text mb-2" style="min-height: 60px;">
-                        <p class="text-muted small mb-0">{{ Str::limit($related->description, 80) }}</p>
-                    </div>
-                    <div class="rating-star mb-2">
-                        <div class="d-flex align-items-center gap-2">
-                            <span class="text-warning">★★★★<span class="text-muted">★</span></span>
-                            <span class="text-muted small">({{ $related->review_count ?? 0 }})</span>
+            </div>
+            <div class="hr-line"></div>
+            <div class="footer-wrapper pt-40 mb-32">
+                <div class="store-desc">
+                    <a href="{{asset('template/user/home/index')}}"><img src="{{url('user')}}/media/logo.png" alt="" class="mb-16"></a>
+                    <p class="light-gray mb-xl-32 mb-lg-0 mb-32">
+                        Lorem ipsum dolor sit amet consectetur. Eu dolor faucibus <br>
+                        sit fames elit ac. Hendrerit ultrices morbi faucibus.
+                    </p>
+                    <p class="d-xl-none d-lg-block d-none light-gray mb-32">
+                        amet consectetur. Eu dolor faucibus <br>
+                        sit fames elit ac ultrices morbi faucibus.
+                    </p>
+                    <a href="tel:123456789" class="d-flex align-items-center gap-3">
+                        <div class="icon-box">
+                            <img src="{{url('user')}}/media/icons/user-icon.png" alt="">
                         </div>
                         <div>
-                            <h6 class="mb-0">
-                                @if ($related->old_price)
-                                    <span class="text-decoration-line-through text-muted">${{ $related->old_price }}</span>
-                                @endif
-                                &nbsp;${{ $related->price }}
-                            </h6>
+                            <p class="light-gray mb-4p">
+                                Call us 24/7
+                            </p>
+                            <h5 class="color-primary">088 8899 3639</h5>
                         </div>
+                    </a>
+                </div>
+                <div class="footer-link-block">
+                    <h6 class="fw-600 mb-24">Find It Fast</h6>
+                    <ul class="list-unstyled m-0">
+                        <li class="mb-8"><a href="" class="light-gray">Laptop & Computer</a></li>
+                        <li class="mb-8"><a href="" class="light-gray">Camera & Photo</a></li>
+                        <li class="mb-8"><a href="" class="light-gray">Smartphone & Tablet</a></li>
+                        <li class="mb-8"><a href="" class="light-gray">TV & Audio</a></li>
+                        <li class="mb-8"><a href="" class="light-gray">Home & Electronic</a></li>
+                        <li class="mb-8"><a href="" class="light-gray">Headphone & Speakers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-link-block">
+                    <h6 class="fw-600 mb-24">Quick Link</h6>
+                    <ul class="list-unstyled m-0">
+                        <li class="mb-8"><a href="{{asset('template/user/home/index')}}" class="light-gray">Home Page</a></li>
+                        <li class="mb-8"><a href="about.html" class="light-gray">About Us</a></li>
+                        <li class="mb-8"><a href="{{asset('template/user/shop/shop-list')}}" class="light-gray">Shop Now</a></li>
+                        <li class="mb-8"><a href="register.html" class="light-gray">Signup</a></li>
+                        <li class="mb-8"><a href="register.html" class="light-gray">Login</a></li>
+                        <li class="mb-8"><a href="contact.html" class="light-gray">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-link-block">
+                    <h6 class="fw-600 mb-24">Customer Care</h6>
+                    <ul class="list-unstyled m-0">
+                        <li class="mb-8"><a href="register.html" class="light-gray">My Account</a></li>
+                        <li class="mb-8"><a href="tracking.html" class="light-gray">Track Your Order</a></li>
+                        <li class="mb-8"><a href="shop-grid-3.html" class="light-gray">Customer Service</a></li>
+                        <li class="mb-8"><a href="blog-grid.html" class="light-gray">Blogs</a></li>
+                        <li class="mb-8"><a href="about.html" class="light-gray">FAQs</a></li>
+                        <li class="mb-8"><a href="coming-soon.html" class="light-gray">Coming Soon</a></li>
+                    </ul>
+                </div>
+                <div class="footer-link-block">
+                    <ul class="list-unstyled mb-16">
+                        <li class="mb-12 footer-link">
+                            <a href="" class="d-flex align-items-center gap-2">
+                                <div class="img-box">
+                                    <img src="{{url('user')}}/media/icons/location.png" alt="">
+                                </div>
+                                <p class="light-gray">Group 3 Aptech</p>
+                            </a>
+                        </li>
+                        <li class="mb-12 footer-link">
+                            <a href="mailto:info@example.com" class="d-flex align-items-center gap-2">
+                                <div class="img-box">
+                                    <img src="{{url('user')}}/media/icons/mail-sm.png" alt="">
+                                </div>
+                                <p class="color-primary">Test@gmail.com</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="fw-500 mb-16">Follow Us!</p>
+                    <ul class="list-unstyled social-link">
+                        <li>
+                            <a href="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                    <path
+                                        d="M12.5696 24.5995C12.4901 24.5995 12.4106 24.5995 12.3306 24.5992C10.4494 24.6038 8.71118 24.556 7.02075 24.4531C5.47095 24.3588 4.05627 23.8232 2.92944 22.9043C1.84216 22.0178 1.09967 20.819 0.722656 19.3417C0.394531 18.0555 0.377136 16.793 0.360474 15.5719C0.348389 14.6957 0.335937 13.6575 0.333374 12.6017C0.335937 11.5416 0.348389 10.5033 0.360474 9.62719C0.377136 8.40624 0.394531 7.14373 0.722656 5.85742C1.09967 4.38012 1.84216 3.18133 2.92944 2.29473C4.05627 1.37591 5.47095 0.840326 7.02093 0.746026C8.71136 0.643304 10.4499 0.595331 12.3352 0.599908C14.217 0.59588 15.9546 0.643304 17.6451 0.746026C19.1949 0.840326 20.6096 1.37591 21.7364 2.29473C22.8238 3.18133 23.5662 4.38012 23.9432 5.85742C24.2713 7.14355 24.2887 8.40624 24.3054 9.62719C24.3174 10.5033 24.3301 11.5416 24.3325 12.5973V12.6017C24.3301 13.6575 24.3174 14.6957 24.3054 15.5719C24.2887 16.7928 24.2715 18.0553 23.9432 19.3417C23.5662 20.819 22.8238 22.0178 21.7364 22.9043C20.6096 23.8232 19.1949 24.3588 17.6451 24.4531C16.0262 24.5516 14.3633 24.5995 12.5696 24.5995ZM12.3306 23.1127C14.1813 23.1171 15.8805 23.0702 17.5312 22.9699C18.7031 22.8987 20.0854 22.13 20.9178 21.4512C21.6872 20.8237 22.2171 19.958 22.4927 18.878C22.7658 17.8074 22.7816 16.6579 22.7968 15.5463C22.8087 14.676 22.8211 13.6451 22.8237 12.5995C22.8211 11.5538 22.8087 10.5231 22.7968 9.65282C22.7816 8.54119 22.7658 7.39166 22.4927 6.32086C22.2171 5.2409 21.6872 4.37518 20.9178 3.74767C20.0854 3.06909 18.7031 2.32292 17.5312 2.2517C15.8805 2.15117 14.1813 2.10485 12.335 2.10887C10.4847 2.10448 8.78534 2.15667 7.13464 2.2572C5.96277 2.32843 4.70864 2.83101 3.87624 3.50959C3.10683 4.1371 2.43443 5.2409 2.15885 6.32086C1.88566 7.39166 1.86991 8.54101 1.85472 9.65282C1.84281 10.5239 1.83036 11.5553 1.8278 12.6017C1.83036 13.6436 1.84281 14.6752 1.85472 15.5463C1.86991 16.6579 1.88566 17.8074 2.15885 18.878C2.43443 19.958 2.96434 20.8237 3.73374 21.4512C4.56614 22.1298 5.96277 22.8987 7.13464 22.9699C8.78534 23.0704 10.4851 23.1173 12.3306 23.1127ZM12.2859 18.4589C9.05523 18.4589 6.42657 15.8304 6.42657 12.5995C6.42657 9.36864 9.05523 6.74017 12.2859 6.74017C15.5168 6.74017 18.1453 9.36864 18.1453 12.5995C18.1453 15.8304 15.5168 18.4589 12.2859 18.4589ZM12.335 8.1045C9.70055 8.1045 7.84651 9.95854 7.84651 12.5973C7.84651 14.7942 9.50773 17.1126 12.3091 17.1126C14.5062 17.1126 16.7904 15.0312 16.7904 12.5973C16.7904 10.4004 15.1143 8.1045 12.335 8.1045ZM18.8016 4.86517C18.025 4.86517 17.3953 5.49468 17.3953 6.27142C17.3953 7.04815 18.025 7.67767 18.8016 7.67767C19.5783 7.67767 20.2078 7.04815 20.2078 6.27142C20.2078 5.49468 19.5783 4.86517 18.8016 4.86517Z"
+                                        fill="#0C0C0D" />
+                                </svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                    <g clip-path="url(#clip0_5950_10656)">
+                                        <path
+                                            d="M17.9584 6.22461C18.3465 6.22461 18.6615 5.90961 18.6615 5.52148V1.30273C18.6615 0.914609 18.3465 0.599609 17.9584 0.599609H13.7396C11.0256 0.599609 8.81775 2.80742 8.81775 5.52148V9.03711H6.70837C6.32025 9.03711 6.00525 9.35211 6.00525 9.74023V13.959C6.00525 14.3471 6.32025 14.6621 6.70837 14.6621H8.81775V23.8965C8.81775 24.2846 9.13275 24.5996 9.52087 24.5996H13.7396C14.1277 24.5996 14.4427 24.2846 14.4427 23.8965V14.6621H17.2552C17.5988 14.6621 17.8923 14.4137 17.949 14.0748L18.6521 9.85602C18.6859 9.65211 18.6287 9.44352 18.4951 9.28555C18.3615 9.12805 18.1651 9.03711 17.9584 9.03711H14.4427V6.22461H17.9584ZM13.7396 10.4434H17.1282L16.6595 13.2559H13.7396C13.3515 13.2559 13.0365 13.5709 13.0365 13.959V23.1934H10.224V13.959C10.224 13.5709 9.909 13.2559 9.52087 13.2559H7.4115V10.4434H9.52087C9.909 10.4434 10.224 10.1284 10.224 9.74023V5.52148C10.224 3.5832 11.8013 2.00586 13.7396 2.00586H17.2552V4.81836H13.7396C13.3515 4.81836 13.0365 5.13336 13.0365 5.52148V9.74023C13.0365 10.1284 13.3515 10.4434 13.7396 10.4434Z"
+                                            fill="#0C0C0D" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_5950_10656">
+                                            <rect width="24" height="24" fill="white" transform="translate(0.333374 0.599609)" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                    <g clip-path="url(#clip0_5950_10659)">
+                                        <path
+                                            d="M14.5746 10.762L23.3171 0.599609H21.2454L13.6543 9.42345L7.5914 0.599609H0.598511L9.76688 13.9428L0.598511 24.5996H2.6703L10.6866 15.2813L17.0896 24.5996H24.0825L14.5741 10.762H14.5746ZM11.737 14.0604L10.8081 12.7317L3.4168 2.15922H6.59895L12.5638 10.6915L13.4928 12.0202L21.2464 23.1109H18.0642L11.737 14.0609V14.0604Z"
+                                            fill="#0C0C0D" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_5950_10659">
+                                            <rect width="24" height="24" fill="white" transform="translate(0.333374 0.599609)" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                                    <g clip-path="url(#clip0_5950_10662)">
+                                        <path
+                                            d="M5.97705 8.13074H1.45837C1.07001 8.13074 0.755249 8.44568 0.755249 8.83386V23.8965C0.755249 24.2849 1.07001 24.5996 1.45837 24.5996H5.97705C6.36542 24.5996 6.68018 24.2849 6.68018 23.8965V8.83386C6.68018 8.44568 6.36542 8.13074 5.97705 8.13074ZM5.27393 23.1934H2.1615V9.53699H5.27393V23.1934Z"
+                                            fill="#0C0C0D" />
+                                        <path
+                                            d="M3.7179 0.599609C2.08423 0.599609 0.755249 1.92859 0.755249 3.56189C0.755249 5.19556 2.08423 6.52435 3.7179 6.52435C5.35138 6.52435 6.68018 5.19537 6.68018 3.56189C6.68018 1.92859 5.35138 0.599609 3.7179 0.599609ZM3.7179 5.1181C2.85968 5.1181 2.1615 4.4201 2.1615 3.56189C2.1615 2.70386 2.85968 2.00586 3.7179 2.00586C4.57593 2.00586 5.27393 2.70386 5.27393 3.56189C5.27393 4.4201 4.57593 5.1181 3.7179 5.1181Z"
+                                            fill="#0C0C0D" />
+                                        <path
+                                            d="M17.2745 8.03131C16.2057 8.03131 15.1523 8.28894 14.2089 8.77087C14.1769 8.41217 13.8757 8.13074 13.5085 8.13074H8.9895C8.60132 8.13074 8.28638 8.44568 8.28638 8.83386V23.8965C8.28638 24.2849 8.60132 24.5996 8.9895 24.5996H13.5085C13.8969 24.5996 14.2117 24.2849 14.2117 23.8965V15.6121C14.2117 14.5464 15.0789 13.6794 16.1445 13.6794C17.2102 13.6794 18.077 14.5464 18.077 15.6121V23.8965C18.077 24.2849 18.392 24.5996 18.7802 24.5996H23.299C23.6874 24.5996 24.0021 24.2849 24.0021 23.8965V14.759C24.0021 11.0493 20.9842 8.03131 17.2745 8.03131ZM22.5959 23.1934H19.4835V15.6121C19.4835 13.7709 17.9857 12.2731 16.1447 12.2731C14.3034 12.2731 12.8054 13.7709 12.8054 15.6121V23.1934H9.69281V9.53699H12.8054V10.0565C12.8054 10.3269 12.9605 10.5734 13.2044 10.6904C13.4481 10.8074 13.7374 10.774 13.9485 10.605C14.9007 9.84131 16.051 9.43756 17.2745 9.43756C20.2087 9.43756 22.5959 11.8247 22.5959 14.759V23.1934Z"
+                                            fill="#0C0C0D" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_5950_10662">
+                                            <rect width="24" height="24" fill="white" transform="translate(0.333374 0.599609)" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="hr-line"></div>
+            <div class="footer-bottom-bar py-24">
+                <p class="light-gray text-sm-left text-center">Group 3 Aptech</p>
+                <div class="payment-cards d-flex align-items-center gap-16">
+                    <p class="fw-500 light-gray d-sm-flex d-none">Payment Mathods:</p>
+                    <div class="card-block">
+                        <img src="{{url('user')}}/media/icons/card-1.png" alt="">
                     </div>
-
-                    {{-- Button --}}
-                    <div class="mt-auto">
-                        <a href="cart.html" class="cus-btn-2 w-100 text-center">ADD TO CART</a>
+                    <div class="card-block">
+                        <img src="{{url('user')}}/media/icons/card-2.png" alt="">
+                    </div>
+                    <div class="card-block">
+                        <img src="{{url('user')}}/media/icons/card-3.png" alt="">
+                    </div>
+                    <div class="card-block">
+                        <img src="{{url('user')}}/media/icons/card-4.png" alt="">
+                    </div>
+                    <div class="card-block">
+                        <img src="{{url('user')}}/media/icons/card-5.png" alt="">
                     </div>
                 </div>
             </div>
         </div>
-    @endforeach
-</div>
-
-                </div>
-            </section>
-            <!-- Recommended Product End -->
-
-            <!-- Benefits Start -->
-            <footer>
-                <div class="container-fluid">
-                    <div class="benefits">
-                        <div class="row justify-content-center  benefits-wrapper">
-                            <div class="col-xxl-10 col-xl-12">
-                                <div class="row row-gap-3">
-                                    <div class="col-xl-2 col-md-4 col-6">
-                                        <div class="benefit-block">
-                                            <div class="image-box mb-12">
-                                                <img src="{{url('user')}}/media/icons/icon-1-sm.png" alt="">
-                                            </div>
-                                            <div class="content-box">
-                                                <p class="fw-500 mb-4p">Easy Returns</p>
-                                                <p class="light-gray">From handpicked sellers</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-4 col-6">
-                                        <div class="benefit-block">
-                                            <div class="image-box mb-12">
-                                                <img src="{{url('user')}}/media/icons/icon-2-sm.png" alt="">
-                                            </div>
-                                            <div class="content-box">
-                                                <p class="fw-500 mb-4p">Fast Delivery</p>
-                                                <p class="light-gray">Delivery in 24 hours max!</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-4 col-6">
-                                        <div class="benefit-block">
-                                            <div class="image-box mb-12">
-                                                <img src="{{url('user')}}/media/icons/icon-3-sm.png" alt="">
-                                            </div>
-                                            <div class="content-box">
-                                                <p class="fw-500 mb-4p">Safe Payment</p>
-                                                <p class="light-gray">100% secure payment</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-4 col-6">
-                                        <div class="benefit-block">
-                                            <div class="image-box mb-12">
-                                                <img src="{{url('user')}}/media/icons/icon-4-sm.png" alt="">
-                                            </div>
-                                            <div class="content-box">
-                                                <p class="fw-500 mb-4p">Online Discount</p>
-                                                <p class="light-gray">Add multi-buy discount</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-4 col-6">
-                                        <div class="benefit-block">
-                                            <div class="image-box mb-12">
-                                                <img src="{{url('user')}}/media/icons/icon-5-sm.png" alt="">
-                                            </div>
-                                            <div class="content-box">
-                                                <p class="fw-500 mb-4p">Need Help</p>
-                                                <p class="light-gray">Dedicated 24/7 Support</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-4 col-6">
-                                        <div class="benefit-block">
-                                            <div class="image-box mb-12">
-                                                <img src="{{url('user')}}/media/icons/icon-6-sm.png" alt="">
-                                            </div>
-                                            <div class="content-box">
-                                                <p class="fw-500 mb-4p">Curated Items</p>
-                                                <p class="light-gray">From handpciked sellers</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="hr-line"></div>
-                    <div class="footer-wrapper pt-40 mb-32">
-                        <div class="store-desc">
-                            <a href="{{asset('template/user/home/index')}}"><img src="{{url('user')}}/media/logo.png" alt="" class="mb-16"></a>
-                            <p class="light-gray mb-xl-32 mb-lg-0 mb-32">
-                                Lorem ipsum dolor sit amet consectetur. Eu dolor faucibus <br>
-                                sit fames elit ac. Hendrerit ultrices morbi faucibus.
-                            </p>
-                            <p class="d-xl-none d-lg-block d-none light-gray mb-32">
-                                amet consectetur. Eu dolor faucibus <br>
-                                sit fames elit ac ultrices morbi faucibus.
-                            </p>
-                            <a href="tel:123456789" class="d-flex align-items-center gap-3">
-                                <div class="icon-box">
-                                    <img src="{{url('user')}}/media/icons/user-icon.png" alt="">
-                                </div>
-                                <div>
-                                    <p class="light-gray mb-4p">
-                                        Call us 24/7
-                                    </p>
-                                    <h5 class="color-primary">088 8899 3639</h5>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="footer-link-block">
-                            <h6 class="fw-600 mb-24">Find It Fast</h6>
-                            <ul class="list-unstyled m-0">
-                                <li class="mb-8"><a href="" class="light-gray">Laptop & Computer</a></li>
-                                <li class="mb-8"><a href="" class="light-gray">Camera & Photo</a></li>
-                                <li class="mb-8"><a href="" class="light-gray">Smartphone & Tablet</a></li>
-                                <li class="mb-8"><a href="" class="light-gray">TV & Audio</a></li>
-                                <li class="mb-8"><a href="" class="light-gray">Home & Electronic</a></li>
-                                <li class="mb-8"><a href="" class="light-gray">Headphone & Speakers</a></li>
-                            </ul>
-                        </div>
-                        <div class="footer-link-block">
-                            <h6 class="fw-600 mb-24">Quick Link</h6>
-                            <ul class="list-unstyled m-0">
-                                <li class="mb-8"><a href="{{asset('template/user/home/index')}}" class="light-gray">Home Page</a></li>
-                                <li class="mb-8"><a href="about.html" class="light-gray">About Us</a></li>
-                                <li class="mb-8"><a href="{{asset('template/user/shop/shop-list')}}" class="light-gray">Shop Now</a></li>
-                                <li class="mb-8"><a href="register.html" class="light-gray">Signup</a></li>
-                                <li class="mb-8"><a href="register.html" class="light-gray">Login</a></li>
-                                <li class="mb-8"><a href="contact.html" class="light-gray">Privacy Policy</a></li>
-                            </ul>
-                        </div>
-                        <div class="footer-link-block">
-                            <h6 class="fw-600 mb-24">Customer Care</h6>
-                            <ul class="list-unstyled m-0">
-                                <li class="mb-8"><a href="register.html" class="light-gray">My Account</a></li>
-                                <li class="mb-8"><a href="tracking.html" class="light-gray">Track Your Order</a></li>
-                                <li class="mb-8"><a href="shop-grid-3.html" class="light-gray">Customer Service</a></li>
-                                <li class="mb-8"><a href="blog-grid.html" class="light-gray">Blogs</a></li>
-                                <li class="mb-8"><a href="about.html" class="light-gray">FAQs</a></li>
-                                <li class="mb-8"><a href="coming-soon.html" class="light-gray">Coming Soon</a></li>
-                            </ul>
-                        </div>
-                        <div class="footer-link-block">
-                            <ul class="list-unstyled mb-16">
-                                <li class="mb-12 footer-link">
-                                    <a href="" class="d-flex align-items-center gap-2">
-                                        <div class="img-box">
-                                            <img src="{{url('user')}}/media/icons/location.png" alt="">
-                                        </div>
-                                        <p class="light-gray">Group 3 Aptech</p>
-                                    </a>
-                                </li>
-                                <li class="mb-12 footer-link">
-                                    <a href="mailto:info@example.com" class="d-flex align-items-center gap-2">
-                                        <div class="img-box">
-                                            <img src="{{url('user')}}/media/icons/mail-sm.png" alt="">
-                                        </div>
-                                        <p class="color-primary">Test@gmail.com</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <p class="fw-500 mb-16">Follow Us!</p>
-                            <ul class="list-unstyled social-link">
-                                <li>
-                                    <a href="">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
-                                            <path
-                                                d="M12.5696 24.5995C12.4901 24.5995 12.4106 24.5995 12.3306 24.5992C10.4494 24.6038 8.71118 24.556 7.02075 24.4531C5.47095 24.3588 4.05627 23.8232 2.92944 22.9043C1.84216 22.0178 1.09967 20.819 0.722656 19.3417C0.394531 18.0555 0.377136 16.793 0.360474 15.5719C0.348389 14.6957 0.335937 13.6575 0.333374 12.6017C0.335937 11.5416 0.348389 10.5033 0.360474 9.62719C0.377136 8.40624 0.394531 7.14373 0.722656 5.85742C1.09967 4.38012 1.84216 3.18133 2.92944 2.29473C4.05627 1.37591 5.47095 0.840326 7.02093 0.746026C8.71136 0.643304 10.4499 0.595331 12.3352 0.599908C14.217 0.59588 15.9546 0.643304 17.6451 0.746026C19.1949 0.840326 20.6096 1.37591 21.7364 2.29473C22.8238 3.18133 23.5662 4.38012 23.9432 5.85742C24.2713 7.14355 24.2887 8.40624 24.3054 9.62719C24.3174 10.5033 24.3301 11.5416 24.3325 12.5973V12.6017C24.3301 13.6575 24.3174 14.6957 24.3054 15.5719C24.2887 16.7928 24.2715 18.0553 23.9432 19.3417C23.5662 20.819 22.8238 22.0178 21.7364 22.9043C20.6096 23.8232 19.1949 24.3588 17.6451 24.4531C16.0262 24.5516 14.3633 24.5995 12.5696 24.5995ZM12.3306 23.1127C14.1813 23.1171 15.8805 23.0702 17.5312 22.9699C18.7031 22.8987 20.0854 22.13 20.9178 21.4512C21.6872 20.8237 22.2171 19.958 22.4927 18.878C22.7658 17.8074 22.7816 16.6579 22.7968 15.5463C22.8087 14.676 22.8211 13.6451 22.8237 12.5995C22.8211 11.5538 22.8087 10.5231 22.7968 9.65282C22.7816 8.54119 22.7658 7.39166 22.4927 6.32086C22.2171 5.2409 21.6872 4.37518 20.9178 3.74767C20.0854 3.06909 18.7031 2.32292 17.5312 2.2517C15.8805 2.15117 14.1813 2.10485 12.335 2.10887C10.4847 2.10448 8.78534 2.15667 7.13464 2.2572C5.96277 2.32843 4.70864 2.83101 3.87624 3.50959C3.10683 4.1371 2.43443 5.2409 2.15885 6.32086C1.88566 7.39166 1.86991 8.54101 1.85472 9.65282C1.84281 10.5239 1.83036 11.5553 1.8278 12.6017C1.83036 13.6436 1.84281 14.6752 1.85472 15.5463C1.86991 16.6579 1.88566 17.8074 2.15885 18.878C2.43443 19.958 2.96434 20.8237 3.73374 21.4512C4.56614 22.1298 5.96277 22.8987 7.13464 22.9699C8.78534 23.0704 10.4851 23.1173 12.3306 23.1127ZM12.2859 18.4589C9.05523 18.4589 6.42657 15.8304 6.42657 12.5995C6.42657 9.36864 9.05523 6.74017 12.2859 6.74017C15.5168 6.74017 18.1453 9.36864 18.1453 12.5995C18.1453 15.8304 15.5168 18.4589 12.2859 18.4589ZM12.335 8.1045C9.70055 8.1045 7.84651 9.95854 7.84651 12.5973C7.84651 14.7942 9.50773 17.1126 12.3091 17.1126C14.5062 17.1126 16.7904 15.0312 16.7904 12.5973C16.7904 10.4004 15.1143 8.1045 12.335 8.1045ZM18.8016 4.86517C18.025 4.86517 17.3953 5.49468 17.3953 6.27142C17.3953 7.04815 18.025 7.67767 18.8016 7.67767C19.5783 7.67767 20.2078 7.04815 20.2078 6.27142C20.2078 5.49468 19.5783 4.86517 18.8016 4.86517Z"
-                                                fill="#0C0C0D" />
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
-                                            <g clip-path="url(#clip0_5950_10656)">
-                                                <path
-                                                    d="M17.9584 6.22461C18.3465 6.22461 18.6615 5.90961 18.6615 5.52148V1.30273C18.6615 0.914609 18.3465 0.599609 17.9584 0.599609H13.7396C11.0256 0.599609 8.81775 2.80742 8.81775 5.52148V9.03711H6.70837C6.32025 9.03711 6.00525 9.35211 6.00525 9.74023V13.959C6.00525 14.3471 6.32025 14.6621 6.70837 14.6621H8.81775V23.8965C8.81775 24.2846 9.13275 24.5996 9.52087 24.5996H13.7396C14.1277 24.5996 14.4427 24.2846 14.4427 23.8965V14.6621H17.2552C17.5988 14.6621 17.8923 14.4137 17.949 14.0748L18.6521 9.85602C18.6859 9.65211 18.6287 9.44352 18.4951 9.28555C18.3615 9.12805 18.1651 9.03711 17.9584 9.03711H14.4427V6.22461H17.9584ZM13.7396 10.4434H17.1282L16.6595 13.2559H13.7396C13.3515 13.2559 13.0365 13.5709 13.0365 13.959V23.1934H10.224V13.959C10.224 13.5709 9.909 13.2559 9.52087 13.2559H7.4115V10.4434H9.52087C9.909 10.4434 10.224 10.1284 10.224 9.74023V5.52148C10.224 3.5832 11.8013 2.00586 13.7396 2.00586H17.2552V4.81836H13.7396C13.3515 4.81836 13.0365 5.13336 13.0365 5.52148V9.74023C13.0365 10.1284 13.3515 10.4434 13.7396 10.4434Z"
-                                                    fill="#0C0C0D" />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_5950_10656">
-                                                    <rect width="24" height="24" fill="white" transform="translate(0.333374 0.599609)" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
-                                            <g clip-path="url(#clip0_5950_10659)">
-                                                <path
-                                                    d="M14.5746 10.762L23.3171 0.599609H21.2454L13.6543 9.42345L7.5914 0.599609H0.598511L9.76688 13.9428L0.598511 24.5996H2.6703L10.6866 15.2813L17.0896 24.5996H24.0825L14.5741 10.762H14.5746ZM11.737 14.0604L10.8081 12.7317L3.4168 2.15922H6.59895L12.5638 10.6915L13.4928 12.0202L21.2464 23.1109H18.0642L11.737 14.0609V14.0604Z"
-                                                    fill="#0C0C0D" />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_5950_10659">
-                                                    <rect width="24" height="24" fill="white" transform="translate(0.333374 0.599609)" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
-                                            <g clip-path="url(#clip0_5950_10662)">
-                                                <path
-                                                    d="M5.97705 8.13074H1.45837C1.07001 8.13074 0.755249 8.44568 0.755249 8.83386V23.8965C0.755249 24.2849 1.07001 24.5996 1.45837 24.5996H5.97705C6.36542 24.5996 6.68018 24.2849 6.68018 23.8965V8.83386C6.68018 8.44568 6.36542 8.13074 5.97705 8.13074ZM5.27393 23.1934H2.1615V9.53699H5.27393V23.1934Z"
-                                                    fill="#0C0C0D" />
-                                                <path
-                                                    d="M3.7179 0.599609C2.08423 0.599609 0.755249 1.92859 0.755249 3.56189C0.755249 5.19556 2.08423 6.52435 3.7179 6.52435C5.35138 6.52435 6.68018 5.19537 6.68018 3.56189C6.68018 1.92859 5.35138 0.599609 3.7179 0.599609ZM3.7179 5.1181C2.85968 5.1181 2.1615 4.4201 2.1615 3.56189C2.1615 2.70386 2.85968 2.00586 3.7179 2.00586C4.57593 2.00586 5.27393 2.70386 5.27393 3.56189C5.27393 4.4201 4.57593 5.1181 3.7179 5.1181Z"
-                                                    fill="#0C0C0D" />
-                                                <path
-                                                    d="M17.2745 8.03131C16.2057 8.03131 15.1523 8.28894 14.2089 8.77087C14.1769 8.41217 13.8757 8.13074 13.5085 8.13074H8.9895C8.60132 8.13074 8.28638 8.44568 8.28638 8.83386V23.8965C8.28638 24.2849 8.60132 24.5996 8.9895 24.5996H13.5085C13.8969 24.5996 14.2117 24.2849 14.2117 23.8965V15.6121C14.2117 14.5464 15.0789 13.6794 16.1445 13.6794C17.2102 13.6794 18.077 14.5464 18.077 15.6121V23.8965C18.077 24.2849 18.392 24.5996 18.7802 24.5996H23.299C23.6874 24.5996 24.0021 24.2849 24.0021 23.8965V14.759C24.0021 11.0493 20.9842 8.03131 17.2745 8.03131ZM22.5959 23.1934H19.4835V15.6121C19.4835 13.7709 17.9857 12.2731 16.1447 12.2731C14.3034 12.2731 12.8054 13.7709 12.8054 15.6121V23.1934H9.69281V9.53699H12.8054V10.0565C12.8054 10.3269 12.9605 10.5734 13.2044 10.6904C13.4481 10.8074 13.7374 10.774 13.9485 10.605C14.9007 9.84131 16.051 9.43756 17.2745 9.43756C20.2087 9.43756 22.5959 11.8247 22.5959 14.759V23.1934Z"
-                                                    fill="#0C0C0D" />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_5950_10662">
-                                                    <rect width="24" height="24" fill="white" transform="translate(0.333374 0.599609)" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="hr-line"></div>
-                    <div class="footer-bottom-bar py-24">
-                        <p class="light-gray text-sm-left text-center">Group 3 Aptech</p>
-                        <div class="payment-cards d-flex align-items-center gap-16">
-                            <p class="fw-500 light-gray d-sm-flex d-none">Payment Mathods:</p>
-                            <div class="card-block">
-                                <img src="{{url('user')}}/media/icons/card-1.png" alt="">
-                            </div>
-                            <div class="card-block">
-                                <img src="{{url('user')}}/media/icons/card-2.png" alt="">
-                            </div>
-                            <div class="card-block">
-                                <img src="{{url('user')}}/media/icons/card-3.png" alt="">
-                            </div>
-                            <div class="card-block">
-                                <img src="{{url('user')}}/media/icons/card-4.png" alt="">
-                            </div>
-                            <div class="card-block">
-                                <img src="{{url('user')}}/media/icons/card-5.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-            <!-- Benefits End -->
-        </main>
-        <!-- Main Sections -->
+    </footer>
+    <!-- Benefits End -->
+    </main>
+    <!-- Main Sections -->
     </div>
     <!-- Main Wrapper End -->
 
@@ -986,7 +989,6 @@
             </div>
         </div>
     </div>
-
 </body>
 
 </html>

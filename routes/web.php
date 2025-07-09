@@ -15,6 +15,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\UserInfoController;
 use App\Http\Controllers\MyAccountController;
 use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\ReviewController;
 
 Route::group(['prefix' => '/'], function () {
     Route::get('/', [HomeController::class, 'index']);
@@ -180,3 +181,7 @@ Route::post('/email/resend', [VerificationController::class, 'resend'])->name('v
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::post('/user/update', [UserInfoController::class, 'update'])->name('user.update');
+
+Route::group(['prefix' => 'template/user'], function () {
+    Route::post('/review/store', [ReviewController::class, 'store'])->name('reviews.store');
+});

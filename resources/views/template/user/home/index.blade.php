@@ -55,11 +55,7 @@
                         @if ($firstProduct)
                         <img src="{{ asset('image/shoplist/' . $firstProduct->image_url) }}"
                             alt="{{ $category->name }}"
-                            style="width: 100px; height:85px; object-fit: cover; border-radius: 50%;">
-                        @else
-                        <img src="{{ asset('images/default-category.png') }}"
-                            alt="No Image"
-                            style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;">
+                            style="width: 100px; height:auto; object-fit: cover; border-radius: 50%;">
                         @endif
                     </div>
                     <p class="fw-500 mb-1">{{ $category->name }}</p>
@@ -109,7 +105,6 @@
                                             <ul class="list-unstyled d-flex flex-column gap-2">
                                                 <li><a href="#"><img src="{{ url('user/media/icons/heart.png') }}" alt="Wishlist"></a></li>
                                                 <li><a href="#" data-bs-toggle="modal" data-bs-target="#productQuickView"><img src="{{ url('user/media/icons/eye.png') }}" alt="Quick View"></a></li>
-                                                <li><a href="#" data-bs-toggle="modal" data-bs-target="#comparepopup"><img src="{{ url('user/media/icons/compare.png') }}" alt="Compare"></a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -124,14 +119,24 @@
                                         <p class="light-gray small flex-grow-1 mb-3" style="min-height: 72px;">
                                             {{ Str::limit($product->short_description, 150) }}
                                         </p>
+                                        <div class="d-flex align-items-center gap-2 mb-2">
+                                            <div class="text-warning">
+                                                @for ($i = 1; $i <= 5; $i++)
+                                                    @if ($i <=round($product->reviews_avg_rating ?? 0))
+                                                    ★
+                                                    @else
+                                                    <span class="text-muted">★</span>
+                                                    @endif
+                                                    @endfor
+                                            </div>
+                                            <div class="text-muted small">
+                                                ({{ $product->reviews_count ?? 0 }})
+                                            </div>
+                                        </div>
                                         <div class="mb-3">
-                                            <h6 class="fw-bold mb-0">
-                                                <span class="text-decoration-line-through light-gray me-2">
-                                                    ${{ number_format($product->price * 1.1, 2) }}
-                                                </span>
-                                                <span class="text-danger">
-                                                    ${{ number_format($product->price, 2) }}
-                                                </span>
+                                            <h6>
+                                                <span class="text-decoration-line-through light-gray">${{ number_format($product->price * 1.1, 2) }}</span>
+                                                &nbsp;&nbsp;${{ number_format($product->price, 2) }}
                                             </h6>
                                         </div>
                                         <a href="#" class="cus-btn-2 w-100 text-center mt-auto">Add to Cart</a>
@@ -171,7 +176,6 @@
                                     <ul class="list-unstyled">
                                         <li><a href="javascript:void(0)"><img src="{{ url('user') }}/media/icons/heart.png" alt="Wishlist"></a></li>
                                         <li><a href="javascript:void(0)" class="btn" data-bs-toggle="modal" data-bs-target="#productQuickView"><img src="{{ url('user') }}/media/icons/eye.png" alt="Quick View"></a></li>
-                                        <li><a href="javascript:void(0)" class="zui-wrapper-button" data-bs-toggle="modal" data-bs-target="#comparepopup"><img src="{{ url('user') }}/media/icons/compare.png" alt="Compare"></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -182,6 +186,20 @@
                                 <div class="text mb-12 flex-grow-1">
                                     <p class="light-gray" style="min-height: 72px;">{{ Str::limit($product->short_description, 150) }}</p>
                                 </div>
+<div class="d-flex align-items-center gap-2 mb-2">
+    <div class="text-warning">
+        @for ($i = 1; $i <= 5; $i++)
+            @if ($i <= round($product->reviews_avg_rating ?? 0))
+                ★
+            @else
+                <span class="text-muted">★</span>
+            @endif
+        @endfor
+    </div>
+    <div class="text-muted small">
+        ({{ $product->reviews_count ?? 0 }})
+    </div>
+</div>
                                 <div class="mb-16">
                                     <h6>
                                         <span class="text-decoration-line-through light-gray">${{ number_format($product->price * 1.1, 2) }}</span>
@@ -238,7 +256,6 @@
                             <ul class="list-unstyled">
                                 <li><a href="javascript:void(0)"><img src="{{ url('user') }}/media/icons/heart.png" alt="Wishlist"></a></li>
                                 <li><a href="javascript:void(0)" class="btn" data-bs-toggle="modal" data-bs-target="#productQuickView"><img src="{{ url('user') }}/media/icons/eye.png" alt="Quick View"></a></li>
-                                <li><a href="javascript:void(0)" class="zui-wrapper-button" data-bs-toggle="modal" data-bs-target="#comparepopup"><img src="{{ url('user') }}/media/icons/compare.png" alt="Compare"></a></li>
                             </ul>
                         </div>
                     </div>
@@ -248,6 +265,20 @@
                         </h6>
                         <div class="text mb-12 flex-grow-1">
                             <p class="light-gray" style="min-height: 72px;">{{ Str::limit($product->short_description, 150) }}</p>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <div class="text-warning">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    @if ($i <=round($product->reviews_avg_rating ?? 0))
+                                    ★
+                                    @else
+                                    <span class="text-muted">★</span>
+                                    @endif
+                                    @endfor
+                            </div>
+                            <div class="text-muted small">
+                                ({{ $product->reviews_count ?? 0 }})
+                            </div>
                         </div>
                         <div class="mb-16">
                             <h6>

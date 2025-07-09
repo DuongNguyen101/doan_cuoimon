@@ -2,12 +2,8 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use \App\Models\Review;
 
 class Products extends Model
 {
@@ -35,5 +31,9 @@ class Products extends Model
     public function category()
     {
         return $this->belongsTo(Categories::class, 'category_id', 'category_id');
+    }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'product_id', 'product_id'); 
     }
 }

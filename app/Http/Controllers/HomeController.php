@@ -16,21 +16,27 @@ class HomeController extends Controller
             ->get();
 
         $featuredProducts = Products::where('status', 1)
+            ->withCount('reviews')
+            ->withAvg('reviews', 'rating')
             ->latest()
             ->take(4)
             ->get();
 
         $featuredProducts2 = Products::where('status', 1)
             ->where('category_id', 2)
+            ->withCount('reviews')
+            ->withAvg('reviews', 'rating')
             ->latest()
-            ->take(6) 
+            ->take(6)
             ->get();
 
         $featuredProducts3 = Products::where('status', 1)
-        ->where('category_id', 5)
-        ->latest()
-        ->take(6) 
-        ->get();
+            ->where('category_id', 5)
+            ->withCount('reviews')
+            ->withAvg('reviews', 'rating')
+            ->latest()
+            ->take(6)
+            ->get();
 
         $search = request()->get('search');
         $products = Products::where('status', 1);
