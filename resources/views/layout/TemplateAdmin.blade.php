@@ -76,7 +76,13 @@
                     <li class="ml-3">
                         <a href="{{asset('/template/admin/products/out')}}">
                             <i class="nc-icon nc-simple-add" style="font-size: 15px;"></i>
-                            <p style="font-size: 12px;">out of Stock</p>
+                            <p style="font-size: 12px;">Out of Stock</p>
+                        </a>
+                    </li>
+                    <li class="ml-3">
+                        <a href="{{asset('/template/admin/products/detail')}}">
+                            <i class="nc-icon nc-simple-add" style="font-size: 15px;"></i>
+                            <p style="font-size: 12px;">Product Detail</p>
                         </a>
                     </li>
 
