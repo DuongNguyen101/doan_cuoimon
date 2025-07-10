@@ -94,10 +94,17 @@ class PagesController extends Controller
 
     public function logout(Request $request)
     {
+        $cart = session('cart', []);
+        $wishlist = session('wishlist', []);
+
         Auth::guard('web')->logout(); 
-        $request->session()->invalidate();
+
         $request->session()->regenerateToken();
+
+        session(['cart' => $cart]);
+        session(['wishlist' => $wishlist]);
 
         return redirect('template/user/pages/login')->with('success', 'You have been logged out.');
     }
+
 }

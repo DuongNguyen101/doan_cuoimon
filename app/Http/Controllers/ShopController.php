@@ -139,10 +139,10 @@ class ShopController extends Controller
 
         $product = Products::where('product_id', $id)->first();
         if (!$product) {
-            return redirect()->back()->with('info', 'Sản phẩm không tồn tại.');
+            return redirect()->back()->with('info', 'Product does not exist.');
         }
         if (!$product) {
-            return redirect()->back()->with('info', 'Sản phẩm không tồn tại.');
+            return redirect()->back()->with('info', 'Product does not exist.');
         }
 
         $wishlist = session()->get('wishlist', []);
