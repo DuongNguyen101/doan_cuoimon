@@ -137,28 +137,31 @@ class ShopController extends Controller
             return redirect()->route('login')->with('warning', 'Please login to add products to your wishlist.');
         }
 
-        $product = Products::findOrFail($id);
+        $product = Products::where('product_id', $id)->first();
+        if (!$product) {
+            return redirect()->back()->with('info', 'Sản phẩm không tồn tại.');
+        }
+        if (!$product) {
+            return redirect()->back()->with('info', 'Sản phẩm không tồn tại.');
+        }
 
         $wishlist = session()->get('wishlist', []);
 
-        if (isset($wishlist[$id])) {
-            $wishlist[$id]['quantity'] += 1;
-            session()->flash('info', 'Increased the quantity in your wishlist!');
-        } else {
-            $wishlist[$id] = [
-                'product_id' => $product->id,
-                'name' => $product->name,
-                'price' => $product->price,
-                'image_url' => $product->image_url,
-                'quantity' => 1,
-                'added_at' => now()->format('d M, Y'),
-            ];
-            session()->flash('success', 'Added to wishlist successfully!');
-        }
+        $wishlist[$id] = [
+            'product_id' => $product->id,
+            'name'       => $product->name,
+            'price'      => $product->price,
+            'image_url'  => $product->image_url,
+            'quantity'   => 1,
+            'stock'      => $product->stock, 
+            'added_at'   => now()->format('d M, Y'),
+        ];
 
         session()->put('wishlist', $wishlist);
-        return redirect()->back();
+
+        return redirect()->back()->with('success', 'Added to wishlist successfully!');
     }
+
 
     public function removeFromWishlist($id)
     {
@@ -177,6 +180,10 @@ class ShopController extends Controller
 
     public function addToCart($id)
     {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('warning', 'Please login to add products to cart.');
+        }
+
         $product = Products::findOrFail($id);
         $cart = session()->get('cart', []);
 
@@ -197,9 +204,9 @@ class ShopController extends Controller
         }
 
         session()->put('cart', $cart);
-
         return redirect()->back()->with('success', 'Product added to cart!');
     }
+
 
     public function removeFromCart($id)
     {
