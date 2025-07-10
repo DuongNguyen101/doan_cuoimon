@@ -47,4 +47,30 @@ class HomeController extends Controller
 
         return view('template.user.home.index', compact('categories', 'products', 'featuredProducts', 'featuredProducts2', 'featuredProducts3'));
     }
+    
+    public function addToCart($id)
+{
+    $product = Products::findOrFail($id);
+    $cart = session()->get('cart', []);
+
+    if (isset($cart[$id])) {
+        if ($cart[$id]['quantity'] < $product->stock) {
+            $cart[$id]['quantity']++;
+        }
+    } else {
+        $cart[$id] = [
+            'product_id' => $product->id,
+            'name' => $product->name,
+            'price' => $product->price,
+            'image_url' => $product->image_url,
+            'quantity' => 1,
+            'stock' => $product->stock,
+            'added_at' => now()->format('d M, Y'),
+        ];
+    }
+
+    session()->put('cart', $cart);
+    return redirect()->back()->with('success', 'Product added to cart!');
+}
+
 }

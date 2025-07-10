@@ -1,5 +1,6 @@
 @extends('layout.user')
 @section('content')
+
 <!-- HERO BANNER START -->
 <section class="hero-banner py-24">
     <div class="container-fluid">
@@ -139,7 +140,12 @@
                                                 &nbsp;&nbsp;${{ number_format($product->price, 2) }}
                                             </h6>
                                         </div>
-                                        <a href="#" class="cus-btn-2 w-100 text-center mt-auto">Add to Cart</a>
+                                        <a href="{{ route('cart.add', $product->product_id) }}"
+                                            class="cus-btn-2 w-100 text-center mt-auto btn-add-to-cart"
+                                            data-id="{{ $product->product_id }}">
+                                            Add to Cart
+                                        </a>
+
                                     </div>
                                 </div>
                             </div>
@@ -206,7 +212,7 @@
                                         &nbsp;&nbsp;${{ number_format($product->price, 2) }}
                                     </h6>
                                 </div>
-                                <a href="javascript:void(0)" class="cus-btn-2 w-100 mt-auto">Add to Cart</a>
+                                <a href="{{ route('cart.add', $product->product_id) }}" class="cus-btn-2 w-100 text-center mt-auto">Add to Cart</a>
                             </div>
                         </div>
                     </div>
@@ -286,7 +292,7 @@
                                 &nbsp;&nbsp;${{ number_format($product->price, 2) }}
                             </h6>
                         </div>
-                        <a href="javascript:void(0)" class="cus-btn-2 w-100 mt-auto">Add to Cart</a>
+                        <a href="{{ route('cart.add', $product->product_id) }}" class="cus-btn-2 w-100 text-center mt-auto">Add to Cart</a>
                     </div>
                 </div>
             </div>
