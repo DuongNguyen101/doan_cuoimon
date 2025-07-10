@@ -1,12 +1,11 @@
 @extends('layout.user')
 @section('content')
 
+
 <section class="title-banner">
     <div class="container-fluid">
         <div class="banner-wrapper">
-            <img src="{{url('user')}}/media/banner/left-image.png" alt="" class="banner-image1">
             <h1 class="dark-black fw-600">Shopping Cart</h1>
-            <img src="{{url('user')}}/media/banner/right-image.png" alt="" class="banner-image2">
         </div>
     </div>
 </section>
@@ -19,6 +18,7 @@
                         <thead>
                             <tr>
                                 <th>Products</th>
+                                <th>Stock</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
                                 <th>Subtotal</th>
@@ -27,178 +27,126 @@
                     </table>
                     <table class="cart-table">
                         <tbody>
-                            <tr class="table-row">
-                                <td class="pd">
-                                    <div class="product-detail-box">
-                                        <a href="" class="h5 dark-black"><i class="fa-solid fa-xmark"></i></a>
-                                        <div class="img-block">
-                                            <a href="shop-grid-2.html">
-                                                <img src="{{url('user')}}/media/images/cart-image-1.png" alt="">
+                            @php
+                            $total = 0;
+                            foreach ($cart as $item) {
+                            $total += $item['price'] * $item['quantity'];
+                            }
+                            @endphp
+
+                            @forelse ($cart as $productId => $item)
+                            <tr class="table-row align-middle">
+                                {{-- 1. Product --}}
+                                <td class="pd" style="width: 370px">
+                                    <div class="product-detail-box d-flex align-items-center">
+                                        <a href="{{ route('cart.remove', $productId) }}" class="text-danger me-2">
+                                            <i class="fa-solid fa-xmark"></i>
+                                        </a>
+                                        <div class="img-block me-2">
+                                            <a href="{{ route('shopdetail', $productId) }}">
+                                                <img src="{{ asset('image/shoplist/' . $item['image_url']) }}" alt="{{ $item['name'] }}" width="64px" height="auto" class="rounded">
                                             </a>
                                         </div>
-                                        <div class="d-block text-start">
-                                            <h6><a href="shop-grid-2.html">Gaming Headphone</a></h6>
+                                        <div>
+                                            <h6 class="mb-0">
+                                                <a href="{{ route('shopdetail', $productId) }}">{{ $item['name'] }}</a>
+                                            </h6>
                                         </div>
                                     </div>
                                 </td>
+
+                                {{-- 2. Stock --}}
                                 <td>
-                                    <p class="fw-500"> <span class="light-gray text-decoration-line-through">$10.00</span> $85.00</p>
+                                    <span class="text-muted small" style="margin-left: 20px;">In stock: {{ $item['stock'] }}</span>
                                 </td>
+
+                                {{-- 3. Price --}}
                                 <td>
-                                    <div class="quantity-controller quantity-wrap">
-                                        <input class="decrement" type="button" value="-">
-                                        <input type="text" name="quantity" value="1" maxlength="2" size="1" class="number">
-                                        <input class="increment" type="button" value="+">
+                                    <p class="fw-500 mb-0">${{ number_format($item['price'], 2) }}</p>
+                                </td>
+
+                                {{-- 4. Quantity --}}
+                                <td>
+                                    <div class="quantity-controller quantity-wrap d-flex justify-content-center" data-price="{{ $item['price'] }}">
+                                        <input
+                                            type="number"
+                                            name="quantity"
+                                            value="{{ $item['quantity'] }}"
+                                            min="1"
+                                            max="{{ $item['stock'] }}"
+                                            class="form-control text-center"
+                                            style="width: 80px;"
+                                            data-product-id="{{ $productId }}" />
                                     </div>
                                 </td>
+
+                                {{-- 5. Subtotal --}}
                                 <td>
-                                    <p class="fw-500">$85.00</p>
+                                    <p class="fw-500 mb-0 subtotal" style="margin-left: 20px;">${{ number_format($item['price'] * $item['quantity'], 2) }}</p>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <table class="cart-table">
-                        <tbody>
-                            <tr class="table-row">
-                                <td class="pd">
-                                    <div class="product-detail-box">
-                                        <a href="" class="h5 dark-black"><i class="fa-solid fa-xmark"></i></a>
-                                        <div class="img-block">
-                                            <a href="shop-grid-2.html">
-                                                <img src="{{url('user')}}/media/images/cart-image-2.png" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="d-block text-start">
-                                            <h6><a href="shop-grid-2.html">Samsung S21 Ultra</a></h6>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="fw-500"> $15.00</p>
-                                </td>
-                                <td>
-                                    <div class="quantity-controller quantity-wrap">
-                                        <input class="decrement" type="button" value="-">
-                                        <input type="text" name="quantity" value="1" maxlength="2" size="1" class="number">
-                                        <input class="increment" type="button" value="+">
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="fw-500">$15.00</p>
-                                </td>
+                            @empty
+                            <tr>
+                                <td colspan="5" class="text-center text-muted">Your cart is empty.</td>
                             </tr>
+                            @endforelse
                         </tbody>
+
                     </table>
 
                 </div>
-                <div class="d-lg-none d-block">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="cart-item-block mb-32">
-                                <div class="img-block mb-16">
-                                    <a href="product-detail-1.html"><img src="{{url('user')}}/media/images/cart-image-1.png" alt=""></a>
-                                    <a href="" class="cross"><i class="fa-solid fa-xmark"></i></i></a>
-                                </div>
-                                <h6 class="mb-24">Gaming Headphone</h6>
-                                <ul class="unstyled detail">
-                                    <li>
-                                        <h6 class="">Price</h6>
-                                        <h6 class="">$85.00</h6>
-                                    </li>
 
-                                    <li>
-                                        <h6 class="">Quantity</h6>
-                                        <div class="quantity-controller quantity-wrap">
-                                            <input class="decrement" type="button" value="-">
-                                            <input type="text" name="quantity" value="1" maxlength="2" size="1" class="number">
-                                            <input class="increment" type="button" value="+">
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <h6 class="">Subtotal</h6>
-                                        <h6 class="">$85.00</h6>
-                                    </li>
-                                    <li>
-                                        <a href="cart.html" class="cus-btn active-btn">Add to Cart</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="cart-item-block mb-32">
-                                <div class="img-block mb-16">
-                                    <a href="product-detail-1.html"><img src="{{url('user')}}/media/images/cart-image-2.png" alt=""></a>
-                                    <a href="" class="cross"><i class="fa-solid fa-xmark"></i></i></a>
-                                </div>
-                                <h6 class="mb-24">Samsung S21 Ultra</h6>
-                                <ul class="unstyled detail">
-                                    <li>
-                                        <h6 class="">Price</h6>
-                                        <h6 class="">$10.00</h6>
-                                    </li>
-
-                                    <li>
-                                        <h6 class="">Quantity</h6>
-                                        <div class="quantity-controller quantity-wrap">
-                                            <input class="decrement" type="button" value="-">
-                                            <input type="text" name="quantity" value="1" maxlength="2" size="1" class="number">
-                                            <input class="increment" type="button" value="+">
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <h6 class="">Subtotal</h6>
-                                        <h6 class="">$10.00</h6>
-                                    </li>
-                                    <li>
-                                        <a href="cart.html" class="cus-btn active-btn">Add to Cart</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="table-bottom-row bg-white">
-                    <a href="shop-list-1.html" class="cus-btn">Continue Shopping</a>
-                    <form action="checkout.html" method="post" class="contact-form d-flex align-items-center gap-16" novalidate="novalidate">
-                        <input type="number" class="form-control" placeholder="Coupon Code" name="code" id="cpCode">
-                        <button type="submit" class="cus-btn">Apply Now</button>
-                    </form>
-                </div>
-            </div>
-            <div class="col-xl-4">
-                <div class="checkout-box bg-semi-white mt-xl-0 mt-48">
-                    <div class="checkout-title text-center mb-16">
-                        <h5>Cart Total</h5>
-                    </div>
-                    <div class="bottom-box">
-                        <div class="title-price mb-16">
-                            <h6>Subtotal</h6>
-                            <h6 class="light-gray">$80.00</h6>
-                        </div>
-                        <div class="hr-line mb-16"></div>
-                        <div class="title-price mb-16">
-                            <h6>Standard Delivery</h6>
-                            <h6 class="light-gray">$5.00</h6>
-                        </div>
-                        <div class="hr-line mb-16"></div>
-                        <div class="title-price mb-16">
-                            <h6>Coupon Discount</h6>
-                            <h6 class="light-gray">$-5.00</h6>
-                        </div>
-                        <div class="hr-line mb-80"></div>
-                        <div class="hr-line mb-16"></div>
-                        <div class="title-price mb-16">
-                            <h5 class="color-primary">TOTAL</h5>
-                            <h5 class="color-primary">$80.00</h5>
-                        </div>
-                        <div class="hr-line mb-16"></div>
-                        <div class="text-end">
-                            <a href="checkout.html" class="cus-btn active-btn">PROCEED TO CHECKOUT</a>
-                        </div>
+                    <div class="table-bottom-row bg-white">
+                        <a href="{{ url('/template/user/shop/category/1') }}" class="cus-btn">Continue Shopping</a>
                     </div>
                 </div>
             </div>
+             <div class="col-xl-4">
+    @php
+      // Tính tổng tiền
+      $total = 0;
+      foreach ($cart as $item) {
+          $total += $item['price'] * $item['quantity'];
+      }
+      $shipping = 5;
+      $discount = 5;
+      $grandTotal = $total + $shipping - $discount;
+    @endphp
+
+    <div class="checkout-box bg-semi-white mt-xl-0 mt-48">
+      <div class="checkout-title text-center mb-16">
+        <h5>Cart Total</h5>
+      </div>
+      <div class="bottom-box">
+        <div class="title-price mb-16">
+          <h6>Subtotal</h6>
+          <h6 class="light-gray" id="subtotal-value">${{ number_format($total,2) }}</h6>
+        </div>
+        <div class="hr-line mb-16"></div>
+
+        {{-- Ẩn phí & giảm giá để JS dùng --}}
+        <div style="display:none">
+          <span id="shipping-value">{{ $shipping }}</span>
+          <span id="discount-value">{{ $discount }}</span>
+        </div>
+
+        <div class="title-price mb-16">
+          <h5 class="color-primary">TOTAL</h5>
+          <h5 class="color-primary" id="total-value">${{ number_format($grandTotal,2) }}</h5>
+        </div>
+        <div class="hr-line mb-16"></div>
+        <div class="text-end">
+          <a href="checkout.html" class="cus-btn active-btn">PROCEED TO CHECKOUT</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
         </div>
     </div>
 </section>
+
+<script src="{{asset('user')}}/js/cart.js"></script>
+
 @endsection

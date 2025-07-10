@@ -186,20 +186,20 @@
                                 <div class="text mb-12 flex-grow-1">
                                     <p class="light-gray" style="min-height: 72px;">{{ Str::limit($product->short_description, 150) }}</p>
                                 </div>
-<div class="d-flex align-items-center gap-2 mb-2">
-    <div class="text-warning">
-        @for ($i = 1; $i <= 5; $i++)
-            @if ($i <= round($product->reviews_avg_rating ?? 0))
-                ★
-            @else
-                <span class="text-muted">★</span>
-            @endif
-        @endfor
-    </div>
-    <div class="text-muted small">
-        ({{ $product->reviews_count ?? 0 }})
-    </div>
-</div>
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <div class="text-warning">
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            @if ($i <=round($product->reviews_avg_rating ?? 0))
+                                            ★
+                                            @else
+                                            <span class="text-muted">★</span>
+                                            @endif
+                                            @endfor
+                                    </div>
+                                    <div class="text-muted small">
+                                        ({{ $product->reviews_count ?? 0 }})
+                                    </div>
+                                </div>
                                 <div class="mb-16">
                                     <h6>
                                         <span class="text-decoration-line-through light-gray">${{ number_format($product->price * 1.1, 2) }}</span>

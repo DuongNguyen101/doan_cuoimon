@@ -63,9 +63,10 @@
                                 class="btn btn-sm btn-outline-danger flex-fill text-center">
                                 <i class="fas fa-heart"></i>
                             </a>
-                            <a href="#" class="btn btn-sm btn-outline-primary flex-fill text-center">
-                                <i class="fas fa-shopping-cart"></i>
-                            </a>
+                            <a href="{{ route('cart.add', $product->product_id) }}" 
+                                class="btn btn-sm btn-outline-primary flex-fill text-center">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </a>
                         </div>
                     </div>
                 </div>

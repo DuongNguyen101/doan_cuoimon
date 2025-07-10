@@ -41,11 +41,18 @@ Route::group(['prefix' => 'template/user'], function () {
     Route::get('/shop/wishlist/add/{id}', [ShopController::class, 'addToWishlist'])->name('wishlist.add');
     Route::get('/shop/wishlist/remove/{id}', [ShopController::class, 'removeFromWishlist'])->name('wishlist.remove');
 
-    Route::get('/shop/cart', [ShopController::class, 'cart']);
+    Route::get('/shop/cart', [ShopController::class, 'cart'])->name('cart');
     Route::get('/shop/checkout', [ShopController::class, 'checkout']);
-
     Route::get('/shop/category/{id}', [ShopController::class, 'categoryProducts'])->name('shop.category');
     Route::get('/shop/search', [ShopController::class, 'searchProducts'])->name('shop.search');
+
+    Route::get('/shop/cart/add/{id}', [ShopController::class, 'addToCart'])->name('cart.add');
+
+    Route::get('/shop/cart/remove/{id}', [ShopController::class, 'removeFromCart'])->name('cart.remove');
+    
+    Route::get('/shop/cart/increase/{id}', [ShopController::class, 'increaseQuantity'])->name('cart.increase');
+    Route::get('/shop/cart/decrease/{id}', [ShopController::class, 'decreaseQuantity'])->name('cart.decrease');
+
 });
 
 

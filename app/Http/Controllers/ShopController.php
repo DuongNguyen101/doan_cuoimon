@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categories;
 use App\Models\Products;
+use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
 {
@@ -13,9 +14,9 @@ class ShopController extends Controller
         $categories = Categories::select('category_id', 'name')->get();
 
         $products = Products::where('status', 1)
-        ->withCount('reviews') 
-        ->withAvg('reviews', 'rating') 
-        ->paginate(12);
+            ->withCount('reviews')
+            ->withAvg('reviews', 'rating')
+            ->paginate(12);
 
         return view('template/user/shop/shop-list', compact('categories', 'products'));
     }
@@ -59,8 +60,8 @@ class ShopController extends Controller
         $categories = Categories::all();
 
         $query = Products::withCount('reviews')
-        ->withAvg('reviews', 'rating')
-        ->where('status', 1);
+            ->withAvg('reviews', 'rating')
+            ->where('status', 1);
 
         $search = request()->get('search');
         if ($search) {
@@ -92,15 +93,15 @@ class ShopController extends Controller
         $relatedProducts = [];
 
         if ($id) {
-            $product = Products::with(['reviews.user'])->find($id); 
+            $product = Products::with(['reviews.user'])->find($id);
             if (!$product) {
                 abort(404);
             }
 
-           $relatedProducts = Products::where('category_id', $product->category_id)
+            $relatedProducts = Products::where('category_id', $product->category_id)
                 ->where('product_id', '!=', $product->product_id)
                 ->where('status', 1)
-                ->withCount('reviews') 
+                ->withCount('reviews')
                 ->withAvg('reviews', 'rating')
                 ->latest()
                 ->take(6)
@@ -119,8 +120,9 @@ class ShopController extends Controller
 
     public function cart()
     {
+        $cart = session('cart', []);
         $categories = Categories::all();
-        return view('template/user/shop/cart', compact('categories'));
+        return view('template.user.shop.cart', compact('categories', 'cart'));
     }
 
     public function checkout()
@@ -131,13 +133,17 @@ class ShopController extends Controller
 
     public function addToWishlist($id)
     {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('warning', 'Please login to add products to your wishlist.');
+        }
+
         $product = Products::findOrFail($id);
 
         $wishlist = session()->get('wishlist', []);
 
         if (isset($wishlist[$id])) {
             $wishlist[$id]['quantity'] += 1;
-            session()->flash('info', 'Increase the number of products in your wishlist!');
+            session()->flash('info', 'Increased the quantity in your wishlist!');
         } else {
             $wishlist[$id] = [
                 'product_id' => $product->id,
@@ -147,7 +153,7 @@ class ShopController extends Controller
                 'quantity' => 1,
                 'added_at' => now()->format('d M, Y'),
             ];
-            session()->flash('success', 'Added to favorites successfully!');
+            session()->flash('success', 'Added to wishlist successfully!');
         }
 
         session()->put('wishlist', $wishlist);
@@ -167,5 +173,71 @@ class ShopController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function addToCart($id)
+    {
+        $product = Products::findOrFail($id);
+        $cart = session()->get('cart', []);
+
+        if (isset($cart[$id])) {
+            if ($cart[$id]['quantity'] < $product->stock) {
+                $cart[$id]['quantity'] += 1;
+            }
+        } else {
+            $cart[$id] = [
+                'product_id' => $product->id,
+                'name'       => $product->name,
+                'price'      => $product->price,
+                'image_url'  => $product->image_url,
+                'quantity'   => 1,
+                'stock'      => $product->stock,
+                'added_at'   => now()->format('d M, Y'),
+            ];
+        }
+
+        session()->put('cart', $cart);
+
+        return redirect()->back()->with('success', 'Product added to cart!');
+    }
+
+    public function removeFromCart($id)
+    {
+        $cart = session()->get('cart', []);
+
+        if (isset($cart[$id])) {
+            unset($cart[$id]);
+            session()->put('cart', $cart);
+            session()->flash('success', 'Product removed from cart!');
+        } else {
+            session()->flash('info', 'Product not found in cart.');
+        }
+
+        return redirect()->route('cart');
+    }
+
+    public function increaseQuantity($id)
+    {
+        $cart = session()->get('cart', []);
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity'] += 1;
+            session()->put('cart', $cart);
+        }
+        return redirect()->route('cart');
+    }
+
+    public function decreaseQuantity($id)
+    {
+        $cart = session()->get('cart', []);
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity'] -= 1;
+
+            if ($cart[$id]['quantity'] < 1) {
+                unset($cart[$id]);
+            }
+
+            session()->put('cart', $cart);
+        }
+        return redirect()->route('cart');
     }
 }

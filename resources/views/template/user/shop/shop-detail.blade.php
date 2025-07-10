@@ -658,55 +658,55 @@
                         </div>
 
                         {{-- Nội dung --}}
-<div class="product-desc d-flex flex-column flex-grow-1">
-    <h6 class="product-title mb-2" style="min-height: 48px;">
-        <a href="{{ route('shopdetail', $related->product_id) }}" class="text-dark text-decoration-none">
-            {{ Str::limit($related->name, 40) }}
-        </a>
-    </h6>
+                        <div class="product-desc d-flex flex-column flex-grow-1">
+                            <h6 class="product-title mb-2" style="min-height: 48px;">
+                                <a href="{{ route('shopdetail', $related->product_id) }}" class="text-dark text-decoration-none">
+                                    {{ Str::limit($related->name, 40) }}
+                                </a>
+                            </h6>
 
-    <div class="text mb-2" style="min-height: 60px;">
-        <p class="text-muted small mb-0">{{ Str::limit($related->description, 80) }}</p>
-    </div>
+                            <div class="text mb-2" style="min-height: 60px;">
+                                <p class="text-muted small mb-0">{{ Str::limit($related->description, 80) }}</p>
+                            </div>
 
-    <div class="rating-star mb-2">
-        <div class="d-flex align-items-center gap-2">
-            @php
-                $avgRating = round($related->reviews_avg_rating ?? 0);
-                $reviewCount = $related->reviews_count ?? 0;
-            @endphp
+                            <div class="rating-star mb-2">
+                                <div class="d-flex align-items-center gap-2">
+                                    @php
+                                    $avgRating = round($related->reviews_avg_rating ?? 0);
+                                    $reviewCount = $related->reviews_count ?? 0;
+                                    @endphp
 
-            {{-- Hiển thị sao --}}
-            <span class="text-warning">
-                @for ($i = 1; $i <= 5; $i++)
-                    @if ($i <= $avgRating)
-                        ★
-                    @else
-                        <span class="text-muted">★</span>
-                    @endif
-                @endfor
-            </span>
+                                    {{-- Hiển thị sao --}}
+                                    <span class="text-warning">
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            @if ($i <=$avgRating)
+                                            ★
+                                            @else
+                                            <span class="text-muted">★</span>
+                                    @endif
+                                    @endfor
+                                    </span>
 
-            {{-- Hiển thị số lượt đánh giá --}}
-            <span class="text-muted small">({{ $reviewCount }})</span>
-        </div>
+                                    {{-- Hiển thị số lượt đánh giá --}}
+                                    <span class="text-muted small">({{ $reviewCount }})</span>
+                                </div>
 
-        {{-- Hiển thị giá --}}
-        <div>
-            <h6 class="mb-0">
-                @if ($related->old_price)
-                    <span class="text-decoration-line-through text-muted">${{ $related->old_price }}</span>
-                @endif
-                &nbsp;${{ $related->price }}
-            </h6>
-        </div>
-    </div>
+                                {{-- Hiển thị giá --}}
+                                <div>
+                                    <h6 class="mb-0">
+                                        @if ($related->old_price)
+                                        <span class="text-decoration-line-through text-muted">${{ $related->old_price }}</span>
+                                        @endif
+                                        &nbsp;${{ $related->price }}
+                                    </h6>
+                                </div>
+                            </div>
 
-    {{-- Button --}}
-    <div class="mt-auto">
-        <a href="cart.html" class="cus-btn-2 w-100 text-center">ADD TO CART</a>
-    </div>
-</div>
+                            {{-- Button --}}
+                            <div class="mt-auto">
+                                <a href="cart.html" class="cus-btn-2 w-100 text-center">ADD TO CART</a>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
