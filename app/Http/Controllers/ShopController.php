@@ -11,7 +11,11 @@ class ShopController extends Controller
     public function shoplist()
     {
         $categories = Categories::select('category_id', 'name')->get();
-        $products = Products::where('status', 1)->paginate(12);
+
+        $products = Products::where('status', 1)
+        ->withCount('reviews') 
+        ->withAvg('reviews', 'rating') 
+        ->paginate(12);
 
         return view('template/user/shop/shop-list', compact('categories', 'products'));
     }
@@ -24,9 +28,13 @@ class ShopController extends Controller
 
         if ($search) {
             $query = Products::where('status', 1)
-                ->where('name', 'like', '%' . $search . '%');
+                ->where('name', 'like', '%' . $search . '%')
+                ->withCount('reviews')
+                ->withAvg('reviews', 'rating');
         } else {
             $query = Products::where('category_id', $id)
+                ->withCount('reviews')
+                ->withAvg('reviews', 'rating')
                 ->where('status', 1);
         }
 
@@ -46,12 +54,13 @@ class ShopController extends Controller
         return view('template.user.shop.dryspices.index', compact('products', 'categories', 'id'));
     }
 
-
     public function searchProducts()
     {
         $categories = Categories::all();
 
-        $query = Products::where('status', 1);
+        $query = Products::withCount('reviews')
+        ->withAvg('reviews', 'rating')
+        ->where('status', 1);
 
         $search = request()->get('search');
         if ($search) {
@@ -80,16 +89,26 @@ class ShopController extends Controller
         $categories = Categories::all();
 
         $product = null;
+        $relatedProducts = [];
+
         if ($id) {
-            $product = Products::find($id);
+            $product = Products::with(['reviews.user'])->find($id); 
             if (!$product) {
                 abort(404);
             }
+
+           $relatedProducts = Products::where('category_id', $product->category_id)
+                ->where('product_id', '!=', $product->product_id)
+                ->where('status', 1)
+                ->withCount('reviews') 
+                ->withAvg('reviews', 'rating')
+                ->latest()
+                ->take(6)
+                ->get();
         }
 
-        return view('template/user/shop/shop-detail', compact('categories', 'product'));
+        return view('template/user/shop/shop-detail', compact('categories', 'product', 'relatedProducts'));
     }
-
 
     public function wishlist()
     {
