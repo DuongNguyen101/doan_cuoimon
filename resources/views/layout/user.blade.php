@@ -169,7 +169,7 @@
                             </a>
 
                             <!-- Cart -->
-                            <a href="#" class="button-block d-sm-flex d-none cart-button">
+                            <a href="{{asset('template/user/shop/cart')}}" class="button-block d-sm-flex d-none cart-button">
                                 <i class="fa-solid fa-cart-shopping"></i>
                             </a>
                         </div>

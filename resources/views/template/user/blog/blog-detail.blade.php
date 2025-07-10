@@ -96,7 +96,7 @@
                 <div class="container-fluid">
                     <div class="header-center">
                         <a href="{{asset('template/user/home/index')}}" class="header-logo">
-                            <img src="{{url('user')}}/media/logo.png" alt="">
+                            <img src="{{url('image/homepage/logo.png')}}" alt="" width="284px" height="43px">
                         </a>
                         <div class="mixin-container d-xl-flex d-none">
                             <div class="drop-container">
@@ -159,7 +159,7 @@
                             </a>
 
                             <!-- Cart -->
-                            <a href="#" class="button-block d-sm-flex d-none cart-button">
+                            <a href="{{asset('template/user/shop/cart')}}" class="button-block d-sm-flex d-none cart-button">
                                 <i class="fa-solid fa-cart-shopping"></i>
                             </a>
                         </div>
