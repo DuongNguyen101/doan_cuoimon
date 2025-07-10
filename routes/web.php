@@ -166,6 +166,7 @@ Route::group(['prefix' => 'template/admin', 'middleware' => ['auth:admin', 'chec
     Route::get('/products/out', [TemplateAdminController::class, 'productsout']);
     Route::get('/products/sold', [TemplateAdminController::class, 'productssold']);
     Route::get('/products/discounted', [TemplateAdminController::class, 'productsdiscounted']);
+    Route::get('/products/detail', [TemplateAdminController::class, 'productsdetail']);
 });
 
 Route::get('/email/verify', [VerificationController::class, 'notice'])->name('verification.notice');

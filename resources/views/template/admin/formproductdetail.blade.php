@@ -37,9 +37,9 @@
             {{-- Mô tả --}}
             <div class=" form-group" style="margin-bottom: 15px;">
                 <label for="description" style="display: block; margin-bottom: 6px;">Mô tả:</label>
-                <textarea id="description" name="description" rows="4"
-                    style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">{{ old('description', $product->description ?? '') }}</textarea>
+                <textarea id="description" name="description" rows="4" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">{{ old('description', $product->description ?? '') }}</textarea>
             </div>
+
             {{-- Mo ta ngan --}}
             <div class="form-group" style="margin-bottom: 15px;">
                 <label for="short_description" style="display: block; margin-bottom: 6px;">Mô tả ngắn:</label>
@@ -148,7 +148,12 @@
                 </a>
             </div>
         </form>
-
+        <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+        <script>
+            CKEDITOR.replace('description');
+            CKEDITOR.replace('short_description');
+            CKEDITOR.replace('nutritional_info');
+        </script>
     </div>
 
 </div>

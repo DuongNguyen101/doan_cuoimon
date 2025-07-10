@@ -782,4 +782,16 @@ class TemplateAdminController extends Controller
 
         return view('template.admin.productsin')->with($data);
     }
+    public function productsdetail()
+    {
+        $adminName = auth()->user()->name;
+
+        $data = [
+            'adminName'  => $adminName,
+            'categories' => Categories::get(),
+            'products'   => Products::get()
+        ];
+
+        return view('template.admin.productsdetail')->with($data);
+    }
 }
