@@ -1,73 +1,66 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // Hàm tính lại toàn bộ giỏ hàng
-    function recalcCart() {
-        let subtotalAll = 0;
+document.addEventListener('DOMContentLoaded', function () {
+    const inputs = document.querySelectorAll('input[name="quantity"]');
 
-        document.querySelectorAll("tr.table-row").forEach(row => {
-            const qtyInput = row.querySelector('input[name="quantity"]');
-            const price = parseFloat(row.querySelector('.quantity-wrap').dataset.price);
-            let qty = parseInt(qtyInput.value) || 1;
+    function updateTotals() {
+        let subtotal = 0;
 
-            // Giới hạn từ min đến max
-            const min = parseInt(qtyInput.getAttribute('min'));
-            const max = parseInt(qtyInput.getAttribute('max'));
-            if (qty < min) qty = min;
-            if (qty > max) qty = max;
-            qtyInput.value = qty;
-
-            // Cập nhật subtotal của hàng này
-            const rowSubtotal = price * qty;
-            row.querySelector('.subtotal').textContent = `$${rowSubtotal.toFixed(2)}`;
-            subtotalAll += rowSubtotal;
+        inputs.forEach(input => {
+            const price = parseFloat(input.dataset.price) || 0;
+            const qty = parseInt(input.value) || 0;
+            subtotal += price * qty;
         });
 
-        // Lấy phí vân chuyển và giảm giá
-        const shipping = parseFloat(document.getElementById('shipping-value').textContent.replace('$', '')) || 0;
-        const discount = parseFloat(document.getElementById('discount-value').textContent.replace('-', '').replace('$', '')) || 0;
-        const grandTotal = subtotalAll + shipping - discount;
+        const shipping = parseFloat(document.getElementById('shipping-value')?.innerText || 0);
+        const discount = parseFloat(document.getElementById('discount-value')?.innerText || 0);
+        const total = subtotal + shipping - discount;
 
-        // Cập nhật các giá trị ở Cart Total
-        document.getElementById('subtotal-value').textContent = `$${subtotalAll.toFixed(2)}`;
-        document.getElementById('total-value').textContent = `$${grandTotal.toFixed(2)}`;
+        document.getElementById('subtotal-value').innerText = '$' + subtotal.toFixed(2);
+        document.getElementById('total-value').innerText = '$' + total.toFixed(2);
     }
 
-    // Gắn listener cho mỗi ô quantity
-    document.querySelectorAll('input[name="quantity"]').forEach(input => {
-        const min = parseInt(input.getAttribute('min'));
-        const max = parseInt(input.getAttribute('max'));
+    function syncPreview(productId, quantity) {
+        const previewNumber = document.querySelector(`.preview-number[data-product-id="${productId}"]`);
+        if (previewNumber) {
+            previewNumber.textContent = quantity;
+        }
+    }
+    inputs.forEach(input => {
+        const min = parseInt(input.min);
+        const max = parseInt(input.max);
 
-        // Khi người dùng nhập (input event)
-        input.addEventListener('input', () => {
-            let val = parseInt(input.value) || min;
-            if (val < min) val = min;
-            if (val > max) val = max;
-            input.value = val;
-            recalcCart();
-        });
+        function handleQtyChange() {
+            let qty = parseInt(input.value);
+            if (isNaN(qty)) qty = min;
+            qty = Math.min(Math.max(qty, min), max);
+            input.value = qty;
 
-        // Khi người dùng nhấn Enter
-        input.addEventListener('keydown', e => {
+            const row = input.closest('tr');
+            const price = parseFloat(input.dataset.price);
+            const subtotal = price * qty;
+
+            const subtotalCell = row.querySelector('.subtotal');
+            if (subtotalCell) {
+                subtotalCell.innerText = '$' + subtotal.toFixed(2);
+            }
+
+            const productId = input.dataset.productId;
+            syncPreview(productId, qty);
+
+            updateTotals();
+        }
+
+        input.addEventListener('input', handleQtyChange);
+        input.addEventListener('blur', handleQtyChange);
+        input.addEventListener('keydown', function (e) {
             if (e.key === 'Enter') {
                 e.preventDefault();
-                let val = parseInt(input.value) || min;
-                if (val < min) val = min;
-                if (val > max) val = max;
-                input.value = val;
-                recalcCart();
-                input.blur(); // bỏ focus tránh quay lại form
+                handleQtyChange();
+                input.blur();
             }
-        });
-
-        // Khi người dùng rời khỏi ô input
-        input.addEventListener('blur', () => {
-            let val = parseInt(input.value) || min;
-            if (val < min) val = min;
-            if (val > max) val = max;
-            input.value = val;
-            recalcCart();
         });
     });
 
-    // Tính lần đầu khi load trang
-    recalcCart();
+    updateTotals();
 });
+
+
