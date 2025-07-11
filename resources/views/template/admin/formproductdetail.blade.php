@@ -67,6 +67,7 @@
                 <label for="image_url" style="display: block; margin-bottom: 6px;"><button style="cursor: pointer;">Up hinh</button></label>
                 <input type="file" id="image_url" name="image_url"
                     accept="image/*"
+                    value="{{ old('origin', $product->image_url ?? '') }}"
                     style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
                 @if (old('image_url', $product->image_url ?? ''))
                 <p>{{ isset($product->product_id) ? 'Giu hinh hien tai' : 'Up hinh moi' }} <img src="{{ asset('image/shoplist/' . (old('image_url', $product->image_url ?? ''))) }}" alt="Current Image" style="max-width: 50px; margin-top: 10px;"></p>

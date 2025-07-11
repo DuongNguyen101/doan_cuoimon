@@ -32,7 +32,7 @@
                 <tr style="text-align: center; border-bottom: 1px solid #ccc;">
                     <td style="padding: 8px;">{{ $product->product_id }}</td>
                     <td style="padding: 8px;">{{ $product->name }}</td>
-                    <td style="padding: 8px;">{{ $product->description }}</td>
+                    <td style="padding: 8px;">{!!$product->description !!}</td>
                     <td style="padding: 8px; color: #28a745;">{{ number_format($product->price, 0, ',', '.') }}₫</td>
                     <td style="padding: 8px;">{{ $product->stock }}</td>
                     <td style="padding: 8px;">{{ $product->category_id }}</td>
