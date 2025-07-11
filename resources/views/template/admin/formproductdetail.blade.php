@@ -16,7 +16,7 @@
 
             {{-- Tên sản phẩm --}}
             <div class="form-group" style="margin-bottom: 15px;">
-                <label for="name" style="display: block; margin-bottom: 6px;">Tên sản phẩm</label>
+                <label for="name" style="display: block; margin-bottom: 6px;">name</label>
                 <input type="text" id="name" name="name"
                     value="{{ old('name', $product->name ?? '') }}"
                     required
@@ -26,7 +26,7 @@
             <input type="hidden" name="product_id" value="{{ old('product_id', $product->product_id ?? '') }}" readonly>
 
             {{-- cate ID --}}
-            <label for="category_id" style="display: block; margin-bottom: 6px;">danh mục:</label>
+            <label for="category_id" style="display: block; margin-bottom: 6px;">category_id:</label>
             <select id="category_id" name="category_id" required
                 style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
                 @foreach ( $categories as $category)
@@ -36,16 +36,14 @@
 
             {{-- Mô tả --}}
             <div class=" form-group" style="margin-bottom: 15px;">
-                <label for="description" style="display: block; margin-bottom: 6px;">Mô tả:</label>
+                <label for="description" style="display: block; margin-bottom: 6px;">description:</label>
                 <textarea id="description" name="description" rows="4" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">{{ old('description', $product->description ?? '') }}</textarea>
             </div>
 
             {{-- Mo ta ngan --}}
-            <div class="form-group" style="margin-bottom: 15px;">
-                <label for="short_description" style="display: block; margin-bottom: 6px;">Mô tả ngắn:</label>
-                <input type="text" id="short_description" name="short_description"
-                    value="{{ old('short_description', $product->short_description ?? '') }}"
-                    style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+            <div class=" form-group" style="margin-bottom: 15px;">
+                <label for="short_description" style="display: block; margin-bottom: 6px;">short_description:</label>
+                <textarea id="short_description" name="short_description" rows="4" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">{{ old('description', $product->short_description ?? '') }}</textarea>
             </div>
             {{-- Giá sản phẩm --}}
             <div class="form-group" style="margin-bottom: 15px;">
@@ -75,40 +73,31 @@
                 @endif
             </div>
             {{-- nutritional_info --}}
-            <div class="form-group" style="margin-bottom: 15px;">
+            <div class=" form-group" style="margin-bottom: 15px;">
                 <label for="nutritional_info" style="display: block; margin-bottom: 6px;">nutritional_info:</label>
-                <input type="text" id="nutritional_info" name="nutritional_info"
-                    value="{{ old('stock', $product->nutritional_info ?? '') }}"
-                    required
-                    style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                <textarea id="nutritional_info" name="nutritional_info" rows="4" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">{{ old('nutritional_info', $product->nutritional_info ?? '') }}</textarea>
             </div>
             {{-- usage_instructions--}}
-            <div class="form-group" style="margin-bottom: 15px;">
+            <div class=" form-group" style="margin-bottom: 15px;">
                 <label for="usage_instructions" style="display: block; margin-bottom: 6px;">usage_instructions:</label>
-                <input type="text" id="usage_instructions" name="usage_instructions"
-                    value="{{ old('stock', $product->usage_instructions ?? '') }}"
-                    required
-                    style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                <textarea id="usage_instructions" name="usage_instructions" rows="4" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">{{ old('usage_instructions', $product->usage_instructions ?? '') }}</textarea>
             </div>
             {{-- packaging --}}
-            <div class="form-group" style="margin-bottom: 15px;">
+            <div class=" form-group" style="margin-bottom: 15px;">
                 <label for="packaging" style="display: block; margin-bottom: 6px;">packaging:</label>
-                <input type="text" id="packaging" name="packaging"
-                    value="{{ old('stock', $product->packaging ?? '') }}"
-                    required
-                    style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                <textarea id="packaging" name="packaging" rows="4" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">{{ old('packaging', $product->packaging ?? '') }}</textarea>
             </div>
             {{-- origin --}}
             <div class="form-group" style="margin-bottom: 15px;">
                 <label for="name" style="display: block; margin-bottom: 6px;">origin:</label>
                 <input type="text" id="origin" name="origin"
-                    value="{{ old('stock', $product->origin ?? '') }}"
+                    value="{{ old('origin', $product->origin ?? '') }}"
                     required
                     style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
             </div>
             {{-- trang thái pham sản phẩm --}}
             <div class="form-group" style="margin-bottom: 15px;">
-                <label for="status" style="display: block; margin-bottom: 6px;">Trạng thái:</label>
+                <label for="status" style="display: block; margin-bottom: 6px;">status:</label>
                 <select id="status" name="status" required
                     style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
                     <option value="active" {{ old('status', $product->status ?? '') == 'active' ? 'selected' : '' }}>Active</option>
@@ -118,7 +107,7 @@
 
             {{-- Created At --}}
             <div class="form-group" style="margin-bottom: 15px;">
-                <label for="created_at" style="display: block; margin-bottom: 6px;">Ngày tạo:</label>
+                <label for="created_at" style="display: block; margin-bottom: 6px;">created_at:</label>
                 <input type="text" id="created_at" name="created_at"
                     value="{{ old('created_at', $product->created_at ?? '') }}"
                     style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
@@ -126,7 +115,7 @@
 
             {{-- Updated At --}}
             <div class="form-group" style="margin-bottom: 25px;">
-                <label for="updated_at" style="display: block; margin-bottom: 6px;">Cập nhật lúc:</label>
+                <label for="updated_at" style="display: block; margin-bottom: 6px;">updated_at:</label>
                 <input type="text" id="updated_at" name="updated_at"
                     value="{{ now()->format('Y-m-d H:i:s') }}"
                     style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
@@ -153,6 +142,7 @@
             CKEDITOR.replace('description');
             CKEDITOR.replace('short_description');
             CKEDITOR.replace('nutritional_info');
+            CKEDITOR.replace('usage_instructions');
         </script>
     </div>
 
