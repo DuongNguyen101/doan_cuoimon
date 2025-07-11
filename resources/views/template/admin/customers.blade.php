@@ -27,6 +27,7 @@
                     <th style="padding: 10px;">created_at</th>
                     <th style="padding: 10px;">updated_at</th>
                     <th style="padding: 10px;">status</th>
+                    <th style="padding: 10px;">description</th>
                     <th colspan="4" style="text-align: center; padding: 10px;">Hành động</th>
                 </tr>
             </thead>
@@ -49,6 +50,7 @@
                     <td style="padding: 8px;">{{ $User->created_at }}</td>
                     <td style="padding: 8px;">{{ $User->updated_at }}</td>
                     <td style="padding: 8px;">{{ $User->status }}</td>
+                    <td style="padding: 8px;">{{ $User->description }}</td>
                     <td style="padding: 8px;">
                         <a href="{{ url('/template/admin/user/' .$User->id ) }}"
                             style="color: #007bff; text-decoration: none;">Xem</a>

@@ -92,6 +92,14 @@
                     <option value="unactive" {{ old('status', $User->status ?? '') == 'unactive' ? 'selected' : '' }}>Unactive</option>
                 </select>
             </div>
+            {{-- description --}}
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label for="description" style="display: block; margin-bottom: 6px;">description:</label>
+                <input type="text" id="description" name="description"
+                    value="{{ old('description', $User->description ?? "") }}"
+                    required
+                    style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+            </div>
             {{-- password --}}
             <div class="form-group" style="margin-bottom: 15px;">
                 <label for="password" style="display: block; margin-bottom: 6px;">Password:</label>

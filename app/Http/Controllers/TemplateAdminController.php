@@ -151,6 +151,7 @@ class TemplateAdminController extends Controller
 
     {
         $adminName = auth()->user()->name;
+        $existingProduct = $id ? Products::find($id) : null;
 
         try {
 
@@ -177,11 +178,8 @@ class TemplateAdminController extends Controller
                 }
                 $file->move($destinationPath, $fileName); // Lưu vào thư mục
                 $product['image_url'] = $fileName; // Cập nhật tên tệp
-            } elseif ($id && !$request->hasFile('image_url') && Products::find($id)) {
-                $existingProduct = Products::find($id);
-                if ($existingProduct->image_url) {
-                    $product['image_url'] = $existingProduct->image_url;
-                }
+            } elseif ($existingProduct && $existingProduct->image_url) {
+                $product['image_url'] = $existingProduct->image_url;
             }
             if ($request->post('product_id')) {
                 Products::where('product_id', $request->post('product_id'))->update($product);

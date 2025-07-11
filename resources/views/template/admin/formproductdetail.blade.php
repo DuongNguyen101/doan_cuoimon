@@ -64,13 +64,15 @@
 
             {{-- hinh san pham sản phẩm --}}
             <div class="form-group" style="margin-bottom: 15px;">
-                <label for="image_url" style="display: block; margin-bottom: 6px;"><button style="cursor: pointer;">Up hinh</button></label>
-                <input type="file" id="image_url" name="image_url"
-                    accept="image/*"
-                    value="{{ old('origin', $product->image_url ?? '') }}"
-                    style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
-                @if (old('image_url', $product->image_url ?? ''))
-                <p>{{ isset($product->product_id) ? 'Giu hinh hien tai' : 'Up hinh moi' }} <img src="{{ asset('image/shoplist/' . (old('image_url', $product->image_url ?? ''))) }}" alt="Current Image" style="max-width: 50px; margin-top: 10px;"></p>
+                <label for="image_url" style="display: block; margin-bottom: 6px;">
+                    <button style="cursor: pointer;">Upload new Image</button>
+                </label>
+                <input type="file" id="image_url" name="image_url" accept="image/*" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                @if (isset($product) && $product->image_url)
+                <input type="hidden" name="image_url" value="{{ $product->image_url }}">
+                <p>Giữ hình hiện tại: <img src="{{ asset('image/shoplist/' . $product->image_url) }}" alt="Current Image" style="max-width: 50px; margin-top: 10px;"></p>
+                @elseif(old('image_url'))
+                <p>Up hinh moi: <img src="{{ asset('image/shoplist/' . old('image_url')) }}" alt="Current Image" style="max-width: 50px; margin-top: 10px;"></p>
                 @endif
             </div>
             {{-- nutritional_info --}}
@@ -89,12 +91,9 @@
                 <textarea id="packaging" name="packaging" rows="4" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">{{ old('packaging', $product->packaging ?? '') }}</textarea>
             </div>
             {{-- origin --}}
-            <div class="form-group" style="margin-bottom: 15px;">
-                <label for="name" style="display: block; margin-bottom: 6px;">origin:</label>
-                <input type="text" id="origin" name="origin"
-                    value="{{ old('origin', $product->origin ?? '') }}"
-                    required
-                    style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+            <div class=" form-group" style="margin-bottom: 15px;">
+                <label for="origin" style="display: block; margin-bottom: 6px;">packaging:</label>
+                <textarea id="origin" name="origin" rows="4" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">{{ old('packaging', $product->origin ?? '') }}</textarea>
             </div>
             {{-- trang thái pham sản phẩm --}}
             <div class="form-group" style="margin-bottom: 15px;">
