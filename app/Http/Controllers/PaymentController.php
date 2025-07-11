@@ -3,32 +3,69 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categories;
+use App\Models\OrderDetails;
+use App\Models\Orders;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
+
     public function vnpay_payment(Request $request)
     {
         $data = $request->all();
-        $code_cart = rand(00, 9999);
+        $code_cart = rand(100000, 999999);
+        $vnp_TmnCode = "TMOQACY3";
+        $vnp_HashSecret = "XKDDC9QWAARKDVUKXNNRQDNU8U1LRMRX";
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
         $vnp_Returnurl = route('vnpay.return');
-        $vnp_TmnCode = "TMOQACY3"; //Mã website tại VNPAY 
-        $vnp_HashSecret = "XKDDC9QWAARKDVUKXNNRQDNU8U1LRMRX"; //Chuỗi bí mật
 
-        $vnp_TxnRef = $code_cart; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
-        $vnp_OrderInfo = 'Thanh toán đơn hàng test';
+        $usdAmount = $data['total'];
+        $exchangeRate = 26110; // 1 USD = 26,110 VND
+        $vndAmount = round($usdAmount * $exchangeRate);
+        $vnp_Amount = $vndAmount * 100;
+
+        $vnp_TxnRef = $code_cart;
+        $vnp_OrderInfo = 'Thanh toán đơn hàng #' . $code_cart;
         $vnp_OrderType = 'billpayment';
-        $usd = $data['total']; // ví dụ: 22.90
-        $exchangeRate = 23000; // bạn có thể dùng API để cập nhật tỉ giá sau
-
-        $vndAmount = $usd * $exchangeRate;
-        $vnp_Amount = $vndAmount * 100; 
         $vnp_Locale = 'vn';
-        // $vnp_BankCode = 'NCB';
         $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
 
-        $inputData = array(
+        $address = '';
+        if (auth()->check()) {
+            $userAddress = \App\Models\UserAddress::where('user_id', auth()->id())->latest()->first();
+            if ($userAddress) {
+                $addressParts = array_filter([
+                    $userAddress->street,
+                    $userAddress->district,
+                    $userAddress->city,
+                ]);
+                $address = implode(', ', $addressParts);
+            }
+        }
+
+        Orders::create([
+            'order_id' => $code_cart,
+            'user_id' => auth()->id(),
+            'order_date' => now(),
+            'total_amount' => $vndAmount,
+            'status' => 'pending',
+            'address' => $address,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        $cart = session('cart', []);
+        foreach ($cart as $productId => $item) {
+            OrderDetails::create([
+                'order_id' => $code_cart,
+                'product_id' => $productId,
+                'quantity' => $item['quantity'],
+                'unit_price' => $item['price'],
+                'subtotal' => $item['quantity'] * $item['price'],
+            ]);
+        }
+
+        $inputData = [
             "vnp_Version" => "2.1.0",
             "vnp_TmnCode" => $vnp_TmnCode,
             "vnp_Amount" => $vnp_Amount,
@@ -41,20 +78,12 @@ class PaymentController extends Controller
             "vnp_OrderType" => $vnp_OrderType,
             "vnp_ReturnUrl" => $vnp_Returnurl,
             "vnp_TxnRef" => $vnp_TxnRef,
-
-        );
-
-        if (isset($vnp_BankCode) && $vnp_BankCode != "") {
-            $inputData['vnp_BankCode'] = $vnp_BankCode;
-        }
-        if (isset($vnp_Bill_State) && $vnp_Bill_State != "") {
-            $inputData['vnp_Bill_State'] = $vnp_Bill_State;
-        }
+        ];
 
         ksort($inputData);
-        $query = "";
+        $hashdata = '';
+        $query = '';
         $i = 0;
-        $hashdata = "";
         foreach ($inputData as $key => $value) {
             if ($i == 1) {
                 $hashdata .= '&' . urlencode($key) . "=" . urlencode($value);
@@ -65,63 +94,58 @@ class PaymentController extends Controller
             $query .= urlencode($key) . "=" . urlencode($value) . '&';
         }
 
-        $vnp_Url = $vnp_Url . "?" . $query;
-        if (isset($vnp_HashSecret)) {
-            $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret); //  
-            $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
-        }
-        $returnData = array(
-            'code' => '00',
-            'message' => 'success',
-            'data' => $vnp_Url
-        );
+        $vnp_Url .= '?' . $query;
+        $vnpSecureHash = hash_hmac('sha512', $hashdata, $vnp_HashSecret);
+        $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
+
         if (isset($_POST['redirect'])) {
-            header('Location: ' . $vnp_Url);
-            die();
+            return redirect()->away($vnp_Url);
         } else {
-            echo json_encode($returnData);
+            return response()->json(['code' => '00', 'message' => 'success', 'data' => $vnp_Url]);
         }
     }
 
+    public function vnpay_return(Request $request)
+    {
+        $vnp_HashSecret = "XKDDC9QWAARKDVUKXNNRQDNU8U1LRMRX";
+        $inputData = $request->except('vnp_SecureHash');
+        $vnp_SecureHash = $request->vnp_SecureHash;
 
-public function vnpay_return(Request $request)
-{
-    $vnp_HashSecret = "XKDDC9QWAARKDVUKXNNRQDNU8U1LRMRX";
-    $inputData = $request->except('vnp_SecureHash');
-    $vnp_SecureHash = $request->vnp_SecureHash;
+        ksort($inputData);
+        $hashData = '';
+        $i = 0;
+        foreach ($inputData as $key => $value) {
+            if ($i == 1) {
+                $hashData .= '&' . urlencode($key) . "=" . urlencode($value);
+            } else {
+                $hashData .= urlencode($key) . "=" . urlencode($value);
+                $i = 1;
+            }
+        }
 
-    ksort($inputData);
-    $hashData = '';
-    $i = 0;
-    foreach ($inputData as $key => $value) {
-        if ($i == 1) {
-            $hashData .= '&' . urlencode($key) . "=" . urlencode($value);
+        $secureHash = hash_hmac('sha512', $hashData, $vnp_HashSecret);
+
+        if ($secureHash === $vnp_SecureHash) {
+            if ($request->vnp_ResponseCode == '00') {
+                $order = Orders::where('order_id', $request->vnp_TxnRef)->first();
+                if ($order) {
+                    $order->status = 'paid';
+                    $order->updated_at = now();
+                    $order->save();
+                }
+
+                $categories = Categories::all();
+                return view('template.user.shop.success', [
+                    'txnRef' => $request->vnp_TxnRef,
+                    'amount' => number_format($request->vnp_Amount / 100, 0),
+                    'time' => $request->vnp_PayDate,
+                    'categories' => $categories,
+                ]);
+            } else {
+                return redirect('template/user/shop/checkout')->with('error', 'Giao dịch bị huỷ hoặc thất bại.');
+            }
         } else {
-            $hashData .= urlencode($key) . "=" . urlencode($value);
-            $i = 1;
+            return redirect('template/user/shop/checkout')->with('error', 'Chữ ký không hợp lệ!');
         }
     }
-
-    $secureHash = hash_hmac('sha512', $hashData, $vnp_HashSecret);
-
-    if ($secureHash === $vnp_SecureHash) {
-        if ($request->vnp_ResponseCode == '00') {
-            // 🔄 Lấy categories nếu view cần
-            $categories = Categories::all();
-
-            return view('template.user.shop.success', [
-                'txnRef' => $request->vnp_TxnRef,
-                'amount' => number_format($request->vnp_Amount / 100, 0),
-                'time' => $request->vnp_PayDate,
-                'categories' => $categories, // 🔽 thêm dòng này
-            ]);
-        } else {
-            return redirect('template/user/shop/checkout')->with('error', 'Giao dịch bị huỷ hoặc thất bại.');
-        }
-    } else {
-        return redirect('template/user/shop/checkout')->with('error', 'Chữ ký không hợp lệ!');
-    }
-}
-
-
 }
