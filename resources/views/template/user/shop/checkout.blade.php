@@ -443,7 +443,11 @@
                                     <h5 class="mb-0 color-primary">TOTAL</h5>
                                     <h5 class="mb-0 color-primary">${{ number_format($total, 2) }}</h5>
                                 </div>
-                                <a href="checkout.html" class="cus-btn active-btn">Proceed to Checkout</a>
+                                <form action="{{ url('vnpay_payment') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="total" value="{{ $total * 100 }}"> 
+                                    <button type="submit" name="redirect" class="cus-btn active-btn">Proceed to Checkout</button>
+                                </form>
                             </div>
                         </div>
                     </div>

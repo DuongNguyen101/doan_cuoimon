@@ -14,6 +14,7 @@ use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\UserInfoController;
 use App\Http\Controllers\MyAccountController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\ReviewController;
 
@@ -193,3 +194,7 @@ Route::post('/user/update', [UserInfoController::class, 'update'])->name('user.u
 Route::group(['prefix' => 'template/user'], function () {
     Route::post('/review/store', [ReviewController::class, 'store'])->name('reviews.store');
 });
+
+Route::post('/vnpay_payment', [PaymentController::class, 'vnpay_payment']);
+
+Route::get('/vnpay_return', [PaymentController::class, 'vnpay_return'])->name('vnpay.return');
