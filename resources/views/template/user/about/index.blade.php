@@ -152,20 +152,6 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-6 col-sm-6">
-                <div class="team-block bg-white text-center">
-                    <div class="image-box mb-24">
-                        <img src="{{url('user')}}/media/team/person-4.png" alt="" class="br-10 w-100">
-                    </div>
-                    <div class="content-box">
-                        <h6 class="mb-8">Ava Jennifer</h6>
-                        <p class="mb-16">Logistics Coordinator</p>
-                        <p class="light-gray">
-                            Lorem ipsum dolor sit amet consectetur malesuada scelerisque tortor. Nulla sit egestas proin mauris mattis viverra.
-                        </p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>

@@ -290,7 +290,7 @@
                                         <span class="label white">-12%</span>
                                     </div>
                                     <p class="light-gray mb-24">
-                                        {{ $product->description }}
+                                        {!! $product->description !!}
                                     </p>
                                     <div class="d-flex align-items-center gap-24 mb-24">
                                         <h6>Stock:</h6>
