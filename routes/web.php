@@ -135,7 +135,11 @@ Route::group(['prefix' => 'template/admin', 'middleware' => ['auth:admin', 'chec
     Route::post('/order/update/{id?}', [TemplateAdminController::class, 'updateOrder'])->name('order.update');
     Route::get('/order/delete/{id}', [TemplateAdminController::class, 'deleteOrder']);
     Route::get('/approve', [TemplateAdminController::class, 'orderapprove']);
-    Route::get('/disaproved', [TemplateAdminController::class, 'orderdisaproved']);
+    Route::get('/orderpending', [TemplateAdminController::class, 'orderpending']);
+    Route::get('/orderresolved', [TemplateAdminController::class, 'orderresolved']);
+    Route::get('/ordercancelled', [TemplateAdminController::class, 'ordercancelled']);
+    Route::get('/orderresolved', [TemplateAdminController::class, 'orderresolved']);
+    Route::get('/orderconfirmed', [TemplateAdminController::class, 'orderconfirmed']);
     //search
     Route::get('/searchcategories', [TemplateAdminController::class, 'searchcategories'])->name('search');
     Route::get('/searchproducts', [TemplateAdminController::class, 'searchproducts'])->name('search');

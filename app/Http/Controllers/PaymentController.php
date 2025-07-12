@@ -131,7 +131,7 @@ public function vnpay_return(Request $request)
         if ($request->vnp_ResponseCode == '00') {
             $order = Orders::where('order_id', $request->vnp_TxnRef)->first();
             if ($order) {
-                $order->status = Orders::STATUS_RESOLVED; // ✅ dùng hằng số an toàn
+                $order->status = Orders::STATUS_RESOLVED; 
                 $order->updated_at = now();
                 $order->save();
             }
