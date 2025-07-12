@@ -56,6 +56,13 @@
                 <p>{{ isset($record->image_url) ? 'Giu hinh hien tai' : 'Up hinh moi' }} <img src="{{ asset('image/shoplist' . (old('image_url', $record->image_url ?? ''))) }}" alt="Current Image" style="max-width: 200px; margin-top: 10px;"></p>
                 @endif
             </div>
+            
+            {{-- Mô tả --}}
+            <div class=" form-group" style="margin-bottom: 15px;">
+                <label for="description" style="display: block; margin-bottom: 6px;">description:</label>
+                <textarea id="description" name="description" rows="4" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">{{ old('description', $record->description ?? '') }}</textarea>
+            </div>
+
             {{-- publish_date --}}
             <div class="form-group" style="margin-bottom: 15px;">
                 <label for="publish_date" style="display: block; margin-bottom: 6px;">publish_date:</label>
@@ -109,6 +116,8 @@
     </div>
 
 </div>
-
-
+        <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+        <script>
+            CKEDITOR.replace('description');
+        </script>
 @endsection

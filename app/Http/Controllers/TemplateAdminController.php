@@ -566,6 +566,7 @@ class TemplateAdminController extends Controller
                 'content' => $request->post('content'),
                 'author' => $request->post('author'),
                 'image_url' => $request->post('price'),
+                'description' => $request->post('description'),
                 'publish_date' => $request->post('publish_date'),
                 'status' => $request->post('category_id'),
                 'created_at' => $request->post('created_at'),
@@ -606,6 +607,7 @@ class TemplateAdminController extends Controller
     {
         return $this->deleteRecord(new News(), $id, '/template/admin/news');
     }
+
     //oders
     public function loadFormOrder($id)
     {

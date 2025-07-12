@@ -60,7 +60,7 @@ Route::group(['prefix' => 'template/user'], function () {
 
 Route::group(['prefix' => 'template/user'], function () {
     Route::get('/blog/blog-grid', [BlogController::class, 'bloggrid']);
-    Route::get('/blog/blog-detail', [BlogController::class, 'blogdetail']);
+    Route::get('/blog/blog-detail/{id}', [BlogController::class, 'blogdetail']);
 });
 
 Route::group(['prefix' => 'template/user'], function () {
