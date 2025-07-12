@@ -49,10 +49,9 @@ Route::group(['prefix' => 'template/user'], function () {
     Route::get('/shop/cart/add/{id}', [ShopController::class, 'addToCart'])->name('cart.add');
 
     Route::get('/shop/cart/remove/{id}', [ShopController::class, 'removeFromCart'])->name('cart.remove');
-    
+
     Route::get('/shop/cart/increase/{id}', [ShopController::class, 'increaseQuantity'])->name('cart.increase');
     Route::get('/shop/cart/decrease/{id}', [ShopController::class, 'decreaseQuantity'])->name('cart.decrease');
-
 });
 
 
@@ -133,6 +132,8 @@ Route::group(['prefix' => 'template/admin', 'middleware' => ['auth:admin', 'chec
     Route::get('/order/form/add', [TemplateAdminController::class, 'loadFormOrderAdd']);
     Route::post('/order/update/{id?}', [TemplateAdminController::class, 'updateOrder'])->name('order.update');
     Route::get('/order/delete/{id}', [TemplateAdminController::class, 'deleteOrder']);
+    Route::get('/approve', [TemplateAdminController::class, 'orderapprove']);
+    Route::get('/disaproved', [TemplateAdminController::class, 'orderdisaproved']);
     //search
     Route::get('/searchcategories', [TemplateAdminController::class, 'searchcategories'])->name('search');
     Route::get('/searchproducts', [TemplateAdminController::class, 'searchproducts'])->name('search');

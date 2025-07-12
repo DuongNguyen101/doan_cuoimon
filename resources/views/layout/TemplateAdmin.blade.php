@@ -106,9 +106,21 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{asset('/template/admin/user')}}">
+                        <a href="{{asset(path: '/template/admin/user')}}">
                             <i class="nc-icon nc-single-02"></i>
                             <p>Orders</p>
+                        </a>
+                    </li>
+                    <li class="ml-3">
+                        <a href="{{asset('/template/admin/approve')}}">
+                            <i class="nc-icon nc-bus-front-12" style="font-size: 15px;"></i>
+                            <p style="font-size: 12px;">Approve Orders</p>
+                        </a>
+                    </li>
+                    <li class="ml-3">
+                        <a href="{{asset('/template/admin/disaproved')}}">
+                            <i class="nc-icon nc-bus-front-12" style="font-size: 15px;"></i>
+                            <p style="font-size: 12px;">Disapproved Orders</p>
                         </a>
                     </li>
                     <li>

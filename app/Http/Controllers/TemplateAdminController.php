@@ -619,6 +619,32 @@ class TemplateAdminController extends Controller
     {
         return $this->deleteRecord(new Orders(), $id, '/template/admin/user');
     }
+    public function orderapprove()
+    {
+        $adminName = auth()->user()->name;
+
+        $data = [
+            'adminName'  => $adminName,
+            'Orders' => Orders::where('status', '=', 'delivered')->get(),
+            'Users'   => User::get(),
+            'Orderdetai' => OrderDetails::get()
+        ];
+
+        return view('template.admin.orders')->with($data);
+    }
+    public function orderdisaproved()
+    {
+        $adminName = auth()->user()->name;
+
+        $data = [
+            'adminName'  => $adminName,
+            'Orders' => Orders::where('status', '=', 'pending')->get(),
+            'Users'   => User::get(),
+            'Orderdetai' => OrderDetails::get()
+        ];
+
+        return view('template.admin.orders')->with($data);
+    }
     //payments
     public function payments()
     {
