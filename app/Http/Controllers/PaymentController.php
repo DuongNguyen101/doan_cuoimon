@@ -6,10 +6,12 @@ use App\Models\Categories;
 use App\Models\OrderDetails;
 use App\Models\Orders;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderConfirmationMail;
+use App\Models\UserAddress;
 
 class PaymentController extends Controller
 {
-
     public function vnpay_payment(Request $request)
     {
         $data = $request->all();
@@ -32,7 +34,7 @@ class PaymentController extends Controller
 
         $address = '';
         if (auth()->check()) {
-            $userAddress = \App\Models\UserAddress::where('user_id', auth()->id())->latest()->first();
+            $userAddress = UserAddress::where('user_id', auth()->id())->latest()->first();
             if ($userAddress) {
                 $addressParts = array_filter([
                     $userAddress->street,
@@ -65,6 +67,20 @@ class PaymentController extends Controller
             ]);
         }
 
+        // ✅ Gửi mail ngay tại đây:
+        $user = auth()->user();
+        $order = Orders::where('order_id', $code_cart)->first();
+        $orderDetails = OrderDetails::with('product')
+            ->where('order_id', $code_cart)
+            ->get();
+
+        try {
+            Mail::to($user->email)->send(new OrderConfirmationMail($user, $order, $orderDetails));
+        } catch (\Exception $e) {
+            \Log::error('Lỗi gửi mail: ' . $e->getMessage());
+        }
+
+        // Redirect đến VNPAY
         $inputData = [
             "vnp_Version" => "2.1.0",
             "vnp_TmnCode" => $vnp_TmnCode,
