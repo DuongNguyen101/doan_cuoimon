@@ -117,9 +117,7 @@
                                                 {{ Str::limit($product->name, 45) }}
                                             </a>
                                         </h6>
-                                        <p class="light-gray small flex-grow-1 mb-3" style="min-height: 72px;">
-                                            {{ Str::limit($product->short_description, 150) }}
-                                        </p>
+                                            {!! Str::limit($product->short_description, 150) !!}
                                         <div class="d-flex align-items-center gap-2 mb-2">
                                             <div class="text-warning">
                                                 @for ($i = 1; $i <= 5; $i++)

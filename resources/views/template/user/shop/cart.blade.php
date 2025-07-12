@@ -74,9 +74,10 @@
                                             value="{{ $item['quantity'] }}"
                                             min="1"
                                             max="{{ $item['stock'] }}"
+                                            data-price="{{ $item['price'] }}"
+                                            data-product-id="{{ $productId }}"
                                             class="form-control text-center"
-                                            style="width: 80px;"
-                                            data-product-id="{{ $productId }}" />
+                                            style="width: 80px;" />
                                     </div>
                                 </td>
 
@@ -102,50 +103,95 @@
                     </div>
                 </div>
             </div>
-             <div class="col-xl-4">
-    @php
-      // Tính tổng tiền
-      $total = 0;
-      foreach ($cart as $item) {
-          $total += $item['price'] * $item['quantity'];
-      }
-      $shipping = 5;
-      $discount = 5;
-      $grandTotal = $total + $shipping - $discount;
-    @endphp
+            <div class="col-xl-4">
+                @php
+                // Tính tổng tiền
+                $total = 0;
+                foreach ($cart as $item) {
+                $total += $item['price'] * $item['quantity'];
+                }
+                $shipping = 5;
+                $discount = 5;
+                $grandTotal = $total + $shipping - $discount;
+                @endphp
 
-    <div class="checkout-box bg-semi-white mt-xl-0 mt-48">
-      <div class="checkout-title text-center mb-16">
-        <h5>Cart Total</h5>
-      </div>
-      <div class="bottom-box">
-        <div class="title-price mb-16">
-          <h6>Subtotal</h6>
-          <h6 class="light-gray" id="subtotal-value">${{ number_format($total,2) }}</h6>
-        </div>
-        <div class="hr-line mb-16"></div>
+                <div class="checkout-box bg-semi-white mt-xl-0 mt-48">
+                    <div class="checkout-title text-center mb-16">
+                        <h5>Cart Total</h5>
+                    </div>
 
-        {{-- Ẩn phí & giảm giá để JS dùng --}}
-        <div style="display:none">
-          <span id="shipping-value">{{ $shipping }}</span>
-          <span id="discount-value">{{ $discount }}</span>
-        </div>
+                    {{-- Danh sách sản phẩm --}}
+                    @php
+                    $cartItems = session('cart', []);
+                    @endphp
 
-        <div class="title-price mb-16">
-          <h5 class="color-primary">TOTAL</h5>
-          <h5 class="color-primary" id="total-value">${{ number_format($grandTotal,2) }}</h5>
+                    <div class="mb-16">
+                        <h6 class="mb-2">Products</h6>
+                        <ul class="list-group mb-3">
+                            @forelse($cartItems as $item)
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                {{-- Cột trái: ảnh + tên + số lượng --}}
+                                <div class="d-flex align-items-center">
+                                    <img src="{{ asset('image/shoplist/' . $item['image_url']) }}"
+                                        alt="{{ $item['name'] }}"
+                                        width="48"
+                                        height="48"
+                                        class="me-3 rounded border" />
+
+                                    <div>
+                                        <div class="fw-500">{{ $item['name'] }}</div>
+                                        <div class="text-muted small">
+                                            x <span class="preview-number" data-product-id="{{ $item['product_id'] }}">{{ $item['quantity'] }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- Cột phải: thành tiền --}}
+                                <div>
+                                    <p class="fw-500 mb-0 subtotal" style="margin-left: 20px;">${{ number_format($item['price'] * $item['quantity'], 2) }}</p>
+                                </div>
+                            </li>
+                            @empty
+                            <li class="list-group-item text-muted">No products in cart.</li>
+                            @endforelse
+                        </ul>
+
+                    </div>
+
+                    <div class="bottom-box">
+                        <div class="title-price mb-16">
+                            <h6>Subtotal</h6>
+                            <h6 class="light-gray" id="subtotal-value">${{ number_format($total, 2) }}</h6>
+                        </div>
+
+                        <div class="hr-line mb-16"></div>
+
+                        {{-- Ẩn phí & giảm giá để JS xử lý --}}
+                        <div style="display:none">
+                            <span id="shipping-value">{{ $shipping }}</span>
+                            <span id="discount-value">{{ $discount }}</span>
+                        </div>
+
+                        <div class="title-price mb-16">
+                            <h5 class="color-primary">TOTAL</h5>
+                            <h5 class="color-primary" id="total-value">${{ number_format($grandTotal, 2) }}</h5>
+                        </div>
+
+                        <div class="hr-line mb-16"></div>
+                        <div class="text-end">
+                            <a href="{{ url('template/user/shop/checkout') }}" class="cus-btn active-btn">PROCEED TO CHECKOUT</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="hr-line mb-16"></div>
-        <div class="text-end">
-          <a href="checkout.html" class="cus-btn active-btn">PROCEED TO CHECKOUT</a>
-        </div>
-      </div>
     </div>
-  </div>
-</div>
-        </div>
     </div>
 </section>
+<script>
+
+</script>
+
 
 <script src="{{asset('user')}}/js/cart.js"></script>
 

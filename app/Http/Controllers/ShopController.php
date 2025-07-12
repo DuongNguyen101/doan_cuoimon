@@ -128,7 +128,12 @@ class ShopController extends Controller
     public function checkout()
     {
         $categories = Categories::all();
-        return view('template/user/shop/checkout', compact('categories'));
+        $cart = session('cart', []); 
+
+        $user = auth()->check() ? auth()->user() : null;
+        $userAddress = $user?->userAddress; 
+
+        return view('template/user/shop/checkout', compact('categories', 'user', 'userAddress', 'cart'));
     }
 
     public function addToWishlist($id)
@@ -247,4 +252,6 @@ class ShopController extends Controller
         }
         return redirect()->route('cart');
     }
+
+    
 }
