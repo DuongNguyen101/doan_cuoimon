@@ -203,3 +203,6 @@ Route::get('/vnpay_return', [PaymentController::class, 'vnpay_return'])->name('v
 
 Route::get('/order/confirm', [OrderController::class, 'confirm'])->name('order.confirm');
 Route::get('/order/cancel', [OrderController::class, 'cancel'])->name('order.cancel');
+Route::post('/template/user/shop/checkout', [PaymentController::class, 'vnpay_payment']);
+Route::get('/order/redirect-to-payment', [PaymentController::class, 'redirectToVnpay']);
+

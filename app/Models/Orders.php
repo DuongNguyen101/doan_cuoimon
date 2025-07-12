@@ -7,8 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Orders extends Model
 {
-    const STATUS_PENDING = 'pending';
-    const STATUS_RESOLVED = 'resolved';
+    const STATUS_PENDING   = 'pending';
+    const STATUS_CONFIRMED = 'confirmed';
+    const STATUS_CANCELLED = 'cancelled';
+    const STATUS_RESOLVED  = 'resolved';
+    const STATUS_PAID      = 'paid';
     
     public $table = 'orders';
     public $primaryKey = 'order_id';
