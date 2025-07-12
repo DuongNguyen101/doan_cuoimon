@@ -19,7 +19,7 @@ class HomeController extends Controller
             ->withCount('reviews')
             ->withAvg('reviews', 'rating')
             ->latest()
-            ->take(4)
+            ->take(5)
             ->get();
 
         $featuredProducts2 = Products::where('status', 1)
