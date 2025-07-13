@@ -200,16 +200,3 @@ Route::post('/user/update', [UserInfoController::class, 'update'])->name('user.u
 Route::group(['prefix' => 'template/user'], function () {
     Route::post('/review/store', [ReviewController::class, 'store'])->name('reviews.store');
 });
-<<<<<<< HEAD
-=======
-
-Route::post('/vnpay_payment', [PaymentController::class, 'vnpay_payment']);
-
-Route::get('/vnpay_return', [PaymentController::class, 'vnpay_return'])->name('vnpay.return');
-
-Route::get('/order/confirm', [OrderController::class, 'confirm'])->name('order.confirm');
-Route::get('/order/cancel', [OrderController::class, 'cancel'])->name('order.cancel');
-Route::post('/template/user/shop/checkout', [PaymentController::class, 'vnpay_payment']);
-Route::get('/order/redirect-to-payment', [PaymentController::class, 'redirectToVnpay']);
-
->>>>>>> 9427b2199ea0d409ae146f4119b4cc57570cb777
