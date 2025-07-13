@@ -212,12 +212,8 @@
                                         </li>
 
                                         <!--  -->
-                                        <li class="dropdown">
-                                            <a href="javascript:void(0);">Blogs</a>
-                                            <ul>
-                                                <li><a href="{{asset('template/user/blog/blog-grid')}}">Blog Grid</a></li>
-                                                <li><a href="{{asset('template/user/blog/blog-detail')}}">Blog Detail</a></li>
-                                            </ul>
+                                        <li>
+                                            <a href="{{asset('template/user/blog/blog-grid')}}">Blogs</a>
                                         </li>
                                         <li class="dropdown">
                                             <a href="javascript:void(0);">Pages</a>

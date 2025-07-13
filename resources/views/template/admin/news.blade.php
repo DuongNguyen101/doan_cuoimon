@@ -18,6 +18,7 @@
                     <th style="padding: 10px;">content</th>
                     <th style="padding: 10px;">author</th>
                     <th style="padding: 10px;">image_url</th>
+                    <th style="padding: 10px;">description</th>
                     <th style="padding: 10px;">publish_date</th>
                     <th style="padding: 10px;">status</th>
                     <th style="padding: 10px;">created_at</th>
@@ -39,6 +40,7 @@
                         <em>Không có ảnh</em>
                         @endif
                     </td>
+                    <td style="display: none;">{!! $record->description !!}</td>
                     <td style="padding: 8px;">{{ $record->publish_date }}</td>
                     <td style="padding: 8px;">{{ $record->status }}</td>
                     <td style="padding: 8px;">{{ $record->created_at }}</td>

@@ -566,6 +566,7 @@ class TemplateAdminController extends Controller
                 'content' => $request->post('content'),
                 'author' => $request->post('author'),
                 'image_url' => $request->post('price'),
+                'description' => $request->post('description'),
                 'publish_date' => $request->post('publish_date'),
                 'status' => $request->post('category_id'),
                 'created_at' => $request->post('created_at'),
@@ -606,6 +607,7 @@ class TemplateAdminController extends Controller
     {
         return $this->deleteRecord(new News(), $id, '/template/admin/news');
     }
+
     //oders
     public function loadFormOrder($id)
     {
@@ -619,19 +621,19 @@ class TemplateAdminController extends Controller
     {
         return $this->deleteRecord(new Orders(), $id, '/template/admin/user');
     }
-    public function orderapprove()
-    {
-        $adminName = auth()->user()->name;
+    // public function orderapprove()
+    // {
+    //     $adminName = auth()->user()->name;
 
-        $data = [
-            'adminName'  => $adminName,
-            'Orders' => Orders::where('status', '=', 'delivered')->get(),
-            'Users'   => User::get(),
-            'Orderdetai' => OrderDetails::get()
-        ];
+    //     $data = [
+    //         'adminName'  => $adminName,
+    //         'Orders' => Orders::where('status', '=', 'delivered')->get(),
+    //         'Users'   => User::get(),
+    //         'Orderdetai' => OrderDetails::get()
+    //     ];
 
-        return view('template.admin.orders')->with($data);
-    }
+    //     return view('template.admin.orders')->with($data);
+    // }
     public function orderdisaproved()
     {
         $adminName = auth()->user()->name;
@@ -817,5 +819,60 @@ class TemplateAdminController extends Controller
         ];
 
         return view('template.admin.productsdetail')->with($data);
+    }
+
+    public function OrderPending()
+    {
+        $adminName = auth()->user()->name;
+
+        $data = [
+            'adminName'  => $adminName,
+            'Orders' => Orders::where('status', '=', 'pending')->get(),
+            'Users'   => User::get(),
+            'Orderdetai' => OrderDetails::get()
+        ];
+
+        return view('template.admin.orderpending')->with($data);
+    }
+
+    public function OrderResolved()
+    {
+        $adminName = auth()->user()->name;
+
+        $data = [
+            'adminName'  => $adminName,
+            'Orders' => Orders::where('status', '=', 'resolved')->get(),
+            'Users'   => User::get(),
+            'Orderdetai' => OrderDetails::get()
+        ];
+
+        return view('template.admin.orderresolved')->with($data);
+    }
+        public function OrderConfirmed()
+        {
+            $adminName = auth()->user()->name;
+
+            $data = [
+                'adminName'  => $adminName,
+                'Orders' => Orders::where('status', '=', 'confirmed')->get(),
+                'Users'   => User::get(),
+                'Orderdetai' => OrderDetails::get()
+            ];
+
+            return view('template.admin.orderconfirmed')->with($data);
+        }
+
+    public function OrderCancelled()
+    {
+        $adminName = auth()->user()->name;
+
+        $data = [
+            'adminName'  => $adminName,
+            'Orders' => Orders::where('status', '=', 'cancelled')->get(),
+            'Users'   => User::get(),
+            'Orderdetai' => OrderDetails::get()
+        ];
+
+        return view('template.admin.ordercancelled')->with($data);
     }
 }

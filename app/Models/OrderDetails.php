@@ -11,4 +11,9 @@ class OrderDetails extends Model
     protected $fillable = ['order_detail_id', 'order_id', 'product_id', 'quantity', 'unit_price', 'subtotal'];
     public $timestamps = false;
     public $incrementing = true;
+
+    public function product()
+    {
+        return $this->belongsTo(\App\Models\Products::class, 'product_id');
+    }
 }

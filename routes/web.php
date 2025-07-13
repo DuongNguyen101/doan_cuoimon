@@ -14,6 +14,7 @@ use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\UserInfoController;
 use App\Http\Controllers\MyAccountController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\ReviewController;
@@ -59,7 +60,7 @@ Route::group(['prefix' => 'template/user'], function () {
 
 Route::group(['prefix' => 'template/user'], function () {
     Route::get('/blog/blog-grid', [BlogController::class, 'bloggrid']);
-    Route::get('/blog/blog-detail', [BlogController::class, 'blogdetail']);
+    Route::get('/blog/blog-detail/{id}', [BlogController::class, 'blogdetail']);
 });
 
 Route::group(['prefix' => 'template/user'], function () {
@@ -134,7 +135,11 @@ Route::group(['prefix' => 'template/admin', 'middleware' => ['auth:admin', 'chec
     Route::post('/order/update/{id?}', [TemplateAdminController::class, 'updateOrder'])->name('order.update');
     Route::get('/order/delete/{id}', [TemplateAdminController::class, 'deleteOrder']);
     Route::get('/approve', [TemplateAdminController::class, 'orderapprove']);
-    Route::get('/disaproved', [TemplateAdminController::class, 'orderdisaproved']);
+    Route::get('/orderpending', [TemplateAdminController::class, 'orderpending']);
+    Route::get('/orderresolved', [TemplateAdminController::class, 'orderresolved']);
+    Route::get('/ordercancelled', [TemplateAdminController::class, 'ordercancelled']);
+    Route::get('/orderresolved', [TemplateAdminController::class, 'orderresolved']);
+    Route::get('/orderconfirmed', [TemplateAdminController::class, 'orderconfirmed']);
     //search
     Route::get('/searchcategories', [TemplateAdminController::class, 'searchcategories'])->name('search');
     Route::get('/searchproducts', [TemplateAdminController::class, 'searchproducts'])->name('search');
@@ -195,3 +200,16 @@ Route::post('/user/update', [UserInfoController::class, 'update'])->name('user.u
 Route::group(['prefix' => 'template/user'], function () {
     Route::post('/review/store', [ReviewController::class, 'store'])->name('reviews.store');
 });
+<<<<<<< HEAD
+=======
+
+Route::post('/vnpay_payment', [PaymentController::class, 'vnpay_payment']);
+
+Route::get('/vnpay_return', [PaymentController::class, 'vnpay_return'])->name('vnpay.return');
+
+Route::get('/order/confirm', [OrderController::class, 'confirm'])->name('order.confirm');
+Route::get('/order/cancel', [OrderController::class, 'cancel'])->name('order.cancel');
+Route::post('/template/user/shop/checkout', [PaymentController::class, 'vnpay_payment']);
+Route::get('/order/redirect-to-payment', [PaymentController::class, 'redirectToVnpay']);
+
+>>>>>>> 9427b2199ea0d409ae146f4119b4cc57570cb777

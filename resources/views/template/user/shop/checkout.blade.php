@@ -216,12 +216,8 @@
                                         </li>
 
                                         <!--  -->
-                                        <li class="dropdown">
-                                            <a href="javascript:void(0);">Blogs</a>
-                                            <ul>
-                                                <li><a href="{{asset('template/user/blog/blog-grid')}}">Blog Grid</a></li>
-                                                <li><a href="{{asset('template/user/blog/blog-detail')}}">Blog Detail</a></li>
-                                            </ul>
+                                        <li>
+                                            <a href="{{asset('template/user/blog/blog-grid')}}">Blogs</a>
                                         </li>
                                         <li class="dropdown">
                                             <a href="javascript:void(0);">Pages</a>
@@ -388,7 +384,7 @@
                                         <label class="plan basic-plan" for="bank">
                                             <input checked type="radio" name="plan" id="bank">
                                             <span class="plan-content content-2">
-                                                <img src="{{url('image/checkout/vnp.png')}}" alt="" width="49px"> 
+                                                <img src="{{url('image/checkout/vnp.png')}}" alt="" width="49px">
                                                 <span class="plan-details">
                                                     <span class="h6 fw-500 dark-black">VNPAY </span>
                                                 </span>
@@ -443,11 +439,19 @@
                                     <h5 class="mb-0 color-primary">TOTAL</h5>
                                     <h5 class="mb-0 color-primary">${{ number_format($total, 2) }}</h5>
                                 </div>
-                                <form action="{{ url('vnpay_payment') }}" method="POST">
+                                <form action="{{ url('/template/user/shop/checkout') }}" method="POST">
                                     @csrf
-                                    <input type="hidden" name="total" value="{{ $total * 100 }}"> 
-                                    <button type="submit" name="redirect" class="cus-btn active-btn">Proceed to Checkout</button>
+                                    <input type="hidden" name="total" value="{{ $total * 100 }}">
+                                    <input type="hidden" name="just_message" value="1">
+                                    <button type="submit" class="cus-btn active-btn">Proceed to Checkout</button>
                                 </form>
+
+                                @if(session('check_email'))
+                                <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                                    {{ session('check_email') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -718,6 +722,7 @@
     <script src="{{url('user')}}/js/date.js"></script>
     <script src="{{url('user')}}/js/user.js"></script>
 
+
     <script src="{{url('user')}}/js/app.js"></script>
 
     <div id="logoutConfirmBox" style="display:none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5);">
@@ -729,6 +734,7 @@
             </div>
         </div>
     </div>
+
 
 </body>
 
