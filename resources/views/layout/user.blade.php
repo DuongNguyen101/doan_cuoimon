@@ -222,12 +222,8 @@
                                         </li>
 
                                         <!--  -->
-                                        <li class="dropdown">
-                                            <a href="javascript:void(0);">Blogs</a>
-                                            <ul>
-                                                <li><a href="{{asset('template/user/blog/blog-grid')}}">Blog Grid</a></li>
-                                                <li><a href="{{asset('template/user/blog/blog-detail')}}">Blog Detail</a></li>
-                                            </ul>
+                                        <li>
+                                            <a href="{{asset('template/user/blog/blog-grid')}}">Blogs</a>
                                         </li>
                                         <li class="dropdown">
                                             <a href="javascript:void(0);">Pages</a>
@@ -236,6 +232,7 @@
                                                 <li><a href="{{asset('template/user/pages/register')}}">Register</a></li>
                                             </ul>
                                         </li>
+                                        
                                         <li>
                                             <a href="{{asset('template/user/about/index')}}">About Us</a>
                                         </li>
