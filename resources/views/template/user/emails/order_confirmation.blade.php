@@ -29,11 +29,11 @@
 <div style="margin-top: 10px;">
     <a href="{{ url('/order/redirect-to-payment?order_id=' . $order->order_id) }}"
     style="display: inline-block; padding: 10px 16px; background-color: #28a745; color: white; text-decoration: none; border-radius: 5px; margin-right: 10px;">
-        ✅ Confirm Order
+        Confirm Order
     </a>
 
     <a href="{{ url('/order/cancel?order_id=' . $order->order_id) }}"
        style="display: inline-block; padding: 10px 16px; background-color: #dc3545; color: white; text-decoration: none; border-radius: 5px;">
-        ❌ Cancel Order
+        Cancel Order
     </a>
 </div>
