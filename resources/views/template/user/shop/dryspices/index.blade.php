@@ -31,9 +31,7 @@
 
                 <div class="card-body d-flex flex-column">
                     <h6 class="card-title fw-bold">{{ $product->name }}</h6>
-                    <p class="card-text text-muted" style="min-height: 48px;">
-                        {{ $product->short_description }}
-                    </p>
+                        {!! $product->short_description !!}
 
                     {{-- Hiển thị sao đánh giá và số lượng --}}
                     <div class="d-flex align-items-center gap-2 mb-2">

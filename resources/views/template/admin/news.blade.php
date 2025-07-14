@@ -31,7 +31,7 @@
                 <tr style="text-align: center; border-bottom: 1px solid #ccc;">
                     <td style="padding: 8px;">{{ $record->news_id }}</td>
                     <td style="padding: 8px;">{{ $record->title }}</td>
-                    <td style="padding: 8px;">{{ $record->content }}</td>
+                    <td style="padding: 8px">{!! \Illuminate\Support\Str::limit($record->content, 100) !!}</td>
                     <td style="padding: 8px;">{{ $record->author }}</td>
                     <td style="padding: 8px;">
                         @if ($record->image_url)
@@ -40,7 +40,7 @@
                         <em>Không có ảnh</em>
                         @endif
                     </td>
-                    <td style="display: none;">{!! $record->description !!}</td>
+                    <td style="padding: 8px">{!! \Illuminate\Support\Str::limit($record->description, 100) !!}</td>
                     <td style="padding: 8px;">{{ $record->publish_date }}</td>
                     <td style="padding: 8px;">{{ $record->status }}</td>
                     <td style="padding: 8px;">{{ $record->created_at }}</td>
