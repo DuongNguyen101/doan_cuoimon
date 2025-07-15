@@ -12,7 +12,7 @@
                             <h6 class="color-ter mb-32 d-sm-block d-none">NEW ARRIVALS</h6>
                             <h2 class="white fw-600 mb-8">Premium Dry Spices <br> <span class="color-ter">Authentic&nbsp;</span>Vietnamese Flavor </h2>
                             <h6 class="white mb-32">Limited Time: Online Only!</h6>
-                            <a href="shop-list-1.html" class="cus-btn-3 sec">Shop Now</a>
+                            <a href="{{url('template/user/shop/category/1')}}" class="cus-btn-3 sec">Shop Now</a>
                         </div>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
                     <div class="banner-right mb-16">
                         <div class="banner-content-right v-2">
                             <div class="text-box">
-                                <h5 class="fw-500 mb-16"><a href="shop-detail.html" class="white">Dry Spices<br> <span class="color-ter">Rich Flavor&nbsp;</span>for Every Meal</a></h5>
+                                <h5 class="fw-500 mb-16"><p class="white" style="font-size: 19px">Dry Spices<br> <span class="color-ter">Rich Flavor&nbsp;</span>for Every Meal</p></h5>
                                 <p class="white fw-500">Today Only: Online Exclusive!</p>
                             </div>
                         </div>
@@ -30,7 +30,7 @@
                     <div class="banner-right">
                         <div class="banner-content-right v-3">
                             <div class="text-box">
-                                <h5 class="fw-500 mb-16"><a href="shop-detail.html" class="white">Organic Spices <br> <span class="color-ter">Flavorful &nbsp;</span>Herbs & Seasoning Mix</a></h5>
+                                <h5 class="fw-500 mb-16"><p class="white" style="font-size: 19px">Organic Spices <br> <span class="color-ter">Flavorful &nbsp;</span>Herbs & Seasoning Mix</p></h5>
                                 <p class="white fw-500">Freshly Packed – Limited Stock!</p>
                             </div>
                         </div>
