@@ -52,7 +52,7 @@ class ShopController extends Controller
             $query->orderBy('name', 'asc');
         }
 
-        $products = $query->paginate(12)->appends([
+        $products = $query->paginate(6)->appends([
             'search' => $search,
             'sort' => $sort,
         ]);

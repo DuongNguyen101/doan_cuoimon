@@ -17,6 +17,18 @@
     <link rel="stylesheet" href="{{url('user')}}/css/vendor/bootstrap.min.css">
     <link rel="stylesheet" href="{{url('user')}}/css/app.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <style>
+        .check-block a {
+            transition: transform 0.2s ease, font-size 0.2s ease;
+            display: inline-block;
+        }
+
+        .check-block a:hover {
+            transform: scale(1.1);
+            font-weight: bold;
+            color: #dc3545;
+        }
+    </style>
 </head>
 
 <body class="tt-smooth-scroll">
@@ -62,18 +74,18 @@
                         </a>
                         <div class="mixin-container d-xl-flex d-none">
                             <div class="drop-container">
-                                <div  id="dropdown3">
+                                <div id="dropdown3">
                                     <span class="selected-display black fw-500" id="destination3">All Categories</span>
                                 </div>
                             </div>
                             <div class="vr-line vr-line-2"></div>
-                                <form id="searchRedirectForm">
-                                    <div class="input-field d-flex">
-                                        <input type="text" name="search" id="searchInput" class="form-control me-2"
-                                            placeholder="Search for products..." required>
-                                        <button type="submit" class="cus-btn">Search</button>
-                                    </div>
-                                </form>
+                            <form id="searchRedirectForm">
+                                <div class="input-field d-flex">
+                                    <input type="text" name="search" id="searchInput" class="form-control me-2"
+                                        placeholder="Search for products..." required>
+                                    <button type="submit" class="cus-btn">Search</button>
+                                </div>
+                            </form>
                         </div>
                         <div class="header-buttons d-flex align-items-center gap-3">
 
@@ -133,7 +145,7 @@
                                 <nav class="all-category-nav">
                                     <label class="open-menu-all" for="open-menu-all">
                                         <input class="input-menu-all" id="open-menu-all" type="checkbox" name="menu-open">
-                                        
+
                                         <span class="all-navigator">
                                             <i class="fa-solid fa-bars"></i>
                                             <span>Browse All Categories</span>
@@ -141,12 +153,12 @@
 
                                         <span class="all-category-list list-unstyled">
                                             @foreach ($categories as $category)
-                                                <span class="all-category-list-item">
-                                                    <a href="{{ route('shop.category', ['id' => $category->category_id]) }}"
+                                            <span class="all-category-list-item">
+                                                <a href="{{ route('shop.category', ['id' => $category->category_id]) }}"
                                                     class="all-category-list-link dark-black fw-500">
-                                                        {{ $category->name }}
-                                                    </a>
-                                                </span>
+                                                    {{ $category->name }}
+                                                </a>
+                                            </span>
                                             @endforeach
                                         </span>
                                     </label>
@@ -404,9 +416,9 @@
                             <h6 class="fw-600 mb-24">All Categories</h6>
                             <ul class="list-unstyled m-0">
                                 @foreach($categories as $category)
-                                    <li class="mb-8">
-                                        <a href="{{ url('/template/user/shop/category/' . $category->	category_id  . $category->slug) }}" class="light-gray">{{ $category->name }}</a>
-                                    </li>
+                                <li class="mb-8">
+                                    <a href="{{ url('/template/user/shop/category/' . $category->	category_id  . $category->slug) }}" class="light-gray">{{ $category->name }}</a>
+                                </li>
                                 @endforeach
                             </ul>
                         </div>
