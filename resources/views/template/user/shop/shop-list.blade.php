@@ -51,43 +51,8 @@
                             @endauth
                         </a>
                         <div class="d-sm-block d-none">
-                            <a href="{{asset('template/user/about/index')}}"><span class="fw-500 top-bar-links">FAQs</span></a>
+                            <a href="{{asset('template/user/about/index')}}"><span class="fw-500 top-bar-links">About Us</span></a>
                         </div>
-                        <div class="vr-line d-sm-block d-none">
-                        </div>
-                        <div class="drop-container">
-                            <div class="wrapper-dropdown white" id="dropdown">
-                                <span class="selected-display" id="destination">English</span>
-                                <svg id="drp-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg" class="arrow transition-all ml-auto rotate-180">
-                                    <path d="M7 14.5l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round"></path>
-                                </svg>
-                                <ul class="topbar-dropdown bg-lightest-gray">
-                                    <li class="item dark-black">English</li>
-                                    <li class="item dark-black">Spanish</li>
-                                    <li class="item dark-black">Italian</li>
-                                    <li class="item dark-black">Arabic</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="drop-container">
-                            <div class="wrapper-dropdown white" id="dropdown2">
-                                <span class="selected-display" id="destination2">USD</span>
-                                <svg id="drp-arrow2" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg" class="arrow transition-all ml-auto rotate-180">
-                                    <path d="M7 14.5l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round"></path>
-                                </svg>
-                                <ul class="topbar-dropdown bg-lightest-gray">
-                                    <li class="item dark-black">USD</li>
-                                    <li class="item dark-black">AED </li>
-                                    <li class="item dark-black">EUR</li>
-                                    <li class="item dark-black">GBP</li>
-                                </ul>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
                 <div class="container-fluid">
@@ -243,7 +208,7 @@
                                             </clipPath>
                                         </defs>
                                     </svg>
-                                    <p class="black fw-500">Sale $20 off Your First Order</p>
+                                    <p class="black fw-500">Sale 12% </p>
                                 </div>
                                 <a href="#" class="main-menu__toggler mobile-nav__toggler">
                                     <img src="{{url('user')}}/media/icons/menu-2.png" alt="">

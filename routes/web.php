@@ -45,6 +45,8 @@ Route::group(['prefix' => 'template/user'], function () {
 
     Route::get('/shop/cart', [ShopController::class, 'cart'])->name('cart');
     Route::get('/shop/checkout', [ShopController::class, 'checkout']);
+    Route::post('/shop/checkout', [ShopController::class, 'checkout']);
+
     Route::get('/shop/category/{id}', [ShopController::class, 'categoryProducts'])->name('shop.category');
     Route::get('/shop/search', [ShopController::class, 'searchProducts'])->name('shop.search');
 
@@ -200,3 +202,10 @@ Route::post('/user/update', [UserInfoController::class, 'update'])->name('user.u
 Route::group(['prefix' => 'template/user'], function () {
     Route::post('/review/store', [ReviewController::class, 'store'])->name('reviews.store');
 });
+
+Route::get('/order/redirect-to-payment', [PaymentController::class, 'redirectToVnpay'])->name('order.redirect');
+
+Route::get('/vnpay/return', [PaymentController::class, 'vnpay_return'])->name('vnpay.return');
+
+Route::get('/order/cancel', [PaymentController::class, 'cancelOrder'])->name('order.cancel');
+

@@ -36,7 +36,7 @@ class HomeController extends Controller
             ->withCount('reviews')
             ->withAvg('reviews', 'rating')
             ->latest()
-            ->take(6)
+            ->take(7)
             ->get();
 
         $search = request()->get('search');

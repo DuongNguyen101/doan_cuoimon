@@ -74,13 +74,13 @@
     <div class="container-fluid">
         <div class="row row-gap-3">
             <div class="col-xl-3">
-                <a href="shop-grid-2.html" class="main-card text-center">
+                <a href="#" class="main-card text-center">
                     <h4 class="fw-500 white mb-32">Special Offer</h4>
                     <div class="image mb-32">
                         <img src="{{ url('/image/shoplist/bay-leaves-no-phong.png') }}" alt="">
                     </div>
                     <h5 class="fw-500 white mb-20 text-center">Aero Control Pro Joysticks</h5>
-                    <h5 class="fw-500 white text-center">$120.00</h5>
+                    <h5 class="fw-500 white text-center">$6.5</h5>
                 </a>
             </div>
             <div class="col-xl-9 d-flex flex-column h-100">
@@ -102,12 +102,6 @@
                                                 class="w-100 h-100 object-fit-cover"
                                                 alt="{{ $product->name }}">
                                         </a>
-                                        <div class="side-icons position-absolute top-0 end-0 m-2">
-                                            <ul class="list-unstyled d-flex flex-column gap-2">
-                                                <li><a href="#"><img src="{{ url('user/media/icons/heart.png') }}" alt="Wishlist"></a></li>
-                                                <li><a href="#" data-bs-toggle="modal" data-bs-target="#productQuickView"><img src="{{ url('user/media/icons/eye.png') }}" alt="Quick View"></a></li>
-                                            </ul>
-                                        </div>
                                     </div>
 
                                     {{-- Content --}}
@@ -176,12 +170,6 @@
                                     <img src="{{ asset('image/shoplist/' . $product->image_url) }}"
                                         class="product-image w-100 h-100 object-fit-cover" alt="{{ $product->name }}">
                                 </a>
-                                <div class="side-icons">
-                                    <ul class="list-unstyled">
-                                        <li><a href="javascript:void(0)"><img src="{{ url('user') }}/media/icons/heart.png" alt="Wishlist"></a></li>
-                                        <li><a href="javascript:void(0)" class="btn" data-bs-toggle="modal" data-bs-target="#productQuickView"><img src="{{ url('user') }}/media/icons/eye.png" alt="Quick View"></a></li>
-                                    </ul>
-                                </div>
                             </div>
                             <div class="product-desc d-flex flex-column flex-grow-1">
                                 <h6 class="product-title mb-8">
@@ -256,19 +244,13 @@
                             <img src="{{ asset('image/shoplist/' . $product->image_url) }}"
                                 class="product-image w-100 h-100 object-fit-cover" alt="{{ $product->name }}">
                         </a>
-                        <div class="side-icons">
-                            <ul class="list-unstyled">
-                                <li><a href="javascript:void(0)"><img src="{{ url('user') }}/media/icons/heart.png" alt="Wishlist"></a></li>
-                                <li><a href="javascript:void(0)" class="btn" data-bs-toggle="modal" data-bs-target="#productQuickView"><img src="{{ url('user') }}/media/icons/eye.png" alt="Quick View"></a></li>
-                            </ul>
-                        </div>
                     </div>
                     <div class="product-desc d-flex flex-column flex-grow-1">
                         <h6 class="product-title mb-8">
                             <a href="{{ route('shopdetail', $product->product_id) }}">{{ $product->name }}</a>
                         </h6>
                         <div class="text mb-12 flex-grow-1">
-                            <p class="light-gray" style="min-height: 72px;">{{ Str::limit($product->short_description, 150) }}</p>
+                            {!! Str::limit($product->short_description, 150) !!}
                         </div>
                         <div class="d-flex align-items-center gap-2 mb-2">
                             <div class="text-warning">
@@ -346,7 +328,7 @@
 <!-- Blog Section Start -->
 <div class="blog-slider" data-parent="blog-slider" style="margin: 20px;">
     @foreach($latestNews->take(6) as $news)
-        <a href="{{ url('blog-detail/' . $news->id) }}" class="blog-block bg-white">
+        <a href="{{ url('template/user/blog/blog-detail/' . $news->news_id) }}" class="blog-block bg-white">
             <div class="blog-image" style="width: 100%; height: 210px; overflow: hidden;">
                 <img src="{{ asset('image/shoplist/' . $news->image_url) }}" alt="" style="width: 100%; height: 100%; object-fit: cover;">
             </div>

@@ -107,49 +107,49 @@ class PaymentController extends Controller
         return redirect()->away($vnp_Url);
     }
 
-public function vnpay_return(Request $request)
-{
-    $vnp_HashSecret = "XKDDC9QWAARKDVUKXNNRQDNU8U1LRMRX";
-    $inputData = $request->except('vnp_SecureHash');
-    $vnp_SecureHash = $request->vnp_SecureHash;
+    public function vnpay_return(Request $request)
+    {
+        $vnp_HashSecret = "XKDDC9QWAARKDVUKXNNRQDNU8U1LRMRX";
+        $inputData = $request->except('vnp_SecureHash');
+        $vnp_SecureHash = $request->vnp_SecureHash;
 
-    ksort($inputData);
-    $hashData = '';
-    $i = 0;
-    foreach ($inputData as $key => $value) {
-        if ($i == 1) {
-            $hashData .= '&' . urlencode($key) . "=" . urlencode($value);
-        } else {
-            $hashData .= urlencode($key) . "=" . urlencode($value);
-            $i = 1;
-        }
-    }
-
-    $secureHash = hash_hmac('sha512', $hashData, $vnp_HashSecret);
-
-    if ($secureHash === $vnp_SecureHash) {
-        if ($request->vnp_ResponseCode == '00') {
-            $order = Orders::where('order_id', $request->vnp_TxnRef)->first();
-            if ($order) {
-                $order->status = Orders::STATUS_RESOLVED; 
-                $order->updated_at = now();
-                $order->save();
+        ksort($inputData);
+        $hashData = '';
+        $i = 0;
+        foreach ($inputData as $key => $value) {
+            if ($i == 1) {
+                $hashData .= '&' . urlencode($key) . "=" . urlencode($value);
+            } else {
+                $hashData .= urlencode($key) . "=" . urlencode($value);
+                $i = 1;
             }
-
-            $categories = Categories::all();
-            return view('template.user.shop.success', [
-                'txnRef' => $request->vnp_TxnRef,
-                'amount' => number_format($request->vnp_Amount / 100, 0),
-                'time' => $request->vnp_PayDate,
-                'categories' => $categories,
-            ]);
-        } else {
-            return redirect('template/user/shop/checkout')->with('error', 'Transaction cancelled or failed.');
         }
-    } else {
-        return redirect('template/user/shop/checkout')->with('error', 'Invalid signature!');
+
+        $secureHash = hash_hmac('sha512', $hashData, $vnp_HashSecret);
+
+        if ($secureHash === $vnp_SecureHash) {
+            if ($request->vnp_ResponseCode == '00') {
+                $order = Orders::where('order_id', $request->vnp_TxnRef)->first();
+                if ($order) {
+                    $order->status = Orders::STATUS_RESOLVED;
+                    $order->updated_at = now();
+                    $order->save();
+                }
+
+                $categories = Categories::all();
+                return view('template.user.shop.success', [
+                    'txnRef' => $request->vnp_TxnRef,
+                    'amount' => number_format($request->vnp_Amount / 100, 0),
+                    'time' => $request->vnp_PayDate,
+                    'categories' => $categories,
+                ]);
+            } else {
+                return redirect('template/user/shop/checkout')->with('error', 'Transaction cancelled or failed.');
+            }
+        } else {
+            return redirect('template/user/shop/checkout')->with('error', 'Invalid signature!');
+        }
     }
-}
 
 
     public function redirectToVnpay(Request $request)
@@ -158,15 +158,58 @@ public function vnpay_return(Request $request)
         $order = Orders::where('order_id', $orderId)->first();
 
         if (!$order) {
-            return redirect('/')->with('error', 'Không tìm thấy đơn hàng.');
+            return redirect('/')->with('error', 'Order not found.');
         }
 
-        $requestData = new Request();
-        $requestData->replace([
-            'total' => $order->total_amount / 26110, 
-        ]);
+        $user = auth()->user();
 
-        return $this->vnpay_payment($requestData);
+        $vnp_TmnCode = "TMOQACY3";
+        $vnp_HashSecret = "XKDDC9QWAARKDVUKXNNRQDNU8U1LRMRX";
+        $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
+        $vnp_Returnurl = route('vnpay.return');
+        $vnp_Amount = $order->total_amount * 100;
+        $vnp_TxnRef = $order->order_id;
+
+        $inputData = [
+            "vnp_Version" => "2.1.0",
+            "vnp_TmnCode" => $vnp_TmnCode,
+            "vnp_Amount" => $vnp_Amount,
+            "vnp_Command" => "pay",
+            "vnp_CreateDate" => date('YmdHis'),
+            "vnp_CurrCode" => "VND",
+            "vnp_IpAddr" => $_SERVER['REMOTE_ADDR'],
+            "vnp_Locale" => 'vn',
+            "vnp_OrderInfo" => 'Thanh toán đơn hàng #' . $order->order_id,
+            "vnp_OrderType" => 'billpayment',
+            "vnp_ReturnUrl" => $vnp_Returnurl,
+            "vnp_TxnRef" => $vnp_TxnRef,
+        ];
+
+        ksort($inputData);
+        $hashdata = urldecode(http_build_query($inputData));
+        $vnpSecureHash = hash_hmac('sha512', $hashdata, $vnp_HashSecret);
+        $vnp_Url .= '?' . http_build_query($inputData) . '&vnp_SecureHash=' . $vnpSecureHash;
+
+        return redirect()->away($vnp_Url);
+    }
+
+    public function cancelOrder(Request $request)
+    {
+        $orderId = $request->query('order_id');
+
+        $order = Orders::where('order_id', $orderId)->first();
+
+        if (!$order) {
+            return redirect('/')->with('error', 'Order not found.');
+        }
+
+        $order->status = Orders::STATUS_CANCELLED;
+        $order->updated_at = now();
+        $order->save();
+
+        session()->forget('cart');
+
+        return redirect('/')->with('info', 'Your order has been cancelled.');
     }
 
 }

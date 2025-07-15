@@ -18,7 +18,6 @@
                         <thead>
                             <tr>
                                 <th>Products</th>
-                                <th>Stock</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
                                 <th>Subtotal</th>
@@ -53,11 +52,6 @@
                                             </h6>
                                         </div>
                                     </div>
-                                </td>
-
-                                {{-- 2. Stock --}}
-                                <td>
-                                    <span class="text-muted small" style="margin-left: 20px;">In stock: {{ $item['stock'] }}</span>
                                 </td>
 
                                 {{-- 3. Price --}}

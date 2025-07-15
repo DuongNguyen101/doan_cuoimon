@@ -58,43 +58,8 @@
                             @endauth
                         </a>
                         <div class="d-sm-block d-none">
-                            <a href="{{asset('template/user/about/index')}}"><span class="fw-500 top-bar-links">FAQs</span></a>
+                            <a href="{{asset('template/user/about/index')}}"><span class="fw-500 top-bar-links">About Us</span></a>
                         </div>
-                        <div class="vr-line d-sm-block d-none">
-                        </div>
-                        <div class="drop-container">
-                            <div class="wrapper-dropdown white" id="dropdown">
-                                <span class="selected-display" id="destination">English</span>
-                                <svg id="drp-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg" class="arrow transition-all ml-auto rotate-180">
-                                    <path d="M7 14.5l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round"></path>
-                                </svg>
-                                <ul class="topbar-dropdown bg-lightest-gray">
-                                    <li class="item dark-black">English</li>
-                                    <li class="item dark-black">Spanish</li>
-                                    <li class="item dark-black">Italian</li>
-                                    <li class="item dark-black">Arabic</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="drop-container">
-                            <div class="wrapper-dropdown white" id="dropdown2">
-                                <span class="selected-display" id="destination2">USD</span>
-                                <svg id="drp-arrow2" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg" class="arrow transition-all ml-auto rotate-180">
-                                    <path d="M7 14.5l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round"></path>
-                                </svg>
-                                <ul class="topbar-dropdown bg-lightest-gray">
-                                    <li class="item dark-black">USD</li>
-                                    <li class="item dark-black">AED </li>
-                                    <li class="item dark-black">EUR</li>
-                                    <li class="item dark-black">GBP</li>
-                                </ul>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
                 <div class="container-fluid">
@@ -250,7 +215,7 @@
                                             </clipPath>
                                         </defs>
                                     </svg>
-                                    <p class="black fw-500">Sale $20 off Your First Order</p>
+                                    <p class="black fw-500">Sale 12% </p>
                                 </div>
                                 <a href="#" class="main-menu__toggler mobile-nav__toggler">
                                     <img src="{{url('user')}}/media/icons/menu-2.png" alt="">
@@ -451,82 +416,7 @@
 
             <!-- Benefits Start -->
             <footer>
-                <div class="container-fluid">
-                    <div class="benefits">
-                        <div class="row justify-content-center  benefits-wrapper">
-                            <div class="col-xxl-10 col-xl-12">
-                                <div class="row row-gap-3">
-                                    <div class="col-xl-2 col-md-4 col-6">
-                                        <div class="benefit-block">
-                                            <div class="image-box mb-12">
-                                                <img src="{{url('user')}}/media/icons/icon-1-sm.png" alt="">
-                                            </div>
-                                            <div class="content-box">
-                                                <p class="fw-500 mb-4p">Easy Returns</p>
-                                                <p class="light-gray">From handpicked sellers</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-4 col-6">
-                                        <div class="benefit-block">
-                                            <div class="image-box mb-12">
-                                                <img src="{{url('user')}}/media/icons/icon-2-sm.png" alt="">
-                                            </div>
-                                            <div class="content-box">
-                                                <p class="fw-500 mb-4p">Fast Delivery</p>
-                                                <p class="light-gray">Delivery in 24 hours max!</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-4 col-6">
-                                        <div class="benefit-block">
-                                            <div class="image-box mb-12">
-                                                <img src="{{url('user')}}/media/icons/icon-3-sm.png" alt="">
-                                            </div>
-                                            <div class="content-box">
-                                                <p class="fw-500 mb-4p">Safe Payment</p>
-                                                <p class="light-gray">100% secure payment</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-4 col-6">
-                                        <div class="benefit-block">
-                                            <div class="image-box mb-12">
-                                                <img src="{{url('user')}}/media/icons/icon-4-sm.png" alt="">
-                                            </div>
-                                            <div class="content-box">
-                                                <p class="fw-500 mb-4p">Online Discount</p>
-                                                <p class="light-gray">Add multi-buy discount</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-4 col-6">
-                                        <div class="benefit-block">
-                                            <div class="image-box mb-12">
-                                                <img src="{{url('user')}}/media/icons/icon-5-sm.png" alt="">
-                                            </div>
-                                            <div class="content-box">
-                                                <p class="fw-500 mb-4p">Need Help</p>
-                                                <p class="light-gray">Dedicated 24/7 Support</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-4 col-6">
-                                        <div class="benefit-block">
-                                            <div class="image-box mb-12">
-                                                <img src="{{url('user')}}/media/icons/icon-6-sm.png" alt="">
-                                            </div>
-                                            <div class="content-box">
-                                                <p class="fw-500 mb-4p">Curated Items</p>
-                                                <p class="light-gray">From handpciked sellers</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+                <div class="container-fluid" style="background-color: #fff;">
                     <div class="hr-line"></div>
                     <div class="footer-wrapper pt-40 mb-32 justify-content-center
                     ">
