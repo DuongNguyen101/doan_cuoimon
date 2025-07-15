@@ -5869,3 +5869,14 @@ footer .footer-bottom-bar {
     background: #198754;
     color: #fff;
 }
+
+.check-block a {
+    transition: transform 0.2s ease, font-size 0.2s ease;
+    display: inline-block;
+}
+
+.check-block a:hover {
+    transform: scale(1.1);
+    font-weight: bold;
+    color: #dc3545;
+}

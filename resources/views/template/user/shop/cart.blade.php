@@ -43,7 +43,13 @@
                                         </a>
                                         <div class="img-block me-2">
                                             <a href="{{ route('shopdetail', $productId) }}">
-                                                <img src="{{ asset('image/shoplist/' . $item['image_url']) }}" alt="{{ $item['name'] }}" width="64px" height="auto" class="rounded">
+                                        @if(isset($item['image_url']))
+                                            <img src="{{ asset('image/shoplist/' . $item['image_url']) }}"
+                                                alt="{{ $item['name'] }}"
+                                                width="48"
+                                                height="48"
+                                                class=" rounded border" />
+                                        @endif
                                             </a>
                                         </div>
                                         <div>
@@ -173,7 +179,7 @@
 
                         <div class="hr-line mb-16"></div>
                         <div class="text-end">
-                            <a href="{{ url('template/user/shop/checkout') }}" class="cus-btn active-btn">PROCEED TO CHECKOUT</a>
+                            <a href="{{ url('template/user/shop/checkout') }}" id="proceed-checkout-btn" class="cus-btn active-btn">PROCEED TO CHECKOUT</a>
                         </div>
                     </div>
                 </div>
@@ -182,11 +188,9 @@
     </div>
     </div>
 </section>
-<script>
-
-</script>
 
 
 <script src="{{asset('user')}}/js/cart.js"></script>
+
 
 @endsection

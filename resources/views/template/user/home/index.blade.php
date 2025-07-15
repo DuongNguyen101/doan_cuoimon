@@ -2,6 +2,9 @@
 @section('content')
 
 <!-- HERO BANNER START -->
+@push('scripts')
+    {{-- script ở trên --}}
+@endpush
 <section class="hero-banner py-24">
     <div class="container-fluid">
         <div class="row row-gap-3">
@@ -348,5 +351,29 @@
 </div>
 
 <!-- Blog Section End -->
+ @if(session('success'))
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const toastHTML = `
+        <div class="alert alert-success alert-dismissible fade show d-flex align-items-center shadow" role="alert" style="min-width: 300px;">
+            <svg xmlns="http://www.w3.org/2000/svg" class="bi flex-shrink-0 me-2" width="24" height="24" fill="currentColor" viewBox="0 0 16 16" role="img" aria-label="Success:">
+                <path d="M16 8A8 8 0 11.001 8a8 8 0 0115.998 0zM7.002 11a.5.5 0 00.71.04L11.03 8.06a.5.5 0 00-.708-.708L7.5 9.793 5.854 8.146a.5.5 0 10-.708.708l1.856 1.854z"/>
+            </svg>
+            <div>{{ session('success') }}</div>
+            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        `;
+        document.getElementById('toast-alert').innerHTML = toastHTML;
 
+        setTimeout(() => {
+            const alert = bootstrap.Alert.getOrCreateInstance(document.querySelector('#toast-alert .alert'));
+            alert.close();
+        }, 4000);
+    });
+</script>
+@endif
+
+<div id="toast-alert" class="position-fixed top-0 end-0 p-3" style="z-index: 1055;">
+    {{-- Thông báo sẽ được chèn bằng JS --}}
+</div>
 @endsection

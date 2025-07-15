@@ -227,13 +227,12 @@ public function addToCart($id)
         }
     } else {
         $cart[$id] = [
-            'product_id' => $product->id,
+            'product_id' => $product->product_id,
             'name'       => $product->name,
             'price'      => $product->price,
-            'image_url'  => $product->image_url,
+            'image_url'  => $product->image_url, 
             'quantity'   => 1,
             'stock'      => $product->stock,
-            'added_at'   => now()->format('d M, Y'),
         ];
     }
 
@@ -283,5 +282,21 @@ public function addToCart($id)
         return redirect()->route('cart');
     }
 
-    
+    public function updateQuantities(Request $request)
+    {
+        $quantities = $request->input('quantities');
+        $cart = session()->get('cart', []);
+
+        foreach ($quantities as $productId => $qty) {
+            if (isset($cart[$productId])) {
+                $cart[$productId]['quantity'] = max(1, (int)$qty); 
+            }
+        }
+
+        session()->put('cart', $cart);
+
+        return response()->json(['success' => true]);
+    }
+
+
 }

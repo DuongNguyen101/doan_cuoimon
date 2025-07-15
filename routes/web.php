@@ -209,3 +209,5 @@ Route::get('/vnpay/return', [PaymentController::class, 'vnpay_return'])->name('v
 
 Route::get('/order/cancel', [PaymentController::class, 'cancelOrder'])->name('order.cancel');
 
+Route::post('/cart/update-quantities', [ShopController::class, 'updateQuantities'])->name('cart.update.quantities');
+
