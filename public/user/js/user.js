@@ -76,4 +76,26 @@ $(document).on('click', '.add-to-wishlist', function (e) {
     });
 });
 
+$(document).on('click', '.add-to-cart', function (e) {
+    e.preventDefault();
+
+    const productId = $(this).data('product-id');
+    const qty = $(this).closest('.function-bar').find('.wishlist-qty').val() || 1;
+
+    $.ajax({
+        url: `/template/user/shop/cart/add/${productId}`,
+        method: 'GET',
+        data: {
+            quantity: qty
+        },
+        success: function (res) {
+            alert(res.message || `Added ${qty} to cart!`);
+        },
+        error: function (xhr) {
+            alert('Failed to add to cart.');
+            console.error(xhr.responseText);
+        }
+    });
+});
+
 
