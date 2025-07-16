@@ -2,6 +2,9 @@
 @section('content')
 
 <!-- HERO BANNER START -->
+@push('scripts')
+    {{-- script ở trên --}}
+@endpush
 <section class="hero-banner py-24">
     <div class="container-fluid">
         <div class="row row-gap-3">
@@ -12,7 +15,7 @@
                             <h6 class="color-ter mb-32 d-sm-block d-none">NEW ARRIVALS</h6>
                             <h2 class="white fw-600 mb-8">Premium Dry Spices <br> <span class="color-ter">Authentic&nbsp;</span>Vietnamese Flavor </h2>
                             <h6 class="white mb-32">Limited Time: Online Only!</h6>
-                            <a href="shop-list-1.html" class="cus-btn-3 sec">Shop Now</a>
+                            <a href="{{url('template/user/shop/category/1')}}" class="cus-btn-3 sec">Shop Now</a>
                         </div>
                     </div>
                 </div>
@@ -22,7 +25,7 @@
                     <div class="banner-right mb-16">
                         <div class="banner-content-right v-2">
                             <div class="text-box">
-                                <h5 class="fw-500 mb-16"><a href="shop-detail.html" class="white">Dry Spices<br> <span class="color-ter">Rich Flavor&nbsp;</span>for Every Meal</a></h5>
+                                <h5 class="fw-500 mb-16"><p class="white" style="font-size: 19px">Dry Spices<br> <span class="color-ter">Rich Flavor&nbsp;</span>for Every Meal</p></h5>
                                 <p class="white fw-500">Today Only: Online Exclusive!</p>
                             </div>
                         </div>
@@ -30,7 +33,7 @@
                     <div class="banner-right">
                         <div class="banner-content-right v-3">
                             <div class="text-box">
-                                <h5 class="fw-500 mb-16"><a href="shop-detail.html" class="white">Organic Spices <br> <span class="color-ter">Flavorful &nbsp;</span>Herbs & Seasoning Mix</a></h5>
+                                <h5 class="fw-500 mb-16"><p class="white" style="font-size: 19px">Organic Spices <br> <span class="color-ter">Flavorful &nbsp;</span>Herbs & Seasoning Mix</p></h5>
                                 <p class="white fw-500">Freshly Packed – Limited Stock!</p>
                             </div>
                         </div>
@@ -74,13 +77,13 @@
     <div class="container-fluid">
         <div class="row row-gap-3">
             <div class="col-xl-3">
-                <a href="shop-grid-2.html" class="main-card text-center">
+                <a href="#" class="main-card text-center">
                     <h4 class="fw-500 white mb-32">Special Offer</h4>
                     <div class="image mb-32">
                         <img src="{{ url('/image/shoplist/bay-leaves-no-phong.png') }}" alt="">
                     </div>
                     <h5 class="fw-500 white mb-20 text-center">Aero Control Pro Joysticks</h5>
-                    <h5 class="fw-500 white text-center">$120.00</h5>
+                    <h5 class="fw-500 white text-center">$6.5</h5>
                 </a>
             </div>
             <div class="col-xl-9 d-flex flex-column h-100">
@@ -102,12 +105,6 @@
                                                 class="w-100 h-100 object-fit-cover"
                                                 alt="{{ $product->name }}">
                                         </a>
-                                        <div class="side-icons position-absolute top-0 end-0 m-2">
-                                            <ul class="list-unstyled d-flex flex-column gap-2">
-                                                <li><a href="#"><img src="{{ url('user/media/icons/heart.png') }}" alt="Wishlist"></a></li>
-                                                <li><a href="#" data-bs-toggle="modal" data-bs-target="#productQuickView"><img src="{{ url('user/media/icons/eye.png') }}" alt="Quick View"></a></li>
-                                            </ul>
-                                        </div>
                                     </div>
 
                                     {{-- Content --}}
@@ -176,12 +173,6 @@
                                     <img src="{{ asset('image/shoplist/' . $product->image_url) }}"
                                         class="product-image w-100 h-100 object-fit-cover" alt="{{ $product->name }}">
                                 </a>
-                                <div class="side-icons">
-                                    <ul class="list-unstyled">
-                                        <li><a href="javascript:void(0)"><img src="{{ url('user') }}/media/icons/heart.png" alt="Wishlist"></a></li>
-                                        <li><a href="javascript:void(0)" class="btn" data-bs-toggle="modal" data-bs-target="#productQuickView"><img src="{{ url('user') }}/media/icons/eye.png" alt="Quick View"></a></li>
-                                    </ul>
-                                </div>
                             </div>
                             <div class="product-desc d-flex flex-column flex-grow-1">
                                 <h6 class="product-title mb-8">
@@ -256,19 +247,13 @@
                             <img src="{{ asset('image/shoplist/' . $product->image_url) }}"
                                 class="product-image w-100 h-100 object-fit-cover" alt="{{ $product->name }}">
                         </a>
-                        <div class="side-icons">
-                            <ul class="list-unstyled">
-                                <li><a href="javascript:void(0)"><img src="{{ url('user') }}/media/icons/heart.png" alt="Wishlist"></a></li>
-                                <li><a href="javascript:void(0)" class="btn" data-bs-toggle="modal" data-bs-target="#productQuickView"><img src="{{ url('user') }}/media/icons/eye.png" alt="Quick View"></a></li>
-                            </ul>
-                        </div>
                     </div>
                     <div class="product-desc d-flex flex-column flex-grow-1">
                         <h6 class="product-title mb-8">
                             <a href="{{ route('shopdetail', $product->product_id) }}">{{ $product->name }}</a>
                         </h6>
                         <div class="text mb-12 flex-grow-1">
-                            <p class="light-gray" style="min-height: 72px;">{{ Str::limit($product->short_description, 150) }}</p>
+                            {!! Str::limit($product->short_description, 150) !!}
                         </div>
                         <div class="d-flex align-items-center gap-2 mb-2">
                             <div class="text-warning">
@@ -344,267 +329,51 @@
 <!-- Brand Slider End -->
 
 <!-- Blog Section Start -->
-<section class="blog-section bg-lightest-gray py-40">
-    <div class="container-fluid">
-        <div class="top-bar mb-16">
-            <h5>Latest Blogs</h5>
-            <div class="slider-arrow">
-                <button class="arrow btn-prev" data-slide="blog-slider">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewBox="0 0 33 32" fill="none">
-                        <path d="M12.8057 23C12.8057 20 10.0057 16 6.80566 16M6.80566 16C8.639 16 12.8057 15 12.8057 9M6.80566 16H25.8057" stroke="#1B1918" stroke-width="2"></path>
-                    </svg>
-                </button>
-                <button class="arrow btn-next" data-slide="blog-slider">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-                        <path d="M19.3545 23C19.3545 20 22.1545 16 25.3545 16M25.3545 16C23.5212 16 19.3545 15 19.3545 9M25.3545 16H6.35449" stroke="#1B1918" stroke-width="2"></path>
-                    </svg>
-                </button>
+<div class="blog-slider" data-parent="blog-slider" style="margin: 20px;">
+    @foreach($latestNews->take(6) as $news)
+        <a href="{{ url('template/user/blog/blog-detail/' . $news->news_id) }}" class="blog-block bg-white">
+            <div class="blog-image" style="width: 100%; height: 210px; overflow: hidden;">
+                <img src="{{ asset('image/shoplist/' . $news->image_url) }}" alt="" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
-        </div>
-        <div class="blog-slider" data-parent="blog-slider">
-            <a href="blog-detail.html" class="blog-block bg-white">
-                <div class="blog-image">
-                    <img src="{{url('user')}}/media/blogs/blog-1.png" alt="">
+            <div class="blog-content">
+                <p class="mb-16 fw-500 dark-black">{{ \Carbon\Carbon::parse($news->created_at)->format('d F, Y') }}</p>
+                <h6 class="mb-16 fw-600">{{ Str::limit($news->title, 70) }}</h6>
+                <p class="light-gray mb-32">{{ Str::limit(strip_tags($news->content), 100) }}</p>
+                <div class="cus-btn-arrow">Read More
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15" fill="none">
+                        <path d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
+                            stroke="#0C0C0D" stroke-width="2" />
+                    </svg>
                 </div>
-                <div class="blog-content">
-                    <p class="mb-16 fw-500 dark-black">24 June, 2024</p>
-                    <h6 class="mb-16 fw-600">Headphone Heroes: Elevating Your Experience Quality Sound</h6>
-                    <div class="d-flex align-items-center justify-content-between mb-16">
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="{{url('user')}}/media/users/user-1.png" alt="">
-                            <p class="light-gray">By <span class="color-primary">Emily</span></p>
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="{{url('user')}}/media/icons/icon-1.png" alt="">
-                            <p class="light-gray">Comments</p>
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="{{url('user')}}/media/icons/icon-2.png" alt="">
-                            <p class="light-gray">Views</p>
-                        </div>
-                    </div>
-                    <p class="light-gray mb-32">Lorem ipsum dolor sit amet consectetur. Vitae vel sit convallis aliquet amet vestibulum maecenas ac.</p>
-                    <div class="cus-btn-arrow">Read More
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15" fill="none">
-                            <path d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
-                                stroke="#0C0C0D" stroke-width="2" />
-                        </svg>
-                    </div>
-                </div>
-            </a>
-            <a href="blog-detail.html" class="blog-block bg-white">
-                <div class="blog-image">
-                    <img src="{{url('user')}}/media/blogs/blog-2.png" alt="">
-                </div>
-                <div class="blog-content">
-                    <p class="mb-16 fw-500 dark-black">24 June, 2024</p>
-                    <h6 class="mb-16 fw-600">Gizmo Galore: Exploring the Coolest Gadgets on the Market</h6>
-                    <div class="d-flex align-items-center justify-content-between mb-16">
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="{{url('user')}}/media/users/user-1.png" alt="">
-                            <p class="light-gray">By <span class="color-primary">Emily</span></p>
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="{{url('user')}}/media/icons/icon-1.png" alt="">
-                            <p class="light-gray">Comments</p>
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="{{url('user')}}/media/icons/icon-2.png" alt="">
-                            <p class="light-gray">Views</p>
-                        </div>
-                    </div>
-                    <p class="light-gray mb-32">Lorem ipsum dolor sit amet consectetur. Vitae vel sit convallis aliquet amet vestibulum maecenas ac.</p>
-                    <div class="cus-btn-arrow">Read More
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15" fill="none">
-                            <path d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
-                                stroke="#0C0C0D" stroke-width="2" />
-                        </svg>
-                    </div>
-                </div>
-            </a>
-            <a href="blog-detail.html" class="blog-block bg-white">
-                <div class="blog-image">
-                    <img src="{{url('user')}}/media/blogs/blog-3.png" alt="">
-                </div>
-                <div class="blog-content">
-                    <p class="mb-16 fw-500 dark-black">24 June, 2024</p>
-                    <h6 class="mb-16 fw-600">The 4K Perspective: Gaining Insights into Ultra HD Entertainment</h6>
-                    <div class="d-flex align-items-center justify-content-between mb-16">
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="{{url('user')}}/media/users/user-1.png" alt="">
-                            <p class="light-gray">By <span class="color-primary">Emily</span></p>
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="{{url('user')}}/media/icons/icon-1.png" alt="">
-                            <p class="light-gray">Comments</p>
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="{{url('user')}}/media/icons/icon-2.png" alt="">
-                            <p class="light-gray">Views</p>
-                        </div>
-                    </div>
-                    <p class="light-gray mb-32">Lorem ipsum dolor sit amet consectetur. Vitae vel sit convallis aliquet amet vestibulum maecenas ac.</p>
-                    <div class="cus-btn-arrow">Read More
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15" fill="none">
-                            <path d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
-                                stroke="#0C0C0D" stroke-width="2" />
-                        </svg>
-                    </div>
-                </div>
-            </a>
-            <a href="blog-detail.html" class="blog-block bg-white">
-                <div class="blog-image">
-                    <img src="{{url('user')}}/media/blogs/blog-4.png" alt="">
-                </div>
-                <div class="blog-content">
-                    <p class="mb-16 fw-500 dark-black">24 June, 2024</p>
-                    <h6 class="mb-16 fw-600">Gaming Grasp: Navigating the World of Game Controllers</h6>
-                    <div class="d-flex align-items-center justify-content-between mb-16">
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="{{url('user')}}/media/users/user-1.png" alt="">
-                            <p class="light-gray">By <span class="color-primary">Emily</span></p>
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="{{url('user')}}/media/icons/icon-1.png" alt="">
-                            <p class="light-gray">Comments</p>
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="{{url('user')}}/media/icons/icon-2.png" alt="">
-                            <p class="light-gray">Views</p>
-                        </div>
-                    </div>
-                    <p class="light-gray mb-32">Lorem ipsum dolor sit amet consectetur. Vitae vel sit convallis aliquet amet vestibulum maecenas ac.</p>
-                    <div class="cus-btn-arrow">Read More
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15" fill="none">
-                            <path d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
-                                stroke="#0C0C0D" stroke-width="2" />
-                        </svg>
-                    </div>
-                </div>
-            </a>
-            <a href="blog-detail.html" class="blog-block bg-white">
-                <div class="blog-image">
-                    <img src="{{url('user')}}/media/blogs/blog-1.png" alt="">
-                </div>
-                <div class="blog-content">
-                    <p class="mb-16 fw-500 dark-black">24 June, 2024</p>
-                    <h6 class="mb-16 fw-600">Headphone Heroes: Elevating Your Experience Quality Sound</h6>
-                    <div class="d-flex align-items-center justify-content-between mb-16">
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="{{url('user')}}/media/users/user-1.png" alt="">
-                            <p class="light-gray">By <span class="color-primary">Emily</span></p>
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="{{url('user')}}/media/icons/icon-1.png" alt="">
-                            <p class="light-gray">Comments</p>
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="{{url('user')}}/media/icons/icon-2.png" alt="">
-                            <p class="light-gray">Views</p>
-                        </div>
-                    </div>
-                    <p class="light-gray mb-32">Lorem ipsum dolor sit amet consectetur. Vitae vel sit convallis aliquet amet vestibulum maecenas ac.</p>
-                    <div class="cus-btn-arrow">Read More
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15" fill="none">
-                            <path d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
-                                stroke="#0C0C0D" stroke-width="2" />
-                        </svg>
-                    </div>
-                </div>
-            </a>
-            <a href="blog-detail.html" class="blog-block bg-white">
-                <div class="blog-image">
-                    <img src="{{url('user')}}/media/blogs/blog-2.png" alt="">
-                </div>
-                <div class="blog-content">
-                    <p class="mb-16 fw-500 dark-black">24 June, 2024</p>
-                    <h6 class="mb-16 fw-600">Gizmo Galore: Exploring the Coolest Gadgets on the Market</h6>
-                    <div class="d-flex align-items-center justify-content-between mb-16">
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="{{url('user')}}/media/users/user-1.png" alt="">
-                            <p class="light-gray">By <span class="color-primary">Emily</span></p>
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="{{url('user')}}/media/icons/icon-1.png" alt="">
-                            <p class="light-gray">Comments</p>
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="{{url('user')}}/media/icons/icon-2.png" alt="">
-                            <p class="light-gray">Views</p>
-                        </div>
-                    </div>
-                    <p class="light-gray mb-32">Lorem ipsum dolor sit amet consectetur. Vitae vel sit convallis aliquet amet vestibulum maecenas ac.</p>
-                    <div class="cus-btn-arrow">Read More
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15" fill="none">
-                            <path d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
-                                stroke="#0C0C0D" stroke-width="2" />
-                        </svg>
-                    </div>
-                </div>
-            </a>
-            <a href="blog-detail.html" class="blog-block bg-white">
-                <div class="blog-image">
-                    <img src="{{url('user')}}/media/blogs/blog-3.png" alt="">
-                </div>
-                <div class="blog-content">
-                    <p class="mb-16 fw-500 dark-black">24 June, 2024</p>
-                    <h6 class="mb-16 fw-600">The 4K Perspective: Gaining Insights into Ultra HD Entertainment</h6>
-                    <div class="d-flex align-items-center justify-content-between mb-16">
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="{{url('user')}}/media/users/user-1.png" alt="">
-                            <p class="light-gray">By <span class="color-primary">Emily</span></p>
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="{{url('user')}}/media/icons/icon-1.png" alt="">
-                            <p class="light-gray">Comments</p>
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="{{url('user')}}/media/icons/icon-2.png" alt="">
-                            <p class="light-gray">Views</p>
-                        </div>
-                    </div>
-                    <p class="light-gray mb-32">Lorem ipsum dolor sit amet consectetur. Vitae vel sit convallis aliquet amet vestibulum maecenas ac.</p>
-                    <div class="cus-btn-arrow">Read More
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15" fill="none">
-                            <path d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
-                                stroke="#0C0C0D" stroke-width="2" />
-                        </svg>
-                    </div>
-                </div>
-            </a>
-            <a href="blog-detail.html" class="blog-block bg-white">
-                <div class="blog-image">
-                    <img src="{{url('user')}}/media/blogs/blog-4.png" alt="">
-                </div>
-                <div class="blog-content">
-                    <p class="mb-16 fw-500 dark-black">24 June, 2024</p>
-                    <h6 class="mb-16 fw-600">Gaming Grasp: Navigating the World of Game Controllers</h6>
-                    <div class="d-flex align-items-center justify-content-between mb-16">
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="{{url('user')}}/media/users/user-1.png" alt="">
-                            <p class="light-gray">By <span class="color-primary">Emily</span></p>
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="{{url('user')}}/media/icons/icon-1.png" alt="">
-                            <p class="light-gray">Comments</p>
-                        </div>
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="{{url('user')}}/media/icons/icon-2.png" alt="">
-                            <p class="light-gray">Views</p>
-                        </div>
-                    </div>
-                    <p class="light-gray mb-32">Lorem ipsum dolor sit amet consectetur. Vitae vel sit convallis aliquet amet vestibulum maecenas ac.</p>
-                    <div class="cus-btn-arrow">Read More
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15" fill="none">
-                            <path d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
-                                stroke="#0C0C0D" stroke-width="2" />
-                        </svg>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-</section>
-<!-- Blog Section End -->
+            </div>
+        </a>
+    @endforeach
+</div>
 
+<!-- Blog Section End -->
+ @if(session('success'))
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const toastHTML = `
+        <div class="alert alert-success alert-dismissible fade show d-flex align-items-center shadow" role="alert" style="min-width: 300px;">
+            <svg xmlns="http://www.w3.org/2000/svg" class="bi flex-shrink-0 me-2" width="24" height="24" fill="currentColor" viewBox="0 0 16 16" role="img" aria-label="Success:">
+                <path d="M16 8A8 8 0 11.001 8a8 8 0 0115.998 0zM7.002 11a.5.5 0 00.71.04L11.03 8.06a.5.5 0 00-.708-.708L7.5 9.793 5.854 8.146a.5.5 0 10-.708.708l1.856 1.854z"/>
+            </svg>
+            <div>{{ session('success') }}</div>
+            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        `;
+        document.getElementById('toast-alert').innerHTML = toastHTML;
+
+        setTimeout(() => {
+            const alert = bootstrap.Alert.getOrCreateInstance(document.querySelector('#toast-alert .alert'));
+            alert.close();
+        }, 4000);
+    });
+</script>
+@endif
+
+<div id="toast-alert" class="position-fixed top-0 end-0 p-3" style="z-index: 1055;">
+    {{-- Thông báo sẽ được chèn bằng JS --}}
+</div>
 @endsection

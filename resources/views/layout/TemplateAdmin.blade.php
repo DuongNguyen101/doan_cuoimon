@@ -112,15 +112,27 @@
                         </a>
                     </li>
                     <li class="ml-3">
-                        <a href="{{asset('/template/admin/approve')}}">
+                        <a href="{{asset('/template/admin/orderresolved')}}">
                             <i class="nc-icon nc-bus-front-12" style="font-size: 15px;"></i>
-                            <p style="font-size: 12px;">Approve Orders</p>
+                            <p style="font-size: 12px;">Resolved Orders</p>
                         </a>
                     </li>
                     <li class="ml-3">
-                        <a href="{{asset('/template/admin/disaproved')}}">
+                        <a href="{{asset('/template/admin/orderpending')}}">
                             <i class="nc-icon nc-bus-front-12" style="font-size: 15px;"></i>
-                            <p style="font-size: 12px;">Disapproved Orders</p>
+                            <p style="font-size: 12px;">Pending Orders</p>
+                        </a>
+                    </li>
+                    <li class="ml-3">
+                        <a href="{{asset('/template/admin/orderconfirmed')}}">
+                            <i class="nc-icon nc-bus-front-12" style="font-size: 15px;"></i>
+                            <p style="font-size: 12px;">Confirmed Orders</p>
+                        </a>
+                    </li>
+                    <li class="ml-3">
+                        <a href="{{asset('/template/admin/ordercancelled')}}">
+                            <i class="nc-icon nc-bus-front-12" style="font-size: 15px;"></i>
+                            <p style="font-size: 12px;">Cancelled Orders</p>
                         </a>
                     </li>
                     <li>

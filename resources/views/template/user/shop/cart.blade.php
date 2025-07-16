@@ -18,7 +18,6 @@
                         <thead>
                             <tr>
                                 <th>Products</th>
-                                <th>Stock</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
                                 <th>Subtotal</th>
@@ -44,7 +43,13 @@
                                         </a>
                                         <div class="img-block me-2">
                                             <a href="{{ route('shopdetail', $productId) }}">
-                                                <img src="{{ asset('image/shoplist/' . $item['image_url']) }}" alt="{{ $item['name'] }}" width="64px" height="auto" class="rounded">
+                                        @if(isset($item['image_url']))
+                                            <img src="{{ asset('image/shoplist/' . $item['image_url']) }}"
+                                                alt="{{ $item['name'] }}"
+                                                width="48"
+                                                height="48"
+                                                class=" rounded border" />
+                                        @endif
                                             </a>
                                         </div>
                                         <div>
@@ -53,11 +58,6 @@
                                             </h6>
                                         </div>
                                     </div>
-                                </td>
-
-                                {{-- 2. Stock --}}
-                                <td>
-                                    <span class="text-muted small" style="margin-left: 20px;">In stock: {{ $item['stock'] }}</span>
                                 </td>
 
                                 {{-- 3. Price --}}
@@ -179,7 +179,7 @@
 
                         <div class="hr-line mb-16"></div>
                         <div class="text-end">
-                            <a href="{{ url('template/user/shop/checkout') }}" class="cus-btn active-btn">PROCEED TO CHECKOUT</a>
+                            <a href="{{ url('template/user/shop/checkout') }}" id="proceed-checkout-btn" class="cus-btn active-btn">PROCEED TO CHECKOUT</a>
                         </div>
                     </div>
                 </div>
@@ -188,11 +188,9 @@
     </div>
     </div>
 </section>
-<script>
-
-</script>
 
 
 <script src="{{asset('user')}}/js/cart.js"></script>
+
 
 @endsection

@@ -7,7 +7,7 @@
     @endif
     <div class="danh-muc-sp" style="max-width: 1000px; margin: 40px 5px auto; font-family: Arial, sans-serif;">
         <div class="row" style="margin-bottom: 20px;">
-            <h2 style="text-align: center; color: #333; font-weight: bold;">Order List</h2>
+            <h2 style="text-align: center; color: #333; font-weight: bold;">Order List 1 </h2>
         </div>
 
         <table style="width: 100%; border-collapse: collapse; background-color: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1);">

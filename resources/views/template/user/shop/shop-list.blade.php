@@ -20,6 +20,7 @@
 </head>
 
 <body class="tt-smooth-scroll">
+
     <!-- Main Wrapper Start -->
     <div id="scroll-container">
         <!-- Header Menu Start -->
@@ -27,7 +28,7 @@
             <div class="header-section">
                 <div class="header-top bg-color-primary">
                     <div class="header-start d-lg-block d-none">
-                        <p class="fw-500 white">Welcome to Worldwide Electronic Store</p>
+                        <p class="fw-500 white">Welcome to Spices Store</p>
                     </div>
                     <div class="header-end">
                         <a href="{{asset('template/user/contact/index')}}" class="top-bar-links d-sm-flex d-none align-items-center gap-2">
@@ -51,43 +52,8 @@
                             @endauth
                         </a>
                         <div class="d-sm-block d-none">
-                            <a href="{{asset('template/user/about/index')}}"><span class="fw-500 top-bar-links">FAQs</span></a>
+                            <a href="{{asset('template/user/about/index')}}"><span class="fw-500 top-bar-links">About Us</span></a>
                         </div>
-                        <div class="vr-line d-sm-block d-none">
-                        </div>
-                        <div class="drop-container">
-                            <div class="wrapper-dropdown white" id="dropdown">
-                                <span class="selected-display" id="destination">English</span>
-                                <svg id="drp-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg" class="arrow transition-all ml-auto rotate-180">
-                                    <path d="M7 14.5l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round"></path>
-                                </svg>
-                                <ul class="topbar-dropdown bg-lightest-gray">
-                                    <li class="item dark-black">English</li>
-                                    <li class="item dark-black">Spanish</li>
-                                    <li class="item dark-black">Italian</li>
-                                    <li class="item dark-black">Arabic</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="drop-container">
-                            <div class="wrapper-dropdown white" id="dropdown2">
-                                <span class="selected-display" id="destination2">USD</span>
-                                <svg id="drp-arrow2" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg" class="arrow transition-all ml-auto rotate-180">
-                                    <path d="M7 14.5l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round"></path>
-                                </svg>
-                                <ul class="topbar-dropdown bg-lightest-gray">
-                                    <li class="item dark-black">USD</li>
-                                    <li class="item dark-black">AED </li>
-                                    <li class="item dark-black">EUR</li>
-                                    <li class="item dark-black">GBP</li>
-                                </ul>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
                 <div class="container-fluid">
@@ -97,18 +63,18 @@
                         </a>
                         <div class="mixin-container d-xl-flex d-none">
                             <div class="drop-container">
-                                <div  id="dropdown3">
+                                <div id="dropdown3">
                                     <span class="selected-display black fw-500" id="destination3">All Categories</span>
                                 </div>
                             </div>
                             <div class="vr-line vr-line-2"></div>
-                                <form id="searchRedirectForm">
-                                    <div class="input-field d-flex">
-                                        <input type="text" name="search" id="searchInput" class="form-control me-2"
-                                            placeholder="Search for products..." required>
-                                        <button type="submit" class="cus-btn">Search</button>
-                                    </div>
-                                </form>
+                            <form id="searchRedirectForm">
+                                <div class="input-field d-flex">
+                                    <input type="text" name="search" id="searchInput" class="form-control me-2"
+                                        placeholder="Search for products..." required>
+                                    <button type="submit" class="cus-btn">Search</button>
+                                </div>
+                            </form>
                         </div>
                         <div class="header-buttons d-flex align-items-center gap-3">
 
@@ -168,7 +134,7 @@
                                 <nav class="all-category-nav">
                                     <label class="open-menu-all" for="open-menu-all">
                                         <input class="input-menu-all" id="open-menu-all" type="checkbox" name="menu-open">
-                                        
+
                                         <span class="all-navigator">
                                             <i class="fa-solid fa-bars"></i>
                                             <span>Browse All Categories</span>
@@ -176,12 +142,12 @@
 
                                         <span class="all-category-list list-unstyled">
                                             @foreach ($categories as $category)
-                                                <span class="all-category-list-item">
-                                                    <a href="{{ route('shop.category', ['id' => $category->category_id]) }}"
+                                            <span class="all-category-list-item">
+                                                <a href="{{ route('shop.category', ['id' => $category->category_id]) }}"
                                                     class="all-category-list-link dark-black fw-500">
-                                                        {{ $category->name }}
-                                                    </a>
-                                                </span>
+                                                    {{ $category->name }}
+                                                </a>
+                                            </span>
                                             @endforeach
                                         </span>
                                     </label>
@@ -209,12 +175,8 @@
                                         </li>
 
                                         <!--  -->
-                                        <li class="dropdown">
-                                            <a href="javascript:void(0);">Blogs</a>
-                                            <ul>
-                                                <li><a href="{{asset('template/user/blog/blog-grid')}}">Blog Grid</a></li>
-                                                <li><a href="{{asset('template/user/blog/blog-detail')}}">Blog Detail</a></li>
-                                            </ul>
+                                        <li>
+                                            <a href="{{asset('template/user/blog/blog-grid')}}">Blogs</a>
                                         </li>
                                         <li class="dropdown">
                                             <a href="javascript:void(0);">Pages</a>
@@ -247,7 +209,7 @@
                                             </clipPath>
                                         </defs>
                                     </svg>
-                                    <p class="black fw-500">Sale $20 off Your First Order</p>
+                                    <p class="black fw-500">Sale 12% </p>
                                 </div>
                                 <a href="#" class="main-menu__toggler mobile-nav__toggler">
                                     <img src="{{url('user')}}/media/icons/menu-2.png" alt="">
@@ -259,6 +221,7 @@
                 </div>
             </div>
         </header>
+        
         <!-- Header Menu End -->
 
         <!-- Main Sections -->
@@ -309,6 +272,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="col-xl-9">
                             <div class="shop-grid-topbar mb-16">
                                 <div class="last-block">
@@ -340,88 +304,13 @@
             <!-- Benefits Start -->
             <footer>
                 <div class="container-fluid">
-                    <div class="benefits">
-                        <div class="row justify-content-center  benefits-wrapper">
-                            <div class="col-xxl-10 col-xl-12">
-                                <div class="row row-gap-3">
-                                    <div class="col-xl-2 col-md-4 col-6">
-                                        <div class="benefit-block">
-                                            <div class="image-box mb-12">
-                                                <img src="{{url('user')}}/media/icons/icon-1-sm.png" alt="">
-                                            </div>
-                                            <div class="content-box">
-                                                <p class="fw-500 mb-4p">Easy Returns</p>
-                                                <p class="light-gray">From handpicked sellers</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-4 col-6">
-                                        <div class="benefit-block">
-                                            <div class="image-box mb-12">
-                                                <img src="{{url('user')}}/media/icons/icon-2-sm.png" alt="">
-                                            </div>
-                                            <div class="content-box">
-                                                <p class="fw-500 mb-4p">Fast Delivery</p>
-                                                <p class="light-gray">Delivery in 24 hours max!</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-4 col-6">
-                                        <div class="benefit-block">
-                                            <div class="image-box mb-12">
-                                                <img src="{{url('user')}}/media/icons/icon-3-sm.png" alt="">
-                                            </div>
-                                            <div class="content-box">
-                                                <p class="fw-500 mb-4p">Safe Payment</p>
-                                                <p class="light-gray">100% secure payment</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-4 col-6">
-                                        <div class="benefit-block">
-                                            <div class="image-box mb-12">
-                                                <img src="{{url('user')}}/media/icons/icon-4-sm.png" alt="">
-                                            </div>
-                                            <div class="content-box">
-                                                <p class="fw-500 mb-4p">Online Discount</p>
-                                                <p class="light-gray">Add multi-buy discount</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-4 col-6">
-                                        <div class="benefit-block">
-                                            <div class="image-box mb-12">
-                                                <img src="{{url('user')}}/media/icons/icon-5-sm.png" alt="">
-                                            </div>
-                                            <div class="content-box">
-                                                <p class="fw-500 mb-4p">Need Help</p>
-                                                <p class="light-gray">Dedicated 24/7 Support</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-4 col-6">
-                                        <div class="benefit-block">
-                                            <div class="image-box mb-12">
-                                                <img src="{{url('user')}}/media/icons/icon-6-sm.png" alt="">
-                                            </div>
-                                            <div class="content-box">
-                                                <p class="fw-500 mb-4p">Curated Items</p>
-                                                <p class="light-gray">From handpciked sellers</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
                     <div class="hr-line"></div>
-                    <div class="footer-wrapper pt-40 mb-32">
+                    <div class="footer-wrapper pt-40 mb-32 justify-content-center
+                    ">
                         <div class="store-desc">
-                            <a href="{{asset('template/user/home/index')}}"><img src="{{url('user')}}/media/logo.png" alt="" class="mb-16"></a>
+                            <a href="{{asset('template/user/home/index')}}"><img src="{{url('image/homepage/logo.png')}}" alt="" width="284px" height="43px"></a>
                             <p class="light-gray mb-xl-32 mb-lg-0 mb-32">
-                                Lorem ipsum dolor sit amet consectetur. Eu dolor faucibus <br>
-                                sit fames elit ac. Hendrerit ultrices morbi faucibus.
+                                Northwest specialties bring the bold flavors of the mountains: smoked buffalo meat, mak khen pepper, cham cheo dipping sauce... Simple yet rich in highland cultural identity.
                             </p>
                             <p class="d-xl-none d-lg-block d-none light-gray mb-32">
                                 amet consectetur. Eu dolor faucibus <br>
@@ -440,36 +329,25 @@
                             </a>
                         </div>
                         <div class="footer-link-block">
-                            <h6 class="fw-600 mb-24">Find It Fast</h6>
+                            <h6 class="fw-600 mb-24">All Categories</h6>
                             <ul class="list-unstyled m-0">
-                                <li class="mb-8"><a href="" class="light-gray">Laptop & Computer</a></li>
-                                <li class="mb-8"><a href="" class="light-gray">Camera & Photo</a></li>
-                                <li class="mb-8"><a href="" class="light-gray">Smartphone & Tablet</a></li>
-                                <li class="mb-8"><a href="" class="light-gray">TV & Audio</a></li>
-                                <li class="mb-8"><a href="" class="light-gray">Home & Electronic</a></li>
-                                <li class="mb-8"><a href="" class="light-gray">Headphone & Speakers</a></li>
+                                @foreach($categories as $category)
+                                <li class="mb-8">
+                                    <a href="{{ url('/template/user/shop/category/' . $category->	category_id  . $category->slug) }}" class="light-gray">{{ $category->name }}</a>
+                                </li>
+                                @endforeach
                             </ul>
                         </div>
                         <div class="footer-link-block">
                             <h6 class="fw-600 mb-24">Quick Link</h6>
                             <ul class="list-unstyled m-0">
                                 <li class="mb-8"><a href="{{asset('template/user/home/index')}}" class="light-gray">Home Page</a></li>
-                                <li class="mb-8"><a href="about.html" class="light-gray">About Us</a></li>
-                                <li class="mb-8"><a href="{{asset('template/user/shop/shop-list')}}" class="light-gray">Shop Now</a></li>
-                                <li class="mb-8"><a href="register.html" class="light-gray">Signup</a></li>
-                                <li class="mb-8"><a href="register.html" class="light-gray">Login</a></li>
-                                <li class="mb-8"><a href="contact.html" class="light-gray">Privacy Policy</a></li>
-                            </ul>
-                        </div>
-                        <div class="footer-link-block">
-                            <h6 class="fw-600 mb-24">Customer Care</h6>
-                            <ul class="list-unstyled m-0">
-                                <li class="mb-8"><a href="register.html" class="light-gray">My Account</a></li>
-                                <li class="mb-8"><a href="tracking.html" class="light-gray">Track Your Order</a></li>
-                                <li class="mb-8"><a href="shop-grid-3.html" class="light-gray">Customer Service</a></li>
-                                <li class="mb-8"><a href="blog-grid.html" class="light-gray">Blogs</a></li>
-                                <li class="mb-8"><a href="about.html" class="light-gray">FAQs</a></li>
-                                <li class="mb-8"><a href="coming-soon.html" class="light-gray">Coming Soon</a></li>
+                                <li class="mb-8"><a href="{{asset('template/user/shop/category/1')}}" class="light-gray">Shop Now</a></li>
+                                <li class="mb-8"><a href="{{asset('/template/user/blog/blog-grid')}}" class="light-gray">Blogs</a></li>
+                                <li class="mb-8"><a href="{{asset('/template/user/about/index')}}" class="light-gray">About Us</a></li>
+                                <li class="mb-8"><a href="{{asset('/template/user/pages/login')}}" class="light-gray">login</a></li>
+                                <li class="mb-8"><a href="{{asset('/template/user/pages/register')}}" class="light-gray">Register</a></li>
+                                <li class="mb-8"><a href="{{asset('/template/user/contact/index')}}" class="light-gray">Contact Us</a></li>
                             </ul>
                         </div>
                         <div class="footer-link-block">
@@ -494,7 +372,7 @@
                             <p class="fw-500 mb-16">Follow Us!</p>
                             <ul class="list-unstyled social-link">
                                 <li>
-                                    <a href="">
+                                    <a href="https://www.instagram.com/">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                                             <path
                                                 d="M12.5696 24.5995C12.4901 24.5995 12.4106 24.5995 12.3306 24.5992C10.4494 24.6038 8.71118 24.556 7.02075 24.4531C5.47095 24.3588 4.05627 23.8232 2.92944 22.9043C1.84216 22.0178 1.09967 20.819 0.722656 19.3417C0.394531 18.0555 0.377136 16.793 0.360474 15.5719C0.348389 14.6957 0.335937 13.6575 0.333374 12.6017C0.335937 11.5416 0.348389 10.5033 0.360474 9.62719C0.377136 8.40624 0.394531 7.14373 0.722656 5.85742C1.09967 4.38012 1.84216 3.18133 2.92944 2.29473C4.05627 1.37591 5.47095 0.840326 7.02093 0.746026C8.71136 0.643304 10.4499 0.595331 12.3352 0.599908C14.217 0.59588 15.9546 0.643304 17.6451 0.746026C19.1949 0.840326 20.6096 1.37591 21.7364 2.29473C22.8238 3.18133 23.5662 4.38012 23.9432 5.85742C24.2713 7.14355 24.2887 8.40624 24.3054 9.62719C24.3174 10.5033 24.3301 11.5416 24.3325 12.5973V12.6017C24.3301 13.6575 24.3174 14.6957 24.3054 15.5719C24.2887 16.7928 24.2715 18.0553 23.9432 19.3417C23.5662 20.819 22.8238 22.0178 21.7364 22.9043C20.6096 23.8232 19.1949 24.3588 17.6451 24.4531C16.0262 24.5516 14.3633 24.5995 12.5696 24.5995ZM12.3306 23.1127C14.1813 23.1171 15.8805 23.0702 17.5312 22.9699C18.7031 22.8987 20.0854 22.13 20.9178 21.4512C21.6872 20.8237 22.2171 19.958 22.4927 18.878C22.7658 17.8074 22.7816 16.6579 22.7968 15.5463C22.8087 14.676 22.8211 13.6451 22.8237 12.5995C22.8211 11.5538 22.8087 10.5231 22.7968 9.65282C22.7816 8.54119 22.7658 7.39166 22.4927 6.32086C22.2171 5.2409 21.6872 4.37518 20.9178 3.74767C20.0854 3.06909 18.7031 2.32292 17.5312 2.2517C15.8805 2.15117 14.1813 2.10485 12.335 2.10887C10.4847 2.10448 8.78534 2.15667 7.13464 2.2572C5.96277 2.32843 4.70864 2.83101 3.87624 3.50959C3.10683 4.1371 2.43443 5.2409 2.15885 6.32086C1.88566 7.39166 1.86991 8.54101 1.85472 9.65282C1.84281 10.5239 1.83036 11.5553 1.8278 12.6017C1.83036 13.6436 1.84281 14.6752 1.85472 15.5463C1.86991 16.6579 1.88566 17.8074 2.15885 18.878C2.43443 19.958 2.96434 20.8237 3.73374 21.4512C4.56614 22.1298 5.96277 22.8987 7.13464 22.9699C8.78534 23.0704 10.4851 23.1173 12.3306 23.1127ZM12.2859 18.4589C9.05523 18.4589 6.42657 15.8304 6.42657 12.5995C6.42657 9.36864 9.05523 6.74017 12.2859 6.74017C15.5168 6.74017 18.1453 9.36864 18.1453 12.5995C18.1453 15.8304 15.5168 18.4589 12.2859 18.4589ZM12.335 8.1045C9.70055 8.1045 7.84651 9.95854 7.84651 12.5973C7.84651 14.7942 9.50773 17.1126 12.3091 17.1126C14.5062 17.1126 16.7904 15.0312 16.7904 12.5973C16.7904 10.4004 15.1143 8.1045 12.335 8.1045ZM18.8016 4.86517C18.025 4.86517 17.3953 5.49468 17.3953 6.27142C17.3953 7.04815 18.025 7.67767 18.8016 7.67767C19.5783 7.67767 20.2078 7.04815 20.2078 6.27142C20.2078 5.49468 19.5783 4.86517 18.8016 4.86517Z"
@@ -503,7 +381,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="">
+                                    <a href="https://www.facebook.com/">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                                             <g clip-path="url(#clip0_5950_10656)">
                                                 <path
@@ -519,7 +397,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="">
+                                    <a href="https://x.com/">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                                             <g clip-path="url(#clip0_5950_10659)">
                                                 <path
@@ -535,7 +413,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="">
+                                    <a href="https://www.linkedin.com/">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                                             <g clip-path="url(#clip0_5950_10662)">
                                                 <path
@@ -565,19 +443,7 @@
                         <div class="payment-cards d-flex align-items-center gap-16">
                             <p class="fw-500 light-gray d-sm-flex d-none">Payment Mathods:</p>
                             <div class="card-block">
-                                <img src="{{url('user')}}/media/icons/card-1.png" alt="">
-                            </div>
-                            <div class="card-block">
-                                <img src="{{url('user')}}/media/icons/card-2.png" alt="">
-                            </div>
-                            <div class="card-block">
-                                <img src="{{url('user')}}/media/icons/card-3.png" alt="">
-                            </div>
-                            <div class="card-block">
-                                <img src="{{url('user')}}/media/icons/card-4.png" alt="">
-                            </div>
-                            <div class="card-block">
-                                <img src="{{url('user')}}/media/icons/card-5.png" alt="">
+                                <img src="{{url('image/checkout/vnp.png')}}" alt="" width="48px" height="33px">
                             </div>
                         </div>
                     </div>

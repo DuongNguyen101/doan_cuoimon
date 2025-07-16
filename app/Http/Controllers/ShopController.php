@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderConfirmationMail;
 use App\Models\Categories;
+use App\Models\OrderDetails;
+use App\Models\Orders;
 use App\Models\Products;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ShopController extends Controller
 {
@@ -47,7 +52,7 @@ class ShopController extends Controller
             $query->orderBy('name', 'asc');
         }
 
-        $products = $query->paginate(12)->appends([
+        $products = $query->paginate(6)->appends([
             'search' => $search,
             'sort' => $sort,
         ]);
@@ -125,47 +130,71 @@ class ShopController extends Controller
         return view('template.user.shop.cart', compact('categories', 'cart'));
     }
 
-    public function checkout()
+public function checkout(Request $request)
     {
+        if ($request->isMethod('post')) {
+            $total = $request->input('total') / 100;
+            $user = auth()->user();
+            $cart = session('cart', []);
+
+            $order = Orders::create([
+                'user_id' => $user->id,
+                'total_amount' => $total,
+                'status' => 'pending',
+                'address' => $user->userAddress->address ?? 'No address provided',
+                'order_date' => now(), 
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+
+            foreach ($cart as $item) {
+                OrderDetails::create([
+                    'order_id'   => $order->order_id,
+                    'product_id' => $item['product_id'],
+                    'quantity'   => $item['quantity'],
+                    'unit_price' => $item['price'],
+                    'subtotal'   => $item['quantity'] * $item['price'],
+                ]);
+            }
+
+            $orderDetails = OrderDetails::with('product')
+                ->where('order_id', $order->order_id)
+                ->get();
+
+            Mail::to($user->email)->send(new OrderConfirmationMail($user, $order, $orderDetails));
+            session()->forget('cart'); 
+
+            return redirect()->back()->with('check_email', 'Please check your email: ' . $user->email . ' for order confirmation.');
+        }
+
         $categories = Categories::all();
         $cart = session('cart', []); 
-
         $user = auth()->check() ? auth()->user() : null;
-        $userAddress = $user?->userAddress; 
+        $userAddress = $user?->userAddress;
 
         return view('template/user/shop/checkout', compact('categories', 'user', 'userAddress', 'cart'));
     }
 
-    public function addToWishlist($id)
-    {
-        if (!Auth::check()) {
-            return redirect()->route('login')->with('warning', 'Please login to add products to your wishlist.');
-        }
+public function addToWishlist($id)
+{
+    $product = Products::findOrFail($id); 
 
-        $product = Products::where('product_id', $id)->first();
-        if (!$product) {
-            return redirect()->back()->with('info', 'Product does not exist.');
-        }
-        if (!$product) {
-            return redirect()->back()->with('info', 'Product does not exist.');
-        }
 
-        $wishlist = session()->get('wishlist', []);
+    $wishlist = session()->get('wishlist', []);
 
-        $wishlist[$id] = [
-            'product_id' => $product->id,
-            'name'       => $product->name,
-            'price'      => $product->price,
-            'image_url'  => $product->image_url,
-            'quantity'   => 1,
-            'stock'      => $product->stock, 
-            'added_at'   => now()->format('d M, Y'),
-        ];
+    $wishlist[$id] = [
+        'product_id' => $product->id,
+        'name'       => $product->name,
+        'price'      => $product->price,
+        'image_url'  => $product->image_url,
+        'added_at'   => now()->format('d M, Y'),
+        'quantity'   => 1,
+    ];
 
-        session()->put('wishlist', $wishlist);
+    session()->put('wishlist', $wishlist);
 
-        return redirect()->back()->with('success', 'Added to wishlist successfully!');
-    }
+    return redirect()->back()->with('success', 'Product added to wishlist!');
+}
 
 
     public function removeFromWishlist($id)
@@ -183,34 +212,34 @@ class ShopController extends Controller
         return redirect()->back();
     }
 
-    public function addToCart($id)
-    {
-        if (!Auth::check()) {
-            return redirect()->route('login')->with('warning', 'Please login to add products to cart.');
-        }
-
-        $product = Products::findOrFail($id);
-        $cart = session()->get('cart', []);
-
-        if (isset($cart[$id])) {
-            if ($cart[$id]['quantity'] < $product->stock) {
-                $cart[$id]['quantity'] += 1;
-            }
-        } else {
-            $cart[$id] = [
-                'product_id' => $product->id,
-                'name'       => $product->name,
-                'price'      => $product->price,
-                'image_url'  => $product->image_url,
-                'quantity'   => 1,
-                'stock'      => $product->stock,
-                'added_at'   => now()->format('d M, Y'),
-            ];
-        }
-
-        session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Product added to cart!');
+public function addToCart($id)
+{
+    if (!Auth::check()) {
+        return redirect()->route('login')->with('warning', 'Please login to add products to cart.');
     }
+
+    $product = Products::findOrFail($id);
+    $cart = session()->get('cart', []);
+
+    if (isset($cart[$id])) {
+        if ($cart[$id]['quantity'] < $product->stock) {
+            $cart[$id]['quantity'] += 1;
+        }
+    } else {
+        $cart[$id] = [
+            'product_id' => $product->product_id,
+            'name'       => $product->name,
+            'price'      => $product->price,
+            'image_url'  => $product->image_url, 
+            'quantity'   => 1,
+            'stock'      => $product->stock,
+        ];
+    }
+
+    session()->put('cart', $cart);
+    return redirect()->back()->with('success', 'Product added to cart!');
+}
+
 
 
     public function removeFromCart($id)
@@ -253,5 +282,21 @@ class ShopController extends Controller
         return redirect()->route('cart');
     }
 
-    
+    public function updateQuantities(Request $request)
+    {
+        $quantities = $request->input('quantities');
+        $cart = session()->get('cart', []);
+
+        foreach ($quantities as $productId => $qty) {
+            if (isset($cart[$productId])) {
+                $cart[$productId]['quantity'] = max(1, (int)$qty); 
+            }
+        }
+
+        session()->put('cart', $cart);
+
+        return response()->json(['success' => true]);
+    }
+
+
 }

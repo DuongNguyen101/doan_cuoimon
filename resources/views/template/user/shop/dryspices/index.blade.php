@@ -31,9 +31,7 @@
 
                 <div class="card-body d-flex flex-column">
                     <h6 class="card-title fw-bold">{{ $product->name }}</h6>
-                    <p class="card-text text-muted" style="min-height: 48px;">
-                        {{ $product->short_description }}
-                    </p>
+                        {!! $product->short_description !!}
 
                     {{-- Hiển thị sao đánh giá và số lượng --}}
                     <div class="d-flex align-items-center gap-2 mb-2">
@@ -73,5 +71,26 @@
             </div>
         </div>
     @endforeach
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        {{-- Previous --}}
+        <li class="page-item {{ $products->onFirstPage() ? 'disabled' : '' }}">
+            <a class="page-link" href="{{ $products->previousPageUrl() ?? '#' }}">Previous</a>
+        </li>
+
+        {{-- Page numbers --}}
+        @for ($i = 1; $i <= $products->lastPage(); $i++)
+            <li class="page-item {{ $products->currentPage() == $i ? 'active' : '' }}">
+                <a class="page-link" href="{{ $products->url($i) }}">{{ $i }}</a>
+            </li>
+        @endfor
+
+        {{-- Next --}}
+        <li class="page-item {{ !$products->hasMorePages() ? 'disabled' : '' }}">
+            <a class="page-link" href="{{ $products->nextPageUrl() ?? '#' }}">Next</a>
+        </li>
+    </ul>
+</nav>
+
 </div>
 @endsection
