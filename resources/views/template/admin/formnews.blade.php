@@ -56,7 +56,7 @@
                 <p>{{ isset($record->image_url) ? 'Giu hinh hien tai' : 'Up hinh moi' }} <img src="{{ asset('image/shoplist' . (old('image_url', $record->image_url ?? ''))) }}" alt="Current Image" style="max-width: 200px; margin-top: 10px;"></p>
                 @endif
             </div>
-            
+
             {{-- Mô tả --}}
             <div class=" form-group" style="margin-bottom: 15px;">
                 <label for="description" style="display: block; margin-bottom: 6px;">description:</label>
@@ -98,26 +98,27 @@
 
             {{-- Buttons --}}
             <div style="text-align: center;">
-                <button type="submit"
-                    style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; margin-right: 10px;">
-                    {{ isset($record->news_id) ? 'Cập nhật' : 'Thêm' }}
-                </button>
-
                 <a href="{{ url('/template/admin/news') }}"
                     style="text-decoration: none;">
                     <button type="button"
                         style="background-color: #dc3545; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer;">
-                        Hủy
+                        Canncel
                     </button>
                 </a>
+                <button type="submit"
+                    style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; margin-right: 10px;">
+                    {{ isset($record->news_id) ? 'Update' : 'Add' }}
+                </button>
+
+
             </div>
         </form>
 
     </div>
 
 </div>
-        <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
-        <script>
-            CKEDITOR.replace('description');
-        </script>
+<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('description');
+</script>
 @endsection

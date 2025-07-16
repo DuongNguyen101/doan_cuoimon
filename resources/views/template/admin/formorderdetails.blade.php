@@ -57,14 +57,15 @@
                 <input type="text" id="created_at" name="created_at" value="{{ old('created_at', $record->created_at ?? '') }}" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
             </div>
             <div style="text-align: center;">
-                <button type="submit" style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; margin-right: 10px;">
-                    {{ isset($record->order_detail_id) ? 'Cập nhật' : 'Thêm' }}
-                </button>
                 <a href="{{ url('/template/admin/dashboard') }}" style="text-decoration: none;">
                     <button type="button" style="background-color: #dc3545; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer;">
-                        Hủy
+                        Cancel
                     </button>
                 </a>
+                <button type="submit" style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; margin-right: 10px;">
+                    {{ isset($record->order_detail_id) ? 'Update' : 'Add' }}
+                </button>
+
             </div>
         </form>
     </div>

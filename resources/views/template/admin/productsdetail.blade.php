@@ -25,7 +25,7 @@
                     <th style="padding: 10px;">usage_instructions</th>
                     <th style="padding: 10px;">packaging</th>
                     <th style="padding: 10px;">origin</th>
-                    <th colspan="3" style="text-align: center; padding: 10px;">Hành động</th>
+                    <th colspan="4" style="text-align: center; padding: 10px;">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,23 +33,23 @@
                 <tr style="text-align: center; border-bottom: 1px solid #ccc;">
                     <td style="padding: 8px;">{{ $product->product_id }}</td>
                     <td style="padding: 8px;">{{ $product->name }}</td>
-                    <td style="padding: 8px;">{{ $product->description }}</td>
-                    <td style="padding: 8px;">{{ $product->short_description }}</td>
-                    <td style="padding: 8px;">{{ $product->nutritional_info }}</td>
-                    <td style="padding: 8px;">{{ $product->usage_instructions }}</td>
-                    <td style="padding: 8px;">{{ $product->packaging }}</td>
-                    <td style="padding: 8px;">{{ $product->origin }}</td>
+                    <td style="padding: 8px;">{!! implode(' ', array_slice(explode(' ', $product->description), 0, 20)) !!}...</td>
+                    <td style="padding: 8px;">{!! implode(' ', array: array_slice(explode(' ', $product->short_description), 0, 20)) !!}...</td>
+                    <td style="padding: 8px;"> {!! implode(' ', array: array_slice(explode(' ', $product->nutritional_info), 0, 20)) !!}...</td>
+                    <td style="padding: 8px;"> {!! implode(' ', array: array_slice(explode(' ', $product->usage_instructions), 0, 20)) !!}...</td>
+                    <td style="padding: 8px;">{!! implode(separator: ' ', array: array_slice(explode(' ', $product->packaging), 0, 20)) !!}...</td>
+                    <td style="padding: 8px;">{!! implode(separator: ' ', array: array_slice(explode(' ', $product->origin), 0, 20)) !!}...</td>
 
                     <td style="padding: 8px;">
                         <a href="{{ url('/template/admin/product/form/' .$product->product_id ) }}"
-                            style="background-color: #ffc107; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Sửa</a>
+                            style="background-color: #ffc107; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Edit</a>
                     </td>
                     <td style="padding: 8px;">
-                        <a href="{{ url('/template/admin/product/form/add/') }}" style="background-color: #28a745; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Thêm</a>
+                        <a href="{{ url('/template/admin/product/form/add/') }}" style="background-color: #28a745; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Add</a>
                     </td>
                     <td style="padding: 8px;">
                         <a href="{{ url('/template/admin/product/delete/' .$product->product_id ) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"
-                            style="background-color: #dc3545; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Xóa</a>
+                            style="background-color: #dc3545; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Delete</a>
                     </td>
                 </tr>
                 @endforeach
