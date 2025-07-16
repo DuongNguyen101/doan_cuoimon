@@ -465,7 +465,7 @@
                         <div class="footer-link-block">
                             <ul class="list-unstyled mb-16">
                                 <li class="mb-12 footer-link">
-                                    <a href="" class="d-flex align-items-center gap-2">
+                                    <a href="/template/user/contact/index" class="d-flex align-items-center gap-2">
                                         <div class="img-box">
                                             <img src="{{url('user')}}/media/icons/location.png" alt="">
                                         </div>

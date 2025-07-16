@@ -74,24 +74,28 @@
     @endforeach
 <nav aria-label="Page navigation">
     <ul class="pagination justify-content-center">
-        {{-- Previous --}}
         <li class="page-item {{ $products->onFirstPage() ? 'disabled' : '' }}">
-            <a class="page-link" href="{{ $products->previousPageUrl() ?? '#' }}">Previous</a>
+            <a class="page-link text-success border-success" 
+               href="{{ $products->previousPageUrl() ?? '#' }}">Previous</a>
         </li>
 
-        {{-- Page numbers --}}
         @for ($i = 1; $i <= $products->lastPage(); $i++)
             <li class="page-item {{ $products->currentPage() == $i ? 'active' : '' }}">
-                <a class="page-link" href="{{ $products->url($i) }}">{{ $i }}</a>
+                <a class="page-link {{ $products->currentPage() == $i ? 'bg-success text-white border-success' : 'text-success border-success' }}" 
+                   href="{{ $products->url($i) }}">
+                    {{ $i }}
+                </a>
             </li>
         @endfor
 
         {{-- Next --}}
         <li class="page-item {{ !$products->hasMorePages() ? 'disabled' : '' }}">
-            <a class="page-link" href="{{ $products->nextPageUrl() ?? '#' }}">Next</a>
+            <a class="page-link text-success border-success" 
+               href="{{ $products->nextPageUrl() ?? '#' }}">Next</a>
         </li>
     </ul>
 </nav>
+
 
 </div>
 @endsection
