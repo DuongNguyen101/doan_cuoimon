@@ -17,10 +17,11 @@ class HomeController extends Controller
             ->get();
 
         $featuredProducts = Products::where('status', 1)
+            ->where('category_id', 1)
             ->withCount('reviews')
             ->withAvg('reviews', 'rating')
             ->latest()
-            ->take(5)
+            ->take(4)
             ->get();
 
         $featuredProducts2 = Products::where('status', 1)
