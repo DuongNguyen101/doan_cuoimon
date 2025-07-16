@@ -1,12 +1,5 @@
 @extends('layout.user')
 @section('content')
-<style>
-    .cus-btn.small-btn {
-        font-size: 21px;
-        padding: 6px 12px;
-    }
-</style>
-
 <section class="title-banner">
     <div class="container-fluid">
         <div class="banner-wrapper">
@@ -105,8 +98,8 @@
 
                 </div>
 
-                <div class="table-bottom-row bg-white">
-                    <div class="table-bottom-row bg-white">
+                <div class="table-bottom-row bg-white" style="padding: 0px;">
+                    <div class="table-bottom-row bg-white" style="padding-top:24px ;">
                         <a href="{{ url('/template/user/shop/category/1') }}" class="cus-btn">Continue Shopping</a>
                     </div>
                 </div>
@@ -121,7 +114,6 @@
     }
     $grandTotal = $total ;
 @endphp
-<pre>{{ print_r($cartItems, true) }}</pre>
 
 
                 <div class="checkout-box bg-semi-white mt-xl-0 mt-48">
@@ -167,22 +159,8 @@
                     </div>
 
                     <div class="bottom-box">
-                        <div class="title-price mb-16">
-                            <h6>Subtotal</h6>
-                            <h6 class="light-gray" id="subtotal-value">${{ number_format($total, 2) }}</h6>
-                        </div>
-
                         <div class="hr-line mb-16"></div>
-
-                       
-
-                        <div class="title-price mb-16">
-                            <h5 class="color-primary">TOTAL</h5>
-                            <h5 class="color-primary" id="total-value">${{ number_format($grandTotal, 2) }}</h5>
-                        </div>
-
-                        <div class="hr-line mb-16"></div>
-                        <div class="d-flex justify-content-end gap-2">
+                        <div class="d-flex justify-content-around gap-2">
                             <button type="submit" id="update-cart-btn" class="cus-btn active-btn small-btn">
                                 Update cart total
                             </button>
