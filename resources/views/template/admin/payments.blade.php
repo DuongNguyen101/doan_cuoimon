@@ -33,7 +33,16 @@
                     <td style="padding: 8px;">{{ $record->amount }}</td>
                     <td style="padding: 8px;">{{ $record->payment_method }}</td>
                     <td style="padding: 8px;">{{ $record->payment_date }}</td>
-                    <td style="padding: 8px;">{{ $record->status }}</td>
+                    <td style="padding: 8px;"
+                        @if($record->status === 'pending')
+                        style="color:rgb(236, 236, 12); padding: 8px;"
+                        @elseif($record->status === 'failed')
+                        style="color:rgb(246, 183, 183); padding: 8px;"
+                        @elseif($record->status === 'completed')
+                        style="color: #ccffcc; padding: 8px;"
+                        @endif>
+                        {{ $record->status }}
+                    </td>
                     <td style="padding: 8px;">{{ $record->transaction_id }}</td>
                     <td style="padding: 8px;">{{ $record->created_at }}</td>
                     <td style="padding: 8px;">{{ $record->updated_at }}</td>
