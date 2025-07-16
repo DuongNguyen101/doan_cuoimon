@@ -98,7 +98,6 @@
                                 <div class="featured-product-card bg-white br-10 shadow-sm h-100 d-flex flex-column w-100">
                                     {{-- Image Box --}}
                                     <div class="image-box position-relative" style="aspect-ratio: 4/3; overflow: hidden;">
-                                        <span class="sale-label position-absolute top-0 start-0 m-2">-12%</span>
                                         <a href="{{ route('shopdetail', $product->product_id) }}">
                                             <img
                                                 src="{{ asset('image/shoplist/' . $product->image_url) }}"
@@ -131,7 +130,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <h6>
-                                                <span class="text-decoration-line-through light-gray">${{ number_format($product->price * 1.1, 2) }}</span>
+                                               
                                                 &nbsp;&nbsp;${{ number_format($product->price, 2) }}
                                             </h6>
                                         </div>
@@ -168,7 +167,6 @@
                     <div class="col-xxl-2 col-xl-2 col-lg-4 col-md-6 d-flex">
                         <div class="featured-product-card bg-white br-10 h-100 d-flex flex-column w-100">
                             <div class="image-box mb-16" style="height: 300px; overflow: hidden;">
-                                <span class="sale-label">-12%</span>
                                 <a href="{{ route('shopdetail', $product->product_id) }}">
                                     <img src="{{ asset('image/shoplist/' . $product->image_url) }}"
                                         class="product-image w-100 h-100 object-fit-cover" alt="{{ $product->name }}">
@@ -197,7 +195,7 @@
                                 </div>
                                 <div class="mb-16">
                                     <h6>
-                                        <span class="text-decoration-line-through light-gray">${{ number_format($product->price * 1.1, 2) }}</span>
+                                       
                                         &nbsp;&nbsp;${{ number_format($product->price, 2) }}
                                     </h6>
                                 </div>
@@ -242,7 +240,6 @@
             <div class="col-xxl-2 col-xl-2 col-lg-4 col-md-6 d-flex">
                 <div class="featured-product-card bg-white br-10 h-100 d-flex flex-column w-100">
                     <div class="image-box mb-16" style="height: 289px; overflow: hidden;">
-                        <span class="sale-label">-12%</span>
                         <a href="{{ route('shopdetail', $product->product_id) }}">
                             <img src="{{ asset('image/shoplist/' . $product->image_url) }}"
                                 class="product-image w-100 h-100 object-fit-cover" alt="{{ $product->name }}">
@@ -271,7 +268,6 @@
                         </div>
                         <div class="mb-16">
                             <h6>
-                                <span class="text-decoration-line-through light-gray">${{ number_format($product->price * 1.1, 2) }}</span>
                                 &nbsp;&nbsp;${{ number_format($product->price, 2) }}
                             </h6>
                         </div>
