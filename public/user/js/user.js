@@ -99,3 +99,28 @@ $(document).on('click', '.add-to-cart', function (e) {
 });
 
 
+
+$(document).off('click', '.increment').on('click', '.increment', function () {
+    const $input = $(this).siblings('.wishlist-qty');
+    const max = parseInt($input.data('max'), 10) || 1;
+    let val = parseInt($input.val(), 10) || 1;
+
+    if (val < max) {
+        $input.val(val);
+    } else {
+        $input.val(max); // ép về max nếu quá
+    }
+});
+
+$(document).off('click', '.decrement').on('click', '.decrement', function () {
+    const $input = $(this).siblings('.wishlist-qty');
+    let val = parseInt($input.val(), 10) || 1;
+
+    if (val > 1) {
+        $input.val(val);
+    } else {
+        $input.val(1); // không nhỏ hơn 1
+    }
+});
+
+
