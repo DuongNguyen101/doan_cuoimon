@@ -30,7 +30,10 @@
             <select id="category_id" name="category_id" required
                 style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
                 @foreach ( $categories as $category)
-                <option value="{{$category->category_id}}" {{ $product->category_id == $category->category_id ? 'selected' : '' }}>
+                <option value="{{$category->category_id}}"
+                    @if(isset($product) && $product->category_id == $category->category_id)
+                    selected
+                    @endif>
                     {{$category->category_id}}. {{ $category->name }}
                 </option>
                 @endforeach
