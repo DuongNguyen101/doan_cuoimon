@@ -56,6 +56,9 @@ Route::group(['prefix' => 'template/user'], function () {
 
     Route::get('/shop/cart/increase/{id}', [ShopController::class, 'increaseQuantity'])->name('cart.increase');
     Route::get('/shop/cart/decrease/{id}', [ShopController::class, 'decreaseQuantity'])->name('cart.decrease');
+    
+    Route::post('/cart/update-quantities', [ShopController::class, 'updateQuantities'])->name('cart.update.quantities');
+    Route::post('/shop/cart/update', [ShopController::class, 'updateCart'])->name('cart.update');
 });
 
 
@@ -209,4 +212,4 @@ Route::get('/vnpay/return', [PaymentController::class, 'vnpay_return'])->name('v
 
 Route::get('/order/cancel', [PaymentController::class, 'cancelOrder'])->name('order.cancel');
 
-Route::post('/cart/update-quantities', [ShopController::class, 'updateQuantities'])->name('cart.update.quantities');
+

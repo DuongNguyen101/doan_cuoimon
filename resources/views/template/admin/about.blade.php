@@ -18,7 +18,7 @@
                     <th style="padding: 10px;">description</th>
                     <th style="padding: 10px;">image</th>
                     <th style="padding: 10px;">create_at</th>
-                    <th colspan="4" style="text-align: center; padding: 10px;">Hành động</th>
+                    <th colspan="4" style="text-align: center; padding: 10px;">Actions</th>
                 </tr>
             </thead>
             <tbody>

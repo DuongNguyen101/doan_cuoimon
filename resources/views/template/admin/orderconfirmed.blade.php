@@ -32,7 +32,7 @@
                     <td style="padding: 8px;">{{ $Order->user_id }}</td>
                     <td style="padding: 8px;">{{ $Order->order_date }}</td>
                     <td style="padding: 8px;">{{ $Order->total_amount }}</td>
-                    <td style="padding: 8px;">{{ $Order->status }}</td>
+                    <td style="padding: 8px; color:#28a745">{{ $Order->status }}</td>
                     <td style="padding: 8px;">{{ $Order->address }}</td>
                     <td style="padding: 8px;">{{ $Order->created_at }}</td>
                     <td style="padding: 8px;">{{ $Order->updated_at }}</td>

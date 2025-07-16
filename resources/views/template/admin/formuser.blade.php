@@ -119,11 +119,6 @@
 
             {{-- Buttons --}}
             <div style="text-align: center;">
-                <button type="submit"
-                    style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; margin-right: 10px;">
-                    {{ isset($User->id) ? 'Update' : 'Add' }}
-                </button>
-
                 <a href="{{ url('/template/admin/user') }}"
                     style="text-decoration: none;">
                     <button type="button"
@@ -131,6 +126,12 @@
                         Cancel
                     </button>
                 </a>
+                <button type="submit"
+                    style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; margin-right: 10px;">
+                    {{ isset($User->id) ? 'Update' : 'Add' }}
+                </button>
+
+
             </div>
         </form>
 
