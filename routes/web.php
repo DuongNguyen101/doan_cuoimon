@@ -195,10 +195,3 @@ Route::post('/user/update', [UserInfoController::class, 'update'])->name('user.u
 Route::group(['prefix' => 'template/user'], function () {
     Route::post('/review/store', [ReviewController::class, 'store'])->name('reviews.store');
 });
-<<<<<<< HEAD
-=======
-
-Route::post('/vnpay_payment', [PaymentController::class, 'vnpay_payment']);
-
-Route::get('/vnpay_return', [PaymentController::class, 'vnpay_return'])->name('vnpay.return');
->>>>>>> c374eb8c9fa74cd4139e3dc5216d08c61da46739

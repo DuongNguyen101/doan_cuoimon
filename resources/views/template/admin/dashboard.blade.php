@@ -11,19 +11,19 @@
     </form>
     <div class="danh-muc-sp" style="max-width: 1000px; margin: 40px auto; font-family: Arial, sans-serif;">
         <div class="row" style="margin-bottom: 20px;">
-            <h2 style="text-align: center; color: #333; font-weight: bold;">Danh Mục Sản Phẩm</h2>
+            <h2 style="text-align: center; color: #333; font-weight: bold;">Categroies Management</h2>
         </div>
 
         <table style="width: 100%; border-collapse: collapse; background-color: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
             <thead style="background-color: #007bff; color: white;">
                 <tr>
-                    <th style="padding: 10px;">ID</th>
-                    <th style="padding: 10px;">Tên</th>
-                    <th style="padding: 10px;">Mô tả</th>
-                    <th style="padding: 10px;">Ngày tạo</th>
-                    <th style="padding: 10px;">Ngày cập nhật</th>
-                    <th style="padding: 10px;">Sản phẩm</th>
-                    <th colspan="3" style="text-align: center; padding: 10px;">Hành động</th>
+                    <th style="padding: 10px;">category_id</th>
+                    <th style="padding: 10px;">name</th>
+                    <th style="padding: 10px;">description</th>
+                    <th style="padding: 10px;">created_at</th>
+                    <th style="padding: 10px;">updated_at</th>
+                    <th style="padding: 10px;">View Product List</th>
+                    <th colspan="3" style="text-align: center; padding: 10px;">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,19 +36,19 @@
                     <td style="padding: 8px;">{{ $category->updated_at }}</td>
                     <td style="padding: 8px;">
                         <a href="{{ url('/template/admin/dashboard/' . $category->category_id) }}"
-                            style="color: #007bff; text-decoration: none;">Xem</a>
+                            style="color: #007bff; text-decoration: none;">View</a>
                     </td>
                     <td style="padding: 8px;">
                         <a href="{{ url('/template/admin/dashboard/form/' . $category->category_id) }}"
-                            style="background-color: #ffc107; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Sửa</a>
+                            style="background-color: #ffc107; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Edit</a>
                     </td>
                     <td style="padding: 8px;">
                         <a href="{{ url('/template/admin/dashboard/form/add') }}"
-                            style="background-color: #28a745; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Thêm</a>
+                            style="background-color: #28a745; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Add</a>
                     </td>
                     <td style="padding: 8px;">
                         <a href="{{ url('/template/admin/dashboard/form/delete/' . $category->category_id) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"
-                            style="background-color: #dc3545; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Xóa</a>
+                            style="background-color: #dc3545; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Delete</a>
                     </td>
                 </tr>
                 @endforeach

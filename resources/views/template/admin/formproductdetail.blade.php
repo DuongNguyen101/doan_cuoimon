@@ -92,7 +92,7 @@
             </div>
             {{-- origin --}}
             <div class=" form-group" style="margin-bottom: 15px;">
-                <label for="origin" style="display: block; margin-bottom: 6px;">packaging:</label>
+                <label for="origin" style="display: block; margin-bottom: 6px;">origin:</label>
                 <textarea id="origin" name="origin" rows="4" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">{{ old('packaging', $product->origin ?? '') }}</textarea>
             </div>
             {{-- trang thái pham sản phẩm --}}
