@@ -41,6 +41,8 @@ Route::group(['prefix' => 'template/user'], function () {
 
     Route::get('/shop/wishlist', [ShopController::class, 'wishlist']);
     Route::get('/shop/wishlist/add/{id}', [ShopController::class, 'addToWishlist'])->name('wishlist.add');
+    Route::post('/shop/wishlist/add/{id}', [ShopController::class, 'addToWishlist'])->name('wishlist.add');
+
     Route::get('/shop/wishlist/remove/{id}', [ShopController::class, 'removeFromWishlist'])->name('wishlist.remove');
 
     Route::get('/shop/cart', [ShopController::class, 'cart'])->name('cart');

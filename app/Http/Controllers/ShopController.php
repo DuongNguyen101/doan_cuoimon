@@ -175,26 +175,35 @@ public function checkout(Request $request)
         return view('template/user/shop/checkout', compact('categories', 'user', 'userAddress', 'cart'));
     }
 
-public function addToWishlist($id)
+public function addToWishlist(Request $request, $id)
 {
     $product = Products::findOrFail($id); 
 
-
+    $quantity = $request->query('quantity', 1); 
     $wishlist = session()->get('wishlist', []);
 
-    $wishlist[$id] = [
-        'product_id' => $product->product_id,
-        'name'       => $product->name,
-        'price'      => $product->price,
-        'image_url'  => $product->image_url,
-        'added_at'   => now()->format('d M, Y'),
-        'quantity'   => 1,
-    ];
+    if (isset($wishlist[$id])) {
+        $wishlist[$id]['quantity'] += $quantity;
+    } else {
+        $wishlist[$id] = [
+            'product_id' => $product->product_id,
+            'name'       => $product->name,
+            'price'      => $product->price,
+            'image_url'  => $product->image_url,
+            'added_at'   => now()->format('d M, Y'),
+            'quantity'   => $quantity,
+        ];
+    }
 
     session()->put('wishlist', $wishlist);
 
-    return redirect()->back()->with('success', 'Product added to wishlist!');
+    if ($request->ajax()) {
+        return response()->json(['message' => 'Added ' . $quantity . ' to wishlist!']);
+    }
+
+    return redirect()->back()->with('success', "Product added to wishlist ($quantity pcs)!");
 }
+
 
 
     public function removeFromWishlist($id)

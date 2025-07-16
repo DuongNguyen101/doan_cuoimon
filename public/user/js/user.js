@@ -51,3 +51,29 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 });
+
+$(document).on('click', '.add-to-wishlist', function (e) {
+    e.preventDefault();
+
+    const productId = $(this).data('product-id');
+
+    // Tìm input wishlist-qty nằm trong cùng function-bar
+    const qty = $(this).closest('.function-bar').find('.wishlist-qty').val() || 1;
+
+    $.ajax({
+        url: `/template/user/shop/wishlist/add/${productId}`,
+        method: 'GET', // hoặc 'POST' nếu bạn muốn bảo mật hơn
+        data: {
+            quantity: qty
+        },
+        success: function (res) {
+            alert(res.message || `Added ${qty} to wishlist!`);
+        },
+        error: function (xhr) {
+            console.error('Error:', xhr.responseText);
+            alert('Failed to add to wishlist.');
+        }
+    });
+});
+
+
