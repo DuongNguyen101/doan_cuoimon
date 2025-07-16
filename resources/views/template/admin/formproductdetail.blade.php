@@ -125,18 +125,19 @@
 
             {{-- Buttons --}}
             <div style="text-align: center;">
-                <button type="submit"
-                    style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; margin-right: 10px;">
-                    {{ isset($product->product_id) ? 'Cập nhật' : 'Thêm' }}
-                </button>
-
                 <a href="{{ url('/template/admin/dashboard') }}"
                     style="text-decoration: none;">
                     <button type="button"
                         style="background-color: #dc3545; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer;">
-                        Hủy
+                        Canncel
                     </button>
                 </a>
+                <button type="submit"
+                    style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; margin-right: 10px;">
+                    {{ isset($product->product_id) ? 'Update' : 'Add' }}
+                </button>
+
+
             </div>
         </form>
         <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
