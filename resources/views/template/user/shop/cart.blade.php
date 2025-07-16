@@ -1,6 +1,11 @@
 @extends('layout.user')
 @section('content')
-
+<style>
+    .cus-btn.small-btn {
+        font-size: 21px;
+        padding: 6px 12px;
+    }
+</style>
 
 <section class="title-banner">
     <div class="container-fluid">
@@ -24,6 +29,8 @@
                             </tr>
                         </thead>
                     </table>
+                    <form action="{{ route('cart.update') }}" method="POST">
+    @csrf
                     <table class="cart-table">
                         <tbody>
                             @php
@@ -43,13 +50,13 @@
                                         </a>
                                         <div class="img-block me-2">
                                             <a href="{{ route('shopdetail', $productId) }}">
-                                        @if(isset($item['image_url']))
-                                            <img src="{{ asset('image/shoplist/' . $item['image_url']) }}"
-                                                alt="{{ $item['name'] }}"
-                                                width="48"
-                                                height="48"
-                                                class=" rounded border" />
-                                        @endif
+                                                @if(isset($item['image_url']))
+                                                <img src="{{ asset('image/shoplist/' . $item['image_url']) }}"
+                                                    alt="{{ $item['name'] }}"
+                                                    width="48"
+                                                    height="48"
+                                                    class=" rounded border" />
+                                                @endif
                                             </a>
                                         </div>
                                         <div>
@@ -70,20 +77,21 @@
                                     <div class="quantity-controller quantity-wrap d-flex justify-content-center" data-price="{{ $item['price'] }}">
                                         <input
                                             type="number"
-                                            name="quantity"
+                                            name="quantities[{{ $productId }}]"
                                             value="{{ $item['quantity'] }}"
                                             min="1"
                                             max="{{ $item['stock'] }}"
-                                            data-price="{{ $item['price'] }}"
-                                            data-product-id="{{ $productId }}"
                                             class="form-control text-center"
                                             style="width: 80px;" />
+
                                     </div>
                                 </td>
 
                                 {{-- 5. Subtotal --}}
                                 <td>
-                                    <p class="fw-500 mb-0 subtotal" style="margin-left: 20px;">${{ number_format($item['price'] * $item['quantity'], 2) }}</p>
+                                    <p class="fw-500 mb-0 subtotal" style="margin-left: 20px;">
+                                        ${{ number_format($item['price'] * $item['quantity'], 2) }}
+                                    </p>
                                 </td>
                             </tr>
                             @empty
@@ -104,16 +112,17 @@
                 </div>
             </div>
             <div class="col-xl-4">
-                @php
-                // Tính tổng tiền
-                $total = 0;
-                foreach ($cart as $item) {
-                $total += $item['price'] * $item['quantity'];
-                }
-                $shipping = 5;
-                $discount = 5;
-                $grandTotal = $total + $shipping - $discount;
-                @endphp
+@php
+    $cartItems = $cart; 
+    
+    $total = 0;
+    foreach ($cartItems as $item) {
+        $total += $item['price'] * $item['quantity'];
+    }
+    $grandTotal = $total ;
+@endphp
+<pre>{{ print_r($cartItems, true) }}</pre>
+
 
                 <div class="checkout-box bg-semi-white mt-xl-0 mt-48">
                     <div class="checkout-title text-center mb-16">
@@ -130,7 +139,6 @@
                         <ul class="list-group mb-3">
                             @forelse($cartItems as $item)
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                {{-- Cột trái: ảnh + tên + số lượng --}}
                                 <div class="d-flex align-items-center">
                                     <img src="{{ asset('image/shoplist/' . $item['image_url']) }}"
                                         alt="{{ $item['name'] }}"
@@ -166,11 +174,7 @@
 
                         <div class="hr-line mb-16"></div>
 
-                        {{-- Ẩn phí & giảm giá để JS xử lý --}}
-                        <div style="display:none">
-                            <span id="shipping-value">{{ $shipping }}</span>
-                            <span id="discount-value">{{ $discount }}</span>
-                        </div>
+                       
 
                         <div class="title-price mb-16">
                             <h5 class="color-primary">TOTAL</h5>
@@ -178,9 +182,16 @@
                         </div>
 
                         <div class="hr-line mb-16"></div>
-                        <div class="text-end">
-                            <a href="{{ url('template/user/shop/checkout') }}" id="proceed-checkout-btn" class="cus-btn active-btn">PROCEED TO CHECKOUT</a>
+                        <div class="d-flex justify-content-end gap-2">
+                            <button type="submit" id="update-cart-btn" class="cus-btn active-btn small-btn">
+                                Update cart total
+                            </button>
+                            <a href="{{ url('template/user/shop/checkout') }}" id="proceed-checkout-btn" class="cus-btn active-btn small-btn">
+                                Proceed to checkout
+                            </a>
+ 
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -189,8 +200,6 @@
     </div>
 </section>
 
-
 <script src="{{asset('user')}}/js/cart.js"></script>
-
 
 @endsection

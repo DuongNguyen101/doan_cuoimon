@@ -183,7 +183,7 @@ public function addToWishlist($id)
     $wishlist = session()->get('wishlist', []);
 
     $wishlist[$id] = [
-        'product_id' => $product->id,
+        'product_id' => $product->product_id,
         'name'       => $product->name,
         'price'      => $product->price,
         'image_url'  => $product->image_url,
@@ -297,6 +297,23 @@ public function addToCart($id)
 
         return response()->json(['success' => true]);
     }
+
+    public function updateCart(Request $request)
+    {
+        $quantities = $request->input('quantities');
+        $cart = session('cart', []);
+
+        foreach ($quantities as $productId => $qty) {
+            if (isset($cart[$productId])) {
+                $cart[$productId]['quantity'] = max(1, (int)$qty);
+            }
+        }
+
+        session(['cart' => $cart]);
+
+        return redirect()->back()->with('info', 'Cart updated successfully!');
+    }
+
 
 
 }
