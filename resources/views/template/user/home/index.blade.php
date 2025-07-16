@@ -59,7 +59,7 @@
                         @if ($firstProduct)
                         <img src="{{ asset('image/shoplist/' . $firstProduct->image_url) }}"
                             alt="{{ $category->name }}"
-                            style="width: 150px; height:auto; object-fit: cover; border-radius: 50%;">
+                            style="width: 100px; height:auto; object-fit: cover; border-radius: 50%;">
                         @endif
                     </div>
                     <p class="fw-500 mb-1">{{ $category->name }}</p>
