@@ -28,7 +28,7 @@
                     <th style="padding: 10px;">updated_at</th>
                     <th style="padding: 10px;">status</th>
                     <th style="padding: 10px;">description</th>
-                    <th colspan="4" style="text-align: center; padding: 10px;">Hành động</th>
+                    <th colspan="4" style="text-align: center; padding: 10px;">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -53,19 +53,19 @@
                     <td style="padding: 8px;">{{ $User->description }}</td>
                     <td style="padding: 8px;">
                         <a href="{{ url('/template/admin/user/' .$User->id ) }}"
-                            style="color: #007bff; text-decoration: none;">Xem</a>
+                            style="color: #007bff; text-decoration: none;">View</a>
                     </td>
 
                     <td style="padding: 8px;">
                         <a href="{{ url('/template/admin/user/form/' .$User->id  ) }}"
-                            style="background-color: #ffc107; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Sửa</a>
+                            style="background-color: #ffc107; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Edit</a>
                     </td>
                     <td style="padding: 8px;">
-                        <a href="{{ url('/template/admin/user/form/add') }}" style="background-color: #28a745; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Thêm</a>
+                        <a href="{{ url('/template/admin/user/form/add') }}" style="background-color: #28a745; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Add</a>
                     </td>
                     <td style="padding: 8px;">
                         <a href="{{ url('/template/admin/user/delete/' .$User->id  ) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"
-                            style="background-color: #dc3545; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Xóa</a>
+                            style="background-color: #dc3545; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Delete</a>
                     </td>
                 </tr>
                 @endforeach

@@ -62,14 +62,14 @@
             <div style="text-align: center;">
                 <button type="submit"
                     style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; margin-right: 10px;">
-                    {{ isset($record->id) ? 'Cập nhật' : 'Thêm' }}
+                    {{ isset($record->id) ? 'Update' : 'Add' }}
                 </button>
 
                 <a href="{{ url('/template/admin/news') }}"
                     style="text-decoration: none;">
                     <button type="button"
                         style="background-color: #dc3545; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer;">
-                        Hủy
+                        Cancel
                     </button>
                 </a>
             </div>
