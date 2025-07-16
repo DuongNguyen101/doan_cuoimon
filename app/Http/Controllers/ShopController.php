@@ -183,7 +183,7 @@ public function addToWishlist($id)
     $wishlist = session()->get('wishlist', []);
 
     $wishlist[$id] = [
-        'product_id' => $product->id,
+        'product_id' => $product->product_id,
         'name'       => $product->name,
         'price'      => $product->price,
         'image_url'  => $product->image_url,
