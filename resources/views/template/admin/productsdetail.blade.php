@@ -11,7 +11,7 @@
     </form>
     <div class="danh-muc-sp" style="max-width: 1100px; margin: 40px auto; font-family: Arial, sans-serif;">
         <div class="row" style="margin-bottom: 25px;">
-            <h2 style="text-align: center; color: #333;">Danh Sách Sản Phẩm </h2>
+            <h2 style="text-align: center; color: #333;">List of products </h2>
         </div>
 
         <table style="width: 100%; border-collapse: collapse; background-color: #fff; box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);">

@@ -4,7 +4,7 @@
 <div class="content">
     <a href="{{url('/template/admin/user')}}">Back</a>
     <div class="form-container">
-        <h2>{{ isset($record->order_id) ? 'Sửa Oder' : 'Thêm Oder' }}</h2>
+        <h2>{{ isset($record->order_id) ? 'Edit Oder' : 'Add Oder' }}</h2>
         <form method="POST" action="{{ isset($record->order_id) ? route('order.update', ['id' => $record->order_id]) : route('order.update') }}"
             style="max-width: 600px; margin: 40px auto; padding: 25px; background-color: #f7f7f7; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);" enctype="multipart/form-data">
 

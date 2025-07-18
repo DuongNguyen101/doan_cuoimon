@@ -32,7 +32,7 @@
                     <td style="padding: 8px;">{{ $record->create_at }}</td>
                     <td style="padding: 8px;">
                         <a href="{{ url('/template/admin/about/form/' . $record->id) }}"
-                            style="background-color: #ffc107; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Sửa</a>
+                            style="background-color: #ffc107; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Edit</a>
                     </td>
 
                 </tr>
