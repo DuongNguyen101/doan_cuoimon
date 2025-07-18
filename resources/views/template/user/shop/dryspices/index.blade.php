@@ -24,16 +24,18 @@
 
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-4">
             <div class="card h-100 shadow-sm border-0">
-                <img src="{{ asset('image/shoplist/' . $product->image_url) }}"
-                    class="card-img-top"
-                    alt="{{ $product->name }}"
-                    style="height: 350px; object-fit: cover;">
+                <a href="{{ route('shopdetail', ['id' => $product->product_id]) }}">
+                    <img src="{{ asset('image/shoplist/' . $product->image_url) }}"
+                        class="card-img-top"
+                        alt="{{ $product->name }}"
+                        style="height: 350px; object-fit: cover;">
+                </a>
 
                 <div class="card-body d-flex flex-column">
-                    <h6 class="card-title fw-bold">{{ $product->name }}</h6>
+                    <a href="{{ route('shopdetail', ['id' => $product->product_id]) }}">
+                        <h6 class="card-title fw-bold">{{ $product->name }}</h6>
                         {!! $product->short_description !!}
-
-                    {{-- Hiển thị sao đánh giá và số lượng --}}
+                    </a>
                     <div class="d-flex align-items-center gap-2 mb-2">
                         <span class="text-warning">
                             @for ($i = 1; $i <= 5; $i++)
@@ -47,7 +49,6 @@
                         <span class="text-muted small">({{ $reviewCount }})</span>
                     </div>
 
-                    {{-- Giá và các nút hành động --}}
                     <div class="mt-auto">
                         <span class="fw-bold text-success d-block mb-2">
                             ${{ number_format($product->price, 2) }}
@@ -73,24 +74,28 @@
     @endforeach
 <nav aria-label="Page navigation">
     <ul class="pagination justify-content-center">
-        {{-- Previous --}}
         <li class="page-item {{ $products->onFirstPage() ? 'disabled' : '' }}">
-            <a class="page-link" href="{{ $products->previousPageUrl() ?? '#' }}">Previous</a>
+            <a class="page-link text-success border-success" 
+               href="{{ $products->previousPageUrl() ?? '#' }}">Previous</a>
         </li>
 
-        {{-- Page numbers --}}
         @for ($i = 1; $i <= $products->lastPage(); $i++)
             <li class="page-item {{ $products->currentPage() == $i ? 'active' : '' }}">
-                <a class="page-link" href="{{ $products->url($i) }}">{{ $i }}</a>
+                <a class="page-link {{ $products->currentPage() == $i ? 'bg-success text-white border-success' : 'text-success border-success' }}" 
+                   href="{{ $products->url($i) }}">
+                    {{ $i }}
+                </a>
             </li>
         @endfor
 
         {{-- Next --}}
         <li class="page-item {{ !$products->hasMorePages() ? 'disabled' : '' }}">
-            <a class="page-link" href="{{ $products->nextPageUrl() ?? '#' }}">Next</a>
+            <a class="page-link text-success border-success" 
+               href="{{ $products->nextPageUrl() ?? '#' }}">Next</a>
         </li>
     </ul>
 </nav>
+
 
 </div>
 @endsection

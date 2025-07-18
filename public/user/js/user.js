@@ -51,3 +51,76 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 });
+
+$(document).on('click', '.add-to-wishlist', function (e) {
+    e.preventDefault();
+
+    const productId = $(this).data('product-id');
+
+    // Tìm input wishlist-qty nằm trong cùng function-bar
+    const qty = $(this).closest('.function-bar').find('.wishlist-qty').val() || 1;
+
+    $.ajax({
+        url: `/template/user/shop/wishlist/add/${productId}`,
+        method: 'GET', // hoặc 'POST' nếu bạn muốn bảo mật hơn
+        data: {
+            quantity: qty
+        },
+        success: function (res) {
+            alert(res.message || `Added ${qty} to wishlist!`);
+        },
+        error: function (xhr) {
+            console.error('Error:', xhr.responseText);
+            alert('Failed to add to wishlist.');
+        }
+    });
+});
+
+$(document).on('click', '.add-to-cart', function (e) {
+    e.preventDefault();
+
+    const productId = $(this).data('product-id');
+    const qty = $(this).closest('.function-bar').find('.wishlist-qty').val() || 1;
+
+    $.ajax({
+        url: `/template/user/shop/cart/add/${productId}`,
+        method: 'GET',
+        data: {
+            quantity: qty
+        },
+        success: function (res) {
+            alert(res.message || `Added ${qty} to cart!`);
+        },
+        error: function (xhr) {
+            alert('Failed to add to cart.');
+            console.error(xhr.responseText);
+        }
+    });
+});
+
+
+
+$(document).off('click', '.increment').on('click', '.increment', function () {
+    const $input = $(this).siblings('.wishlist-qty');
+    const max = parseInt($input.data('max'), 10) || 1;
+    let val = parseInt($input.val(), 10) || 1;
+
+    if (val < max) {
+        $input.val(val);
+    } else {
+        $input.val(max); // ép về max nếu quá
+    }
+});
+
+$(document).off('click', '.decrement').on('click', '.decrement', function () {
+    const $input = $(this).siblings('.wishlist-qty');
+    let val = parseInt($input.val(), 10) || 1;
+
+    if (val > 1) {
+        $input.val(val);
+    } else {
+        $input.val(1); // không nhỏ hơn 1
+    }
+});
+
+
