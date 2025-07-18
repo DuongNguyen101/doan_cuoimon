@@ -3,12 +3,12 @@
 <div class="content">
     <a href="{{ url('/template/admin/user') }}">Back</a>
     <div class="form-container">
-        <h2>{{ isset($record->order_detail_id) ? 'Sửa chi tiết đơn hàng' : 'Thêm chi tiết đơn hàng mới' }}</h2>
+        <h2>{{ isset($record->order_detail_id) ? 'Edit order detail' : 'Add new order detail' }}</h2>
         <form method="POST" action="{{ isset($record->order_detail_id) ? route('orderdetails.update', ['id' => $record->order_detail_id]) : route('orderdetails.update') }}"
             style="max-width: 600px; margin: 40px auto; padding: 25px; background-color: #f7f7f7; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
             @csrf
             <h2 style="text-align: center; margin-bottom: 25px;">
-                {{ isset($record->order_detail_id) ? 'Cập nhật chi tiết đơn hàng' : 'Thêm chi tiết đơn hàng mới' }}
+                {{ isset($record->order_detail_id) ? 'Edit order detail' : 'Add new order detail' }}
             </h2>
             @if ($errors->any())
             <div class="alert alert-danger">
