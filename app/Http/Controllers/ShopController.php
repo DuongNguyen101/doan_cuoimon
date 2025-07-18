@@ -175,26 +175,35 @@ public function checkout(Request $request)
         return view('template/user/shop/checkout', compact('categories', 'user', 'userAddress', 'cart'));
     }
 
-public function addToWishlist($id)
+public function addToWishlist(Request $request, $id)
 {
     $product = Products::findOrFail($id); 
 
-
+    $quantity = $request->query('quantity', 1); 
     $wishlist = session()->get('wishlist', []);
 
-    $wishlist[$id] = [
-        'product_id' => $product->product_id,
-        'name'       => $product->name,
-        'price'      => $product->price,
-        'image_url'  => $product->image_url,
-        'added_at'   => now()->format('d M, Y'),
-        'quantity'   => 1,
-    ];
+    if (isset($wishlist[$id])) {
+        $wishlist[$id]['quantity'] += $quantity;
+    } else {
+        $wishlist[$id] = [
+            'product_id' => $product->product_id,
+            'name'       => $product->name,
+            'price'      => $product->price,
+            'image_url'  => $product->image_url,
+            'added_at'   => now()->format('d M, Y'),
+            'quantity'   => $quantity,
+        ];
+    }
 
     session()->put('wishlist', $wishlist);
 
-    return redirect()->back()->with('success', 'Product added to wishlist!');
+    if ($request->ajax()) {
+        return response()->json(['message' => 'Added ' . $quantity . ' to wishlist!']);
+    }
+
+    return redirect()->back()->with('success', "Product added to wishlist ($quantity pcs)!");
 }
+
 
 
     public function removeFromWishlist($id)
@@ -212,7 +221,7 @@ public function addToWishlist($id)
         return redirect()->back();
     }
 
-public function addToCart($id)
+public function addToCart(Request $request, $id)
 {
     if (!Auth::check()) {
         return redirect()->route('login')->with('warning', 'Please login to add products to cart.');
@@ -221,26 +230,31 @@ public function addToCart($id)
     $product = Products::findOrFail($id);
     $cart = session()->get('cart', []);
 
+    // ✅ Lấy quantity từ request, mặc định là 1 nếu không có
+    $quantity = max(1, (int) $request->get('quantity', 1));
+
     if (isset($cart[$id])) {
-        if ($cart[$id]['quantity'] < $product->stock) {
-            $cart[$id]['quantity'] += 1;
-        }
+        // ✅ Cộng dồn số lượng nhưng không vượt quá tồn kho
+        $cart[$id]['quantity'] = min($cart[$id]['quantity'] + $quantity, $product->stock);
     } else {
         $cart[$id] = [
             'product_id' => $product->product_id,
             'name'       => $product->name,
             'price'      => $product->price,
-            'image_url'  => $product->image_url, 
-            'quantity'   => 1,
+            'image_url'  => $product->image_url,
+            'quantity'   => min($quantity, $product->stock),
             'stock'      => $product->stock,
         ];
     }
 
     session()->put('cart', $cart);
-    return redirect()->back()->with('success', 'Product added to cart!');
+
+    if ($request->ajax()) {
+        return response()->json(['message' => "Added $quantity to cart!"]);
+    }
+
+    return redirect()->back()->with('success', "Added $quantity to cart!");
 }
-
-
 
     public function removeFromCart($id)
     {

@@ -5880,3 +5880,37 @@ footer .footer-bottom-bar {
     font-weight: bold;
     color: #dc3545;
 }
+
+.featured-product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.featured-product-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 128, 0, 0.2); 
+    border-color: #28a745;
+}
+
+.featured-product-card .image-box img {
+    transition: transform 0.4s ease;
+}
+.featured-product-card:hover .image-box img {
+    transform: scale(1.08);
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    border: 1px solid transparent;
+    border-radius: 10px;
+}
+
+.card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 128, 0, 0.2); 
+    border-color: #28a745 !important; 
+}
+
+.card-img-top {
+    transition: none;
+}

@@ -77,7 +77,7 @@
                                 </td>
                                 <td><p class="fw-500">${{ number_format(($item['price'] ?? 0) * $quantity, 2) }}</p></td>
                                 <td>
-                                    <a href="{{ route('cart.add', $item['product_id'] ?? 0) }}" class="cus-btn-3">Add to Cart</a>
+                                    <a href="{{ route('cart.add', ['id' => $item['product_id'] ?? 0, 'quantity' => $quantity]) }}" class="cus-btn-3">Add to Cart</a>
                                 </td>
                             </tr>
                         @endforeach
