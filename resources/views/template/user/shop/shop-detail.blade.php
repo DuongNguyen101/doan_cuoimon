@@ -595,9 +595,11 @@
                                 </div>
 
                                 {{-- Button --}}
-                                <div class="mt-auto">
-                                    <a href="cart.html" class="cus-btn-2 w-100 text-center">ADD TO CART</a>
-                                </div>
+                                <a href="#"
+                                    class="cus-btn-2 w-100 add-to-cart"
+                                    data-product-id="{{ $product->product_id }}">
+                                    ADD TO CART
+                                </a>
                             </div>
 
                         </div>
