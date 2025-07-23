@@ -190,14 +190,6 @@
                                         <li>
                                             <a href="{{asset('template/user/blog/blog-grid')}}">Blogs</a>
                                         </li>
-                                        <li class="dropdown">
-                                            <a href="javascript:void(0);">Pages</a>
-                                            <ul>
-                                                <li><a href="{{asset('template/user/pages/login')}}">Login</a></li>
-                                                <li><a href="{{asset('template/user/pages/register')}}">Register</a></li>
-                                            </ul>
-                                        </li>
-
                                         <li>
                                             <a href="{{asset('template/user/about/index')}}">About Us</a>
                                         </li>

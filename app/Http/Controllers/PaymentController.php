@@ -25,8 +25,7 @@ class PaymentController extends Controller
         $user = auth()->user();
         $usdAmount = $data['total'] ;
         $exchangeRate = 26110;
-        $vndAmount = round($usdAmount * $exchangeRate);
-        $vnp_Amount = $vndAmount * 100;
+        $vndAmount = round($usdAmount * $exchangeRate)*100;
 
         $vnp_TxnRef = $code_cart;
         $vnp_OrderInfo = 'Thanh toán đơn hàng #' . $code_cart;
@@ -78,7 +77,7 @@ class PaymentController extends Controller
         $inputData = [
             "vnp_Version" => "2.1.0",
             "vnp_TmnCode" => $vnp_TmnCode,
-            "vnp_Amount" => $vnp_Amount,
+            "vnp_Amount" => $vndAmount,
             "vnp_Command" => "pay",
             "vnp_CreateDate" => date('YmdHis'),
             "vnp_CurrCode" => "VND",

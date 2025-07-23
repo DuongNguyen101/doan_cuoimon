@@ -181,13 +181,7 @@
                                         <li>
                                             <a href="{{asset('template/user/blog/blog-grid')}}">Blogs</a>
                                         </li>
-                                        <li class="dropdown">
-                                            <a href="javascript:void(0);">Pages</a>
-                                            <ul>
-                                                <li><a href="{{asset('template/user/pages/login')}}">Login</a></li>
-                                                <li><a href="{{asset('template/user/pages/register')}}">Register</a></li>
-                                            </ul>
-                                        </li>
+                                     
                                         <li>
                                             <a href="{{asset('template/user/about/index')}}">About Us</a>
                                         </li>
@@ -549,7 +543,6 @@
                                 </a>
                             </div>
 
-                            {{-- Nội dung --}}
                             <div class="product-desc d-flex flex-column flex-grow-1">
                                 <h6 class="product-title mb-2" style="min-height: 48px;">
                                     <a href="{{ route('shopdetail', $related->product_id) }}" class="text-dark text-decoration-none">
@@ -568,7 +561,6 @@
                                         $reviewCount = $related->reviews_count ?? 0;
                                         @endphp
 
-                                        {{-- Hiển thị sao --}}
                                         <span class="text-warning">
                                             @for ($i = 1; $i <= 5; $i++)
                                                 @if ($i <=$avgRating)
@@ -579,11 +571,9 @@
                                         @endfor
                                         </span>
 
-                                        {{-- Hiển thị số lượt đánh giá --}}
                                         <span class="text-muted small">({{ $reviewCount }})</span>
                                     </div>
 
-                                    {{-- Hiển thị giá --}}
                                     <div>
                                         <h6 class="mb-0">
                                             @if ($related->old_price)
@@ -594,7 +584,6 @@
                                     </div>
                                 </div>
 
-                                {{-- Button --}}
                                 <a href="#"
                                     class="cus-btn-2 w-100 add-to-cart"
                                     data-product-id="{{ $product->product_id }}">
