@@ -174,30 +174,25 @@
                                         </li>
 
                                         <!--  -->
-                                        <li class="dropdown">
-                                            <a href="javascript:void(0);">Shop</a>
-                                            <ul class="sub-menu">
-                                                <li>
-                                                    <a href="{{ route('shop.category', ['id' => 1]) }}">Shop List</a>
-                                                </li>
-                                                <li><a href="{{asset('template/user/shop/wishlist')}}">Wishlist</a></li>
-                                                <li><a href="{{asset('template/user/shop/cart')}}">Cart</a></li>
-                                                <li><a href="{{asset('template/user/shop/checkout')}}">Checkout</a></li>
-                                            </ul>
-                                        </li>
+                                            <li class="dropdown">
+                                                <a href="javascript:void(0);">
+                                                    Product
+                                                </a>
+                                                <ul class="sub-menu">
+                                                    @foreach ($categories as $category)
+                                                        <li>
+                                                            <a href="{{ route('shop.category', ['id' => $category->category_id]) }}">
+                                                                {{ $category->name }}
+                                                            </a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </li>
 
                                         <!--  -->
                                         <li>
                                             <a href="{{asset('template/user/blog/blog-grid')}}">Blogs</a>
                                         </li>
-                                        <li class="dropdown">
-                                            <a href="javascript:void(0);">Pages</a>
-                                            <ul>
-                                                <li><a href="{{asset('template/user/pages/login')}}">Login</a></li>
-                                                <li><a href="{{asset('template/user/pages/register')}}">Register</a></li>
-                                            </ul>
-                                        </li>
-
                                         <li>
                                             <a href="{{asset('template/user/about/index')}}">About Us</a>
                                         </li>

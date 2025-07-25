@@ -23,78 +23,75 @@
                         </thead>
                     </table>
                     <form action="{{ route('cart.update') }}" method="POST">
-    @csrf
-                    <table class="cart-table">
-                        <tbody>
-                            @php
-                            $total = 0;
-                            foreach ($cart as $item) {
-                            $total += $item['price'] * $item['quantity'];
-                            }
-                            @endphp
+                        @csrf
+                        <table class="cart-table">
+                            <tbody>
+                                @php
+                                $total = 0;
+                                foreach ($cart as $item) {
+                                $total += $item['price'] * $item['quantity'];
+                                }
+                                @endphp
 
-                            @forelse ($cart as $productId => $item)
-                            <tr class="table-row align-middle">
-                                {{-- 1. Product --}}
-                                <td class="pd" style="width: 370px">
-                                    <div class="product-detail-box d-flex align-items-center">
-                                        <a href="{{ route('cart.remove', $productId) }}" class="text-danger me-2">
-                                            <i class="fa-solid fa-xmark"></i>
-                                        </a>
-                                        <div class="img-block me-2">
-                                            <a href="{{ route('shopdetail', $productId) }}">
-                                                @if(isset($item['image_url']))
-                                                <img src="{{ asset('image/shoplist/' . $item['image_url']) }}"
-                                                    alt="{{ $item['name'] }}"
-                                                    width="48"
-                                                    height="48"
-                                                    class=" rounded border" />
-                                                @endif
+                                @forelse ($cart as $productId => $item)
+                                <tr class="table-row align-middle">
+                                    {{-- 1. Product --}}
+                                    <td class="pd" style="width: 370px">
+                                        <div class="product-detail-box d-flex align-items-center">
+                                            <a href="{{ route('cart.remove', $productId) }}" class="text-danger me-2">
+                                                <i class="fa-solid fa-xmark"></i>
                                             </a>
+                                            <div class="img-block me-2">
+                                                <a href="{{ route('shopdetail', $productId) }}">
+                                                    @if(isset($item['image_url']))
+                                                    <img src="{{ asset('image/shoplist/' . $item['image_url']) }}"
+                                                        alt="{{ $item['name'] }}"
+                                                        width="48"
+                                                        height="48"
+                                                        class=" rounded border" />
+                                                    @endif
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-0">
+                                                    <a href="{{ route('shopdetail', $productId) }}">{{ $item['name'] }}</a>
+                                                </h6>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <h6 class="mb-0">
-                                                <a href="{{ route('shopdetail', $productId) }}">{{ $item['name'] }}</a>
-                                            </h6>
+                                    </td>
+
+                                    <td>
+                                        <p class="fw-500 mb-0">${{ number_format($item['price'], 2) }}</p>
+                                    </td>
+
+                                    <td>
+                                        <div class="quantity-controller quantity-wrap d-flex justify-content-center" data-price="{{ $item['price'] }}">
+                                            <input
+                                                type="number"
+                                                name="quantities[{{ $productId }}]"
+                                                value="{{ $item['quantity'] }}"
+                                                min="1"
+                                                max="{{ $item['stock'] }}"
+                                                class="form-control text-center"
+                                                style="width: 80px;" />
+
                                         </div>
-                                    </div>
-                                </td>
+                                    </td>
 
-                                {{-- 3. Price --}}
-                                <td>
-                                    <p class="fw-500 mb-0">${{ number_format($item['price'], 2) }}</p>
-                                </td>
+                                    <td>
+                                        <p class="fw-500 mb-0 subtotal" style="margin-left: 20px;">
+                                            ${{ number_format($item['price'] * $item['quantity'], 2) }}
+                                        </p>
+                                    </td>
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="5" class="text-center text-muted">Your cart is empty.</td>
+                                </tr>
+                                @endforelse
+                            </tbody>
 
-                                {{-- 4. Quantity --}}
-                                <td>
-                                    <div class="quantity-controller quantity-wrap d-flex justify-content-center" data-price="{{ $item['price'] }}">
-                                        <input
-                                            type="number"
-                                            name="quantities[{{ $productId }}]"
-                                            value="{{ $item['quantity'] }}"
-                                            min="1"
-                                            max="{{ $item['stock'] }}"
-                                            class="form-control text-center"
-                                            style="width: 80px;" />
-
-                                    </div>
-                                </td>
-
-                                {{-- 5. Subtotal --}}
-                                <td>
-                                    <p class="fw-500 mb-0 subtotal" style="margin-left: 20px;">
-                                        ${{ number_format($item['price'] * $item['quantity'], 2) }}
-                                    </p>
-                                </td>
-                            </tr>
-                            @empty
-                            <tr>
-                                <td colspan="5" class="text-center text-muted">Your cart is empty.</td>
-                            </tr>
-                            @endforelse
-                        </tbody>
-
-                    </table>
+                        </table>
 
                 </div>
 
@@ -105,15 +102,15 @@
                 </div>
             </div>
             <div class="col-xl-4">
-@php
-    $cartItems = $cart; 
-    
-    $total = 0;
-    foreach ($cartItems as $item) {
-        $total += $item['price'] * $item['quantity'];
-    }
-    $grandTotal = $total ;
-@endphp
+                @php
+                $cartItems = $cart;
+
+                $total = 0;
+                foreach ($cartItems as $item) {
+                $total += $item['price'] * $item['quantity'];
+                }
+                $grandTotal = $total ;
+                @endphp
 
 
                 <div class="checkout-box bg-semi-white mt-xl-0 mt-48">
@@ -121,7 +118,6 @@
                         <h5>Cart Total</h5>
                     </div>
 
-                    {{-- Danh sách sản phẩm --}}
                     @php
                     $cartItems = session('cart', []);
                     @endphp
@@ -146,7 +142,6 @@
                                     </div>
                                 </div>
 
-                                {{-- Cột phải: thành tiền --}}
                                 <div>
                                     <p class="fw-500 mb-0 subtotal" style="margin-left: 20px;">${{ number_format($item['price'] * $item['quantity'], 2) }}</p>
                                 </div>
@@ -167,7 +162,7 @@
                             <a href="{{ url('template/user/shop/checkout') }}" id="proceed-checkout-btn" class="cus-btn active-btn small-btn">
                                 Proceed to checkout
                             </a>
- 
+
                         </div>
                         </form>
                     </div>

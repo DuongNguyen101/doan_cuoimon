@@ -165,29 +165,26 @@
                                         </li>
 
                                         <!--  -->
-                                        <li class="dropdown">
-                                            <a href="javascript:void(0);">Shop</a>
-                                            <ul class="sub-menu">
-                                                <li>
-                                                    <a href="{{ route('shop.category', ['id' => 1]) }}">Shop List</a>
-                                                </li>
-                                                <li><a href="{{asset('template/user/shop/wishlist')}}">Wishlist</a></li>
-                                                <li><a href="{{asset('template/user/shop/cart')}}">Cart</a></li>
-                                                <li><a href="{{asset('template/user/shop/checkout')}}">Checkout</a></li>
-                                            </ul>
-                                        </li>
+                                         <li class="dropdown">
+                                                <a href="javascript:void(0);">
+                                                    Product
+                                                </a>
+                                                <ul class="sub-menu">
+                                                    @foreach ($categories as $category)
+                                                        <li>
+                                                            <a href="{{ route('shop.category', ['id' => $category->category_id]) }}">
+                                                                {{ $category->name }}
+                                                            </a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </li>
 
                                         <!--  -->
                                         <li>
                                             <a href="{{asset('template/user/blog/blog-grid')}}">Blogs</a>
                                         </li>
-                                        <li class="dropdown">
-                                            <a href="javascript:void(0);">Pages</a>
-                                            <ul>
-                                                <li><a href="{{asset('template/user/pages/login')}}">Login</a></li>
-                                                <li><a href="{{asset('template/user/pages/register')}}">Register</a></li>
-                                            </ul>
-                                        </li>
+                                     
                                         <li>
                                             <a href="{{asset('template/user/about/index')}}">About Us</a>
                                         </li>
@@ -549,7 +546,6 @@
                                 </a>
                             </div>
 
-                            {{-- Nội dung --}}
                             <div class="product-desc d-flex flex-column flex-grow-1">
                                 <h6 class="product-title mb-2" style="min-height: 48px;">
                                     <a href="{{ route('shopdetail', $related->product_id) }}" class="text-dark text-decoration-none">
@@ -568,7 +564,6 @@
                                         $reviewCount = $related->reviews_count ?? 0;
                                         @endphp
 
-                                        {{-- Hiển thị sao --}}
                                         <span class="text-warning">
                                             @for ($i = 1; $i <= 5; $i++)
                                                 @if ($i <=$avgRating)
@@ -579,11 +574,9 @@
                                         @endfor
                                         </span>
 
-                                        {{-- Hiển thị số lượt đánh giá --}}
                                         <span class="text-muted small">({{ $reviewCount }})</span>
                                     </div>
 
-                                    {{-- Hiển thị giá --}}
                                     <div>
                                         <h6 class="mb-0">
                                             @if ($related->old_price)
@@ -594,10 +587,11 @@
                                     </div>
                                 </div>
 
-                                {{-- Button --}}
-                                <div class="mt-auto">
-                                    <a href="cart.html" class="cus-btn-2 w-100 text-center">ADD TO CART</a>
-                                </div>
+                                <a href="#"
+                                    class="cus-btn-2 w-100 add-to-cart"
+                                    data-product-id="{{ $product->product_id }}">
+                                    ADD TO CART
+                                </a>
                             </div>
 
                         </div>

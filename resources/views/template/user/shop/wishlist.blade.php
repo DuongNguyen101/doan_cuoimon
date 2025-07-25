@@ -13,7 +13,6 @@
 <section class="cart py-40">
     <div class="container-fluid">
 
-        {{-- Hiển thị thông báo --}}
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
