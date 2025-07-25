@@ -24,15 +24,15 @@
                 <tr>
                 <tr>
                     <th style="padding: 10px;">ID</th>
-                    <th style="padding: 10px;">Tên sản phẩm</th>
-                    <th style="padding: 10px;">Mô tả</th>
-                    <th style="padding: 10px;">Giá</th>
-                    <th style="padding: 10px;">Tồn kho</th>
-                    <th style="padding: 10px;">Danh mục</th>
-                    <th style="padding: 10px;">Ảnh</th>
-                    <th style="padding: 10px;">Tạo lúc</th>
-                    <th style="padding: 10px;">Cập nhật</th>
-                    <th colspan="3" style="text-align: center; padding: 10px;">Hành động</th>
+                    <th style="padding: 10px;">Product Name</th>
+                    <th style="padding: 10px;">Description</th>
+                    <th style="padding: 10px;">Price</th>
+                    <th style="padding: 10px;">Quantity kho</th>
+                    <th style="padding: 10px;">Category</th>
+                    <th style="padding: 10px;">Image</th>
+                    <th style="padding: 10px;">Create at</th>
+                    <th style="padding: 10px;">Update at</th>
+                    <th colspan="3" style="text-align: center; padding: 10px;">Actions</th>
                 </tr>
                 </tr>
 
@@ -41,7 +41,7 @@
                 @if ($products->isEmpty())
                 <tr>
                     <td colspan="9" style="padding: 20px; text-align: center; color: #666;">
-                        <h3>Không tìm thấy danh mục nào</h3>
+                        <h3>Not found</h3>
                     </td>
                 </tr>
                 @else
@@ -65,14 +65,14 @@
 
                     <td style="padding: 8px;">
                         <a href="{{ url('/template/admin/product/form/' .$product->product_id ) }}"
-                            style="background-color: #ffc107; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Sửa</a>
+                            style="background-color: #ffc107; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Edit</a>
                     </td>
                     <td style="padding: 8px;">
-                        <a href="{{ url('/template/admin/product/form/add/') }}" style="background-color: #28a745; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Thêm</a>
+                        <a href="{{ url('/template/admin/product/form/add/') }}" style="background-color: #28a745; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Add</a>
                     </td>
                     <td style="padding: 8px;">
                         <a href="{{ url('/template/admin/product/delete/' .$product->product_id ) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"
-                            style="background-color: #dc3545; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Xóa</a>
+                            style="background-color: #dc3545; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Delete</a>
                     </td>
                 </tr>
                 @endforeach

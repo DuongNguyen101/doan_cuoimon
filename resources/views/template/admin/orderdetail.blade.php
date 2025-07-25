@@ -111,6 +111,40 @@
             </tbody>
         </table>
     </div>
+    <div class="danh-muc-sp" style="max-width: 1000px; margin: 40px 5px auto; font-family: Arial, sans-serif; font-size:small">
+        <div class="row" style="margin-bottom: 25px;">
+            <h2 style="text-align: center; color: #333;">Address </h2>
+        </div>
+
+        <table style="width: 100%; border-collapse: collapse; background-color: #fff; box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);">
+            <thead style="background-color: #343a40; color: #fff;">
+                <tr>
+                    <th style="padding: 10px;">user_id</th>
+                    <th style="padding: 10px;">street</th>
+                    <th style="padding: 10px;">city</th>
+                    <th style="padding: 10px;">district</th>
+                    <th colspan="3" style="text-align: center; padding: 10px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($User_address as $adress)
+                <tr style="text-align: center; border-bottom: 1px solid #ccc;">
+                    <td style="padding: 8px;">{{ $adress->user_id }}</td>
+                    <td style="padding: 8px;">{{ $adress->street }}</td>
+                    <td style="padding: 8px;">{{ $adress->city }}</td>
+                    <td style="padding: 8px;">{{ $adress->district }}</td>
+                    <td style="padding: 8px;">
+                        <a href="{{ url('/template/admin/useraddress/form/' .$adress->id  ) }}"
+                            style="background-color: #ffc107; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Edit</a>
+                    </td>
+                    <td style="padding: 8px;">
+                        <a href="{{ url('/template/admin/useraddress/form/add') }}" style="background-color: #28a745; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Add</a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 
 
 </div>

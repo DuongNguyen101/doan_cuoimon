@@ -32,18 +32,13 @@
                 <textarea id="title" name="title" rows="4"
                     style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">{{ old('author', $record->title ?? '') }}</textarea>
             </div>
-            <div class="form-group" style="margin-bottom: 15px;">
-                <label for="description" style="display: block; margin-bottom: 6px;">description At:</label>
-                <textarea id="description" name="description" rows="6"
-                    style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">{{ old('author', $record->description ?? '') }}</textarea>
-            </div>
-            <!-- {{-- description At --}}
+            {{-- description At --}}
             <div class="form-group" style="margin-bottom: 15px;">
                 <label for="description" style="display: block; margin-bottom: 6px;">description At:</label>
                 <input type="text" id="description" name="description"
                     value="{{ old('description', $record->description ?? '') }}"
                     style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
-            </div> -->
+            </div>
             {{-- Image --}}
             <div class="form-group" style="margin-bottom: 15px;">
                 <label for="image" style="display: block; margin-bottom: 6px;"><button style="cursor: pointer;">Up hinh</button></label>
