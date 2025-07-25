@@ -119,10 +119,10 @@
         <table style="width: 100%; border-collapse: collapse; background-color: #fff; box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);">
             <thead style="background-color: #343a40; color: #fff;">
                 <tr>
-                    <th style="padding: 10px;">user_id</th>
-                    <th style="padding: 10px;">street</th>
-                    <th style="padding: 10px;">city</th>
-                    <th style="padding: 10px;">district</th>
+                    <th style="padding: 10px;">User_id</th>
+                    <th style="padding: 10px;">Street</th>
+                    <th style="padding: 10px;">City</th>
+                    <th style="padding: 10px;">District</th>
                     <th colspan="3" style="text-align: center; padding: 10px;">Actions</th>
                 </tr>
             </thead>

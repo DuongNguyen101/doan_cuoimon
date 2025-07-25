@@ -13,15 +13,15 @@
         <table style="width: 100%; border-collapse: collapse; background-color: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
             <thead style="background-color: #007bff; color: white;">
                 <tr>
-                    <th style="padding: 10px;">order_id</th>
-                    <th style="padding: 10px;">user_id</th>
-                    <th style="padding: 10px;">order_date</th>
-                    <th style="padding: 10px;">total_amount</th>
-                    <th style="padding: 10px;">status</th>
-                    <th style="padding: 10px;">address</th>
-                    <th style="padding: 10px;">created_at</th>
-                    <th style="padding: 10px;">updated_at</th>
-                    <th style="padding: 10px;">order_detail</th>
+                    <th style="padding: 10px;">Order_id</th>
+                    <th style="padding: 10px;">User_id</th>
+                    <th style="padding: 10px;">Order_date</th>
+                    <th style="padding: 10px;">Total_amount</th>
+                    <th style="padding: 10px;">Status</th>
+                    <th style="padding: 10px;">Address</th>
+                    <th style="padding: 10px;">Created_at</th>
+                    <th style="padding: 10px;">Updated_at</th>
+                    <th style="padding: 10px;">Order_detail</th>
                     <th colspan="4" style="text-align: center; padding: 10px;">Hành động</th>
                 </tr>
             </thead>

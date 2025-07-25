@@ -17,11 +17,11 @@
         <table style="width: 100%; border-collapse: collapse; background-color: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
             <thead style="background-color: #007bff; color: white;">
                 <tr>
-                    <th style="padding: 10px;">category_id</th>
-                    <th style="padding: 10px;">name</th>
-                    <th style="padding: 10px;">description</th>
-                    <th style="padding: 10px;">created_at</th>
-                    <th style="padding: 10px;">updated_at</th>
+                    <th style="padding: 10px;">Category_Id</th>
+                    <th style="padding: 10px;">Name</th>
+                    <th style="padding: 10px;">Description</th>
+                    <th style="padding: 10px;">Created_at</th>
+                    <th style="padding: 10px;">Updated_at</th>
                     <th style="padding: 10px;">View Product List</th>
                     <th colspan="3" style="text-align: center; padding: 10px;">Actions</th>
                 </tr>

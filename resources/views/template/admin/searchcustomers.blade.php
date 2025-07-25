@@ -22,16 +22,16 @@
         <table style="width: 100%; border-collapse: collapse; background-color: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
             <thead style="background-color: #007bff; color: white;">
                 <tr>
-                    <th style="padding: 10px;">id</th>
-                    <th style="padding: 10px;">name</th>
-                    <th style="padding: 10px;">email</th>
-                    <th style="padding: 10px;">phone</th>
-                    <th style="padding: 10px;">role</th>
-                    <th style="padding: 10px;">description</th>
-                    <th style="padding: 10px;">image</th>
-                    <th style="padding: 10px;">created_at</th>
-                    <th style="padding: 10px;">updated_at</th>
-                    <th style="padding: 10px;">status</th>
+                    <th style="padding: 10px;">Id</th>
+                    <th style="padding: 10px;">Name</th>
+                    <th style="padding: 10px;">Email</th>
+                    <th style="padding: 10px;">Phone</th>
+                    <th style="padding: 10px;">Role</th>
+                    <th style="padding: 10px;">Description</th>
+                    <th style="padding: 10px;">Image</th>
+                    <th style="padding: 10px;">Created_at</th>
+                    <th style="padding: 10px;">Updated_at</th>
+                    <th style="padding: 10px;">Status</th>
                     <th colspan="4" style="text-align: center; padding: 10px;">Actions</th>
                 </tr>
 

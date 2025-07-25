@@ -17,14 +17,14 @@
         <table style="width: 100%; border-collapse: collapse; background-color: #fff; box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);">
             <thead style="background-color: #343a40; color: #fff;">
                 <tr>
-                    <th style="padding: 10px;">product_id</th>
-                    <th style="padding: 10px;">name</th>
-                    <th style="padding: 10px;">description</th>
-                    <th style="padding: 10px;">short_description</th>
-                    <th style="padding: 10px;">nutritional_info</th>
-                    <th style="padding: 10px;">usage_instructions</th>
-                    <th style="padding: 10px;">packaging</th>
-                    <th style="padding: 10px;">origin</th>
+                    <th style="padding: 10px;">Product_id</th>
+                    <th style="padding: 10px;">Name</th>
+                    <th style="padding: 10px;">Description</th>
+                    <th style="padding: 10px;">Short_description</th>
+                    <th style="padding: 10px;">Nutritional_info</th>
+                    <th style="padding: 10px;">Usage_instructions</th>
+                    <th style="padding: 10px;">Packaging</th>
+                    <th style="padding: 10px;">Origin</th>
                     <th colspan="4" style="text-align: center; padding: 10px;">Actions</th>
                 </tr>
             </thead>
