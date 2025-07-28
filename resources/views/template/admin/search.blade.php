@@ -7,12 +7,12 @@
     @endif
 
     <form method="GET" action="{{ url('/template/admin/searchcategories') }}" style="margin-bottom: 20px;" style="max-width: 1000px; margin: 40px auto; font-family: Arial, sans-serif;">
-        <input type="text" name="search" value="{{ old('search', request()->input('search')) }}" placeholder="Nhập từ khóa tìm kiếm" style="padding: 10px; width: 300px; border: 1px solid #ccc; border-radius: 6px;">
-        <button type="submit" style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 6px;">Tìm kiếm</button>
+        <input type="text" name="search" value="{{ old('search', request()->input('search')) }}" placeholder="Please input your keyword" style="padding: 10px; width: 300px; border: 1px solid #ccc; border-radius: 6px;">
+        <button type="submit" style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 6px;">Search</button>
     </form>
 
     @if (!request()->get('search'))
-    <p style="color: #666;">Vui lòng nhập từ khóa để bắt đầu tìm kiếm.</p>
+    <p style="color: #666;">Please input your keyword</p>
     @endif
     <div class="danh-muc-sp" style="max-width: 1000px; margin: 40px auto; font-family: Arial, sans-serif;">
         <div class="row" style="margin-bottom: 20px;">
@@ -23,12 +23,12 @@
             <thead style="background-color: #007bff; color: white;">
                 <tr>
                     <th style="padding: 10px;">ID</th>
-                    <th style="padding: 10px;">Tên</th>
-                    <th style="padding: 10px;">Mô tả</th>
-                    <th style="padding: 10px;">Ngày tạo</th>
-                    <th style="padding: 10px;">Ngày cập nhật</th>
-                    <th style="padding: 10px;">Sản phẩm</th>
-                    <th colspan="3" style="text-align: center; padding: 10px;">Hành động</th>
+                    <th style="padding: 10px;">Name</th>
+                    <th style="padding: 10px;">Description</th>
+                    <th style="padding: 10px;">Created at</th>
+                    <th style="padding: 10px;">Update Ads</th>
+                    <th style="padding: 10px;">Product</th>
+                    <th colspan="3" style="text-align: center; padding: 10px;">Actions</th>
                 </tr>
 
             </thead>
@@ -36,7 +36,7 @@
                 @if ($categories->isEmpty())
                 <tr>
                     <td colspan="9" style="padding: 20px; text-align: center; color: #666;">
-                        <h3>Không tìm thấy danh mục nào</h3>
+                        <h3>Not found</h3>
                     </td>
                 </tr>
                 @else

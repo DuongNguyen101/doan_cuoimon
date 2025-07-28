@@ -13,16 +13,16 @@
         <table style="width: 100%; border-collapse: collapse; background-color: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
             <thead style="background-color: #007bff; color: white;">
                 <tr>
-                    <th style="padding: 10px;">news_id</th>
-                    <th style="padding: 10px;">title</th>
-                    <th style="padding: 10px;">content</th>
-                    <th style="padding: 10px;">author</th>
-                    <th style="padding: 10px;">image_url</th>
-                    <th style="padding: 10px;">description</th>
-                    <th style="padding: 10px;">publish_date</th>
-                    <th style="padding: 10px;">status</th>
-                    <th style="padding: 10px;">created_at</th>
-                    <th style="padding: 10px;">updated_at</th>
+                    <th style="padding: 10px;">News_id</th>
+                    <th style="padding: 10px;">Title</th>
+                    <th style="padding: 10px;">Content</th>
+                    <th style="padding: 10px;">Author</th>
+                    <th style="padding: 10px;">Image_url</th>
+                    <th style="padding: 10px;">Description</th>
+                    <th style="padding: 10px;">Publish_date</th>
+                    <th style="padding: 10px;">Status</th>
+                    <th style="padding: 10px;">Created_at</th>
+                    <th style="padding: 10px;">Updated_at</th>
                     <th colspan="4" style="text-align: center; padding: 10px;">Actions</th>
                 </tr>
             </thead>

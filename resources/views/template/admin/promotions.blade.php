@@ -13,16 +13,16 @@
         <table style="width: 100%; border-collapse: collapse; background-color: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
             <thead style="background-color: #007bff; color: white;">
                 <tr>
-                    <th style="padding: 10px;">promotion_id</th>
-                    <th style="padding: 10px;">title</th>
-                    <th style="padding: 10px;">description</th>
-                    <th style="padding: 10px;">discount_percentage</th>
-                    <th style="padding: 10px;">discount_amount</th>
-                    <th style="padding: 10px;">start_date</th>
-                    <th style="padding: 10px;">product_id</th>
-                    <th style="padding: 10px;">status</th>
-                    <th style="padding: 10px;">created_at</th>
-                    <th style="padding: 10px;">updated_at</th>
+                    <th style="padding: 10px;">Promotion_id</th>
+                    <th style="padding: 10px;">Title</th>
+                    <th style="padding: 10px;">Description</th>
+                    <th style="padding: 10px;">Discount_percentage</th>
+                    <th style="padding: 10px;">Discount_amount</th>
+                    <th style="padding: 10px;">Dtart_date</th>
+                    <th style="padding: 10px;">Product_id</th>
+                    <th style="padding: 10px;">Status</th>
+                    <th style="padding: 10px;">Created_at</th>
+                    <th style="padding: 10px;">Updated_at</th>
                     <th colspan="4" style="text-align: center; padding: 10px;">Hành động</th>
                 </tr>
             </thead>

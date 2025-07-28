@@ -90,6 +90,11 @@ class TemplateAdminController extends Controller
     {
 
         $adminName = auth()->user()->name;
+        $data = $request->validate([
+            'category_id' => 'nullable|exists:categories,category_id', // Chỉ kiểm tra khi edit
+            'name' => 'required|string|max:255', // Tên danh mục bắt buộc, độ dài tối đa 255
+            'description' => 'nullable|string|max:1000', // Mô tả tùy chọn, giới hạn 1000 ký tự
+        ]);
 
         try {
 
@@ -336,10 +341,12 @@ class TemplateAdminController extends Controller
         $adminName = auth()->user()->name;
         $OrderDetails = OrderDetails::where('order_id', $id)->get();
         $User = User::where('id', $od)->get();
+        $User_address = UserAddress::where('user_id', $od)->get();
         $data = [
             'adminName'  => $adminName,
             'OrderDetails' => $OrderDetails,
-            'Users' => $User
+            'Users' => $User,
+            'User_address' => $User_address
         ];
 
         return view('template.admin.orderdetail')->with($data);
@@ -570,10 +577,10 @@ class TemplateAdminController extends Controller
                 'title' => $request->post('title'),
                 'content' => $request->post('content'),
                 'author' => $request->post('author'),
-                'image_url' => $request->post('price'),
+                'image_url' => $request->post('image_url'),
                 'description' => $request->post('description'),
                 'publish_date' => $request->post('publish_date'),
-                'status' => $request->post('category_id'),
+                'status' => $request->post('status'),
                 'created_at' => $request->post('created_at'),
                 'updated_at' => $request->post('updated_at')
             ];
@@ -609,7 +616,15 @@ class TemplateAdminController extends Controller
     {
         return $this->deleteRecord(new News(), $id, '/template/admin/news');
     }
-
+    //user address
+    public function loadformuseraddress($id)
+    {
+        return $this->loadForm(new UserAddress(), $id, 'template.admin.formuseraddress', $data = [], new User());
+    }
+    public function updateAddress(Request $request, $id = null)
+    {
+        return $this->updateRecord($request, new UserAddress(), '/template/admin/user', $id);
+    }
     //oders
     public function loadFormOrder($id)
     {
@@ -705,6 +720,19 @@ class TemplateAdminController extends Controller
     {
         return $this->extract(new Qna(), '/template/admin/qna');
     }
+    public function loadFormQna($id)
+    {
+        return $this->loadForm(new Qna(), $id, 'template.admin.formqna', $data = [], new User());
+    }
+    public function updateQna(Request $request, $id = null)
+    {
+        return $this->updateRecord($request, new Qna(), '/template/admin/qna', $id);
+    }
+    public function deleteQna($id)
+    {
+        return $this->deleteRecord(new Qna(), $id, '/template/admin/qna');
+    }
+
     //About
 
     public function about()

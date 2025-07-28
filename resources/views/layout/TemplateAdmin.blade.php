@@ -68,12 +68,12 @@
                             <p style="font-size: 12px;">In stocks</p>
                         </a>
                     </li>
-                    <li class="ml-3">
+                    <!-- <li class="ml-3">
                         <a href="{{asset('/template/admin/products/discounted')}}">
                             <i class="nc-icon nc-air-baloon" style="font-size: 15px;"></i>
                             <p style="font-size: 12px;">Discounted </p>
                         </a>
-                    </li>
+                    </li> -->
                     <li class="ml-3">
                         <a href="{{asset('/template/admin/products/out')}}">
                             <i class="nc-icon nc-simple-add" style="font-size: 15px;"></i>
@@ -135,12 +135,12 @@
                             <p style="font-size: 12px;">Cancelled Orders</p>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="{{asset('/template/admin/promotions')}}">
                             <i class="nc-icon nc-tile-56"></i>
                             <p>Promotions</p>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="{{asset('/template/admin/reviews')}}">
                             <i class="nc-icon nc-caps-small"></i>

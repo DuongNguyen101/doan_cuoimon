@@ -21,6 +21,9 @@
                     value="{{ old('name', $category->name ?? '') }}"
                     required
                     style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                @error('name')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
 
             {{-- Hidden ID --}}

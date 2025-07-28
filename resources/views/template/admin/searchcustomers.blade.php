@@ -12,7 +12,7 @@
     </form>
 
     @if (!request()->get('search'))
-    <p style="color: #666;">Vui lòng nhập từ khóa để bắt đầu tìm kiếm.</p>
+    <p style="color: #666;">Please input what you want to search</p>
     @endif
     <div class="danh-muc-sp" style="max-width: 1000px; margin: 40px auto; font-family: Arial, sans-serif;">
         <div class="row" style="margin-bottom: 20px;">
@@ -22,17 +22,17 @@
         <table style="width: 100%; border-collapse: collapse; background-color: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
             <thead style="background-color: #007bff; color: white;">
                 <tr>
-                    <th style="padding: 10px;">id</th>
-                    <th style="padding: 10px;">name</th>
-                    <th style="padding: 10px;">email</th>
-                    <th style="padding: 10px;">phone</th>
-                    <th style="padding: 10px;">role</th>
-                    <th style="padding: 10px;">description</th>
-                    <th style="padding: 10px;">image</th>
-                    <th style="padding: 10px;">created_at</th>
-                    <th style="padding: 10px;">updated_at</th>
-                    <th style="padding: 10px;">status</th>
-                    <th colspan="4" style="text-align: center; padding: 10px;">Hành động</th>
+                    <th style="padding: 10px;">Id</th>
+                    <th style="padding: 10px;">Name</th>
+                    <th style="padding: 10px;">Email</th>
+                    <th style="padding: 10px;">Phone</th>
+                    <th style="padding: 10px;">Role</th>
+                    <th style="padding: 10px;">Description</th>
+                    <th style="padding: 10px;">Image</th>
+                    <th style="padding: 10px;">Created_at</th>
+                    <th style="padding: 10px;">Updated_at</th>
+                    <th style="padding: 10px;">Status</th>
+                    <th colspan="4" style="text-align: center; padding: 10px;">Actions</th>
                 </tr>
 
             </thead>
@@ -64,19 +64,19 @@
                     <td style="padding: 8px;">{{ $User->status }}</td>
                     <td style="padding: 8px;">
                         <a href="{{ url('/template/admin/user/' .$User->id ) }}"
-                            style="color: #007bff; text-decoration: none;">Xem</a>
+                            style="color: #007bff; text-decoration: none;">View</a>
                     </td>
 
                     <td style="padding: 8px;">
                         <a href="{{ url('/template/admin/user/form/' .$User->id  ) }}"
-                            style="background-color: #ffc107; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Sửa</a>
+                            style="background-color: #ffc107; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Edit</a>
                     </td>
                     <td style="padding: 8px;">
-                        <a href="{{ url('/template/admin/user/form/add') }}" style="background-color: #28a745; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Thêm</a>
+                        <a href="{{ url('/template/admin/user/form/add') }}" style="background-color: #28a745; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Add</a>
                     </td>
                     <td style="padding: 8px;">
-                        <a href="{{ url('/template/admin/user/delete/' .$User->id  ) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"
-                            style="background-color: #dc3545; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Xóa</a>
+                        <a href="{{ url('/template/admin/user/delete/' .$User->id  ) }}" onclick="return confirm('Are you sure delete the product?')"
+                            style="background-color: #dc3545; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Delete</a>
                     </td>
                 </tr>
                 @endforeach

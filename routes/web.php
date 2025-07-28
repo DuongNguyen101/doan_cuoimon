@@ -58,7 +58,7 @@ Route::group(['prefix' => 'template/user'], function () {
 
     Route::get('/shop/cart/increase/{id}', [ShopController::class, 'increaseQuantity'])->name('cart.increase');
     Route::get('/shop/cart/decrease/{id}', [ShopController::class, 'decreaseQuantity'])->name('cart.decrease');
-    
+
     Route::post('/cart/update-quantities', [ShopController::class, 'updateQuantities'])->name('cart.update.quantities');
     Route::post('/shop/cart/update', [ShopController::class, 'updateCart'])->name('cart.update');
 });
@@ -182,6 +182,10 @@ Route::group(['prefix' => 'template/admin', 'middleware' => ['auth:admin', 'chec
     Route::get('/reviews/delete/{id}', [TemplateAdminController::class, 'deleteReviews']);
     //qna
     Route::get('/qna', [TemplateAdminController::class, 'qna']);
+    Route::get('/qna/form/{id}', [TemplateAdminController::class, 'loadFormQna']);
+    Route::get('/qna/form/add', [TemplateAdminController::class, 'loadFormQnaAdd']);
+    Route::post('/qna/update/{id?}', [TemplateAdminController::class, 'updateQna'])->name('qna.update');
+    Route::get('/qna/delete/{id}', [TemplateAdminController::class, 'deleteQna']);
     //about
     Route::get('/about', [TemplateAdminController::class, 'about']);
     Route::get('/about/form/{id}', [TemplateAdminController::class, 'loadFormAbout']);
@@ -192,6 +196,9 @@ Route::group(['prefix' => 'template/admin', 'middleware' => ['auth:admin', 'chec
     Route::get('/products/sold', [TemplateAdminController::class, 'productssold']);
     Route::get('/products/discounted', [TemplateAdminController::class, 'productsdiscounted']);
     Route::get('/products/detail', [TemplateAdminController::class, 'productsdetail']);
+    //manage user address
+    Route::get('/useraddress/form/{id}', [TemplateAdminController::class, 'loadformuseraddress']);
+    Route::post('/address/update/{id?}', [TemplateAdminController::class, 'updateAddress'])->name('address.update');
 });
 
 Route::get('/email/verify', [VerificationController::class, 'notice'])->name('verification.notice');
@@ -213,5 +220,3 @@ Route::get('/order/redirect-to-payment', [PaymentController::class, 'redirectToV
 Route::get('/vnpay/return', [PaymentController::class, 'vnpay_return'])->name('vnpay.return');
 
 Route::get('/order/cancel', [PaymentController::class, 'cancelOrder'])->name('order.cancel');
-
-
