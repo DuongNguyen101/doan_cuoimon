@@ -132,6 +132,9 @@ class ShopController extends Controller
 
 public function checkout(Request $request)
     {
+        if (!Auth::check()) {
+        return redirect()->route('login')->with('warning', 'Please login to add products to cart.');
+        }
         if ($request->isMethod('post')) {
             $total = $request->input('total') / 100;
             $user = auth()->user();
@@ -223,18 +226,14 @@ public function addToWishlist(Request $request, $id)
 
 public function addToCart(Request $request, $id)
 {
-    if (!Auth::check()) {
-        return redirect()->route('login')->with('warning', 'Please login to add products to cart.');
-    }
+    
 
     $product = Products::findOrFail($id);
     $cart = session()->get('cart', []);
 
-    // ✅ Lấy quantity từ request, mặc định là 1 nếu không có
     $quantity = max(1, (int) $request->get('quantity', 1));
 
     if (isset($cart[$id])) {
-        // ✅ Cộng dồn số lượng nhưng không vượt quá tồn kho
         $cart[$id]['quantity'] = min($cart[$id]['quantity'] + $quantity, $product->stock);
     } else {
         $cart[$id] = [
