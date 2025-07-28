@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Categories;
 use App\Models\About;
+use App\Models\Qna;
 use App\Models\User;
 
 class AboutController extends Controller
@@ -11,6 +12,7 @@ class AboutController extends Controller
     {   
         $categories = Categories::all();
         $abouts = About::all();
+        $questions = Qna::all();
 
          $teamMembers = User::whereIn('email', [
             'phamquangson0702@gmail.com',
@@ -18,6 +20,6 @@ class AboutController extends Controller
             'khangvi742@gmail.com'
         ])->get();
 
-        return view('template/user/about/index', compact('categories', 'abouts', 'teamMembers'));
+        return view('template/user/about/index', compact('categories', 'abouts', 'teamMembers', 'questions'));
     }
 }
