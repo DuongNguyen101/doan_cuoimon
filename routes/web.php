@@ -31,6 +31,7 @@ Route::group(['prefix' => 'template/user'], function () {
 });
 
 Route::group(['prefix' => 'template/user'], function () {
+    Route::get('/faq', [AboutController::class, 'faq'])->name('faq');
     Route::get('/about/index', [AboutController::class, 'index']);
 });
 
