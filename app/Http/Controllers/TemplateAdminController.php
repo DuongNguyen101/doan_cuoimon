@@ -159,6 +159,50 @@ class TemplateAdminController extends Controller
         $existingProduct = $id ? Products::find($id) : null;
 
         try {
+            $rules = [
+                'product_id' => 'nullable|integer|exists:products,product_id', // Only for editing
+                'name' => 'required|string|max:255|', // Unique, ignoring current record
+                'description' => 'nullable|string|max:1000', // Optional, max 1000 characters
+                'short_description' => 'nullable|string|max:500', // Optional, shorter description
+                'price' => 'required|numeric|min:0', // Non-negative price
+                'stock' => 'required|integer|min:0', // Non-negative stock quantity
+                'category_id' => 'required|exists:categories,category_id', // Must exist in categories
+                'image_url' => 'nullable', // Optional URL, max 2048 characters
+                'nutritional_info' => 'nullable|string|max:2000', // Optional, max 2000 characters
+                'usage_instructions' => 'nullable|string|max:2000', // Optional, max 2000 characters
+                'packaging' => 'nullable|string|max:2000', // Optional, max 2000 characters
+                'origin' => 'nullable|string|max:2000', // Optional, max 2000 characters
+                'created_at' => 'nullable|date', // Optional timestamp
+                'updated_at' => 'nullable|date', // Optional timestamp
+                'status' => 'required|in:active,inactive', // Only allow specific statuses
+            ];
+
+            $customMessages = [
+                'name.required' => 'Tên sản phẩm là bắt buộc.',
+                'name.max' => 'Tên sản phẩm không được vượt quá :max ký tự.',
+                'name.unique' => 'Tên sản phẩm đã tồn tại. Vui lòng chọn tên khác.',
+                'description.max' => 'Mô tả không được vượt quá :max ký tự.',
+                'short_description.max' => 'Mô tả ngắn không được vượt quá :max ký tự.',
+                'price.required' => 'Giá sản phẩm là bắt buộc.',
+                'price.numeric' => 'Giá phải là một số.',
+                'price.min' => 'Giá không được nhỏ hơn :min.',
+                'stock.required' => 'Số lượng tồn kho là bắt buộc.',
+                'stock.integer' => 'Số lượng phải là một số nguyên.',
+                'stock.min' => 'Số lượng không được nhỏ hơn :min.',
+                'category_id.required' => 'Danh mục là bắt buộc.',
+                'category_id.exists' => 'Danh mục không hợp lệ.',
+                'image_url.url' => 'URL hình ảnh không hợp lệ.',
+                'image_url.max' => 'URL hình ảnh không được vượt quá :max ký tự.',
+                'nutritional_info.max' => 'Thông tin dinh dưỡng không được vượt quá :max ký tự.',
+                'usage_instructions.max' => 'Hướng dẫn sử dụng không được vượt quá :max ký tự.',
+                'packaging.max' => 'Thông tin bao bì không được vượt quá :max ký tự.',
+                'origin.max' => 'Xuất xứ không được vượt quá :max ký tự.',
+                'created_at.date' => 'Ngày tạo không hợp lệ.',
+                'updated_at.date' => 'Ngày cập nhật không hợp lệ.',
+                'status.required' => 'Trạng thái là bắt buộc.',
+                'status.in' => 'Trạng thái phải là "active" hoặc "inactive".',
+            ];
+            $data = $request->validate($rules, $customMessages);
 
             $product = [
                 'product_id' => $request->post('product_id'),
@@ -632,6 +676,34 @@ class TemplateAdminController extends Controller
     }
     public function updateOrder(Request $request, $id = null)
     {
+        $rules = [
+    'order_id' => 'nullable|integer|exists:orders,order_id', // Only for editing
+    'user_id' => 'required|exists:users,id', // Must exist in users table
+    'order_date' => 'required|date', // Required date
+    'total_amount' => 'required|numeric|min:0', // Non-negative total amount
+    'address' => 'required|string|max:500', // Required address, max 500 characters
+    'status' => 'required|in:pending,processing,shipped,delivered,canceled', // Specific statuses
+    'created_at' => 'nullable|date', // Optional timestamp
+    'updated_at' => 'nullable|date', // Optional timestamp
+];
+
+$customMessages = [
+    'user_id.required' => 'Người dùng là bắt buộc.',
+    'user_id.exists' => 'Người dùng không hợp lệ.',
+    'order_date.required' => 'Ngày đặt hàng là bắt buộc.',
+    'order_date.date' => 'Ngày đặt hàng không hợp lệ.',
+    'total_amount.required' => 'Tổng số tiền là bắt buộc.',
+    'total_amount.numeric' => 'Tổng số tiền phải là một số.',
+    'total_amount.min' => 'Tổng số tiền không được nhỏ hơn :min.',
+    'address.required' => 'Địa chỉ là bắt buộc.',
+    'address.max' => 'Địa chỉ không được vượt quá :max ký tự.',
+    'status.required' => 'Trạng thái là bắt buộc.',
+    'status.in' => 'Trạng thái phải là một trong: pending, processing, shipped, delivered, canceled.',
+    'created_at.date' => 'Ngày tạo không hợp lệ.',
+    'updated_at.date' => 'Ngày cập nhật không hợp lệ.',
+];
+
+$data = $request->validate($rules, $customMessages);
         return $this->updateRecord($request, new Orders(), '/template/admin/user', $id);
     }
     public function deleteOrder($id)

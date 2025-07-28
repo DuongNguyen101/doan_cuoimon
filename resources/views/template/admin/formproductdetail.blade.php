@@ -21,6 +21,9 @@
                     value="{{ old('name', $product->name ?? '') }}"
                     required
                     style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                @error('name')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
             {{-- product ID --}}
             <input type="hidden" name="product_id" value="{{ old('product_id', $product->product_id ?? '') }}" readonly>
@@ -38,17 +41,26 @@
                 </option>
                 @endforeach
             </select>
+            @error('category_id')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
 
             {{-- Mô tả --}}
             <div class=" form-group" style="margin-bottom: 15px;">
                 <label for="description" style="display: block; margin-bottom: 6px;">description:</label>
                 <textarea id="description" name="description" rows="4" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">{{ old('description', $product->description ?? '') }}</textarea>
+                @error('description')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
 
             {{-- Mo ta ngan --}}
             <div class=" form-group" style="margin-bottom: 15px;">
                 <label for="short_description" style="display: block; margin-bottom: 6px;">short_description:</label>
                 <textarea id="short_description" name="short_description" rows="4" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">{{ old('description', $product->short_description ?? '') }}</textarea>
+                @error('short_description')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
             {{-- Giá sản phẩm --}}
             <div class="form-group" style="margin-bottom: 15px;">
@@ -57,6 +69,9 @@
                     value="{{ old('name', $product->price ?? '') }}"
                     required
                     style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                @error('price')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
             {{-- Số lượng sản phẩm --}}
             <div class="form-group" style="margin-bottom: 15px;">
@@ -65,6 +80,9 @@
                     value="{{ old('stock', $product->stock ?? '') }}"
                     required
                     style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                @error('stock')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
 
             {{-- hinh san pham sản phẩm --}}
@@ -84,11 +102,17 @@
             <div class=" form-group" style="margin-bottom: 15px;">
                 <label for="nutritional_info" style="display: block; margin-bottom: 6px;">nutritional_info:</label>
                 <textarea id="nutritional_info" name="nutritional_info" rows="4" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">{{ old('nutritional_info', $product->nutritional_info ?? '') }}</textarea>
+                @error('nutritional_info')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
             {{-- usage_instructions--}}
             <div class=" form-group" style="margin-bottom: 15px;">
                 <label for="usage_instructions" style="display: block; margin-bottom: 6px;">usage_instructions:</label>
                 <textarea id="usage_instructions" name="usage_instructions" rows="4" class="form-control" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">{{ old('usage_instructions', $product->usage_instructions ?? '') }}</textarea>
+                @error('usage_instructions')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
             {{-- packaging --}}
             <div class=" form-group" style="margin-bottom: 15px;">
