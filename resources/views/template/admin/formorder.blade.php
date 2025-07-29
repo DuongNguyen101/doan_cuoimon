@@ -48,6 +48,9 @@
                 <label for="total_amount" style="display: block; margin-bottom: 6px;">total_amount:</label>
                 <textarea id="total_amount" name="total_amount" rows="4"
                     style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">{{ old('author', $record->total_amount ?? '') }}</textarea>
+                @error('total_amount')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
             {{-- trang thái --}}
             <div class="form-group" style="margin-bottom: 15px;">
@@ -60,12 +63,18 @@
                     <option value="delivered" {{ old('status', $record->status ?? '') == 'delivered' ? 'selected' : '' }}>delivered</option>
                     <option value="canceled" {{ old('status', $record->status ?? '') == 'unpublish' ? 'selected' : '' }}>canceled</option>
                 </select>
+                @error('status')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
             {{-- address --}}
             <div class="form-group" style="margin-bottom: 15px;">
                 <label for="total_amount" style="display: block; margin-bottom: 6px;">address:</label>
                 <textarea id="address" name="address" rows="4"
                     style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">{{ old('address', $record->address ?? '') }}</textarea>
+                @error('address')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
             {{-- Created At --}}
             <div class="form-group" style="margin-bottom: 15px;">
