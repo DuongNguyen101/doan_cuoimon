@@ -62,10 +62,10 @@
                     <td style="padding: 8px;">
                         <a href="{{ url('/template/admin/user/form/add') }}" style="background-color: #28a745; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Add</a>
                     </td>
-                    <td style="padding: 8px;">
+                    <!-- <td style="padding: 8px;">
                         <a href="{{ url('/template/admin/user/delete/' .$User->id  ) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"
                             style="background-color: #dc3545; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Delete</a>
-                    </td>
+                    </td> -->
                 </tr>
                 @endforeach
             </tbody>

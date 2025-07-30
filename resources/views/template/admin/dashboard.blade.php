@@ -17,7 +17,6 @@
         <table style="width: 100%; border-collapse: collapse; background-color: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
             <thead style="background-color: #007bff; color: white;">
                 <tr>
-                    <th style="padding: 10px;">Category_Id</th>
                     <th style="padding: 10px;">Name</th>
                     <th style="padding: 10px;">Description</th>
                     <th style="padding: 10px;">Created_at</th>
@@ -29,9 +28,8 @@
             <tbody>
                 @foreach ($categories as $category)
                 <tr style="text-align: center; border-bottom: 1px solid #ccc;">
-                    <td style="padding: 8px;">{{ $category->category_id }}</td>
                     <td style="padding: 8px;">{{ $category->name }}</td>
-                    <td style="padding: 8px;">{{ $category->description }}</td>
+                    <td style="padding: 8px;">{!! implode(separator: ' ', array: array_slice(explode(' ', $category->description), 0, 20)) !!}...</td>
                     <td style="padding: 8px;">{{ $category->created_at }}</td>
                     <td style="padding: 8px;">{{ $category->updated_at }}</td>
                     <td style="padding: 8px;">

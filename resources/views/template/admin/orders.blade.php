@@ -38,19 +38,19 @@
                     <td style="padding: 8px;">{{ $Order->updated_at }}</td>
                     <td style="padding: 8px;">
                         <a href="{{ url('/template/admin/user/order/' . $Order->order_id.'/'.$Order->user_id) }}"
-                            style="color: #007bff; text-decoration: none;">Xem</a>
+                            style="color: #007bff; text-decoration: none;">View</a>
                     </td>
                     <td style="padding: 8px;">
                         <a href="{{ url('/template/admin/order/form/' . $Order->order_id) }}"
-                            style="background-color: #ffc107; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Sửa</a>
+                            style="background-color: #ffc107; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Edit</a>
                     </td>
                     <td style="padding: 8px;">
                         <a href="{{ url('/template/admin/order/form/add') }}"
-                            style="background-color: #28a745; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Thêm</a>
+                            style="background-color: #28a745; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Add</a>
                     </td>
                     <td style="padding: 8px;">
                         <a href="{{ url('/template/admin/order/delete/' . $Order->order_id) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa?')"
-                            style="background-color: #dc3545; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Xóa</a>
+                            style="background-color: #dc3545; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Delete</a>
                     </td>
                 </tr>
                 @endforeach

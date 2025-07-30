@@ -22,7 +22,6 @@
                     <th style="padding: 10px;">Description</th>
                     <th style="padding: 10px;">Price</th>
                     <th style="padding: 10px;">Stock</th>
-                    <th style="padding: 10px;">Category_id</th>
                     <th style="padding: 10px;">Image_url</th>
                     <th style="padding: 10px;">Created_at</th>
                     <th style="padding: 10px;">Updated_at</th>
@@ -37,7 +36,6 @@
                     <td style="padding: 8px;">{!! implode(separator: ' ', array: array_slice(explode(' ', $product->description), 0, 20)) !!}...</td>
                     <td style="padding: 8px; color: #28a745;">{{ number_format($product->price, 0, ',', '.') }}$</td>
                     <td style="padding: 8px;">{{ $product->stock }}</td>
-                    <td style="padding: 8px;">{{ $product->category_id }}</td>
                     <td style="padding: 8px;">
                         @if ($product->image_url)
                         <img src="{{asset( 'image/shoplist/'.$product->image_url) }}" alt="Product Image" style="width: 60px; height: auto; border-radius: 4px;">

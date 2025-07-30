@@ -137,9 +137,9 @@
                         <a href="{{ url('/template/admin/useraddress/form/' .$adress->id  ) }}"
                             style="background-color: #ffc107; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Edit</a>
                     </td>
-                    <td style="padding: 8px;">
+                    <!-- <td style="padding: 8px;">
                         <a href="{{ url('/template/admin/useraddress/form/add') }}" style="background-color: #28a745; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none;">Add</a>
-                    </td>
+                    </td> -->
                 </tr>
                 @endforeach
             </tbody>
