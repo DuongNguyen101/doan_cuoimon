@@ -47,7 +47,7 @@ class PagesController extends Controller
         }
 
         Auth::guard('web')->login($user);
-        return redirect()->intended('template/user/home/index');
+        return redirect('/home');
     }
 
     public function register()
